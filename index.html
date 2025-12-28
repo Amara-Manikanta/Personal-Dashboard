@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Life Tracker - Novels & Travel</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Icons (Phosphor) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Third Party Libraries -->
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+
+</head>
+
+<body class="bg-surface text-text-primary">
+    <div id="root"></div>
+
+    <!-- App Scripts -->
+    <!-- We use type="text/babel" for JSX support -->
+    <!-- Creating a simple global store for data first, then components -->
+    <script type="text/babel" data-presets="react" src="src/data.js?v=forceLoad1"></script>
+
+    <script type="text/babel" data-presets="react" src="src/components/NovelCard.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/FilterSidebar.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Modal.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelForm.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelDetails.jsx?v=debug_fix"></script>
+    <script type="text/babel" data-presets="react" src="src/data/writingData.js"></script>
+    <script type="text/babel" data-presets="react" src="src/data/storiesData.js"></script>
+    <script type="text/babel" data-presets="react" src="src/data/stories/story_1.js"></script>
+    <script type="text/babel" data-presets="react" src="src/data/stories/story_2.js"></script>
+    <script type="text/babel" data-presets="react" src="src/data/stories/story_3.js"></script>
+
+    <!-- Travel Components -->
+    <script type="text/babel" data-presets="react" src="src/data/statesData.js"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/StateCard.jsx?v=debug4"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/TravelDashboard.jsx?v=debug4"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/StateDetails.jsx?v=debug4"></script>
+
+    <script type="text/babel" data-presets="react" src="src/HomePage.jsx?v=writing_fix"></script>
+    <script type="text/babel" data-presets="react" src="src/NovelsDashboard.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/WritingDashboard.jsx?v=writing_fix"></script>
+    <script type="text/babel" data-presets="react" src="src/App.jsx?v=writing_fix"></script>
+</body>
+
+</html>
