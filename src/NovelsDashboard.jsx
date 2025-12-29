@@ -45,6 +45,12 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                     else if (viewMode === 'years') increment(novel.readYear);
                     else if (viewMode === 'my_rating') increment(novel.rating);
                     else if (viewMode === 'goodreads_rating') increment(novel.goodreadsRating);
+                    else if (viewMode === 'pages_year') {
+                        const year = novel.readYear;
+                        if (year) {
+                            counts[year] = (counts[year] || 0) + (novel.pages || 0);
+                        }
+                    }
                 }
             });
 
@@ -66,7 +72,7 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                 // Secondary sort by label if counts are equal (optional, but good for UI)
                 if (diff === 0) {
                     // For ratings and years, numeric sort on label makes sense
-                    if (viewMode === 'years' || viewMode === 'my_rating' || viewMode === 'goodreads_rating') {
+                    if (viewMode === 'years' || viewMode === 'my_rating' || viewMode === 'goodreads_rating' || viewMode === 'pages_year') {
                         return Number(b.label) - Number(a.label); // Descending label by default (newest/highest first)
                     }
                     return a.label.localeCompare(b.label);
@@ -83,6 +89,7 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                 case 'years': return 'Yearly Statistics';
                 case 'my_rating': return 'My Ratings Distribution';
                 case 'goodreads_rating': return 'Goodreads Ratings Distribution';
+                case 'pages_year': return 'Pages Read Per Year';
                 default: return 'Statistics';
             }
         };
@@ -94,6 +101,7 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                 case 'years': return 'Year';
                 case 'my_rating': return 'My Rating';
                 case 'goodreads_rating': return 'Goodreads Rating';
+                case 'pages_year': return 'Year';
                 default: return 'Item';
             }
         }
@@ -136,6 +144,12 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                             >
                                 Goodreads
                             </button>
+                            <button
+                                className={`toggle-btn ${viewMode === 'pages_year' ? 'active' : ''}`}
+                                onClick={() => setViewMode('pages_year')}
+                            >
+                                Pages/Year
+                            </button>
                         </div>
 
                         <div className="sort-controls">
@@ -162,7 +176,7 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                             <thead>
                                 <tr>
                                     <th>{getColumnLabel()}</th>
-                                    <th className="text-right">Books Read</th>
+                                    <th className="text-right">{viewMode === 'pages_year' ? 'Pages Read' : 'Books Read'}</th>
                                 </tr>
                             </thead>
                             <tbody>
