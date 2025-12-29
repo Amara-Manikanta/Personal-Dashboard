@@ -1613,7 +1613,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2016,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The final installment in the Stranger trilogy, where Rivanah finally confronts the identity of the Stranger and the mystery of Hiya."
@@ -1629,7 +1629,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2014,
+        readYear: 2024,
         readMonth: 5,
         status: "TBR",
         description: "A fantasy trilogy inspired by Egyptian mythology."
@@ -1645,7 +1645,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2014,
+        readYear: 2024,
         readMonth: 5,
         status: "TBR",
         description: "A fantasy trilogy inspired by Egyptian mythology."
@@ -1662,7 +1662,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         review: ["It was good,mostly the story was about how they find the ingots(gold bars) in the kerrin island."],
@@ -1679,7 +1679,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The gang reunites during holidays and stumbles upon a thrilling mystery."
@@ -1695,7 +1695,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A runaway adventure leads the Famous Five into unexpected danger."
@@ -1711,7 +1711,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A spooky house, secret passages, and smugglers await the Five."
@@ -1727,7 +1727,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A caravan holiday turns into a mystery involving missing valuables."
@@ -1743,7 +1743,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Famous Five return to Kirrin Island to uncover a new secret."
@@ -1759,7 +1759,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A camping trip becomes dangerous when strange events unfold."
@@ -1775,7 +1775,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Five face a thrilling challenge involving criminals and courage."
@@ -1791,7 +1791,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A simple trip turns into a high-stakes adventure."
@@ -1807,7 +1807,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "Fun holidays quickly turn mysterious for the Famous Five."
@@ -1823,7 +1823,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A seaside adventure with secret tunnels and danger."
@@ -1839,7 +1839,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "none", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Famous Five explore a mysterious moor filled with secrets."
@@ -1869,9 +1869,9 @@ She kidnaps professors children and show their children to them and torture in t
         genre: "Children’s Adventure",
         rating: 4,
         goodreadsRating: 4.5,
-        ownership: "none", // 'none', 'home', 'lent'
+        ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Five follow a hidden trail leading to danger."
@@ -1885,9 +1885,9 @@ She kidnaps professors children and show their children to them and torture in t
         genre: "Children’s Adventure",
         rating: 4,
         goodreadsRating: 4.5,
-        ownership: "none", // 'none', 'home', 'lent'
+        ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A thrilling tale of kidnapped scientists and secret hideouts."
@@ -1901,9 +1901,9 @@ She kidnaps professors children and show their children to them and torture in t
         genre: "Children’s Adventure",
         rating: 4,
         goodreadsRating: 4.5,
-        ownership: "none", // 'none', 'home', 'lent'
+        ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Famous Five must outwit criminals to escape danger."
@@ -1919,7 +1919,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "Old ruins and new enemies lead to a classic adventure."
@@ -1935,7 +1935,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A dangerous island and a daring rescue mission."
@@ -1951,7 +1951,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Five uncover secrets in an old house."
@@ -1967,7 +1967,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A reunion adventure filled with danger and friendship."
@@ -1983,7 +1983,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The final Famous Five adventure set on a mysterious island."
@@ -1999,7 +1999,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Famous Five face danger while uncovering a criminal plot."
@@ -2015,7 +2015,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "Old ruins, secret passages, and enemies await the Five."
@@ -2031,7 +2031,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A thrilling island adventure involving a daring rescue."
@@ -2047,7 +2047,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The Famous Five uncover secrets hidden in an old house."
@@ -2063,7 +2063,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A reunion holiday quickly turns into an exciting mystery."
@@ -2079,7 +2079,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "The very first Famous Five adventure set on Kirrin Island and its hidden treasure."
@@ -2095,7 +2095,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2010,
+        readYear: 2024,
         readMonth: 5,
         status: "Read",
         description: "A hiking trip turns dangerous when the Five uncover a secret."
@@ -2112,7 +2112,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Explains major medical discoveries and inventions in an easy-to-understand Q&A format."
@@ -2128,7 +2128,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Answers curious questions about natural and man-made disasters across history."
@@ -2144,7 +2144,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Explores fascinating facts and questions about the Moon and space science."
@@ -2160,7 +2160,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Explains how money works, its history, and financial concepts for young readers."
@@ -2176,7 +2176,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "A question-and-answer guide to the Mughal empire and its rulers."
@@ -2192,7 +2192,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Introduces myths, legends, and beliefs through simple explanations."
@@ -2208,8 +2208,8 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
-        readMonth: 4,
+        readYear: 2024,
+        readMonth: 5,
         status: "Having",
         description: "Explains important revolutions and social movements around the world."
     },
@@ -2224,8 +2224,8 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2009,
-        readMonth: 9,
+        readYear: 2024,
+        readMonth: 5,
         status: "Having",
         description: "Answers interesting questions about mountains, geography, and nature."
     },
@@ -2241,7 +2241,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2018,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Percy discovers he is a demigod and begins his journey into Greek mythology."
@@ -2369,7 +2369,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2015,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Magnus discovers he is the son of a Norse god and enters Valhalla."
@@ -2385,7 +2385,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2015,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Thor’s hammer is missing, and the Nine Worlds are in danger."
@@ -2401,7 +2401,7 @@ She kidnaps professors children and show their children to them and torture in t
         goodreadsRating: 4.5,
         ownership: "home", // 'none', 'home', 'lent'
         lentTo: "",
-        readYear: 2015,
+        readYear: 2024,
         readMonth: 5,
         status: "Having",
         description: "Magnus faces Loki in a final showdown to save the worlds."
@@ -3161,3 +3161,26 @@ window.GENRES = [
     "Young Adult Fantasy"
 ];
 window.STATUSES = ["All", "TBR", "Currently Reading", "Read", "Tried"];
+
+
+// Verification Logic
+const novels = window.novelsData;
+const ids = new Set();
+const titles = new Set();
+const dupes = [];
+
+novels.forEach(n => {
+    const uniqueKey = n.title.toLowerCase().trim() + '|' + n.author.toLowerCase().trim();
+    if (ids.has(n.id)) {
+        console.log('Duplicate ID:', n.id, n.title);
+    }
+    ids.add(n.id);
+
+    if (titles.has(uniqueKey)) {
+        console.log('Duplicate Novel (Title+Author):', n.title, 'ID:', n.id);
+        dupes.push(n);
+    }
+    titles.add(uniqueKey);
+});
+
+if(dupes.length === 0) console.log('No duplicates found.');
