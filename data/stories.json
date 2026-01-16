@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Never lasting hope on you",
+    "genre": "Love",
+    "status": "Draft",
+    "totalParts": 2,
+    "lastEdited": "2024-05-15",
+    "description": "A story about love and loss.",
+    "parts": [
+      {
+        "partNumber": 1,
+        "modified": "In this busy life, as I sat having lunch alone, my phone beeped—her name flashed on the screen.I paused, took a sip of water to steady myself, then drew a deep breath, trying to stay composed.As I reached for the phone, I noticed my hand trembling.Without a second thought, I answered.A moment of silence followed, then… I heard her heavy breathing from the other side.”",
+        "original": "In this busy life, while having lunch alone.my phone beeped with her name.i drank water to come back to my senses, then took a long breath and made myself comfortable.while lifting the phone l could see my hand shanking, without any movement I answered the call.i could feel heavy breathing from other side..."
+      },
+      {
+        "partNumber": 2,
+        "original": "",
+        "modified": "To break the silence, I said, ‘Hello.’ To my surprise, she responded, ‘Hi, how are you?’ A flood of thoughts rushed through my mind—How can I be fine without you? How could a man stay happy without his heart? But instead, I simply said, ‘Good.’\n\n                        She paused for a moment and then said, ‘Can we meet tonight at Dhara’s Dhaba? I need to talk to you about something important.’\n\n                        I hesitated for a second, my mind racing, but all I managed to say was, ‘Okay…’"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Unexpected Love Story",
+    "genre": "Love",
+    "status": "Published",
+    "totalParts": 1,
+    "lastEdited": "2024-04-20",
+    "description": "A drama about lost connections and rainy days.",
+    "parts": [
+      {
+        "partNumber": 1,
+        "original": "She sat by the window, watching the rain fall. It had been raining for days.",
+        "modified": "She remained by the window, mesmerized by the relentless rainfall that had persisted for days."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Cyber City 2099",
+    "genre": "Sci-Fi",
+    "status": "In Progress",
+    "totalParts": 3,
+    "lastEdited": "2024-05-18",
+    "description": "High-stakes action in a neon-soaked future.",
+    "parts": [
+      {
+        "partNumber": 1,
+        "original": "Neon lights reflected off the wet pavement as Kael adjusted his cybernetic arm. The city never slept.",
+        "modified": "Neon reflections danced on the slick pavement. Kael calibrated his cybernetic arm; insomnia was this city's only constant."
+      },
+      {
+        "partNumber": 2,
+        "original": "He was looking for the data chip. It was worth more than his life.",
+        "modified": null
+      },
+      {
+        "partNumber": 3,
+        "original": "A shadow moved in the alley. He drew his blaster.",
+        "modified": "Movement in the alleyway. Kael's hand found his blaster before he even registered the threat."
+      }
+    ]
+  }
+]
