@@ -3,9 +3,6 @@ window.NovelsDashboard = ({ onBackToHome }) => {
     const { useState, useEffect } = React;
     // ---- State: Data ----
     const [novels, setNovels] = useState(() => {
-        // User requested to disable localStorage reading.
-        // We load directly from the static data file.
-        console.log("Loading novels from static data.js");
         return window.novelsData || [];
     });
 
@@ -242,13 +239,16 @@ window.NovelsDashboard = ({ onBackToHome }) => {
             ...newNovelData,
             id: Date.now(), // Simple ID generation
         };
-        setNovels([newNovel, ...novels]);
+        const updatedList = [newNovel, ...novels];
+        setNovels(updatedList);
+        window.api.saveNovels(updatedList); // Save to API
         setIsModalOpen(false);
     };
 
     const handleUpdateNovel = (updatedData) => {
         const updatedList = novels.map(n => n.id === editingNovel.id ? { ...updatedData, id: n.id } : n);
         setNovels(updatedList);
+        window.api.saveNovels(updatedList); // Save to API
 
         // If we are viewing this novel, update the selectedNovel state too so the view refreshes
         if (selectedNovel && selectedNovel.id === editingNovel.id) {
@@ -267,7 +267,9 @@ window.NovelsDashboard = ({ onBackToHome }) => {
     // Actual delete action
     const confirmDelete = () => {
         if (deletingNovelId) {
-            setNovels(novels.filter(n => n.id !== deletingNovelId));
+            const updatedList = novels.filter(n => n.id !== deletingNovelId);
+            setNovels(updatedList);
+            window.api.saveNovels(updatedList); // Save to API
 
             // If we are viewing the deleted novel, go back to dashboard
             if (selectedNovel && selectedNovel.id === deletingNovelId) {
