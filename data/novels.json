@@ -1,25 +1,5 @@
 [
   {
-    "title": "test",
-    "author": "mani",
-    "genre": "Uncategorized",
-    "subGenre": "",
-    "status": "TBR",
-    "progress": "",
-    "progressType": "pages",
-    "rating": 0,
-    "goodreadsRating": "",
-    "ownership": "none",
-    "location": "",
-    "lentTo": "",
-    "readYear": "",
-    "readMonth": "",
-    "cover": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=2000",
-    "review": "",
-    "quotes": [],
-    "id": 1768532126320
-  },
-  {
     "id": 1,
     "title": "Boaderlands",
     "author": "Pradeep Damodaran",
