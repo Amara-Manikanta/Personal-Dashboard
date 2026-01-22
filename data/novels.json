@@ -1199,7 +1199,9 @@
     "readYear": 2024,
     "readMonth": 5,
     "status": "Currently Reading",
-    "description": "A fast-paced domestic thriller filled with secrets, twists, and deception."
+    "description": "A fast-paced domestic thriller filled with secrets, twists, and deception.",
+    "progressType": "pages",
+    "progress": "69"
   },
   {
     "id": 71,
