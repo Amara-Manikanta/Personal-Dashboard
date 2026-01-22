@@ -93,6 +93,18 @@ app.post('/api/stories', (req, res) => {
     else res.status(500).json({ success: false, message: 'Failed to save stories' });
 });
 
+// --- Authors ---
+app.get('/api/authors', (req, res) => {
+    const data = readData('authors.json');
+    res.json(data || []);
+});
+
+app.post('/api/authors', (req, res) => {
+    const success = writeData('authors.json', req.body);
+    if (success) res.json({ success: true });
+    else res.status(500).json({ success: false, message: 'Failed to save authors' });
+});
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

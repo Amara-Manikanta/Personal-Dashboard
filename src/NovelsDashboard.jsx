@@ -1,10 +1,22 @@
 
-window.NovelsDashboard = ({ onBackToHome }) => {
+window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     const { useState, useEffect } = React;
     // ---- State: Data ----
     const [novels, setNovels] = useState(() => {
         return window.novelsData || [];
     });
+
+    // Check for pending selected novel (deep link from Author Page)
+    useEffect(() => {
+        if (window.pendingSelectedNovel) {
+            // Find the full novel object in case the passed one is incomplete or stale
+            const found = novels.find(n => n.id === window.pendingSelectedNovel.id);
+            if (found) {
+                setSelectedNovel(found);
+            }
+            window.pendingSelectedNovel = null;
+        }
+    }, [novels]);
 
     // ---- State: UI ----
     const [filters, setFilters] = useState({
@@ -432,6 +444,7 @@ window.NovelsDashboard = ({ onBackToHome }) => {
                         onBack={() => setSelectedNovel(null)}
                         onEdit={openEditModal}
                         onDelete={initiateDelete}
+                        onAuthorClick={onAuthorClick}
                     />
                 ) : activeTab === 'stats' ? (
                     <StatsBoard novels={novels} />
