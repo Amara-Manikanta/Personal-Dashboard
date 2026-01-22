@@ -1,7 +1,9 @@
-window.NovelDetails = ({ novel, onBack, onEdit, onDelete }) => {
+window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick }) => {
     const { useState } = React;
     const { title, author, cover, genre, subGenre, rating, status, review, progress, progressType, quotes, phrases, description } = novel;
     const [activeTab, setActiveTab] = useState('description');
+
+
 
     const renderStars = (count) => {
         return Array.from({ length: 5 }).map((_, i) => (
@@ -143,7 +145,16 @@ window.NovelDetails = ({ novel, onBack, onEdit, onDelete }) => {
                             {subGenre && <span className="sub-genre"> • {subGenre}</span>}
                         </div>
                         <h1 className="detail-title">{title}</h1>
-                        <h2 className="detail-author">by {author}</h2>
+                        <h2 className="detail-author">
+                            by <span
+                                onClick={() => onAuthorClick(author)}
+                                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+                                onMouseOver={(e) => e.target.style.color = 'var(--primary)'}
+                                onMouseOut={(e) => e.target.style.color = 'inherit'}
+                            >
+                                {author}
+                            </span>
+                        </h2>
 
                         {(novel.ownership && novel.ownership !== 'none') || novel.location ? (
                             <div className="ownership-tag-group">
