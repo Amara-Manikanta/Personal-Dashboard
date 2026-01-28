@@ -355,6 +355,13 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
         });
     };
 
+    const handleDirectUpdate = (updatedNovel) => {
+        const updatedList = novels.map(n => n.id === updatedNovel.id ? updatedNovel : n);
+        setNovels(updatedList);
+        window.api.saveNovels(updatedList);
+        setSelectedNovel(updatedNovel);
+    };
+
     const filteredNovels = getFilteredNovels();
 
     return (
@@ -445,6 +452,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                         onEdit={openEditModal}
                         onDelete={initiateDelete}
                         onAuthorClick={onAuthorClick}
+                        onUpdate={handleDirectUpdate}
                     />
                 ) : activeTab === 'stats' ? (
                     <StatsBoard novels={novels} />

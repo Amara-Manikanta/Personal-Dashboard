@@ -205,7 +205,17 @@
         "Chamba",
         "Spiti Valley",
         "McLeod Ganj",
-        "Paragliding"
+        "Paragliding",
+        {
+          "name": "Rohtang Pass",
+          "city": "Manali",
+          "remarks": "-"
+        },
+        {
+          "name": "Dalai Lama Temple",
+          "city": "Dharamshala",
+          "remarks": "-"
+        }
       ],
       "restaurants": [],
       "food": [],
@@ -222,7 +232,8 @@
         "Angels inn",
         "Neha Residency",
         "House stay"
-      ]
+      ],
+      "highlights": []
     },
     "Jharkhand": {
       "visited": false,
@@ -292,7 +303,9 @@
         "Birds of paradise",
         "Vijaya Vithala Temple",
         "Jhari Water Falls",
-        "Sanapur Lake"
+        "Sanapur Lake",
+        "Hampi",
+        "Mysore Palace"
       ],
       "placesToVisit": [
         "Vatada hosahalli lake",
@@ -331,10 +344,29 @@
         "mani biryani hoskote",
         "TK Falls",
         "Kaigal Falls",
-        "Bharachukki Waterfalls"
+        "Bharachukki Waterfalls",
+        {
+          "name": "Beach",
+          "city": "Gokarna",
+          "remarks": "Relax"
+        },
+        {
+          "name": "Palace",
+          "city": "Mysore",
+          "remarks": "History"
+        },
+        {
+          "name": "Test Spot A",
+          "city": "CityA",
+          "remarks": "Remark A"
+        },
+        {
+          "name": "Test Spot B",
+          "city": "CityB",
+          "remarks": "Remark B"
+        }
       ],
       "restaurants": [
-        "Go Native",
         "The Big Barbeque Buffet",
         "Plan B",
         "Barbeque",
@@ -368,6 +400,13 @@
         "Far Trek 001 3 BHK Apartment near IIM B",
         "Rocky Medows Resort",
         "Tirmul Facing"
+      ],
+      "highlights": [
+        {
+          "name": "Test Place",
+          "city": "Test City",
+          "remarks": "Test Remark"
+        }
       ]
     },
     "Kerala": {
@@ -690,7 +729,14 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Amber Fort",
+          "city": "Jaipur",
+          "remarks": "-"
+        }
+      ]
     },
     "Sikkim": {
       "visited": true,
@@ -968,6 +1014,16 @@
     {
       "id": 6,
       "text": "Trek to Everest Base Camp",
+      "completed": false
+    },
+    {
+      "id": 1769449392322,
+      "text": "Meghalaya Trek",
+      "completed": false
+    },
+    {
+      "id": 1769449727439,
+      "text": "Meghalaya Trek",
       "completed": false
     }
   ]
