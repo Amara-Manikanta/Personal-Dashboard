@@ -17,6 +17,16 @@ if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR);
 }
 
+// Backup Configuration
+const BACKUP_DIR = path.join(DATA_DIR, 'backups');
+if (!fs.existsSync(BACKUP_DIR)) {
+    fs.mkdirSync(BACKUP_DIR);
+}
+
+// Configuration: Allow Writes?
+// You can change this to false to make the server Read-Only
+const ENABLE_WRITES = true;
+
 // Helper to read JSON file
 const readData = (filename) => {
     const filePath = path.join(DATA_DIR, filename);
@@ -32,8 +42,32 @@ const readData = (filename) => {
     }
 };
 
+// Helper to create a backup
+const createBackup = (filename) => {
+    const sourcePath = path.join(DATA_DIR, filename);
+    if (!fs.existsSync(sourcePath)) return;
+
+    const timestamp = new Date().toISOString().replace(/:/g, '-');
+    const backupName = `${filename}.${timestamp}.bak`;
+    const destPath = path.join(BACKUP_DIR, backupName);
+
+    try {
+        fs.copyFileSync(sourcePath, destPath);
+        console.log(`Backup created: ${backupName}`);
+    } catch (err) {
+        console.error(`Error creating backup for ${filename}:`, err);
+    }
+};
+
 // Helper to write JSON file
 const writeData = (filename, data) => {
+    if (!ENABLE_WRITES) {
+        console.warn(`Write attempt blocked for ${filename} (Read-Only Mode)`);
+        return false;
+    }
+
+    createBackup(filename);
+
     const filePath = path.join(DATA_DIR, filename);
     try {
         fs.writeFileSync(filePath, JSON.stringify(data, null, 2));

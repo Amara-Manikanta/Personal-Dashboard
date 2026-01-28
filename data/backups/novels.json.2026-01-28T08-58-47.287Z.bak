@@ -1,27 +1,5 @@
 [
   {
-    "title": "The Warren Buffett Stock Portfolio",
-    "author": "Mary Buffett & David Clark",
-    "genre": "Investment",
-    "subGenre": "",
-    "status": "Currently Reading",
-    "progress": "",
-    "progressType": "pages",
-    "rating": 0,
-    "goodreadsRating": "3.6",
-    "ownership": "none",
-    "location": "",
-    "lentTo": "",
-    "readYear": "",
-    "readMonth": "",
-    "cover": "https://m.media-amazon.com/images/I/71d1FQi5CUL._AC_UF1000,1000_QL80_.jpg",
-    "review": "",
-    "quotes": [
-      "When others are rushing to sell of stocks, warren will be selectively buying in. The key word here is selectively. When warren is buying in he is picking the cream of the crop companies that have a durable competitive advantage."
-    ],
-    "id": 1769591000833
-  },
-  {
     "id": 1,
     "title": "Boaderlands",
     "author": "Pradeep Damodaran",

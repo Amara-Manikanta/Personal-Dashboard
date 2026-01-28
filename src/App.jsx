@@ -99,6 +99,7 @@ const App = () => {
             )}
 
             {currentView === 'state-details' && (
+                console.log("Rendering StateDetails, window.StateDetails is:", window.StateDetails) ||
                 <window.StateDetails
                     stateName={selectedStateName}
                     onBack={() => setCurrentView('travel')}

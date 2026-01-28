@@ -3,7 +3,8 @@ console.log("Loading TravelDashboard.jsx (Restored)");
 
 window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
     const { useState, useEffect, useMemo } = React;
-    const { getStatesData, getCountriesData, getStateStats, getCountryStats, getBucketList, saveBucketList } = window.TravelData;
+    const TravelData = window.TravelData || {};
+    const { getStatesData, getCountriesData, getStateStats, getCountryStats, getBucketList, saveBucketList } = TravelData;
     const StateCard = window.StateCard;
 
     const [viewMode, setViewMode] = useState('states'); // 'states' | 'countries' | 'bucket-list'
@@ -88,11 +89,6 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     <div className="stat-pill">
                         <span className="label">{viewMode === 'states' ? 'States Visited' : 'Countries Visited'}</span>
                         <span className="value">{stats.visitedStates || stats.visitedCountries} / {stats.totalStates || stats.totalCountries}</span>
-                    </div>
-                    <div className="stat-pill">
-                        <i className="ph-fill ph-mountains" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i>
-                        <span className="label">Treks Done</span>
-                        <span className="value">{stats.totalTreks || 0}</span>
                     </div>
                 </div>
             </header>
@@ -334,7 +330,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
                 }
                 
-                .filter-tabs {
+                .filter-tabs, .view-toggles {
                     display: flex;
                     background: var(--bg-surface);
                     padding: 0.25rem;
@@ -342,7 +338,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     border: 1px solid var(--border);
                 }
                 
-                .filter-tabs button {
+                .filter-tabs button, .view-toggles button {
                     padding: 0.5rem 1rem;
                     background: transparent;
                     border: none;
@@ -353,31 +349,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     transition: all 0.2s;
                 }
                 
-                .filter-tabs button.active {
-                    background: var(--primary);
-                    color: white;
-                }
-
-                .view-toggles {
-                    display: flex;
-                    background: var(--bg-surface);
-                    padding: 0.25rem;
-                    border-radius: var(--radius-md);
-                    border: 1px solid var(--border);
-                }
-
-                .view-toggles button {
-                    padding: 0.5rem 1rem;
-                    background: transparent;
-                    border: none;
-                    color: var(--text-muted);
-                    font-weight: 500;
-                    cursor: pointer;
-                    border-radius: var(--radius-sm);
-                    transition: all 0.2s;
-                }
-
-                .view-toggles button.active {
+                .filter-tabs button.active, .view-toggles button.active {
                     background: var(--primary);
                     color: white;
                 }
@@ -387,7 +359,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                     gap: 1.5rem;
                 }
-                
+
                 .empty-state {
                     grid-column: 1 / -1;
                     text-align: center;
@@ -492,4 +464,4 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         </div>
     );
 };
-console.log("TravelDashboard.jsx (Restored) Defined:", window.TravelDashboard);
+console.log("TravelDashboard.jsx (Table Layout) Defined:", window.TravelDashboard);
