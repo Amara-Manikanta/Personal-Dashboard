@@ -51,13 +51,33 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                 if (novel.status === 'Read') {
                     if (viewMode === 'authors') increment(novel.author);
                     else if (viewMode === 'genres') increment(novel.genre);
-                    else if (viewMode === 'years') increment(novel.readYear);
+                    else if (viewMode === 'years') {
+                        // Prefer manual readYear if set, otherwise use completedDate
+                        let year = novel.readYear;
+                        if (!year && novel.completedDate) {
+                            year = new Date(novel.completedDate).getFullYear();
+                        }
+                        increment(year);
+                    }
                     else if (viewMode === 'my_rating') increment(novel.rating);
                     else if (viewMode === 'goodreads_rating') increment(novel.goodreadsRating);
                     else if (viewMode === 'pages_year') {
-                        const year = novel.readYear;
+                        // Prefer manual readYear if set, otherwise use completedDate
+                        let year = novel.readYear;
+                        if (!year && novel.completedDate) {
+                            year = new Date(novel.completedDate).getFullYear();
+                        }
+
+                        // Calculate pages: Prefer 'pages' field, fallback to progress if pages
+                        let pageCount = 0;
+                        if (novel.pages) {
+                            pageCount = Number(novel.pages);
+                        } else if (novel.progressType === 'pages' && novel.progress) {
+                            pageCount = Number(novel.progress);
+                        }
+
                         if (year) {
-                            counts[year] = (counts[year] || 0) + (novel.pages || 0);
+                            counts[year] = (counts[year] || 0) + pageCount;
                         }
                     }
                 }

@@ -17,6 +17,9 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
         lentTo: '',
         readYear: '',
         readMonth: '',
+        startDate: '',
+        completedDate: '',
+        pages: '', // Total pages
         cover: '',
         review: '',
         quotes: []
@@ -121,6 +124,45 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                     value={formData.location || ''}
                     onChange={handleChange}
                     placeholder="e.g. Living Room Shelf"
+                />
+            </div>
+
+            {/* Dates & Pages Section */}
+            <div className="form-row">
+                {(formData.status === 'Currently Reading' || formData.status === 'Read' || formData.status === 'Tried') && (
+                    <div className="form-group">
+                        <label>Start Date</label>
+                        <input
+                            type="date"
+                            name="startDate"
+                            value={formData.startDate || ''}
+                            onChange={handleChange}
+                        />
+                    </div>
+                )}
+
+                {formData.status === 'Read' && (
+                    <div className="form-group">
+                        <label>Completed Date</label>
+                        <input
+                            type="date"
+                            name="completedDate"
+                            value={formData.completedDate || ''}
+                            onChange={handleChange}
+                        />
+                    </div>
+                )}
+            </div>
+
+            <div className="form-group">
+                <label>Total Pages <small style={{ fontWeight: 400, color: 'var(--text-muted)' }}>(Optional)</small></label>
+                <input
+                    type="number"
+                    name="pages"
+                    value={formData.pages || ''}
+                    onChange={handleChange}
+                    placeholder="e.g. 350"
+                    min="0"
                 />
             </div>
 

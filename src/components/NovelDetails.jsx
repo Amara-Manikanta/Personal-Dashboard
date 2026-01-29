@@ -229,6 +229,24 @@ window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdat
                             <span className="label">Rating</span>
                             <div className="stars">{renderStars(rating)}</div>
                         </div>
+                        {novel.startDate && (
+                            <div className="meta-item">
+                                <span className="label">Started</span>
+                                <span className="value">{new Date(novel.startDate).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                            </div>
+                        )}
+                        {novel.completedDate && (
+                            <div className="meta-item">
+                                <span className="label">Completed</span>
+                                <span className="value">{new Date(novel.completedDate).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                            </div>
+                        )}
+                        {novel.pages && (
+                            <div className="meta-item">
+                                <span className="label">Pages</span>
+                                <span className="value">{novel.pages}</span>
+                            </div>
+                        )}
                         {novel.goodreadsRating && (
                             <div className="meta-item">
                                 <span className="label">Goodreads</span>

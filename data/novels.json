@@ -50,7 +50,8 @@
         "citation": "",
         "page": "17"
       }
-    ]
+    ],
+    "startDate": "2026-01-26"
   },
   {
     "id": 1,
@@ -591,7 +592,7 @@
     "title": "Eleven Minutes",
     "author": "Paulo Coelho",
     "pages": 273,
-    "cover": "https://m.media-amazon.com/images/I/71EDsK-j4L.jpg",
+    "cover": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=2000",
     "genre": "Philosophical Fiction",
     "rating": 4,
     "goodreadsRating": 4.5,
@@ -1256,7 +1257,10 @@
     "progressType": "pages",
     "progress": "69",
     "location": "KKD",
-    "review": "The book is mainly about how Nina escapes from her pshyic husband and how mille the Servent kills Andrew. \n"
+    "review": "The book is mainly about how Nina escapes from her pshyic husband and how mille the Servent kills Andrew. \n",
+    "startDate": "2026-01-22",
+    "completedDate": "2026-01-24",
+    "pages": "306"
   },
   {
     "id": 71,
