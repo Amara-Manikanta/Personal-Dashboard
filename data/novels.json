@@ -5,7 +5,7 @@
     "genre": "Investment",
     "subGenre": "",
     "status": "Currently Reading",
-    "progress": "",
+    "progress": "15",
     "progressType": "pages",
     "rating": 0,
     "goodreadsRating": "3.6",
@@ -17,9 +17,40 @@
     "cover": "https://m.media-amazon.com/images/I/71d1FQi5CUL._AC_UF1000,1000_QL80_.jpg",
     "review": "",
     "quotes": [
-      "When others are rushing to sell of stocks, warren will be selectively buying in. The key word here is selectively. When warren is buying in he is picking the cream of the crop companies that have a durable competitive advantage."
+      {
+        "text": "A long-term or durable competitive advantage in a stable industry is what we seek in a business.\n                                - Warren Buffett",
+        "citation": "",
+        "page": "15"
+      },
+      {
+        "text": "I look for business in which I think I can predict what they're going to look like in ten to fifteen year's time. Take Wrigley's chewing gum. I don't think the internet is going to change how people chew gum.\n                                - Warren Buffett",
+        "citation": "",
+        "page": "15"
+      }
     ],
-    "id": 1769591000833
+    "id": 1769591000833,
+    "phrases": [
+      {
+        "text": "When others are rushing to sell of stocks, warren will be selectively buying in. The key word here is selectively. When warren is buying in he is picking the cream of the crop companies that have a durable competitive advantage.",
+        "citation": "",
+        "page": "1"
+      },
+      {
+        "text": "- There were companies with average medicore ecnomoics working in their favour - the vast majority of businesses, which Ade poor long term investments.\n- There was a much smaller number of companies that had great business economics working in their favour, what warren calls a long term durable competitive advantage. \n- It is this competitive advantage that allows them to produce superior results as business and for their investors over a long period of time.",
+        "citation": "",
+        "page": "9"
+      },
+      {
+        "text": "Build up cash reserve and allocate it when prices are most in your favour.\nWarren does this on an individual company basis.\n",
+        "citation": "",
+        "page": "12"
+      },
+      {
+        "text": "Warren has stayed away from the computer industry no matter how good its stock look, it changes to quickly and is difficult to understand.",
+        "citation": "",
+        "page": "17"
+      }
+    ]
   },
   {
     "id": 1,
