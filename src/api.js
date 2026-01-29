@@ -1,6 +1,9 @@
 const API_BASE = 'http://localhost:3001/api';
 // Assuming the user runs this on localhost or 127.0.0.1. Any other domain is treated as hosted (GitHub Pages)
-const IS_LOCALHOST = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// We also treat 'file:' protocol (empty hostname) as localhost so it tries to hit the local backend server.
+const IS_LOCALHOST = window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '';
 
 // GitHub Configuration
 const GITHUB_OWNER = 'Amara-Manikanta';
@@ -40,7 +43,13 @@ class GitHubStorage {
             const content = decodeURIComponent(escape(atob(json.content)));
             return JSON.parse(content);
         } catch (e) {
-            console.error("Failed to fetch from GitHub:", e);
+            if (e.message.includes('401') || e.message.includes('Bad credentials')) {
+                console.warn("Invalid GitHub Token detected. Clearing token and reverting to read-only mode.");
+                this.token = null;
+                localStorage.removeItem('GITHUB_TOKEN');
+            } else {
+                console.error("Failed to fetch from GitHub:", e);
+            }
             // Fallback to static if API fails
             const res = await fetch(`data/${path}`);
             return res.ok ? await res.json() : null;
