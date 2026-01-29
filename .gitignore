@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 
 src/data/backup/
+data/backups/
