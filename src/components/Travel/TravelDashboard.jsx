@@ -34,7 +34,15 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         if (!searchTerm) return true;
 
         // Helper to search in arrays
-        const searchInArray = (arr) => arr && arr.some(i => i.toLowerCase().includes(searchLower));
+        const searchInArray = (arr) => arr && arr.some(i => {
+            if (typeof i === 'string') return i.toLowerCase().includes(searchLower);
+            if (typeof i === 'object' && i !== null) {
+                return (i.name || '').toLowerCase().includes(searchLower) ||
+                    (i.city || '').toLowerCase().includes(searchLower) ||
+                    (i.remarks || '').toLowerCase().includes(searchLower);
+            }
+            return false;
+        });
 
         // Deep search in all lists
         const matchesDeepSearch =

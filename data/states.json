@@ -12,7 +12,12 @@
     "Andhra Pradesh": {
       "visited": true,
       "placesVisited": [
-        "Golconda Fort",
+        {
+          "name": "Golconda Fort",
+          "city": "Kadapa",
+          "remarks": "-",
+          "image": ""
+        },
         "Salar jang Museum",
         "uppada beach",
         "Vanajangi",
@@ -64,7 +69,37 @@
         "Shri Jagannath temple",
         "Kondanda ramaswamy Temple",
         "Vemulawada Temple",
-        "Shri Jagannath Temple"
+        "Shri Jagannath Temple",
+        {
+          "name": "The Grand Canyon of India",
+          "city": "Kadapa",
+          "remarks": "-"
+        },
+        {
+          "name": "Ramappa Temple",
+          "city": "Warangal",
+          "remarks": "-"
+        },
+        {
+          "name": "Sammakka Saralamma Temple",
+          "city": "Medaram",
+          "remarks": "-"
+        },
+        {
+          "name": "Sri Kodanda Ramaswamy Temple",
+          "city": "Kadapa",
+          "remarks": "-"
+        },
+        {
+          "name": "Lalitha Parameshwari Temple",
+          "city": "Kadapa",
+          "remarks": "-"
+        },
+        {
+          "name": "Dargah",
+          "city": "Kadapa",
+          "remarks": "-"
+        }
       ],
       "placesToVisit": [
         "kothapalli waterfalls",
@@ -87,16 +122,50 @@
         "Hotel Shadab"
       ],
       "food": [
-        "Penne in arrablata pasta",
-        "Cottage cheese in paprica sauce with flavoured rice",
-        "Chinna Peserattu",
-        "Punugulu Curry",
-        "Annavaram Prasadam"
+        {
+          "name": "Penne in arrablata pasta",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": "uploads/1770015606368_image.png"
+        },
+        {
+          "name": "Cottage cheese in paprica sauce with flavoured rice",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": "uploads/1770015562953_image.png"
+        },
+        {
+          "name": "Chinna Peserattu",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Punugulu Curry",
+          "city": "Kakinada",
+          "remarks": "Subbayya Gari hotel",
+          "image": ""
+        },
+        {
+          "name": "Annavaram Prasadam",
+          "city": "Annavaram",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Amma Dosa",
+          "image": "uploads/1770014441198_img_1155.jpeg",
+          "city": "Ramagundam",
+          "remarks": "-"
+        }
       ],
-      "treks": [],
+      "treks": [
+        "Vanajangi"
+      ],
       "stays": [
         "The mooshine project"
-      ]
+      ],
+      "highlights": []
     },
     "Assam": {
       "visited": true,
@@ -370,18 +439,38 @@
         "The Big Barbeque Buffet",
         "Plan B",
         "Barbeque",
-        "United telugu kitchen",
-        "Dhaba Stories",
+        {
+          "name": "United telugu kitchen",
+          "city": "Konanakunte road",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Dhaba Stories",
+          "city": "HSR Layout",
+          "remarks": "-",
+          "image": ""
+        },
         "Chai Galli",
         "Reddy's Resturant",
         "Thindi Bandi",
         "Torq03",
-        "Fiesta by Barbeque Nation",
+        {
+          "name": "Fiesta by Barbeque Nation",
+          "city": "Vega City, Bannerghatta Road",
+          "remarks": "-",
+          "image": ""
+        },
         "The Dhaba Strories",
         "HAMPI PARADISE RESTAURANT",
         "1947",
         "Hoy Punjabi Banaswadi",
-        "Palleturi Dosa",
+        {
+          "name": "Palleturi Dosa",
+          "city": "HSR Layout",
+          "remarks": "-",
+          "image": ""
+        },
         {
           "name": "Neemsi Restaurant",
           "city": "JP Nagar",
@@ -391,7 +480,36 @@
       "food": [
         "Meghana Biryani",
         "Babai Tiffens  Podi dosa",
-        "NandiniPedda"
+        {
+          "name": "Nandini Pedda",
+          "city": "-",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Afghani Creamy Broccoli with Crispy Panko Garlic Crust",
+          "city": "Jp Nagar",
+          "remarks": "Neemsi Restaurant",
+          "image": "uploads/1770004454791_img_7412.jpeg"
+        },
+        {
+          "name": "Mysore Pak Cheese Cake with Pan Crumble",
+          "city": "Jp Nagar",
+          "remarks": "Neemsi Restaurant",
+          "image": "uploads/1770009190428_img_7416.jpeg"
+        },
+        {
+          "name": "Crunchy Lotus Stem in a Spicy-Sweet Chili Glaze",
+          "image": "uploads/1770011007567_img_7411.jpeg",
+          "city": "Jp Nagar",
+          "remarks": "Neemsi Restaurant"
+        },
+        {
+          "name": "Veg Meals",
+          "city": "Kormangla",
+          "remarks": "Nagarjuna Restaurant",
+          "image": "uploads/1770011404010_img_6841.jpeg"
+        }
       ],
       "treks": [
         "zpoint trek",
@@ -401,9 +519,19 @@
       ],
       "stays": [
         "Wheel to hills stay inn Service Apartments",
-        "Club Cabana",
+        {
+          "name": "Club Cabana",
+          "city": "Airport Road",
+          "remarks": "-",
+          "image": ""
+        },
         "Far Trek 001 3 BHK Apartment near IIM B",
-        "Rocky Medows Resort",
+        {
+          "name": "Rocky Medows Resort",
+          "city": "Hampi",
+          "remarks": "-",
+          "image": ""
+        },
         "Tirmul Facing"
       ],
       "highlights": []
@@ -445,9 +573,17 @@
         "Cheeyappara Waterfalls"
       ],
       "restaurants": [],
-      "food": [],
+      "food": [
+        {
+          "name": "Aravana Payasam",
+          "city": "Sabarimala",
+          "remarks": "-",
+          "image": ""
+        }
+      ],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Madhya Pradesh": {
       "visited": true,
@@ -612,7 +748,12 @@
         "Chilika Lake",
         "Puri Beach",
         "Puri Jagannath temple",
-        "Sun Temple"
+        {
+          "name": "Sun Temple",
+          "city": "Konark",
+          "remarks": "-",
+          "image": ""
+        }
       ],
       "placesToVisit": [
         "Ashtanga Beach",
@@ -622,15 +763,31 @@
       ],
       "restaurants": [],
       "food": [
-        "Chhena poda",
-        "Dahi bara",
-        "Ras malai",
+        {
+          "name": "Chhena poda",
+          "city": "Orissa",
+          "remarks": "-",
+          "image": "uploads/1770014613861_img_4918.jpeg"
+        },
+        {
+          "name": "Dahi bara",
+          "city": "Orissa",
+          "remarks": "-",
+          "image": "uploads/1770014627857_img_4916.jpeg"
+        },
+        {
+          "name": "Ras malai",
+          "city": "Orissa",
+          "remarks": "-",
+          "image": "uploads/1770014639317_img_4904.jpeg"
+        },
         "Rasgulla"
       ],
       "treks": [],
       "stays": [
         "Susila Nivas"
-      ]
+      ],
+      "highlights": []
     },
     "Puducherry": {
       "visited": true,
@@ -658,7 +815,12 @@
         "Crepe in touch"
       ],
       "food": [
-        "Mango pad thai salad - Cormandal cafe",
+        {
+          "name": "Mango pad thai salad",
+          "city": "Puducherry",
+          "remarks": "Cormandal cafe",
+          "image": "uploads/1770011160115_img_6521.jpeg"
+        },
         "Burnt American cheese cake - Cormandal cafe",
         "Florentine Spinach Pizza - Cafe Qualita",
         "Pondy Brest - Crepe in touch"
@@ -671,7 +833,8 @@
         "Cormandal Cafe",
         "Fizi Villa",
         "Italian Quality Relish"
-      ]
+      ],
+      "highlights": []
     },
     "Punjab": {
       "visited": true,
@@ -1013,16 +1176,6 @@
     {
       "id": 6,
       "text": "Trek to Everest Base Camp",
-      "completed": false
-    },
-    {
-      "id": 1769449392322,
-      "text": "Meghalaya Trek",
-      "completed": false
-    },
-    {
-      "id": 1769449727439,
-      "text": "Meghalaya Trek",
       "completed": false
     }
   ]

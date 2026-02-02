@@ -23,6 +23,12 @@ if (!fs.existsSync(BACKUP_DIR)) {
     fs.mkdirSync(BACKUP_DIR);
 }
 
+// Uploads Configuration
+const UPLOADS_DIR = path.join(__dirname, 'uploads');
+if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR);
+}
+
 // Configuration: Allow Writes?
 // You can change this to false to make the server Read-Only
 const ENABLE_WRITES = true;
@@ -137,6 +143,32 @@ app.post('/api/authors', (req, res) => {
     const success = writeData('authors.json', req.body);
     if (success) res.json({ success: true });
     else res.status(500).json({ success: false, message: 'Failed to save authors' });
+});
+
+// --- Image Upload ---
+app.post('/api/upload-image', (req, res) => {
+    if (!ENABLE_WRITES) return res.status(403).json({ success: false, message: 'Read-only mode' });
+
+    try {
+        const { image, name } = req.body;
+        if (!image || !name) return res.status(400).json({ success: false, message: 'Missing image data' });
+
+        // Remove header if present (e.g., "data:image/jpeg;base64,")
+        const base64Data = image.replace(/^data:image\/\w+;base64,/, "");
+        const buffer = Buffer.from(base64Data, 'base64');
+
+        const timestamp = Date.now();
+        const safeName = name.replace(/[^a-z0-9.]/gi, '_').toLowerCase();
+        const filename = `${timestamp}_${safeName}`;
+        const filePath = path.join(UPLOADS_DIR, filename);
+
+        fs.writeFileSync(filePath, buffer);
+
+        res.json({ success: true, path: `uploads/${filename}` });
+    } catch (err) {
+        console.error("Upload error:", err);
+        res.status(500).json({ success: false, message: 'Upload failed' });
+    }
 });
 
 // Start Server

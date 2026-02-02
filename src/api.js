@@ -273,6 +273,22 @@ const api = {
         } else {
             await ghStorage.saveFile('authors.json', data);
         }
+    },
+
+    uploadImage: async (fileData) => {
+        if (!IS_LOCALHOST) return null;
+        try {
+            const res = await fetch(`${API_BASE}/upload-image`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(fileData)
+            });
+            if (!res.ok) throw new Error('Upload failed');
+            return await res.json();
+        } catch (e) {
+            console.error("Error uploading image:", e);
+            return null;
+        }
     }
 };
 
