@@ -401,13 +401,7 @@
         "Rocky Medows Resort",
         "Tirmul Facing"
       ],
-      "highlights": [
-        {
-          "name": "Test Place",
-          "city": "Test City",
-          "remarks": "Test Remark"
-        }
-      ]
+      "highlights": []
     },
     "Kerala": {
       "visited": true,
