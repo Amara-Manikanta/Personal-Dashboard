@@ -382,7 +382,11 @@
         "1947",
         "Hoy Punjabi Banaswadi",
         "Palleturi Dosa",
-        "Neemsi Restaurant, Jp Nagar"
+        {
+          "name": "Neemsi Restaurant",
+          "city": "JP Nagar",
+          "remarks": "-"
+        }
       ],
       "food": [
         "Meghana Biryani",
