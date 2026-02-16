@@ -974,7 +974,12 @@
     "Tamil Nadu": {
       "visited": true,
       "placesVisited": [
-        "Nilligiri Mountain Rail",
+        {
+          "name": "Nilligiri Mountain Rail",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        },
         "Sri Lakshmi Narayani Golden Temple",
         "Light house",
         "Panch Rath",
@@ -1012,7 +1017,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Uttar Pradesh": {
       "visited": true,
