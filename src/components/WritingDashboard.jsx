@@ -8,6 +8,7 @@ window.WritingDashboard = ({ onBackToHome }) => {
     const [stories, setStories] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingStory, setEditingStory] = useState(null);
+    const [isAddGenreModalOpen, setIsAddGenreModalOpen] = useState(false);
 
     // Calculate stats from window.writingData
     // We don't use useMemo with [] because window.writingData is populated asynchronously
@@ -111,6 +112,35 @@ window.WritingDashboard = ({ onBackToHome }) => {
         e.stopPropagation();
         setEditingStory(story);
         setIsModalOpen(true);
+    };
+
+    const handleAddGenre = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newGenreName = formData.get('genreName');
+        
+        if (!newGenreName || newGenreName.trim() === '') return;
+        
+        const newGenre = {
+            id: Date.now(),
+            genre: newGenreName.trim(),
+            quotes: []
+        };
+        
+        const rawData = window.writingData || [];
+        let updatedData;
+        if (Array.isArray(rawData)) {
+            updatedData = [...rawData, newGenre];
+        } else {
+            updatedData = { ...rawData, genres: [...(rawData.genres || []), newGenre] };
+        }
+        
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+        
+        setIsAddGenreModalOpen(false);
     };
 
     const renderContent = () => {
@@ -234,7 +264,12 @@ window.WritingDashboard = ({ onBackToHome }) => {
                     </div>
                 </div>
 
-                <h2 className="section-title">Quotes by Genre</h2>
+                <div className="view-header" style={{ marginBottom: "1.5rem" }}>
+                    <h2 className="section-title" style={{ marginBottom: 0 }}>Quotes by Genre</h2>
+                    <button className="add-btn" onClick={() => setIsAddGenreModalOpen(true)}>
+                        <i className="ph-bold ph-plus"></i> Add Genre
+                    </button>
+                </div>
 
                 <div className="genre-grid">
                     {stats.genres.map((genre) => (
@@ -364,6 +399,30 @@ window.WritingDashboard = ({ onBackToHome }) => {
                             <div className="modal-actions">
                                 <button type="button" className="btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
                                 <button type="submit" className="btn-primary">Save Story</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal for Add Genre */}
+            {isAddGenreModalOpen && (
+                <div className="modal-overlay fade-in" onClick={() => setIsAddGenreModalOpen(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Add New Genre</h2>
+                            <button className="close-btn" onClick={() => setIsAddGenreModalOpen(false)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <form onSubmit={handleAddGenre}>
+                            <div className="form-group">
+                                <label>Genre Name</label>
+                                <input name="genreName" type="text" placeholder="e.g., Comedy" required autoFocus />
+                            </div>
+                            <div className="modal-actions">
+                                <button type="button" className="btn-secondary" onClick={() => setIsAddGenreModalOpen(false)}>Cancel</button>
+                                <button type="submit" className="btn-primary">Add Genre</button>
                             </div>
                         </form>
                     </div>

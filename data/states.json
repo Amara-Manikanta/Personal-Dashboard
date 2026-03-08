@@ -14,62 +14,307 @@
       "placesVisited": [
         {
           "name": "Golconda Fort",
-          "city": "Kadapa",
+          "city": "Hyderabad",
           "remarks": "-",
           "image": ""
         },
-        "Salar jang Museum",
-        "uppada beach",
-        "Vanajangi",
-        "padampuram botanical garden",
-        "Srivari Padalu",
-        "Srivari Mettu",
-        "Sudha Car Museum",
-        "Charminar",
-        "Lumbini Park",
-        "Japali Anjaneya Swamy Temple",
+        {
+          "name": "Salar jang Museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "uppada beach",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Vanajangi",
+          "city": "Vanajangi",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "padampuram botanical garden",
+          "city": "Araku",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Srivari Padalu",
+          "city": "Tirumala",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Srivari Mettu",
+          "city": "Tirumala",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Sudha Car Museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Charminar",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Lumbini Park",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Japali Anjaneya Swamy Temple",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
         "Andhra Sabarimala",
-        "galikonda view point",
-        "Alipiri Mettulu",
-        "Sri Venugopala Swamy Temple",
-        "kkd beach",
-        "Eat Sreet",
-        "Shilparamam",
-        "coffee museum",
-        "Qutab Shahi Tombs",
-        "Sripada srivallabha swami temple",
-        "Biodiversity Complex",
-        "Laknavaram Cheruvu",
-        "Hussain Sagar",
-        "Rock Garden",
-        "Kailasagiri",
-        "Datatreya Birth Place",
+        {
+          "name": "galikonda view point",
+          "city": "Araku",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Alipiri Mettulu",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Sri Venugopala Swamy Temple",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "kkd beach",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Eat Sreet",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Shilparamam",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "coffee museum",
+          "city": "Araku",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Qutab Shahi Tombs",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Sripada srivallabha swami temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Biodiversity Complex",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Laknavaram Cheruvu",
+          "city": "Warangal",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Hussain Sagar",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Rock Garden",
+          "city": "Tirumala",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kailasagiri",
+          "city": "VSKP",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Datatreya Birth Place",
+          "city": "Pithapuram",
+          "remarks": "-",
+          "image": ""
+        },
         "Papi Kondalu",
-        "Srikalahasti Temple",
-        "Ananthagiri Hills",
-        "Silathoranam",
-        "chaparai waterfall",
-        "Sri Bhadrakalli Temple",
-        "Kukkuteswara Temple",
-        "Step Well",
-        "KanakaDurga Temple",
-        "Nehru Zooligical Park",
+        {
+          "name": "Srikalahasti Temple",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Ananthagiri Hills",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Silathoranam",
+          "city": "Tirumala",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "chaparai waterfall",
+          "city": "Araku",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Sri Bhadrakalli Temple",
+          "city": "Warangal",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kukkuteswara Temple",
+          "city": "Pithapuram",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Step Well",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "KanakaDurga Temple",
+          "city": "Vijaywada",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Nehru Zooligical Park",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
         "Watch  Tower",
-        "Birla mandir",
-        "Birla science museum",
-        "Coringa Wild Life Sanctury",
-        "Katika waterfalls",
-        "Boora caves",
-        "Sri Padmavathi Ammavari",
-        "Ganga Amma Temple",
-        "Kanipakam Temple",
-        "1000 Pillar Temple",
-        "Indira Gandhi Zoological Park",
-        "Ramoji Film City",
-        "Shri Jagannath temple",
-        "Kondanda ramaswamy Temple",
-        "Vemulawada Temple",
-        "Shri Jagannath Temple",
+        {
+          "name": "Birla mandir",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Birla science museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Coringa Wild Life Sanctury",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Katika waterfalls",
+          "city": "Araku",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Boora caves",
+          "city": "Araku",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Sri Padmavathi Ammavari",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Ganga Amma Temple",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kanipakam Temple",
+          "city": "Tirupati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "1000 Pillar Temple",
+          "city": "Warangal",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Indira Gandhi Zoological Park",
+          "city": "VSKP",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Ramoji Film City",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Shri Jagannath temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kondanda ramaswamy Temple",
+          "city": "Mamidada",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Vemulawada Temple",
+          "city": "Karimnagar",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Shri Jagannath Temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": ""
+        },
         {
           "name": "The Grand Canyon of India",
           "city": "Kadapa",
@@ -170,11 +415,36 @@
     "Assam": {
       "visited": true,
       "placesVisited": [
-        "Chakreshwar Temple",
-        "Kaziranga National Park",
-        "Kamakhya Temple",
-        "Kaziranga National Orchid And Biodiversity Park",
-        "Maa Dhumawati Mandir"
+        {
+          "name": "Chakreshwar Temple",
+          "city": "Guwahati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kaziranga National Park",
+          "city": "Kaziranga",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kamakhya Temple",
+          "city": "Guwahati",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Kaziranga National Orchid And Biodiversity Park",
+          "city": "Kaziranga",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Maa Dhumawati Mandir",
+          "city": "Guwahati",
+          "remarks": "-",
+          "image": ""
+        }
       ],
       "placesToVisit": [],
       "restaurants": [],
@@ -793,7 +1063,12 @@
       "visited": true,
       "placesVisited": [
         "Sernity Beach",
-        "Watch Tower",
+        {
+          "name": "Watch Tower",
+          "city": "Vizianagaram",
+          "remarks": "-",
+          "image": ""
+        },
         "Paradise Beach",
         "Mangrove Forest",
         "French War memorial",
