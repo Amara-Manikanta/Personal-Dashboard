@@ -9,6 +9,8 @@ window.WritingDashboard = ({ onBackToHome }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingStory, setEditingStory] = useState(null);
     const [isAddGenreModalOpen, setIsAddGenreModalOpen] = useState(false);
+    const [isAddQuoteModalOpen, setIsAddQuoteModalOpen] = useState(false);
+    const [deletingGenreId, setDeletingGenreId] = useState(null);
 
     // Calculate stats from window.writingData
     // We don't use useMemo with [] because window.writingData is populated asynchronously
@@ -118,15 +120,15 @@ window.WritingDashboard = ({ onBackToHome }) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const newGenreName = formData.get('genreName');
-        
+
         if (!newGenreName || newGenreName.trim() === '') return;
-        
+
         const newGenre = {
             id: Date.now(),
             genre: newGenreName.trim(),
             quotes: []
         };
-        
+
         const rawData = window.writingData || [];
         let updatedData;
         if (Array.isArray(rawData)) {
@@ -134,17 +136,137 @@ window.WritingDashboard = ({ onBackToHome }) => {
         } else {
             updatedData = { ...rawData, genres: [...(rawData.genres || []), newGenre] };
         }
-        
+
         window.writingData = updatedData;
         if (window.api && window.api.saveWriting) {
             window.api.saveWriting(updatedData);
         }
-        
+
         setIsAddGenreModalOpen(false);
     };
 
+    const confirmDeleteGenre = () => {
+        if (!deletingGenreId) return;
+
+        const rawData = window.writingData || [];
+        let updatedData;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.filter(g => g.id !== deletingGenreId);
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = { ...rawData, genres: genresArr.filter(g => g.id !== deletingGenreId) };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        // Return to dashboard overview
+        setSelectedGenre(null);
+        setDeletingGenreId(null);
+    };
+
+    const handleAddQuote = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const originalQuote = formData.get('quoteText');
+
+        if (!originalQuote || originalQuote.trim() === '' || !selectedGenre) return;
+
+        const rawData = window.writingData || [];
+        const newQuoteObj = {
+            original: originalQuote.trim(),
+            modified: null
+        };
+
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    updatedSelectedGenre = { ...g, quotes: [newQuoteObj, ...(g.quotes || [])] };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        updatedSelectedGenre = { ...g, quotes: [newQuoteObj, ...(g.quotes || [])] };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        // Update view locally
+        if (updatedSelectedGenre) {
+            setSelectedGenre(updatedSelectedGenre);
+        }
+
+        setIsAddQuoteModalOpen(false);
+    };
+
+    const handleDeleteQuote = (quoteIndex) => {
+        if (!selectedGenre) return;
+        if (!window.confirm("Are you sure you want to delete this quote?")) return;
+
+        const rawData = window.writingData || [];
+
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes.splice(quoteIndex, 1);
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes.splice(quoteIndex, 1);
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        // Update view locally
+        if (updatedSelectedGenre) {
+            setSelectedGenre(updatedSelectedGenre);
+        }
+    };
+
     const renderContent = () => {
-        console.log("Rendering content. State:", { selectedStory, activeTab, selectedGenre });
+        console.log("Rendering content. State:", { selectedStory, activeTab, selectedGenre }); console.log("selectedGenre logic START");
 
         // 1. Story Detail View
         if (selectedStory) {
@@ -214,32 +336,59 @@ window.WritingDashboard = ({ onBackToHome }) => {
         if (selectedGenre) {
             return (
                 <div className="quotes-list">
-                    <div className="genre-detail-header">
-                        <button className="back-button-inline" onClick={() => setSelectedGenre(null)}>
-                            <i className="ph-bold ph-arrow-left"></i>
-                            Back to Genres
-                        </button>
-                        <h2>{selectedGenre.genre} Quotes</h2>
-                    </div>
-                    {selectedGenre.quotes.map((quote, index) => (
-                        <div key={index} className="quote-card-item">
-                            <div className="quote-content original">
-                                <div className="quote-label">Original</div>
-                                <p>"{quote.original}"</p>
-                            </div>
-                            <div className={`quote-content modified ${quote.modified ? 'has-content' : 'empty'}`}>
-                                <div className="quote-label">Modified</div>
-                                {quote.modified ? (
-                                    <p>"{quote.modified}"</p>
-                                ) : (
-                                    <div className="empty-state">
-                                        <i className="ph-fill ph-pencil-simple-slash"></i>
-                                        <span>Not yet edited</span>
-                                    </div>
-                                )}
-                            </div>
+                    <div className="view-header" style={{ marginBottom: "1rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                            <button className="back-button-inline" onClick={() => setSelectedGenre(null)}>
+                                <i className="ph-bold ph-arrow-left"></i>
+                                Back to Genres
+                            </button>
+                            <h2 style={{ fontSize: "2rem", margin: 0 }}>{selectedGenre.genre} Quotes</h2>
                         </div>
-                    ))}
+                        <div style={{ display: "flex", gap: "0.75rem" }}>
+                            <button className="add-btn" onClick={() => setIsAddQuoteModalOpen(true)}>
+                                <i className="ph-bold ph-plus"></i> Add Quote
+                            </button>
+                            <button className="export-btn" onClick={() => setDeletingGenreId(selectedGenre.id)} style={{ color: "var(--danger)", borderColor: "rgba(239, 68, 68, 0.3)", background: "rgba(239, 68, 68, 0.1)" }}>
+                                <i className="ph-bold ph-trash"></i> Delete Genre
+                            </button>
+                        </div>
+                    </div>
+
+                    {(!selectedGenre.quotes || selectedGenre.quotes.length === 0) ? (
+                        <div className="empty-state" style={{ padding: "4rem", gridColumn: "1 / -1" }}>
+                            <i className="ph ph-quotes"></i>
+                            <p>No quotes yet for this genre.</p>
+                        </div>
+                    ) : (
+                        selectedGenre.quotes.map((quote, index) => (
+                            <div key={index} className="quote-card-item">
+                                <div className="quote-content original">
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                                        <div className="quote-label" style={{ marginBottom: 0 }}>Original</div>
+                                        <button
+                                            onClick={() => handleDeleteQuote(index)}
+                                            className="delete-icon-btn"
+                                            title="Delete Quote"
+                                        >
+                                            <i className="ph-bold ph-trash"></i>
+                                        </button>
+                                    </div>
+                                    <p>"{quote.original}"</p>
+                                </div>
+                                <div className={`quote-content modified ${quote.modified ? 'has-content' : 'empty'}`}>
+                                    <div className="quote-label">Modified</div>
+                                    {quote.modified ? (
+                                        <p>"{quote.modified}"</p>
+                                    ) : (
+                                        <div className="empty-state">
+                                            <i className="ph-fill ph-pencil-simple-slash"></i>
+                                            <span>Not yet edited</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))
+                    )}
                 </div>
             );
         }
@@ -429,6 +578,51 @@ window.WritingDashboard = ({ onBackToHome }) => {
                 </div>
             )}
 
+            {/* Modal for Add Quote */}
+            {isAddQuoteModalOpen && (
+                <div className="modal-overlay fade-in" onClick={() => setIsAddQuoteModalOpen(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Add New Quote ({selectedGenre ? selectedGenre.genre : ''})</h2>
+                            <button className="close-btn" onClick={() => setIsAddQuoteModalOpen(false)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <form onSubmit={handleAddQuote}>
+                            <div className="form-group">
+                                <label>Quote Text</label>
+                                <textarea name="quoteText" rows="4" placeholder="Enter the original quote here..." required autoFocus></textarea>
+                            </div>
+                            <div className="modal-actions">
+                                <button type="button" className="btn-secondary" onClick={() => setIsAddQuoteModalOpen(false)}>Cancel</button>
+                                <button type="submit" className="btn-primary">Add Quote</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal for Delete Genre Confirmation */}
+            {!!deletingGenreId && (
+                <div className="modal-overlay fade-in" onClick={() => setDeletingGenreId(null)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: "400px" }}>
+                        <div className="modal-header">
+                            <h2>Delete Genre</h2>
+                            <button className="close-btn" onClick={() => setDeletingGenreId(null)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <p style={{ marginBottom: "1.5rem", color: "var(--text-secondary)" }}>
+                            Are you sure you want to delete this genre? All quotes inside it will be permanently lost.
+                        </p>
+                        <div className="modal-actions">
+                            <button className="btn-secondary" onClick={() => setDeletingGenreId(null)}>Cancel</button>
+                            <button className="btn-primary" onClick={confirmDeleteGenre} style={{ backgroundColor: "var(--danger)" }}>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <style>{`
                 /* Shared Layout Styles (Copied/Adapted from NovelsDashboard) */
                 .app-header {
@@ -528,8 +722,41 @@ window.WritingDashboard = ({ onBackToHome }) => {
                     align-items: center;
                     gap: 0.5rem;
                     font-size: 0.9rem;
+                    transition: all 0.2s;
+                    white-space: nowrap;
                 }
                 .add-btn:hover { background: var(--primary-hover); }
+
+                .export-btn {
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    border: 1px solid var(--border);
+                    padding: 0.5rem 1rem;
+                    border-radius: 9999px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    transition: all 0.2s;
+                    white-space: nowrap;
+                }
+                .export-btn:hover { background: var(--bg-surface-hover); border-color: var(--text-muted); }
+
+                .delete-icon-btn {
+                    background: transparent;
+                    border: none;
+                    color: var(--text-muted);
+                    cursor: pointer;
+                    padding: 0.25rem;
+                    border-radius: 4px;
+                    transition: all 0.2s;
+                }
+                .delete-icon-btn:hover {
+                    color: var(--danger);
+                    background: rgba(239, 68, 68, 0.1);
+                }
 
                 .main-content {
                     padding-top: 2rem;
