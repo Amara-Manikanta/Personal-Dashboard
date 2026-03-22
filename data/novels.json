@@ -1,5 +1,28 @@
 [
   {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": "JK Rowling",
+    "genre": "Fantasy",
+    "subGenre": "",
+    "status": "Read",
+    "progress": "",
+    "progressType": "pages",
+    "rating": 5,
+    "goodreadsRating": "04.47",
+    "ownership": "none",
+    "location": "Read in Kindle",
+    "lentTo": "",
+    "readYear": "",
+    "readMonth": "",
+    "startDate": "2026-03-16",
+    "completedDate": "2026-03-22",
+    "pages": "333",
+    "cover": "https://m.media-amazon.com/images/I/81q77Q39nEL._AC_UF1000,1000_QL80_.jpg",
+    "review": "I liked the book as it having more detailed information than the movie.",
+    "quotes": [],
+    "id": 1774171897806
+  },
+  {
     "title": "Men from Mars and Woman from Venus",
     "author": "John Gray",
     "genre": "Self Help",
