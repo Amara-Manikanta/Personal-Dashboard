@@ -311,17 +311,6 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
         setDeletingNovelId(null);
     };
 
-    const handleExportData = () => {
-        const dataStr = JSON.stringify(novels, null, 2);
-        const blob = new Blob([dataStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `my - novels - data - ${new Date().toISOString().slice(0, 10)}.json`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
 
     const openAddModal = () => {
         setEditingNovel(null);
@@ -456,10 +445,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                     <i className={`ph-bold ${isFilterVisible ? 'ph-funnel-x' : 'ph-funnel'}`}></i>
                                     <span className="btn-text">{isFilterVisible ? 'Hide Filters' : 'Filter'}</span>
                                 </button>
-                                <button className="export-btn" onClick={handleExportData} title="Export Data">
-                                    <i className="ph-bold ph-download-simple"></i>
-                                    <span className="btn-text">Export</span>
-                                </button>
+
                                 <button className="add-btn" onClick={openAddModal}>
                                     <i className="ph-bold ph-plus"></i>
                                     <span>Add Novel</span>
