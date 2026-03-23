@@ -80,10 +80,10 @@
     "author": "Mary Buffett & David Clark",
     "genre": "Investment",
     "subGenre": "",
-    "status": "Currently Reading",
+    "status": "Read",
     "progress": "62",
     "progressType": "pages",
-    "rating": 0,
+    "rating": 3,
     "goodreadsRating": "3.6",
     "ownership": "none",
     "location": "",
@@ -91,7 +91,7 @@
     "readYear": "",
     "readMonth": "",
     "cover": "https://m.media-amazon.com/images/I/71d1FQi5CUL._AC_UF1000,1000_QL80_.jpg",
-    "review": "",
+    "review": "Information wise it is good but case studies are more where it can will be used for business / stock market investors.",
     "quotes": [
       {
         "text": "A long-term or durable competitive advantage in a stable industry is what we seek in a business.\n                                - Warren Buffett",
@@ -127,7 +127,8 @@
         "page": "17"
       }
     ],
-    "startDate": "2026-01-26"
+    "startDate": "2026-01-26",
+    "completedDate": "2026-03-01"
   },
   {
     "id": 1,
