@@ -12,6 +12,18 @@ window.FilterSidebar = ({ filters, setFilters, novels }) => {
     const usedGenres = (novels || []).map(n => n.genre);
     const uniqueGenres = ["All", ...new Set([...standardGenres.filter(g => g !== "All"), ...usedGenres])].sort();
 
+    // Extract unique years
+    const usedYears = (novels || []).map(n => {
+        if (n.completedDate) return new Date(n.completedDate).getFullYear().toString();
+        if (n.readYear) return n.readYear.toString();
+        return null;
+    }).filter(Boolean);
+    const uniqueYears = ["All", ...new Set(usedYears)].sort((a,b) => {
+        if (a === "All") return -1;
+        if (b === "All") return 1;
+        return Number(b) - Number(a);
+    });
+
     const handleFilterChange = (key, value) => {
         setFilters(prev => ({
             ...prev,
@@ -62,6 +74,19 @@ window.FilterSidebar = ({ filters, setFilters, novels }) => {
                 >
                     {authors.map(author => (
                         <option key={author} value={author}>{author}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="filter-group">
+                <label>Read Year</label>
+                <select
+                    value={filters.year || 'All'}
+                    onChange={(e) => handleFilterChange('year', e.target.value)}
+                    className="filter-select"
+                >
+                    {uniqueYears.map(year => (
+                        <option key={year} value={year}>{year}</option>
                     ))}
                 </select>
             </div>
