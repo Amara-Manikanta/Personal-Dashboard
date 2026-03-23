@@ -23,7 +23,8 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
         status: "All",
         genre: "All",
         author: "All",
-        minRating: 0
+        minRating: 0,
+        year: "All"
     });
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -52,21 +53,15 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                     if (viewMode === 'authors') increment(novel.author);
                     else if (viewMode === 'genres') increment(novel.genre);
                     else if (viewMode === 'years') {
-                        // Prefer manual readYear if set, otherwise use completedDate
-                        let year = novel.readYear;
-                        if (!year && novel.completedDate) {
-                            year = new Date(novel.completedDate).getFullYear();
-                        }
+                        // Prefer completedDate over stale readYear
+                        let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
                         increment(year);
                     }
                     else if (viewMode === 'my_rating') increment(novel.rating);
                     else if (viewMode === 'goodreads_rating') increment(novel.goodreadsRating);
                     else if (viewMode === 'pages_year') {
-                        // Prefer manual readYear if set, otherwise use completedDate
-                        let year = novel.readYear;
-                        if (!year && novel.completedDate) {
-                            year = new Date(novel.completedDate).getFullYear();
-                        }
+                        // Prefer completedDate over stale readYear
+                        let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
 
                         // Calculate pages: Prefer 'pages' field, fallback to progress if pages
                         let pageCount = 0;
@@ -347,6 +342,14 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
             const matchesAuthor = filters.author === 'All' || novel.author === filters.author;
             const matchesRating = novel.rating >= filters.minRating;
 
+            let matchesYear = true;
+            if (filters.year && filters.year !== 'All') {
+                const novelYear = novel.completedDate 
+                    ? new Date(novel.completedDate).getFullYear().toString() 
+                    : (novel.readYear ? novel.readYear.toString() : null);
+                matchesYear = novelYear === filters.year;
+            }
+
             let matchesOwnership = true;
             if (filters.ownership === 'owned') matchesOwnership = novel.ownership && novel.ownership !== 'none';
             if (filters.ownership === 'home') matchesOwnership = novel.ownership === 'home';
@@ -360,16 +363,19 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                 if (!matchesValid) return false;
             }
 
-            return matchesStatus && matchesGenre && matchesAuthor && matchesRating && matchesOwnership;
+            return matchesStatus && matchesGenre && matchesAuthor && matchesRating && matchesYear && matchesOwnership;
         });
 
         return result.sort((a, b) => {
             if (filters.sort === 'rating') return b.rating - a.rating;
             if (filters.sort === 'goodreads') return (Number(b.goodreadsRating) || 0) - (Number(a.goodreadsRating) || 0);
             if (filters.sort === 'dateRead') {
-                // Basic sort by year then month (descending)
-                if (b.readYear !== a.readYear) return (b.readYear || 0) - (a.readYear || 0);
-                return (b.readMonth || 0) - (a.readMonth || 0);
+                const getSortDate = (n) => {
+                    if (n.completedDate) return new Date(n.completedDate).getTime();
+                    if (n.readYear) return new Date(n.readYear, (n.readMonth || 1) - 1, 1).getTime();
+                    return 0;
+                };
+                return getSortDate(b) - getSortDate(a);
             }
             return a.title.localeCompare(b.title); // Default Title A-Z
         });
@@ -513,7 +519,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                     <button
                                         className="reset-btn"
                                         onClick={() => {
-                                            setFilters({ status: "All", genre: "All", author: "All", minRating: 0 });
+                                            setFilters({ status: "All", genre: "All", author: "All", minRating: 0, year: "All" });
                                             setSearchTerm("");
                                         }}
                                     >
