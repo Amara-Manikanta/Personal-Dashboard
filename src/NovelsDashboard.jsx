@@ -240,8 +240,8 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
         // Disabled saving to localStorage as per user request. 
         // Changes in UI will not persist on reload.
 
-        // Update global filters list dynamically if new authors/genres are added
-        // Simple hack: reload window globals if needed, but for now we just rely on component re-renders
+        // Update global window object so AuthorPage gets the latest novels
+        window.novelsData = novels;
     }, [novels]);
 
     // ---- Derived State ----
