@@ -1,13 +1,14 @@
 {
   "states": {
     "Arunachal Pradesh": {
-      "visited": true,
+      "visited": false,
       "placesVisited": [],
       "placesToVisit": [],
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Andhra Pradesh": {
       "visited": true,
