@@ -1,5 +1,28 @@
 [
   {
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "author": "J. K. Rowling",
+    "genre": "Fantasy",
+    "subGenre": "",
+    "status": "Currently Reading",
+    "progress": "0",
+    "progressType": "pages",
+    "rating": 0,
+    "goodreadsRating": "4.6",
+    "ownership": "none",
+    "location": "Kindle",
+    "lentTo": "",
+    "readYear": "",
+    "readMonth": "",
+    "startDate": "2026-04-08",
+    "completedDate": "",
+    "pages": "462",
+    "cover": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTBNH2BgyqgGe1TsLU5HZPqriCIAW1z7ac1zrg0FpVE3SYxE3D4yGT8gV51Kuc&usqp=CAc",
+    "review": "",
+    "quotes": [],
+    "id": 1775591792156
+  },
+  {
     "title": "Harry Potter and the Chamber of Secrets",
     "author": "J.K. Rowling",
     "genre": "Fantasy",
