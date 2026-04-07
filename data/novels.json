@@ -242,23 +242,6 @@
     "description": "An epic historical fiction novel recounting the story of King Suheldev who unites India to defeat the Turkic army of warriors."
   },
   {
-    "id": 5,
-    "title": "Scion of Ikshvaku -1",
-    "author": "Amish Tripathi",
-    "pages": 376,
-    "cover": "https://upload.wikimedia.org/wikipedia/en/5/57/Scion_of_Ikshvaku_cover.jpg",
-    "genre": "Fantasy",
-    "rating": 5,
-    "goodreadsRating": 3.9,
-    "ownership": "home",
-    "lentTo": "",
-    "readYear": 2024,
-    "readMonth": 5,
-    "status": "Read",
-    "review": "It is the story of ram in the author’s style of way . Original Ramayana story is changed here",
-    "description": "A mythological fiction novel and the first book in the Ram Chandra Series, offering a reimagined telling of the Ramayana."
-  },
-  {
     "id": 6,
     "title": "Percy Jackson And The Sea of monsters ",
     "author": "Rick Riordan",
