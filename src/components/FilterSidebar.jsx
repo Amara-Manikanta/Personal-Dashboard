@@ -4,7 +4,13 @@ window.FilterSidebar = ({ filters, setFilters, novels }) => {
 
     // Extract unique authors from data for the dropdown
     // Use the passed 'novels' prop instead of window.novelsData to get real-time updates
-    const authors = ["All", ...new Set((novels || []).map(n => n.author))].sort();
+    const extractedAuthors = [];
+    (novels || []).forEach(n => {
+        if (n.author) {
+            n.author.split(',').map(a => a.trim()).filter(Boolean).forEach(a => extractedAuthors.push(a));
+        }
+    });
+    const authors = ["All", ...new Set(extractedAuthors)].sort();
 
     // Extract unique genres from data + standard genres
     // This allows custom genres entered by users to appear in the filter
