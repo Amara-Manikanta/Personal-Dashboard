@@ -18,7 +18,7 @@ window.AuthorPage = ({ authorName, novels, onBack, onNavigateToNovel }) => {
     }, [authorName]);
 
     // Filter novels by this author
-    const authorNovels = novels.filter(n => n.author === authorName);
+    const authorNovels = novels.filter(n => n.author && n.author.split(',').map(a => a.trim()).includes(authorName));
 
     // Calculate stats
     const stats = React.useMemo(() => {

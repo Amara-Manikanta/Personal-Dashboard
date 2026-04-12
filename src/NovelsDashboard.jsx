@@ -42,46 +42,54 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
             const counts = {};
 
             // Helper to increment counts
-            const increment = (key) => {
+            const increment = (key, amount = 1, isRead = true, isTotal = true) => {
                 if (key !== undefined && key !== null && key !== '') {
-                    counts[key] = (counts[key] || 0) + 1;
+                    if (!counts[key]) counts[key] = { read: 0, total: 0 };
+                    if (isTotal) counts[key].total += amount;
+                    if (isRead) counts[key].read += amount;
                 }
             };
 
             novels.forEach(novel => {
-                if (novel.status === 'Read') {
-                    if (viewMode === 'authors') increment(novel.author);
-                    else if (viewMode === 'genres') increment(novel.genre);
-                    else if (viewMode === 'years') {
-                        // Prefer completedDate over stale readYear
-                        let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
-                        increment(year);
+                const isReadStatus = novel.status === 'Read';
+                
+                if (viewMode === 'authors') {
+                    if (novel.author) {
+                        novel.author.split(',').map(a => a.trim()).filter(Boolean).forEach(a => increment(a, 1, isReadStatus, true));
                     }
-                    else if (viewMode === 'my_rating') increment(novel.rating);
-                    else if (viewMode === 'goodreads_rating') increment(novel.goodreadsRating);
-                    else if (viewMode === 'pages_year') {
-                        // Prefer completedDate over stale readYear
-                        let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
-
-                        // Calculate pages: Prefer 'pages' field, fallback to progress if pages
-                        let pageCount = 0;
-                        if (novel.pages) {
-                            pageCount = Number(novel.pages);
-                        } else if (novel.progressType === 'pages' && novel.progress) {
-                            pageCount = Number(novel.progress);
+                }
+                else if (viewMode === 'genres') {
+                    increment(novel.genre, 1, isReadStatus, true);
+                }
+                else {
+                    if (isReadStatus) {
+                        if (viewMode === 'years') {
+                            let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
+                            increment(year, 1, true, false);
                         }
-
-                        if (year) {
-                            counts[year] = (counts[year] || 0) + pageCount;
+                        else if (viewMode === 'my_rating') increment(novel.rating, 1, true, false);
+                        else if (viewMode === 'goodreads_rating') increment(novel.goodreadsRating, 1, true, false);
+                        else if (viewMode === 'pages_year') {
+                            let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
+                            let pageCount = 0;
+                            if (novel.pages) {
+                                pageCount = Number(novel.pages);
+                            } else if (novel.progressType === 'pages' && novel.progress) {
+                                pageCount = Number(novel.progress);
+                            }
+                            if (year) increment(year, pageCount, true, false);
                         }
                     }
                 }
             });
 
-            const statsArray = Object.entries(counts).map(([label, count]) => ({
-                label,
-                count
-            }));
+            const statsArray = Object.entries(counts)
+                .map(([label, countObj]) => ({
+                    label,
+                    count: countObj.read,
+                    total: countObj.total
+                }))
+                .filter(item => item.count > 0 || viewMode === 'authors' || viewMode === 'genres');
 
             // Custom sort for ratings to handle numeric values correctly if needed
             return statsArray.sort((a, b) => {
@@ -200,7 +208,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                             <thead>
                                 <tr>
                                     <th>{getColumnLabel()}</th>
-                                    <th className="text-right">{viewMode === 'pages_year' ? 'Pages Read' : 'Books Read'}</th>
+                                    <th className="text-right">{viewMode === 'pages_year' ? 'Pages Read' : (viewMode === 'authors' || viewMode === 'genres') ? 'Read / Total' : 'Books Read'}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -211,7 +219,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                             {(viewMode === 'my_rating' || viewMode === 'goodreads_rating') && <i className="ph-fill ph-star text-warning" style={{ marginLeft: '4px', fontSize: '0.9em' }}></i>}
                                         </td>
                                         <td className="text-right">
-                                            <span className="count-badge">{item.count}</span>
+                                            <span className="count-badge">{(viewMode === 'authors' || viewMode === 'genres') ? `${item.count} / ${item.total}` : item.count}</span>
                                         </td>
                                     </tr>
                                 ))}
@@ -328,7 +336,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
         let result = novels.filter(novel => {
             const matchesStatus = filters.status === 'All' || novel.status === filters.status;
             const matchesGenre = filters.genre === 'All' || novel.genre === filters.genre;
-            const matchesAuthor = filters.author === 'All' || novel.author === filters.author;
+            const matchesAuthor = filters.author === 'All' || (novel.author && novel.author.split(',').map(a => a.trim()).includes(filters.author));
             const matchesRating = novel.rating >= filters.minRating;
 
             let matchesYear = true;
