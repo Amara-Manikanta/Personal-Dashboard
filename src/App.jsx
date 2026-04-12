@@ -105,6 +105,10 @@ const App = () => {
                     onBack={() => setCurrentView('travel')}
                 />
             )}
+
+            {currentView === 'sync' && (
+                <window.SyncDashboard onBackToHome={handleBackToHome} />
+            )}
         </div>
     );
 };
