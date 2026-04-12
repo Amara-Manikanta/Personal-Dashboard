@@ -56,14 +56,14 @@ class GitHubStorage {
         }
     }
 
-    async saveFile(path, data) {
+    async saveFile(path, data, silent = false) {
         if (!this.token) {
             const token = prompt("To save changes to GitHub, please enter your Personal Access Token (Repo scope):");
             if (token) {
                 this.setToken(token);
             } else {
-                alert("Cannot save without a GitHub Token. Changes will not be persisted.");
-                return;
+                if (!silent) alert("Cannot save without a GitHub Token. Changes will not be persisted.");
+                throw new Error("No GitHub Token provided.");
             }
         }
 
@@ -108,10 +108,11 @@ class GitHubStorage {
                 throw new Error(err.message);
             }
 
-            alert("Saved successfully to GitHub!");
+            if (!silent) alert("Saved successfully to GitHub!");
         } catch (e) {
             console.error("GitHub Save Error:", e);
-            alert(`Failed to save to GitHub: ${e.message}`);
+            if (!silent) alert(`Failed to save to GitHub: ${e.message}`);
+            throw e;
         }
     }
 }
@@ -288,6 +289,65 @@ const api = {
         } catch (e) {
             console.error("Error uploading image:", e);
             return null;
+        }
+    },
+
+    sync: {
+        pullFromOnline: async () => {
+            if (!IS_LOCALHOST) throw new Error('Can only sync when running locally.');
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json'];
+            const results = { success: [], failed: [] };
+            
+            for (const file of files) {
+                try {
+                    const data = await ghStorage.getFile(file);
+                    if (data) {
+                        const type = file.replace('.json', '');
+                        await fetch(`${API_BASE}/${type}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+                        results.success.push(file);
+                    } else {
+                        results.failed.push(file);
+                    }
+                } catch (e) {
+                    console.error(`Error pulling ${file}:`, e);
+                    results.failed.push(file);
+                }
+            }
+            return results;
+        },
+        pushToOnline: async () => {
+            if (!IS_LOCALHOST) throw new Error('Can only sync when running locally.');
+            if (!ghStorage.token) {
+                throw new Error("GitHub token is required to push data. Please set it first.");
+            }
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json'];
+            const results = { success: [], failed: [] };
+            
+            for (const file of files) {
+                try {
+                    const type = file.replace('.json', '');
+                    const res = await fetch(`${API_BASE}/${type}`);
+                    if (!res.ok) throw new Error(`Local fetch failed for ${file}`);
+                    const localData = await res.json();
+                    
+                    await ghStorage.saveFile(file, localData, true);
+                    results.success.push(file);
+                } catch (e) {
+                    console.error(`Error pushing ${file}:`, e);
+                    results.failed.push(file);
+                }
+            }
+            return results;
+        },
+        hasToken: () => !!ghStorage.token,
+        setToken: (token) => ghStorage.setToken(token),
+        clearToken: () => {
+            ghStorage.token = null;
+            localStorage.removeItem('GITHUB_TOKEN');
         }
     }
 };

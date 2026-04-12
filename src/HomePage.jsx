@@ -83,6 +83,20 @@ window.HomePage = ({ onNavigate }) => {
                     </div>
 
 
+                    <div className="dashboard-card sync-card" onClick={() => onNavigate('sync')}>
+                        <div className="card-icon">
+                            <i className="ph-fill ph-cloud-arrows"></i>
+                        </div>
+                        <h2>Sync & Backup</h2>
+                        <p className="card-description">Synchronize data with GitHub</p>
+                        <div className="card-stats">
+                            <span className="stat-label">Online</span>
+                        </div>
+                        <div className="card-action">
+                            <span>Open Sync</span>
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
