@@ -402,6 +402,11 @@
           "name": "Gufha Restaurant",
           "city": "Tirupati",
           "remarks": "-"
+        },
+        {
+          "name": "The Moonshine Project",
+          "city": "Hyderabad",
+          "remarks": "Jubliee Hills"
         }
       ],
       "food": [
