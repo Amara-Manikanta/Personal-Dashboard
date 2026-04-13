@@ -375,6 +375,11 @@
           "name": "Maryada Ramana",
           "city": "Hyderabad",
           "remarks": "Kondapur"
+        },
+        {
+          "name": "Chaitanya Foods",
+          "city": "Hyderabad",
+          "remarks": "JNTU Metro"
         }
       ],
       "food": [
