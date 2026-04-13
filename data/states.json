@@ -392,6 +392,11 @@
           "city": "Hyderabad",
           "remarks": "Mutton Biryani",
           "image": ""
+        },
+        {
+          "name": "United Telugu Kitchen",
+          "city": "Vijaywada",
+          "remarks": "-"
         }
       ],
       "food": [
