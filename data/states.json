@@ -380,6 +380,11 @@
           "name": "Chaitanya Foods",
           "city": "Hyderabad",
           "remarks": "JNTU Metro"
+        },
+        {
+          "name": "Varalakshmi Tiffens",
+          "city": "Hyderabad",
+          "remarks": "Gachibowli"
         }
       ],
       "food": [
