@@ -600,7 +600,12 @@
       "restaurants": [],
       "food": [],
       "treks": [
-        "Jogini Falls",
+        {
+          "name": "Jogini Falls",
+          "city": "Vashisht",
+          "remarks": "-",
+          "image": ""
+        },
         "Chandratal Lake",
         "Dhankar Lake"
       ],
