@@ -370,7 +370,12 @@
         "Casa de reo",
         "Krishnapatnam",
         "Foddie Train",
-        "Hotel Shadab"
+        "Hotel Shadab",
+        {
+          "name": "Maryada Ramana",
+          "city": "Hyderabad",
+          "remarks": "Kondapur"
+        }
       ],
       "food": [
         {
