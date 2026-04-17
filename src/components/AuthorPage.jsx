@@ -22,7 +22,7 @@ window.AuthorPage = ({ authorName, novels, onBack, onNavigateToNovel }) => {
 
     // Calculate stats
     const stats = React.useMemo(() => {
-        const read = authorNovels.filter(n => n.status === 'Read').length;
+        const read = authorNovels.filter(n => n.status === 'Read' || n.status === 'Tried').length;
         const total = authorNovels.length;
         return { read, total };
     }, [authorNovels]);
@@ -93,7 +93,7 @@ window.AuthorPage = ({ authorName, novels, onBack, onNavigateToNovel }) => {
                             <div key={novel.id} className="novel-card-mini" onClick={() => onNavigateToNovel(novel)}>
                                 <div className="card-cover-wrapper">
                                     <img src={novel.cover} alt={novel.title} className="card-cover" loading="lazy" />
-                                    {novel.status === 'Read' && <div className="read-badge"><i className="ph-fill ph-check"></i></div>}
+                                    {(novel.status === 'Read' || novel.status === 'Tried') && <div className="read-badge"><i className="ph-fill ph-check"></i></div>}
                                 </div>
                                 <div className="card-info">
                                     <h3 className="card-title" title={novel.title}>{novel.title}</h3>
