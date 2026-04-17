@@ -16,7 +16,7 @@ window.NovelCard = ({ novel, onEdit, onDelete, onSelect }) => {
     };
 
     const getStatusClass = (s) => {
-        if (s === 'Read') return 'status-read';
+        if (s === 'Read' || s === 'Tried') return 'status-read';
         if (s === 'Currently Reading') return 'status-reading';
         return 'status-tbr';
     };

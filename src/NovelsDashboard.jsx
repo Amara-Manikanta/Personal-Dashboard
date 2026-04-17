@@ -51,7 +51,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
             };
 
             novels.forEach(novel => {
-                const isReadStatus = novel.status === 'Read';
+                const isReadStatus = novel.status === 'Read' || novel.status === 'Tried';
                 
                 if (viewMode === 'authors') {
                     if (novel.author) {
@@ -262,7 +262,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
 
     // Calculate Stats
     const stats = React.useMemo(() => {
-        const readCount = novels.filter(n => n.status === 'Read').length;
+        const readCount = novels.filter(n => n.status === 'Read' || n.status === 'Tried').length;
         const ownedCount = novels.filter(n => n.ownership === 'home' || n.ownership === 'lent').length;
         const havingCount = novels.filter(n => n.ownership === 'home').length;
         return { readCount, ownedCount, havingCount };

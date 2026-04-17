@@ -141,7 +141,7 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                     </div>
                 )}
 
-                {formData.status === 'Read' && (
+                {(formData.status === 'Read' || formData.status === 'Tried') && (
                     <div className="form-group">
                         <label>Completed Date</label>
                         <input
