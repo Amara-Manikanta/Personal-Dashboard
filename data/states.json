@@ -1436,9 +1436,16 @@
       "placesVisited": [],
       "placesToVisit": [],
       "restaurants": [],
-      "food": [],
+      "food": [
+        {
+          "name": "DubaiKunafa Choclate",
+          "city": "Dubai",
+          "remarks": "-"
+        }
+      ],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Japan": {
       "visited": false,
