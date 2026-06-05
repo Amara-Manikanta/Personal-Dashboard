@@ -145,6 +145,18 @@ app.post('/api/authors', (req, res) => {
     else res.status(500).json({ success: false, message: 'Failed to save authors' });
 });
 
+// --- Clothes ---
+app.get('/api/clothes', (req, res) => {
+    const data = readData('clothes.json');
+    res.json(data || []);
+});
+
+app.post('/api/clothes', (req, res) => {
+    const success = writeData('clothes.json', req.body);
+    if (success) res.json({ success: true });
+    else res.status(500).json({ success: false, message: 'Failed to save clothes' });
+});
+
 // --- Image Upload ---
 app.post('/api/upload-image', (req, res) => {
     if (!ENABLE_WRITES) return res.status(403).json({ success: false, message: 'Read-only mode' });
