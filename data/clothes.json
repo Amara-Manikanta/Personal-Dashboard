@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1777721729771,
+    "modelName": "Test Shirt",
+    "price": 500,
+    "datePurchased": "2026-05-02",
+    "imageUrl": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=1000",
+    "productLink": "https://www.example.com/product/test-shirt",
+    "colour": "Red"
+  }
+]

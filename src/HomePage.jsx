@@ -2,7 +2,7 @@ window.HomePage = ({ onNavigate }) => {
     const { useState, useEffect } = React;
 
     // Calculate stats from localStorage
-    const [stats, setStats] = useState({ novels: 0 });
+    const [stats, setStats] = useState({ novels: 0, clothes: 0 });
 
     useEffect(() => {
         try {
@@ -14,9 +14,12 @@ window.HomePage = ({ onNavigate }) => {
                 travelStats = window.TravelData.getStateStats();
             }
 
+            const clothesData = JSON.parse(localStorage.getItem('clothesData') || '[]');
+
             setStats({
                 novels: novelsData.length,
-                visitedStates: travelStats.visitedStates
+                visitedStates: travelStats.visitedStates,
+                clothes: (window.clothesData || []).length
             });
         } catch (e) {
             console.error('Error loading stats:', e);
@@ -75,6 +78,22 @@ window.HomePage = ({ onNavigate }) => {
                             <span className="stat-number">
                                 {window.writingData ? window.writingData.reduce((acc, item) => acc + (item.quotes ? item.quotes.length : 0), 0) : 0}
                             </span>
+                        </div>
+                        <div className="card-action">
+                            <span>Open Dashboard</span>
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div className="dashboard-card clothes-card" onClick={() => onNavigate('clothes')}>
+                        <div className="card-icon">
+                            <i className="ph-fill ph-t-shirt"></i>
+                        </div>
+                        <h2>Clothes Tracker</h2>
+                        <p className="card-description">Manage your wardrobe</p>
+                        <div className="card-stats">
+                            <span className="stat-number">{stats.clothes}</span>
+                            <span className="stat-label">Items</span>
                         </div>
                         <div className="card-action">
                             <span>Open Dashboard</span>

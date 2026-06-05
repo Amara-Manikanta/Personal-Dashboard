@@ -9,12 +9,13 @@ const App = () => {
         const loadData = async () => {
             try {
                 // Fetch all data in parallel
-                const [novels, statesData, writing, stories, authors] = await Promise.all([
+                const [novels, statesData, writing, stories, authors, clothes] = await Promise.all([
                     window.api.getNovels(),
                     window.api.getStates(),
                     window.api.getWriting(),
                     window.api.getStories(),
-                    window.api.getAuthors()
+                    window.api.getAuthors(),
+                    window.api.getClothes()
                 ]);
 
                 // Assign to global window objects for compatibility with existing components
@@ -22,6 +23,7 @@ const App = () => {
                 window.writingData = writing;
                 window.storiesList = stories;
                 window.authorsData = authors;
+                window.clothesData = clothes;
 
                 // For states, we need to handle the structure { states: {}, bucketList: [] }
                 // We'll expose this raw data to be used by statesData.js logic
@@ -108,6 +110,10 @@ const App = () => {
 
             {currentView === 'sync' && (
                 <window.SyncDashboard onBackToHome={handleBackToHome} />
+            )}
+
+            {currentView === 'clothes' && (
+                <window.ClothesDashboard onBackToHome={handleBackToHome} />
             )}
         </div>
     );

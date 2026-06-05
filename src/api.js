@@ -276,6 +276,36 @@ const api = {
         }
     },
 
+    getClothes: async () => {
+        if (IS_LOCALHOST) {
+            try {
+                const res = await fetch(`${API_BASE}/clothes`);
+                if (!res.ok) throw new Error('Failed to fetch clothes');
+                return await res.json();
+            } catch (e) {
+                console.error(e);
+                return [];
+            }
+        } else {
+            return (await ghStorage.getFile('clothes.json')) || [];
+        }
+    },
+    saveClothes: async (data) => {
+        if (IS_LOCALHOST) {
+            try {
+                await fetch(`${API_BASE}/clothes`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+            } catch (e) {
+                console.error("Error saving clothes:", e);
+            }
+        } else {
+            await ghStorage.saveFile('clothes.json', data);
+        }
+    },
+
     uploadImage: async (fileData) => {
         if (!IS_LOCALHOST) return null;
         try {
@@ -295,7 +325,7 @@ const api = {
     sync: {
         pullFromOnline: async () => {
             if (!IS_LOCALHOST) throw new Error('Can only sync when running locally.');
-            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json'];
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json'];
             const results = { success: [], failed: [] };
             
             for (const file of files) {
@@ -324,7 +354,7 @@ const api = {
             if (!ghStorage.token) {
                 throw new Error("GitHub token is required to push data. Please set it first.");
             }
-            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json'];
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json'];
             const results = { success: [], failed: [] };
             
             for (const file of files) {
