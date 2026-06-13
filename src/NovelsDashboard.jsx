@@ -34,7 +34,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     const [deletingNovelId, setDeletingNovelId] = useState(null); // New state for delete confirmation
 
     // ---- Sub-components ----
-    const StatsBoard = ({ novels }) => {
+    const StatsBoard = ({ novels, onAuthorClick }) => {
         const [viewMode, setViewMode] = useState('authors'); // 'authors', 'genres', 'years', 'my_rating', 'goodreads_rating'
         const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
 
@@ -203,29 +203,58 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                 </div>
 
                 {stats.length > 0 ? (
-                    <div className="stats-table-wrapper">
-                        <table className="stats-table">
-                            <thead>
-                                <tr>
-                                    <th>{getColumnLabel()}</th>
-                                    <th className="text-right">{viewMode === 'pages_year' ? 'Pages Read' : (viewMode === 'authors' || viewMode === 'genres') ? 'Read / Total' : 'Books Read'}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {stats.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>
-                                            {item.label}
-                                            {(viewMode === 'my_rating' || viewMode === 'goodreads_rating') && <i className="ph-fill ph-star text-warning" style={{ marginLeft: '4px', fontSize: '0.9em' }}></i>}
-                                        </td>
-                                        <td className="text-right">
-                                            <span className="count-badge">{(viewMode === 'authors' || viewMode === 'genres') ? `${item.count} / ${item.total}` : item.count}</span>
-                                        </td>
+                    (viewMode === 'my_rating' || viewMode === 'goodreads_rating') ? (
+                        <div className="rating-chart-container" style={{ padding: '1rem' }}>
+                            {(() => {
+                                const maxCount = Math.max(...stats.map(s => s.count));
+                                return stats.map((item, index) => (
+                                    <div key={index} className="rating-bar-row" style={{ display: 'flex', alignItems: 'center', marginBottom: '0.75rem', gap: '1rem' }}>
+                                        <div className="rating-label" style={{ width: '40px', textAlign: 'right', fontWeight: '500', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '4px' }}>
+                                            {item.label} <i className="ph-fill ph-star text-warning" style={{fontSize: '0.8em'}}></i>
+                                        </div>
+                                        <div className="rating-bar-track" style={{ flex: 1, height: '12px', background: 'var(--bg-surface-hover)', borderRadius: '6px', overflow: 'hidden' }}>
+                                            <div className="rating-bar-fill" style={{ width: `${(item.count / maxCount) * 100}%`, height: '100%', background: 'var(--primary)', borderRadius: '6px', transition: 'width 0.5s ease' }}></div>
+                                        </div>
+                                        <div className="rating-count" style={{ width: '30px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{item.count}</div>
+                                    </div>
+                                ));
+                            })()}
+                        </div>
+                    ) : (
+                        <div className="stats-table-wrapper">
+                            <table className="stats-table">
+                                <thead>
+                                    <tr>
+                                        <th>{getColumnLabel()}</th>
+                                        <th className="text-right">{viewMode === 'pages_year' ? 'Pages Read' : (viewMode === 'authors' || viewMode === 'genres') ? 'Read / Total' : 'Books Read'}</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {stats.map((item, index) => {
+                                        const isCompleteAuthor = viewMode === 'authors' && item.count === item.total && item.total > 0;
+                                        const rowProps = viewMode === 'authors' && onAuthorClick ? {
+                                            onClick: () => onAuthorClick(item.label),
+                                            style: { cursor: 'pointer' },
+                                            title: `View ${item.label}'s books`
+                                        } : {};
+
+                                        return (
+                                            <tr key={index} {...rowProps}>
+                                                <td className={isCompleteAuthor ? 'text-green-500 font-medium' : ''}>
+                                                    {item.label}
+                                                    {isCompleteAuthor && <i className="ph-bold ph-check-circle ml-2" title="Completed"></i>}
+                                                    {viewMode === 'goodreads_rating' && <i className="ph-fill ph-star text-warning" style={{ marginLeft: '4px', fontSize: '0.9em' }}></i>}
+                                                </td>
+                                                <td className="text-right">
+                                                    <span className="count-badge">{(viewMode === 'authors' || viewMode === 'genres') ? `${item.count} / ${item.total}` : item.count}</span>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    )
                 ) : (
                     <div className="empty-state">
                         <i className="ph ph-mask-sad"></i>
@@ -475,7 +504,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                         onUpdate={handleDirectUpdate}
                     />
                 ) : activeTab === 'stats' ? (
-                    <StatsBoard novels={novels} />
+                    <StatsBoard novels={novels} onAuthorClick={onAuthorClick} />
                 ) : (
                     <div className="content-grid" style={{ gridTemplateColumns: isFilterVisible ? '280px 1fr' : '1fr' }}>
                         {/* Pass current novels to sidebar to update author lists dynamically */}

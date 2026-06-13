@@ -27,6 +27,16 @@ window.AuthorPage = ({ authorName, novels, onBack, onNavigateToNovel }) => {
         return { read, total };
     }, [authorNovels]);
 
+    const authorGenres = React.useMemo(() => {
+        const genres = new Set();
+        authorNovels.forEach(n => {
+            if (n.genre) {
+                n.genre.split(',').forEach(g => genres.add(g.trim()));
+            }
+        });
+        return Array.from(genres).filter(Boolean);
+    }, [authorNovels]);
+
     const handleEditPhoto = async () => {
         const url = prompt("Enter the Image URL for this author:");
         if (url) {
@@ -73,14 +83,23 @@ window.AuthorPage = ({ authorName, novels, onBack, onNavigateToNovel }) => {
                     </div>
                     <div className="author-info">
                         <h1 className="author-name">{authorName}</h1>
-                        <div className="author-stats">
-                            <span className="stat-badge">
-                                <i className="ph-fill ph-books"></i> {stats.total} Books
-                            </span>
-                            <span className="stat-badge">
-                                <i className="ph-fill ph-check-circle"></i> {stats.read} Read
+                        <div className="author-stats" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '0.5rem' }}>
+                            <span className="stat-badge" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', padding: '4px 10px', borderRadius: '12px', fontSize: '0.85rem', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                <i className="ph-fill ph-books"></i> Read {stats.read} / {stats.total} in DB
                             </span>
                         </div>
+                        {authorGenres.length > 0 && (
+                            <div className="author-genres" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.75rem' }}>
+                                {authorGenres.slice(0, 5).map(g => (
+                                    <span key={g} style={{ backgroundColor: 'var(--bg-surface-hover)', border: '1px solid var(--border)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem' }}>
+                                        {g}
+                                    </span>
+                                ))}
+                                {authorGenres.length > 5 && (
+                                    <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem', alignSelf: 'center' }}>+{authorGenres.length - 5} more</span>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

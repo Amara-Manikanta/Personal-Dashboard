@@ -4,6 +4,11 @@ window.ClothesDashboard = ({ onBackToHome }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingItem, setEditingItem] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const CATEGORIES = ['Topwear', 'Bottomwear', 'Footwear', 'Outerwear'];
+    const OCCASIONS = ['Formal / Office', 'Casual Daily', 'Gym / Activewear', 'Ethnic / Party'];
+
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedOccasion, setSelectedOccasion] = useState('');
     const [sortBy, setSortBy] = useState('date-newest'); // date-newest, price-high, price-low
 
     // Sync local state with global window.clothesData if it changes elsewhere
@@ -22,6 +27,10 @@ window.ClothesDashboard = ({ onBackToHome }) => {
             imageUrl: formData.get('imageUrl'),
             productLink: formData.get('productLink'),
             colour: formData.get('colour'),
+            brand: formData.get('brand') || '',
+            size: formData.get('size') || '',
+            categories: formData.getAll('categories'),
+            occasions: formData.getAll('occasions'),
         };
 
         let updatedClothes;
@@ -59,10 +68,16 @@ window.ClothesDashboard = ({ onBackToHome }) => {
     };
 
     const filteredAndSortedClothes = useMemo(() => {
-        let result = clothes.filter(item => 
-            item.modelName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (item.colour && item.colour.toLowerCase().includes(searchQuery.toLowerCase()))
-        );
+        let result = clothes.filter(item => {
+            const matchesSearch = item.modelName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (item.colour && item.colour.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                (item.brand && item.brand.toLowerCase().includes(searchQuery.toLowerCase()));
+            
+            const matchesCategory = selectedCategory ? (item.categories && item.categories.includes(selectedCategory)) : true;
+            const matchesOccasion = selectedOccasion ? (item.occasions && item.occasions.includes(selectedOccasion)) : true;
+
+            return matchesSearch && matchesCategory && matchesOccasion;
+        });
 
         if (sortBy === 'date-newest') {
             result.sort((a, b) => new Date(b.datePurchased) - new Date(a.datePurchased));
@@ -94,11 +109,19 @@ window.ClothesDashboard = ({ onBackToHome }) => {
                         <i className="ph-bold ph-magnifying-glass"></i>
                         <input 
                             type="text" 
-                            placeholder="Search by model or color..." 
+                            placeholder="Search by model, color, brand..." 
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
+                    <select className="filter-select" value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>
+                        <option value="">All Categories</option>
+                        {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                    </select>
+                    <select className="filter-select" value={selectedOccasion} onChange={e => setSelectedOccasion(e.target.value)}>
+                        <option value="">All Occasions</option>
+                        {OCCASIONS.map(occ => <option key={occ} value={occ}>{occ}</option>)}
+                    </select>
                     <button className="btn-primary" onClick={() => { setEditingItem(null); setIsModalOpen(true); }}>
                         <i className="ph-bold ph-plus"></i> Add Item
                     </button>
@@ -166,6 +189,16 @@ window.ClothesDashboard = ({ onBackToHome }) => {
                                     </div>
                                 </div>
                                 <div className="item-meta">
+                                    {item.brand && (
+                                        <span className="meta-badge brand">
+                                            <i className="ph-fill ph-storefront"></i> {item.brand}
+                                        </span>
+                                    )}
+                                    {item.size && (
+                                        <span className="meta-badge size">
+                                            <i className="ph-fill ph-ruler"></i> Size: {item.size}
+                                        </span>
+                                    )}
                                     <span className="meta-badge color">
                                         <i className="ph-fill ph-palette"></i> {item.colour || 'N/A'}
                                     </span>
@@ -173,6 +206,12 @@ window.ClothesDashboard = ({ onBackToHome }) => {
                                         <i className="ph-fill ph-calendar-blank"></i> {item.datePurchased || 'Unknown Date'}
                                     </span>
                                 </div>
+                                {((item.categories && item.categories.length > 0) || (item.occasions && item.occasions.length > 0)) && (
+                                    <div className="item-tags">
+                                        {item.categories && item.categories.map(cat => <span key={cat} className="tag category">{cat}</span>)}
+                                        {item.occasions && item.occasions.map(occ => <span key={occ} className="tag occasion">{occ}</span>)}
+                                    </div>
+                                )}
                                 {item.productLink && (
                                     <a href={item.productLink} target="_blank" rel="noopener noreferrer" className="item-link">
                                         View Product <i className="ph-bold ph-arrow-square-out"></i>
@@ -212,6 +251,36 @@ window.ClothesDashboard = ({ onBackToHome }) => {
                                 <div className="form-group">
                                     <label>Colour</label>
                                     <input name="colour" type="text" defaultValue={editingItem ? editingItem.colour : ''} placeholder="e.g. Navy Blue" />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Brand / Store</label>
+                                    <input name="brand" type="text" defaultValue={editingItem ? editingItem.brand : ''} placeholder="e.g. Zara, Zudio" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Size</label>
+                                    <input name="size" type="text" defaultValue={editingItem ? editingItem.size : ''} placeholder="e.g. M, 32" />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label>Category Tags</label>
+                                <div className="checkbox-group">
+                                    {CATEGORIES.map(cat => (
+                                        <label key={cat} className="checkbox-label">
+                                            <input type="checkbox" name="categories" value={cat} defaultChecked={editingItem && editingItem.categories && editingItem.categories.includes(cat)} /> {cat}
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label>Occasion Tags</label>
+                                <div className="checkbox-group">
+                                    {OCCASIONS.map(occ => (
+                                        <label key={occ} className="checkbox-label">
+                                            <input type="checkbox" name="occasions" value={occ} defaultChecked={editingItem && editingItem.occasions && editingItem.occasions.includes(occ)} /> {occ}
+                                        </label>
+                                    ))}
                                 </div>
                             </div>
                             <div className="form-group">
@@ -354,15 +423,18 @@ window.ClothesDashboard = ({ onBackToHome }) => {
                     font-weight: 700;
                 }
 
-                .sort-select {
-                    background: transparent;
-                    border: none;
+                .sort-select, .filter-select {
+                    background: var(--bg-surface);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-md);
                     color: var(--text-primary);
-                    font-size: 1rem;
-                    font-weight: 600;
+                    font-size: 0.95rem;
+                    padding: 0.5rem 1rem;
                     cursor: pointer;
-                    padding: 0;
                     outline: none;
+                }
+                .filter-select {
+                    min-width: 150px;
                 }
 
                 .items-grid {
@@ -517,10 +589,157 @@ window.ClothesDashboard = ({ onBackToHome }) => {
                     padding: 2rem;
                 }
 
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1.5rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 1px solid var(--border);
+                }
+
+                .modal-header h2 {
+                    margin: 0;
+                    font-size: 1.5rem;
+                }
+
+                .close-btn {
+                    background: none;
+                    border: none;
+                    font-size: 1.25rem;
+                    color: var(--text-muted);
+                    cursor: pointer;
+                }
+
+                .form-group {
+                    margin-bottom: 1.25rem;
+                }
+
+                .form-group label {
+                    display: block;
+                    margin-bottom: 0.5rem;
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                }
+
+                .form-group input, .form-group select {
+                    width: 100%;
+                    background: var(--bg-app);
+                    border: 1px solid var(--border);
+                    color: var(--text-primary);
+                    padding: 0.75rem;
+                    border-radius: var(--radius-md);
+                    font-size: 1rem;
+                }
+
+                .form-group input:focus, .form-group select:focus {
+                    outline: none;
+                    border-color: var(--primary);
+                }
+
                 .form-row {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 1.5rem;
+                }
+
+                .checkbox-group {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                    margin-top: 0.5rem;
+                }
+
+                .checkbox-label {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    background: var(--bg-app);
+                    padding: 0.5rem 1rem;
+                    border-radius: var(--radius-md);
+                    border: 1px solid var(--border);
+                    cursor: pointer;
+                    font-size: 0.95rem;
+                    color: var(--text-primary);
+                    transition: border-color 0.2s;
+                }
+                
+                .checkbox-label:hover {
+                    border-color: var(--primary);
+                }
+
+                .checkbox-label input {
+                    width: auto;
+                    margin: 0;
+                }
+
+                .modal-actions {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 1rem;
+                    margin-top: 2rem;
+                    padding-top: 1rem;
+                    border-top: 1px solid var(--border);
+                }
+
+                .btn-primary {
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 0.75rem 1.5rem;
+                    border-radius: var(--radius-md);
+                    cursor: pointer;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    transition: background 0.2s;
+                }
+
+                .btn-primary:hover {
+                    background: var(--primary-hover);
+                }
+
+                .btn-secondary {
+                    background: transparent;
+                    color: var(--text-secondary);
+                    border: 1px solid var(--border);
+                    padding: 0.75rem 1.5rem;
+                    border-radius: var(--radius-md);
+                    cursor: pointer;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    transition: all 0.2s;
+                }
+
+                .btn-secondary:hover {
+                    background: var(--bg-app);
+                    color: var(--text-primary);
+                }
+
+                .item-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .tag {
+                    font-size: 0.75rem;
+                    padding: 0.2rem 0.6rem;
+                    border-radius: 1rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                }
+
+                .tag.category {
+                    background: rgba(124, 58, 237, 0.1);
+                    color: var(--primary);
+                    border: 1px solid rgba(124, 58, 237, 0.3);
+                }
+
+                .tag.occasion {
+                    background: rgba(34, 197, 94, 0.1);
+                    color: var(--success);
+                    border: 1px solid rgba(34, 197, 94, 0.3);
                 }
 
                 .empty-state {
