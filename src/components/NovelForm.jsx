@@ -46,6 +46,7 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
         // Default genre if empty
         const dataToSubmit = {
             ...formData,
+            format: formData.format || '📖 Physical',
             genre: formData.genre || 'Uncategorized',
             cover: formData.cover.trim() || 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=2000'
         };
@@ -113,6 +114,15 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                     {window.STATUSES.filter(s => s !== 'All').map(s => (
                         <option key={s} value={s}>{s}</option>
                     ))}
+                </select>
+            </div>
+
+            <div className="form-group">
+                <label>Format Type</label>
+                <select name="format" value={formData.format || '📖 Physical'} onChange={handleChange}>
+                    <option value="📖 Physical">📖 Physical</option>
+                    <option value="📱 E-Book / Kindle">📱 E-Book / Kindle</option>
+                    <option value="🎧 Audiobook">🎧 Audiobook</option>
                 </select>
             </div>
 

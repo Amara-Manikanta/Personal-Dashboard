@@ -265,6 +265,80 @@ window.WritingDashboard = ({ onBackToHome }) => {
         }
     };
 
+    const handleToggleQuoteFinished = (quoteIndex) => {
+        if (!selectedGenre) return;
+        const rawData = window.writingData || [];
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], finished: !newQuotes[quoteIndex].finished };
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], finished: !newQuotes[quoteIndex].finished };
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) window.api.saveWriting(updatedData);
+        if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
+    };
+
+    const handleUpdateModifiedQuote = (quoteIndex, newText) => {
+        if (!selectedGenre) return;
+        const rawData = window.writingData || [];
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], modified: newText };
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], modified: newText };
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) window.api.saveWriting(updatedData);
+        if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
+    };
+
     const renderContent = () => {
         console.log("Rendering content. State:", { selectedStory, activeTab, selectedGenre }); console.log("selectedGenre logic START");
 
@@ -290,9 +364,6 @@ window.WritingDashboard = ({ onBackToHome }) => {
                 <div className="stories-view-container">
                     <div className="view-header">
                         <h2>All Stories</h2>
-                        <button className="add-btn" onClick={() => { setEditingStory(null); setIsModalOpen(true); }}>
-                            <i className="ph-bold ph-plus"></i> New Story
-                        </button>
                     </div>
 
                     <div className="stories-list">
@@ -360,34 +431,82 @@ window.WritingDashboard = ({ onBackToHome }) => {
                             <p>No quotes yet for this genre.</p>
                         </div>
                     ) : (
-                        selectedGenre.quotes.map((quote, index) => (
-                            <div key={index} className="quote-card-item">
-                                <div className="quote-content original">
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                                        <div className="quote-label" style={{ marginBottom: 0 }}>Original</div>
-                                        <button
-                                            onClick={() => handleDeleteQuote(index)}
-                                            className="delete-icon-btn"
-                                            title="Delete Quote"
-                                        >
-                                            <i className="ph-bold ph-trash"></i>
-                                        </button>
-                                    </div>
-                                    <p>"{quote.original}"</p>
-                                </div>
-                                <div className={`quote-content modified ${quote.modified ? 'has-content' : 'empty'}`}>
-                                    <div className="quote-label">Modified</div>
-                                    {quote.modified ? (
-                                        <p>"{quote.modified}"</p>
-                                    ) : (
-                                        <div className="empty-state">
-                                            <i className="ph-fill ph-pencil-simple-slash"></i>
-                                            <span>Not yet edited</span>
+                        selectedGenre.quotes.map((quote, index) => {
+                            const isUnedited = !quote.finished;
+                            return (
+                                <div key={index} className={`quote-card-item ${quote.finished ? 'locked' : ''}`} style={{ 
+                                    opacity: quote.finished ? 1 : 0.65,
+                                    background: isUnedited ? 'var(--bg-app)' : 'var(--bg-surface)',
+                                    borderColor: isUnedited ? 'rgba(150, 150, 150, 0.2)' : 'var(--primary)',
+                                    position: 'relative',
+                                    boxShadow: isUnedited ? 'none' : 'var(--shadow-sm)'
+                                }}>
+                                    <div className="quote-content original" style={{ position: 'relative' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                                            <div className="quote-label" style={{ marginBottom: 0 }}>Original</div>
+                                            <div style={{ position: 'absolute', top: '-4px', right: '-4px', display: 'flex', gap: '4px' }}>
+                                                <button
+                                                    onClick={() => navigator.clipboard.writeText(quote.original)}
+                                                    className="icon-btn"
+                                                    title="Copy Original"
+                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: '4px' }}
+                                                >
+                                                    <i className="ph-bold ph-copy"></i>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteQuote(index)}
+                                                    className="delete-icon-btn"
+                                                    title="Delete Quote"
+                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: '4px' }}
+                                                >
+                                                    <i className="ph-bold ph-trash"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    )}
+                                        <p style={{ marginTop: '0.5rem' }}>"{quote.original}"</p>
+                                    </div>
+                                    <div className={`quote-content modified ${quote.modified ? 'has-content' : 'empty'}`} style={{ position: 'relative' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                            <div className="quote-label" style={{ marginBottom: 0, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                                Modified 
+                                                {isUnedited && <i className="ph-fill ph-pencil-simple" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }} title="Not Yet Edited"></i>}
+                                            </div>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                                            {quote.modified && (
+                                                <button
+                                                    onClick={() => navigator.clipboard.writeText(quote.modified)}
+                                                    className="icon-btn"
+                                                    title="Copy Modified"
+                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
+                                                >
+                                                    <i className="ph-bold ph-copy"></i>
+                                                </button>
+                                            )}
+                                            <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: 'var(--text-muted)', cursor: 'pointer' }}>
+                                                <input 
+                                                    type="checkbox" 
+                                                    checked={quote.finished || false} 
+                                                    onChange={() => handleToggleQuoteFinished(index)} 
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                                Finished
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {quote.finished ? (
+                                        <p style={{ marginTop: '0.5rem' }}>{quote.modified ? `"${quote.modified}"` : <span style={{color: 'var(--text-muted)', fontStyle: 'italic'}}>No modification made.</span>}</p>
+                                        ) : (
+                                            <textarea
+                                                value={quote.modified || ''}
+                                                onChange={(e) => handleUpdateModifiedQuote(index, e.target.value)}
+                                                placeholder="Write your modified or polished quote here..."
+                                                style={{ width: '100%', minHeight: '80px', padding: '0.75rem', marginTop: '0.5rem', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '6px', color: 'var(--text-main)', resize: 'vertical' }}
+                                            ></textarea>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        ))
+                            );
+                        })
                     )}
                 </div>
             );
@@ -836,10 +955,10 @@ window.WritingDashboard = ({ onBackToHome }) => {
                 .story-card:hover { transform: translateY(-4px); border-color: var(--primary); }
                 .story-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
                 .story-header h3 { margin: 0; font-size: 1.25rem; line-height: 1.4; }
-                .story-status { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; font-weight: 600; text-transform: uppercase; }
-                .story-status.draft { background: var(--bg-app); color: var(--text-muted); }
-                .story-status.published { background: rgba(16, 185, 129, 0.1); color: var(--success); }
-                .story-status.in-progress { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+                .story-status { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; }
+                .story-status.draft { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); }
+                .story-status.published { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.3); }
+                .story-status.in-progress { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border-color: rgba(59, 130, 246, 0.3); }
                 .story-meta { display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
                 .story-meta span { display: flex; align-items: center; gap: 0.35rem; }
                 .story-snippet { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }

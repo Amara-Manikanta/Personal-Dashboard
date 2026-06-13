@@ -1,6 +1,6 @@
 window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdate }) => {
     const { useState, useEffect } = React;
-    const { title, author, cover, genre, subGenre, rating, status, review, progress, progressType, quotes, phrases, description } = novel;
+    const { title, author, cover, genre, subGenre, format, rating, status, review, progress, progressType, quotes, phrases, description } = novel;
     const [activeTab, setActiveTab] = useState('description');
 
     // ---- Edit States ----
@@ -253,6 +253,30 @@ window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdat
                                 <span className="value"><span className="gr-icon">g</span> {novel.goodreadsRating}</span>
                             </div>
                         )}
+                        {novel.startDate && novel.completedDate && (() => {
+                            const start = new Date(novel.startDate);
+                            const end = new Date(novel.completedDate);
+                            const days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+                            return (
+                                <div className="timeline-tracker" style={{ gridColumn: '1 / -1', background: 'var(--bg-surface-hover)', padding: '0.75rem', borderRadius: '8px', marginTop: '0.5rem', border: '1px solid var(--border)' }}>
+                                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', fontWeight: 600 }}>Reading Timeline</div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', flexWrap: 'wrap' }}>
+                                        <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                            <i className="ph-fill ph-calendar-plus text-primary"></i>
+                                            <span>{start.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                                        </div>
+                                        <i className="ph-bold ph-arrow-right text-text-muted"></i>
+                                        <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                            <i className="ph-fill ph-calendar-check text-green-500"></i>
+                                            <span>{end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                                        </div>
+                                    </div>
+                                    <div style={{ marginTop: '0.5rem', fontSize: '0.85rem', fontWeight: 500, color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                        <i className="ph-fill ph-clock"></i> Completed in {days} {days === 1 ? 'day' : 'days'}
+                                    </div>
+                                </div>
+                            );
+                        })()}
                     </div>
                 </div>
 
@@ -262,6 +286,7 @@ window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdat
                         <div className="genres">
                             <span className="main-genre">{genre}</span>
                             {subGenre && <span className="sub-genre"> • {subGenre}</span>}
+                            {format && <span className="sub-genre" style={{ marginLeft: '12px', opacity: 0.8 }}>{format}</span>}
                         </div>
                         <h1 className="detail-title">{title}</h1>
                         <h2 className="detail-author">

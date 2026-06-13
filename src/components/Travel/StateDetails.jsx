@@ -6,12 +6,22 @@
     const SECTIONS = [
         { id: 'highlights', label: 'Highlights', icon: 'ph-star' },
         { id: 'placesVisited', label: 'Places Visited', icon: 'ph-map-pin' },
-        { id: 'placesToVisit', label: 'Bucket List', icon: 'ph-binoculars' },
+        { id: 'bucketList', label: 'Bucket List', icon: 'ph-binoculars' },
         { id: 'restaurants', label: 'Restaurants', icon: 'ph-fork-knife' },
         { id: 'food', label: 'Food to Try', icon: 'ph-pizza' },
         { id: 'treks', label: 'Treks', icon: 'ph-mountains' },
         { id: 'stays', label: 'Stays', icon: 'ph-bed' }
     ];
+
+    const CUISINE_OPTIONS = ['Andhra Tiffins', 'North Indian', 'South Indian', 'Continental', 'Fusion Veg', 'Chinese', 'Italian', 'Cafe', 'Desserts', 'Street Food'];
+    const AMBIENCE_OPTIONS = ['Casual Dining', 'Fine Dining', 'Quick Tiffin', 'Family Friendly', 'Romantic', 'Rooftop', 'Pub/Bar', 'Late Night'];
+    
+    const TRIP_TYPE_OPTIONS = ['Nature & Lakes', 'High Peaks', 'Wildlife', 'Heritage Sites', 'Beaches', 'Waterfalls', 'City Tour'];
+    const SEASON_OPTIONS = ['Monsoon', 'Winter', 'Post-Monsoon', 'Summer', 'All Year'];
+    const PRIORITY_OPTIONS = ['High', 'Medium', 'Low'];
+
+    const STAY_TYPE_OPTIONS = ['Hotel', 'Resort', 'Service Apartment', 'Villa', 'Transit Stay', 'Hostel', 'Homestay'];
+    const AMENITY_OPTIONS = ['🏊 Pool', '📶 Wi-Fi', '🍳 Kitchen', '🅿️ Parking', '❄️ AC', '☕ Breakfast'];
 
     // Check for localhost
     const isLocalhost = window.location.hostname === 'localhost' ||
@@ -35,8 +45,35 @@
 
         // Edit State
         const [editingIndex, setEditingIndex] = useState(-1);
-        const [editItem, setEditItem] = useState({ name: '', city: '', remarks: '', image: '' });
+        const [editItem, setEditItem] = useState({ name: '', city: '', remarks: '', image: '', mapLink: '', dishes: [] });
         const [editUploading, setEditUploading] = useState(false);
+        const [newDishName, setNewDishName] = useState('');
+        const [newDishRating, setNewDishRating] = useState('good');
+
+        // Add Form Extended State
+        const [newDishes, setNewDishes] = useState([]);
+        const [newAddDishName, setNewAddDishName] = useState('');
+        const [newAddDishRating, setNewAddDishRating] = useState('good');
+        const [newMapLink, setNewMapLink] = useState('');
+        const [newCuisines, setNewCuisines] = useState([]);
+        const [newAmbiences, setNewAmbiences] = useState([]);
+        const [newTripTypes, setNewTripTypes] = useState([]);
+        const [newSeason, setNewSeason] = useState('All Year');
+        const [newTravelDuration, setNewTravelDuration] = useState('');
+        const [newPriority, setNewPriority] = useState('Medium');
+        const [newDistance, setNewDistance] = useState('');
+        const [newAltitude, setNewAltitude] = useState('');
+        const [newDifficulty, setNewDifficulty] = useState('Beginner');
+        const [newBestTime, setNewBestTime] = useState('');
+        const [newPermit, setNewPermit] = useState('No');
+        const [newTimeTaken, setNewTimeTaken] = useState('');
+        const [newTerrain, setNewTerrain] = useState('');
+        const [newSafetyAlerts, setNewSafetyAlerts] = useState(false);
+        const [newIsVisited, setNewIsVisited] = useState(false);
+        const [newStayType, setNewStayType] = useState('Hotel');
+        const [newCheckIn, setNewCheckIn] = useState('');
+        const [newCheckOut, setNewCheckOut] = useState('');
+        const [newAmenities, setNewAmenities] = useState([]);
 
         useEffect(() => {
             if (stateName) {
@@ -50,6 +87,27 @@
             setNewCity('');
             setNewRemarks('');
             setUploadedImagePath('');
+            setNewDishName('');
+            setNewDishRating('good');
+            setNewDishes([]);
+            setNewAddDishName('');
+            setNewAddDishRating('good');
+            setNewMapLink('');
+            setNewDistance('');
+            setNewAltitude('');
+            setNewDifficulty('Beginner');
+            setNewBestTime('');
+            setNewPermit('No');
+            setNewTimeTaken('');
+            setNewTerrain('');
+            setNewSafetyAlerts(false);
+            setNewIsVisited(false);
+            setNewCuisines([]);
+            setNewAmbiences([]);
+            setNewTripTypes([]);
+            setNewSeason('All Year');
+            setNewTravelDuration('');
+            setNewPriority('Medium');
             cancelEdit();
         }, [activeTab]);
 
@@ -138,7 +196,28 @@
                 name: newItem.trim(),
                 city: newCity.trim() || '-',
                 remarks: newRemarks.trim() || '-',
-                image: isGridView ? uploadedImagePath : undefined
+                image: isGridView ? uploadedImagePath : undefined,
+                mapLink: (activeTab === 'restaurants' || activeTab === 'treks') ? newMapLink.trim() : undefined,
+                dishes: activeTab === 'restaurants' ? [...newDishes] : undefined,
+                cuisines: activeTab === 'restaurants' ? [...newCuisines] : undefined,
+                ambiences: activeTab === 'restaurants' ? [...newAmbiences] : undefined,
+                tripTypes: activeTab === 'bucketList' ? [...newTripTypes] : undefined,
+                season: activeTab === 'bucketList' ? newSeason : undefined,
+                travelDuration: activeTab === 'bucketList' ? newTravelDuration.trim() : undefined,
+                priority: activeTab === 'bucketList' ? newPriority : undefined,
+                distance: activeTab === 'treks' ? newDistance.trim() : undefined,
+                altitude: activeTab === 'treks' ? newAltitude.trim() : undefined,
+                difficulty: activeTab === 'treks' ? newDifficulty : undefined,
+                bestTime: activeTab === 'treks' ? newBestTime.trim() : undefined,
+                permit: activeTab === 'treks' ? newPermit : undefined,
+                timeTaken: activeTab === 'treks' ? newTimeTaken.trim() : undefined,
+                terrain: activeTab === 'treks' ? newTerrain.trim() : undefined,
+                safetyAlerts: activeTab === 'treks' ? newSafetyAlerts : undefined,
+                isVisited: activeTab === 'treks' ? newIsVisited : undefined,
+                stayType: activeTab === 'stays' ? newStayType : undefined,
+                checkIn: activeTab === 'stays' ? newCheckIn : undefined,
+                checkOut: activeTab === 'stays' ? newCheckOut : undefined,
+                amenities: activeTab === 'stays' ? [...newAmenities] : undefined
             };
 
             const updatedList = [...list, itemToAdd];
@@ -148,6 +227,29 @@
             setNewItem('');
             setNewCity('');
             setNewRemarks('');
+            setNewDishes([]);
+            setNewAddDishName('');
+            setNewAddDishRating('good');
+            setNewMapLink('');
+            setNewDistance('');
+            setNewAltitude('');
+            setNewDifficulty('Beginner');
+            setNewBestTime('');
+            setNewPermit('No');
+            setNewTimeTaken('');
+            setNewTerrain('');
+            setNewSafetyAlerts(false);
+            setNewIsVisited(false);
+            setNewCuisines([]);
+            setNewAmbiences([]);
+            setNewTripTypes([]);
+            setNewSeason('All Year');
+            setNewTravelDuration('');
+            setNewPriority('Medium');
+            setNewStayType('Hotel');
+            setNewCheckIn('');
+            setNewCheckOut('');
+            setNewAmenities([]);
 
             if (isGridView) {
                 setUploadedImagePath('');
@@ -157,8 +259,6 @@
         };
 
         const removeItem = (e, index) => {
-            // e might be undefined if called from table view which passed index only previously?
-            // check signature used in button
             if (e && e.stopPropagation) e.stopPropagation();
 
             if (!window.confirm("Are you sure you want to delete this item?")) return;
@@ -173,23 +273,69 @@
             }
         };
 
+        const moveToVisited = (e, index, targetTab) => {
+            if (e && e.stopPropagation) e.stopPropagation();
+            if (!data) return;
+            
+            const bucketList = data.bucketList || [];
+            const itemToMove = bucketList[index];
+            if (!itemToMove) return;
+
+            // Make sure we carry over name and city natively, and mark as visited for Treks
+            const transferredItem = { ...itemToMove };
+            if (targetTab === 'treks') {
+                transferredItem.isVisited = true;
+            }
+
+            const updatedBucketList = bucketList.filter((_, i) => i !== index);
+            const targetList = data[targetTab] || [];
+            const updatedTargetList = [...targetList, transferredItem];
+
+            handleSave({ 
+                bucketList: updatedBucketList,
+                [targetTab]: updatedTargetList 
+            });
+        };
+
         const startEdit = (index, item) => {
             setEditingIndex(index);
             if (typeof item === 'object' && item !== null) {
                 setEditItem({
+                    ...item,
                     name: item.name || '',
                     city: item.city || '',
                     remarks: item.remarks || '',
-                    image: item.image || ''
+                    image: item.image || '',
+                    mapLink: item.mapLink || '',
+                    dishes: item.dishes || [],
+                    cuisines: item.cuisines || [],
+                    ambiences: item.ambiences || [],
+                    tripTypes: item.tripTypes || [],
+                    season: item.season || 'All Year',
+                    travelDuration: item.travelDuration || '',
+                    priority: item.priority || 'Medium',
+                    distance: item.distance || '',
+                    altitude: item.altitude || '',
+                    difficulty: item.difficulty || 'Beginner',
+                    bestTime: item.bestTime || '',
+                    permit: item.permit || 'No',
+                    timeTaken: item.timeTaken || '',
+                    terrain: item.terrain || '',
+                    safetyAlerts: item.safetyAlerts || false,
+                    isVisited: item.isVisited || false
                 });
             } else {
-                setEditItem({ name: item, city: '', remarks: '', image: '' });
+                setEditItem({ name: item, city: '', remarks: '', image: '', mapLink: '', dishes: [], cuisines: [], ambiences: [], tripTypes: [], season: 'All Year', travelDuration: '', priority: 'Medium', distance: '', altitude: '', difficulty: 'Beginner', bestTime: '', permit: 'No', timeTaken: '', terrain: '', safetyAlerts: false, isVisited: false });
             }
+            setNewDishName('');
+            setNewDishRating('good');
         };
 
         const cancelEdit = () => {
             setEditingIndex(-1);
-            setEditItem({ name: '', city: '', remarks: '', image: '' });
+            setEditItem({ name: '', city: '', remarks: '', image: '', mapLink: '', dishes: [], cuisines: [], ambiences: [], tripTypes: [], season: 'All Year', travelDuration: '', priority: 'Medium', distance: '', altitude: '', difficulty: 'Beginner', bestTime: '', permit: 'No', timeTaken: '', terrain: '', safetyAlerts: false, isVisited: false });
+            setNewDishName('');
+            setNewDishRating('good');
         };
 
         const saveEdit = (index) => {
@@ -197,15 +343,70 @@
 
             const list = [...(data[activeTab] || [])];
 
-            list[index] = {
+            const updatedItem = {
                 name: editItem.name.trim(),
                 city: editItem.city.trim() || '-',
                 remarks: editItem.remarks.trim() || '-',
                 image: editItem.image
             };
+            
+            if (activeTab === 'restaurants') {
+                if (editItem.mapLink) {
+                    updatedItem.mapLink = editItem.mapLink.trim();
+                }
+                if (editItem.dishes && editItem.dishes.length > 0) {
+                    updatedItem.dishes = editItem.dishes;
+                }
+                if (editItem.cuisines && editItem.cuisines.length > 0) {
+                    updatedItem.cuisines = editItem.cuisines;
+                }
+                if (editItem.ambiences && editItem.ambiences.length > 0) {
+                    updatedItem.ambiences = editItem.ambiences;
+                }
+            }
+            if (activeTab === 'bucketList') {
+                if (editItem.tripTypes && editItem.tripTypes.length > 0) {
+                    updatedItem.tripTypes = editItem.tripTypes;
+                }
+                if (editItem.season) updatedItem.season = editItem.season;
+                if (editItem.travelDuration) updatedItem.travelDuration = editItem.travelDuration.trim();
+                if (editItem.priority) updatedItem.priority = editItem.priority;
+            }
+            if (activeTab === 'treks') {
+                if (editItem.distance) updatedItem.distance = editItem.distance.trim();
+                if (editItem.altitude) updatedItem.altitude = editItem.altitude.trim();
+                if (editItem.difficulty) updatedItem.difficulty = editItem.difficulty;
+                if (editItem.bestTime) updatedItem.bestTime = editItem.bestTime.trim();
+                updatedItem.permit = editItem.permit;
+                if (editItem.timeTaken) updatedItem.timeTaken = editItem.timeTaken.trim();
+                if (editItem.terrain) updatedItem.terrain = editItem.terrain.trim();
+                updatedItem.safetyAlerts = editItem.safetyAlerts;
+                updatedItem.isVisited = editItem.isVisited;
+                if (editItem.mapLink) updatedItem.mapLink = editItem.mapLink.trim();
+            }
+
+            list[index] = updatedItem;
 
             handleSave({ [activeTab]: list });
             cancelEdit();
+        };
+
+        const addDishToEdit = (e) => {
+            e.preventDefault();
+            if (!newDishName.trim()) return;
+            setEditItem(prev => ({
+                ...prev,
+                dishes: [...(prev.dishes || []), { name: newDishName.trim(), rating: newDishRating }]
+            }));
+            setNewDishName('');
+            setNewDishRating('good');
+        };
+
+        const removeDishFromEdit = (dishIndex) => {
+            setEditItem(prev => ({
+                ...prev,
+                dishes: (prev.dishes || []).filter((_, i) => i !== dishIndex)
+            }));
         };
 
         if (!data) return <div className="p-8 text-center text-text-muted">Loading...</div>;
@@ -232,6 +433,18 @@
             if (activeTab === 'restaurants') return 'Restaurant Name...';
             return `Add ${base.toLowerCase().replace(/s$/, '')} name...`;
         };
+
+        // Calculate Total Kms for visited treks
+        let totalTrekKms = 0;
+        if (activeTab === 'treks' && currentList.length > 0) {
+            totalTrekKms = currentList.reduce((sum, item) => {
+                if (item && typeof item === 'object' && item.isVisited && item.distance) {
+                    const match = item.distance.match(/[\d.]+/);
+                    if (match) return sum + parseFloat(match[0]);
+                }
+                return sum;
+            }, 0);
+        }
 
         return (
             <div className="state-details-container fade-in">
@@ -284,6 +497,24 @@
                 {/* Main Content */}
                 <div className="content-area container mx-auto">
 
+                    {/* Treks Global Stats */}
+                    {activeTab === 'treks' && (
+                        <div className="flex justify-between items-center bg-background-alt p-4 rounded-lg border border-border/50 mb-4 shadow-sm">
+                            <div className="flex items-center gap-3 text-primary">
+                                <div className="p-2 bg-primary/10 rounded-full">
+                                    <i className="ph-fill ph-mountains text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold text-lg leading-tight">Total Kms Covered</h3>
+                                    <p className="text-sm text-text-muted">From {currentList.filter(i => i && i.isVisited).length} visited treks</p>
+                                </div>
+                            </div>
+                            <div className="text-3xl font-bold text-text">
+                                {totalTrekKms.toFixed(1).replace(/\.0$/, '')} <span className="text-lg font-medium text-text-muted">km</span>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Toolbar */}
                     <div className="toolbar-row">
                         <div className="search-wrapper">
@@ -297,52 +528,355 @@
                         </div>
 
                         {/* Enhanced Add Form (Universal) */}
-                        <form onSubmit={addItem} className={`add-input-wrapper ${isGridView ? 'grid-mode-extended' : 'universal-extended'}`}>
-                            <div className="inputs-group">
-                                <input
-                                    type="text"
-                                    value={newItem}
-                                    onChange={(e) => setNewItem(e.target.value)}
-                                    placeholder={getPlaceholder()}
-                                    className="main-input"
-                                />
-                                <React.Fragment>
+                        <form onSubmit={addItem} className={`add-input-wrapper ${isGridView ? 'grid-mode-extended' : 'universal-extended'} ${(activeTab === 'restaurants' || activeTab === 'treks' || activeTab === 'bucketList') ? 'column-extended' : ''}`}>
+                            <div className="form-main-row">
+                                <div className="inputs-group">
                                     <input
                                         type="text"
-                                        value={newRemarks}
-                                        onChange={(e) => setNewRemarks(e.target.value)}
-                                        placeholder={activeTab === 'food' ? "Restaurant..." : "Notes..."}
-                                        className="sub-input"
+                                        value={newItem}
+                                        onChange={(e) => setNewItem(e.target.value)}
+                                        placeholder={getPlaceholder()}
+                                        className="main-input"
                                     />
-                                    <input
-                                        type="text"
-                                        value={newCity}
-                                        onChange={(e) => setNewCity(e.target.value)}
-                                        placeholder="City..."
-                                        className="sub-input"
-                                    />
-                                </React.Fragment>
+                                    <React.Fragment>
+                                        <input
+                                            type="text"
+                                            value={newRemarks}
+                                            onChange={(e) => setNewRemarks(e.target.value)}
+                                            placeholder={activeTab === 'food' ? "Restaurant..." : "Notes..."}
+                                            className="sub-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newCity}
+                                            onChange={(e) => setNewCity(e.target.value)}
+                                            placeholder="City..."
+                                            className="sub-input"
+                                        />
+                                        {activeTab === 'restaurants' && (
+                                            <input
+                                                type="text"
+                                                value={newMapLink}
+                                                onChange={(e) => setNewMapLink(e.target.value)}
+                                                placeholder="Maps Link (URL)..."
+                                                className="sub-input"
+                                            />
+                                        )}
+                                        {activeTab === 'treks' && (
+                                            <div className="flex items-center ml-2">
+                                                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-text-muted hover:text-text">
+                                                    <input 
+                                                        type="checkbox" 
+                                                        checked={newIsVisited}
+                                                        onChange={(e) => setNewIsVisited(e.target.checked)}
+                                                        className="w-4 h-4 rounded border-border text-primary focus:ring-primary bg-background"
+                                                    />
+                                                    Visited?
+                                                </label>
+                                            </div>
+                                        )}
+                                    </React.Fragment>
+                                </div>
+
+                                {/* File Upload for Grid Mode */}
+                                {isGridView && (
+                                    <div className="file-upload-container">
+                                        <label htmlFor="add-image-upload" className={`upload-label ${uploadedImagePath ? 'uploaded' : ''}`}>
+                                            <i className={`ph-bold ${uploading ? 'ph-spinner ph-spin' : uploadedImagePath ? 'ph-check' : 'ph-image'}`}></i>
+                                        </label>
+                                        <input
+                                            type="file"
+                                            id="add-image-upload"
+                                            accept="image/*"
+                                            onChange={handleAddFileChange}
+                                            style={{ display: 'none' }}
+                                        />
+                                    </div>
+                                )}
+
+                                <button type="submit" disabled={!newItem.trim() || uploading} className="add-btn">
+                                    <i className="ph-bold ph-plus"></i>
+                                </button>
                             </div>
 
-                            {/* File Upload for Grid Mode */}
-                            {isGridView && (
-                                <div className="file-upload-container">
-                                    <label htmlFor="add-image-upload" className={`upload-label ${uploadedImagePath ? 'uploaded' : ''}`}>
-                                        <i className={`ph-bold ${uploading ? 'ph-spinner ph-spin' : uploadedImagePath ? 'ph-check' : 'ph-image'}`}></i>
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="add-image-upload"
-                                        accept="image/*"
-                                        onChange={handleAddFileChange}
-                                        style={{ display: 'none' }}
-                                    />
+                            {/* Dish Manager inside Add Form */}
+                            {activeTab === 'restaurants' && (
+                                <div className="dish-manager-container">
+                                    <div className="dish-manager-label">Add Dishes (Optional)</div>
+                                    <div className="dish-inputs">
+                                        <input 
+                                            type="text" 
+                                            className="edit-input" 
+                                            placeholder="Dish Name" 
+                                            value={newAddDishName} 
+                                            onChange={(e) => setNewAddDishName(e.target.value)}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault();
+                                                    if (newAddDishName.trim()) {
+                                                        setNewDishes(prev => [...prev, { name: newAddDishName.trim(), rating: newAddDishRating }]);
+                                                        setNewAddDishName('');
+                                                    }
+                                                }
+                                            }}
+                                            style={{ flex: 1, padding: '0.6rem', fontSize: '0.9rem' }}
+                                        />
+                                        <select 
+                                            className="edit-input"
+                                            value={newAddDishRating}
+                                            onChange={(e) => setNewAddDishRating(e.target.value)}
+                                            style={{ width: '120px', padding: '0.6rem', fontSize: '0.9rem' }}
+                                        >
+                                            <option value="good">Good</option>
+                                            <option value="avg">Avg</option>
+                                            <option value="bad">Bad</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                        <button 
+                                            type="button" 
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (newAddDishName.trim()) {
+                                                    setNewDishes(prev => [...prev, { name: newAddDishName.trim(), rating: newAddDishRating }]);
+                                                    setNewAddDishName('');
+                                                }
+                                            }} 
+                                            className="action-btn success"
+                                            style={{ 
+                                                width: 'auto', 
+                                                height: 'auto', 
+                                                padding: '0.5rem 1rem', 
+                                                borderRadius: '4px',
+                                                background: 'rgba(16, 185, 129, 0.1)',
+                                                display: 'flex',
+                                                gap: '0.3rem'
+                                            }}
+                                        >
+                                            <i className="ph-bold ph-plus"></i> <span>Add</span>
+                                        </button>
+                                    </div>
+                                    {newDishes.length > 0 && (
+                                        <div className="dish-list" style={{ marginTop: '0.5rem' }}>
+                                            {newDishes.map((dish, i) => (
+                                                <div key={i} className={`dish-badge rating-${dish.rating}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginRight: '0.5rem', marginBottom: '0.5rem' }}>
+                                                    <span>{dish.name}</span>
+                                                    <i className="ph-bold ph-x" style={{ cursor: 'pointer', opacity: 0.7 }} onClick={() => setNewDishes(prev => prev.filter((_, idx) => idx !== i))}></i>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* Cuisines & Ambience Multi-select */}
+                                    <div className="mt-4 border-t border-dashed border-border pt-3">
+                                        <div className="mb-3">
+                                            <div className="dish-manager-label mb-2">Cuisine / Food Category</div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {CUISINE_OPTIONS.map(c => (
+                                                    <button
+                                                        key={c}
+                                                        type="button"
+                                                        onClick={(e) => { e.preventDefault(); setNewCuisines(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]) }}
+                                                        className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${newCuisines.includes(c) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary hover:border-primary/50'}`}
+                                                    >
+                                                        {c}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="dish-manager-label mb-2">Ambience / Vibe</div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {AMBIENCE_OPTIONS.map(a => (
+                                                    <button
+                                                        key={a}
+                                                        type="button"
+                                                        onClick={(e) => { e.preventDefault(); setNewAmbiences(prev => prev.includes(a) ? prev.filter(x => x !== a) : [...prev, a]) }}
+                                                        className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${newAmbiences.includes(a) ? 'bg-secondary text-white border-secondary' : 'bg-background border-border text-text-secondary hover:border-secondary/50'}`}
+                                                    >
+                                                        {a}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
 
-                            <button type="submit" disabled={!newItem.trim() || uploading} className="add-btn">
-                                <i className="ph-bold ph-plus"></i>
-                            </button>
+                            {/* Trek Extra Details inside Add Form */}
+                            {activeTab === 'treks' && (
+                                <div className="dish-manager-container mt-3 p-4 bg-background-alt rounded-lg border border-border/50">
+                                    <div className="dish-manager-label text-sm font-semibold mb-3 flex justify-between items-center">
+                                        <span>Trek Specifications</span>
+                                        <label className="flex items-center gap-2 cursor-pointer text-sm text-red-400 hover:text-red-500">
+                                            <input 
+                                                type="checkbox" 
+                                                checked={newSafetyAlerts}
+                                                onChange={(e) => setNewSafetyAlerts(e.target.checked)}
+                                                className="w-4 h-4 rounded border-border text-red-500 focus:ring-red-500 bg-background"
+                                            />
+                                            ⚠️ Leech/Safety Alert
+                                        </label>
+                                    </div>
+                                    <div className="trek-specs-grid">
+                                        <input
+                                            type="text"
+                                            value={newDistance}
+                                            onChange={(e) => setNewDistance(e.target.value)}
+                                            placeholder="Distance (km)"
+                                            className="edit-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newAltitude}
+                                            onChange={(e) => setNewAltitude(e.target.value)}
+                                            placeholder="Altitude (ft)"
+                                            className="edit-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newTimeTaken}
+                                            onChange={(e) => setNewTimeTaken(e.target.value)}
+                                            placeholder="Time (e.g. 4 hrs)"
+                                            className="edit-input"
+                                        />
+                                        <select
+                                            value={newDifficulty}
+                                            onChange={(e) => setNewDifficulty(e.target.value)}
+                                            className="edit-input bg-background"
+                                        >
+                                            <option value="Beginner">Beginner</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Hard">Hard</option>
+                                        </select>
+                                        
+                                        <input
+                                            type="text"
+                                            value={newTerrain}
+                                            onChange={(e) => setNewTerrain(e.target.value)}
+                                            placeholder="Terrain (e.g. Forest)"
+                                            className="edit-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newBestTime}
+                                            onChange={(e) => setNewBestTime(e.target.value)}
+                                            placeholder="Best Time (e.g. Sep-Feb)"
+                                            className="edit-input"
+                                        />
+                                        <select
+                                            value={newPermit}
+                                            onChange={(e) => setNewPermit(e.target.value)}
+                                            className="edit-input bg-background"
+                                        >
+                                            <option value="No">No Permit Required</option>
+                                            <option value="Yes">Permit Required</option>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            value={newMapLink}
+                                            onChange={(e) => setNewMapLink(e.target.value)}
+                                            placeholder="Maps Link (URL)"
+                                            className="edit-input"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Bucket List Details inside Add Form */}
+                            {activeTab === 'bucketList' && (
+                                <div className="dish-manager-container mt-3 p-4 bg-background-alt rounded-lg border border-border/50">
+                                    <div className="dish-manager-label text-sm font-semibold mb-3">Bucket List Specifications</div>
+                                    <div className="trek-specs-grid mb-4">
+                                        <input
+                                            type="text"
+                                            value={newTravelDuration}
+                                            onChange={(e) => setNewTravelDuration(e.target.value)}
+                                            placeholder="Travel Duration (e.g. 2 hrs)"
+                                            className="edit-input"
+                                        />
+                                        <select
+                                            value={newSeason}
+                                            onChange={(e) => setNewSeason(e.target.value)}
+                                            className="edit-input bg-background"
+                                        >
+                                            {SEASON_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+                                        </select>
+                                        <select
+                                            value={newPriority}
+                                            onChange={(e) => setNewPriority(e.target.value)}
+                                            className="edit-input bg-background"
+                                        >
+                                            {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{p}</option>)}
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <div className="dish-manager-label mb-2">Trip Type / Category</div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {TRIP_TYPE_OPTIONS.map(t => (
+                                                <button
+                                                    key={t}
+                                                    type="button"
+                                                    onClick={(e) => { e.preventDefault(); setNewTripTypes(prev => prev.includes(t) ? prev.filter(x => x !== t) : [...prev, t]) }}
+                                                    className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${newTripTypes.includes(t) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary hover:border-primary/50'}`}
+                                                >
+                                                    {t}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Stays Details inside Add Form */}
+                            {activeTab === 'stays' && (
+                                <div className="dish-manager-container mt-3 p-4 bg-background-alt rounded-lg border border-border/50">
+                                    <div className="dish-manager-label text-sm font-semibold mb-3">Stay Details</div>
+                                    <div className="trek-specs-grid mb-4">
+                                        <select
+                                            value={newStayType}
+                                            onChange={(e) => setNewStayType(e.target.value)}
+                                            className="edit-input bg-background"
+                                        >
+                                            {STAY_TYPE_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+                                        </select>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs text-text-muted">In:</span>
+                                            <input
+                                                type="date"
+                                                value={newCheckIn}
+                                                onChange={(e) => setNewCheckIn(e.target.value)}
+                                                className="edit-input w-full"
+                                            />
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs text-text-muted">Out:</span>
+                                            <input
+                                                type="date"
+                                                value={newCheckOut}
+                                                onChange={(e) => setNewCheckOut(e.target.value)}
+                                                className="edit-input w-full"
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div className="dish-manager-label mb-2">Amenities</div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {AMENITY_OPTIONS.map(a => (
+                                                <button
+                                                    key={a}
+                                                    type="button"
+                                                    onClick={(e) => { e.preventDefault(); setNewAmenities(prev => prev.includes(a) ? prev.filter(x => x !== a) : [...prev, a]) }}
+                                                    className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${newAmenities.includes(a) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary hover:border-primary/50'}`}
+                                                >
+                                                    {a}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </form>
                     </div>
 
@@ -458,13 +992,17 @@
                                         <th className="col-name">Name / Item</th>
                                         <th className="col-city">Location</th>
                                         <th className="col-remarks">Notes</th>
+                                        {activeTab === 'restaurants' && <th className="col-dishes">Dishes</th>}
+                                        {activeTab === 'treks' && <th className="col-trek-details">Trek Details</th>}
+                                        {activeTab === 'bucketList' && <th className="col-bucket-details">Bucket Details</th>}
+                                        {activeTab === 'stays' && <th className="col-stay-details">Stay Details</th>}
                                         <th className="col-actions text-right">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {filteredList.length === 0 ? (
                                         <tr>
-                                            <td colSpan="4">
+                                            <td colSpan={(activeTab === 'restaurants' || activeTab === 'treks') ? 5 : 4}>
                                                 <div className="empty-table-state">
                                                     <i className={`ph-duotone ${activeSection.icon}`}></i>
                                                     <p>No items added yet. Start exploring!</p>
@@ -481,12 +1019,21 @@
                                                         <td className="col-name">
                                                             <input
                                                                 type="text"
-                                                                className="edit-input"
+                                                                className="edit-input mb-2"
                                                                 value={editItem.name}
                                                                 onChange={(e) => setEditItem({ ...editItem, name: e.target.value })}
                                                                 placeholder="Name"
                                                                 autoFocus
                                                             />
+                                                            {(activeTab === 'restaurants' || activeTab === 'treks') && (
+                                                                <input
+                                                                    type="text"
+                                                                    className="edit-input text-sm"
+                                                                    value={editItem.mapLink || ''}
+                                                                    onChange={(e) => setEditItem({ ...editItem, mapLink: e.target.value })}
+                                                                    placeholder="Google Maps Link"
+                                                                />
+                                                            )}
                                                         </td>
                                                         <td className="col-city">
                                                             <input
@@ -503,9 +1050,122 @@
                                                                 className="edit-input"
                                                                 value={editItem.remarks}
                                                                 onChange={(e) => setEditItem({ ...editItem, remarks: e.target.value })}
-                                                                placeholder="Notes"
+                                                                placeholder="Notes/Remarks"
                                                             />
                                                         </td>
+                                                        {activeTab === 'treks' && (
+                                                            <td className="col-trek-details">
+                                                                <div className="grid grid-cols-2 gap-1 bg-background-alt p-2 rounded border border-border/30">
+                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.distance || ''} onChange={(e) => setEditItem({ ...editItem, distance: e.target.value })} placeholder="Dist (km)" />
+                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.altitude || ''} onChange={(e) => setEditItem({ ...editItem, altitude: e.target.value })} placeholder="Alt (ft)" />
+                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.difficulty || 'Beginner'} onChange={(e) => setEditItem({ ...editItem, difficulty: e.target.value })}>
+                                                                        <option value="Beginner">Beg</option>
+                                                                        <option value="Medium">Med</option>
+                                                                        <option value="Hard">Hard</option>
+                                                                    </select>
+                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.timeTaken || ''} onChange={(e) => setEditItem({ ...editItem, timeTaken: e.target.value })} placeholder="Time" />
+                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.terrain || ''} onChange={(e) => setEditItem({ ...editItem, terrain: e.target.value })} placeholder="Terrain" />
+                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.bestTime || ''} onChange={(e) => setEditItem({ ...editItem, bestTime: e.target.value })} placeholder="Season" />
+                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.permit || 'No'} onChange={(e) => setEditItem({ ...editItem, permit: e.target.value })}>
+                                                                        <option value="No">No Permit</option>
+                                                                        <option value="Yes">Permit Reqd</option>
+                                                                    </select>
+                                                                    <label className="flex items-center gap-1 text-xs text-red-500 whitespace-nowrap overflow-hidden">
+                                                                        <input type="checkbox" checked={editItem.safetyAlerts || false} onChange={(e) => setEditItem({ ...editItem, safetyAlerts: e.target.checked })} />
+                                                                        Alert
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                        )}
+                                                        {activeTab === 'restaurants' && (
+                                                            <td className="col-dishes">
+                                                                <div className="dish-manager">
+                                                                    <div className="dish-inputs flex gap-1 mb-2">
+                                                                        <input 
+                                                                            type="text" 
+                                                                            className="edit-input flex-1 p-1 text-sm" 
+                                                                            placeholder="Dish" 
+                                                                            value={newDishName} 
+                                                                            onChange={(e) => setNewDishName(e.target.value)}
+                                                                            onKeyDown={(e) => e.key === 'Enter' && addDishToEdit(e)}
+                                                                        />
+                                                                        <select 
+                                                                            className="edit-input w-20 p-1 text-sm bg-transparent"
+                                                                            value={newDishRating}
+                                                                            onChange={(e) => setNewDishRating(e.target.value)}
+                                                                        >
+                                                                            <option value="good">Good</option>
+                                                                            <option value="avg">Avg</option>
+                                                                            <option value="bad">Bad</option>
+                                                                            <option value="others">Others</option>
+                                                                        </select>
+                                                                        <button type="button" onClick={addDishToEdit} className="action-btn success w-8 h-8"><i className="ph-bold ph-plus"></i></button>
+                                                                    </div>
+                                                                    <div className="dish-list flex flex-wrap gap-1">
+                                                                        {(editItem.dishes || []).map((dish, i) => (
+                                                                            <div key={i} className={`dish-badge rating-${dish.rating} flex items-center gap-1`}>
+                                                                                <span>{dish.name}</span>
+                                                                                <i className="ph-bold ph-x cursor-pointer opacity-70 hover:opacity-100" onClick={() => removeDishFromEdit(i)}></i>
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        )}
+                                                        {activeTab === 'bucketList' && (
+                                                            <td className="col-bucket-details">
+                                                                <div className="grid grid-cols-2 gap-1 bg-background-alt p-2 rounded border border-border/30 mb-2">
+                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.travelDuration || ''} onChange={(e) => setEditItem({ ...editItem, travelDuration: e.target.value })} placeholder="Duration (e.g. 2 hrs)" />
+                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.season || 'All Year'} onChange={(e) => setEditItem({ ...editItem, season: e.target.value })}>
+                                                                        {SEASON_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+                                                                    </select>
+                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.priority || 'Medium'} onChange={(e) => setEditItem({ ...editItem, priority: e.target.value })}>
+                                                                        {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{p}</option>)}
+                                                                    </select>
+                                                                </div>
+                                                                <div className="flex flex-wrap gap-1">
+                                                                    {TRIP_TYPE_OPTIONS.map(t => (
+                                                                        <button
+                                                                            key={t}
+                                                                            type="button"
+                                                                            onClick={(e) => { e.preventDefault(); setEditItem(prev => ({...prev, tripTypes: (prev.tripTypes || []).includes(t) ? prev.tripTypes.filter(x => x !== t) : [...(prev.tripTypes||[]), t]})) }}
+                                                                            className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.tripTypes||[]).includes(t) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary'}`}
+                                                                        >
+                                                                            {t}
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                            </td>
+                                                        )}
+                                                        {activeTab === 'stays' && (
+                                                            <td className="col-stay-details">
+                                                                <div className="grid grid-cols-2 gap-1 bg-background-alt p-2 rounded border border-border/30 mb-2">
+                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.stayType || 'Hotel'} onChange={(e) => setEditItem({ ...editItem, stayType: e.target.value })}>
+                                                                        {STAY_TYPE_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+                                                                    </select>
+                                                                    <div className="flex items-center gap-1">
+                                                                        <span className="text-[10px] text-text-muted">In:</span>
+                                                                        <input type="date" className="edit-input text-xs w-full" value={editItem.checkIn || ''} onChange={(e) => setEditItem({ ...editItem, checkIn: e.target.value })} />
+                                                                    </div>
+                                                                    <div className="flex items-center gap-1">
+                                                                        <span className="text-[10px] text-text-muted">Out:</span>
+                                                                        <input type="date" className="edit-input text-xs w-full" value={editItem.checkOut || ''} onChange={(e) => setEditItem({ ...editItem, checkOut: e.target.value })} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="flex flex-wrap gap-1">
+                                                                    {AMENITY_OPTIONS.map(a => (
+                                                                        <button
+                                                                            key={a}
+                                                                            type="button"
+                                                                            onClick={(e) => { e.preventDefault(); setEditItem(prev => ({...prev, amenities: (prev.amenities || []).includes(a) ? prev.amenities.filter(x => x !== a) : [...(prev.amenities||[]), a]})) }}
+                                                                            className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.amenities||[]).includes(a) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary'}`}
+                                                                        >
+                                                                            {a}
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                            </td>
+                                                        )}
                                                         <td className="text-right">
                                                             <div className="flex gap-2 justify-end">
                                                                 <button onClick={() => saveEdit(index)} className="action-btn success" title="Save">
@@ -524,11 +1184,39 @@
                                             const name = isObj ? item.name : item;
                                             const city = isObj ? item.city : '-';
                                             const remarks = isObj ? item.remarks : '-';
+                                            const dishes = (isObj && item.dishes) ? item.dishes : [];
+                                            const distance = isObj ? item.distance : '';
+                                            const altitude = isObj ? item.altitude : '';
+                                            const difficulty = isObj ? item.difficulty : 'Beginner';
+                                            const bestTime = isObj ? item.bestTime : '';
+                                            const timeTaken = isObj ? item.timeTaken : '';
+                                            const terrain = isObj ? item.terrain : '';
+                                            const permit = isObj ? item.permit : 'No';
+                                            const safetyAlerts = isObj ? item.safetyAlerts : false;
+                                            const isVisited = isObj ? item.isVisited : false;
 
                                             return (
                                                 <tr key={index} className="fade-in-up">
                                                     <td className="col-name">
-                                                        <span className="font-medium text-lg">{name}</span>
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="font-medium text-lg">{name}</span>
+                                                            {isObj && item.mapLink && (
+                                                                <a href={item.mapLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors flex items-center justify-center p-1 rounded-full hover:bg-blue-500/10" title="View on Google Maps">
+                                                                    <i className="ph-fill ph-map-pin text-xl"></i>
+                                                                </a>
+                                                            )}
+                                                            {activeTab === 'treks' && (
+                                                                <div className="flex items-center">
+                                                                    <i className={`ph-fill ${isVisited ? 'ph-check-circle text-green-500' : 'ph-circle text-text-muted/50'} text-xl cursor-pointer hover:opacity-80 transition-opacity`} 
+                                                                       onClick={() => {
+                                                                           const list = [...(data[activeTab] || [])];
+                                                                           list[index] = { ...list[index], isVisited: !list[index].isVisited };
+                                                                           handleSave({ [activeTab]: list });
+                                                                       }} 
+                                                                       title={isVisited ? "Mark as Not Visited" : "Mark as Visited"}></i>
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     </td>
                                                     <td className="col-city">
                                                         <div className="cell-wrapper">
@@ -539,8 +1227,149 @@
                                                     <td className="col-remarks">
                                                         <span className={remarks === '-' ? 'text-disabled' : 'text-secondary'}>{remarks}</span>
                                                     </td>
+                                                    {activeTab === 'restaurants' && (
+                                                        <td className="col-dishes">
+                                                            <div className="dish-list flex flex-wrap gap-1 mb-1">
+                                                                {dishes.map((dish, i) => (
+                                                                    <span key={i} className={`dish-badge rating-${dish.rating}`}>
+                                                                        {dish.name}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                            <div className="dish-list flex flex-wrap gap-1">
+                                                                {(isObj && item.cuisines ? item.cuisines : []).map((c, i) => (
+                                                                    <span key={'c'+i} className="dish-badge" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3b82f6' }}>
+                                                                        <i className="ph-bold ph-bowl-food"></i> {c}
+                                                                    </span>
+                                                                ))}
+                                                                {(isObj && item.ambiences ? item.ambiences : []).map((a, i) => (
+                                                                    <span key={'a'+i} className="dish-badge" style={{ backgroundColor: 'rgba(236,72,153,0.15)', color: '#ec4899' }}>
+                                                                        <i className="ph-bold ph-sparkle"></i> {a}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </td>
+                                                    )}
+                                                    {activeTab === 'treks' && (
+                                                        <td className="col-trek-details">
+                                                            <div className="dish-list flex flex-wrap gap-1">
+                                                                <span className="dish-badge" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3b82f6' }}>
+                                                                    <i className="ph-bold ph-ruler"></i> {distance ? (distance.toLowerCase().includes('km') ? distance : `${distance} km`) : '-'}
+                                                                </span>
+                                                                <span className="dish-badge" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8b5cf6' }}>
+                                                                    <i className="ph-bold ph-mountains"></i> {altitude ? (altitude.toLowerCase().includes('ft') ? altitude : `${altitude} ft`) : '-'}
+                                                                </span>
+                                                                {timeTaken && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(245,158,11,0.15)', color: '#f59e0b' }}>
+                                                                        <i className="ph-bold ph-clock"></i> {timeTaken}
+                                                                    </span>
+                                                                )}
+                                                                <span className="dish-badge" style={{
+                                                                    backgroundColor: difficulty === 'Hard' ? 'rgba(239,68,68,0.2)' : difficulty === 'Medium' ? 'rgba(245,158,11,0.2)' : 'rgba(16,185,129,0.2)',
+                                                                    color: difficulty === 'Hard' ? '#ef4444' : difficulty === 'Medium' ? '#f59e0b' : '#10b981'
+                                                                }}>
+                                                                    <i className="ph-bold ph-barbell"></i> {difficulty}
+                                                                </span>
+                                                                {bestTime && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981' }}>
+                                                                        <i className="ph-bold ph-calendar"></i> {bestTime}
+                                                                    </span>
+                                                                )}
+                                                                {terrain && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(168,162,158,0.2)', color: '#78716c' }}>
+                                                                        <i className="ph-bold ph-tree"></i> {terrain}
+                                                                    </span>
+                                                                )}
+                                                                {permit === 'Yes' && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(217,119,6,0.15)', color: '#d97706' }}>
+                                                                        <i className="ph-bold ph-ticket"></i> Permit Reqd
+                                                                    </span>
+                                                                )}
+                                                                {safetyAlerts && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(239,68,68,0.2)', color: '#ef4444', animation: 'pulse 2s infinite' }}>
+                                                                        <i className="ph-fill ph-warning"></i> Alert
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        </td>
+                                                    )}
+                                                    {activeTab === 'bucketList' && (
+                                                        <td className="col-bucket-details">
+                                                            <div className="dish-list flex flex-wrap gap-1">
+                                                                {isObj && item.priority && (
+                                                                    <span className="dish-badge" style={{
+                                                                        backgroundColor: item.priority === 'High' ? 'rgba(239,68,68,0.2)' : item.priority === 'Medium' ? 'rgba(245,158,11,0.2)' : 'rgba(16,185,129,0.2)',
+                                                                        color: item.priority === 'High' ? '#ef4444' : item.priority === 'Medium' ? '#f59e0b' : '#10b981'
+                                                                    }}>
+                                                                        <i className="ph-bold ph-flag"></i> {item.priority}
+                                                                    </span>
+                                                                )}
+                                                                {isObj && item.travelDuration && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3b82f6' }}>
+                                                                        <i className="ph-bold ph-car"></i> {item.travelDuration}
+                                                                    </span>
+                                                                )}
+                                                                {isObj && item.season && item.season !== 'All Year' && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981' }}>
+                                                                        <i className="ph-bold ph-cloud-sun"></i> {item.season}
+                                                                    </span>
+                                                                )}
+                                                                {(isObj && item.tripTypes ? item.tripTypes : []).map((t, i) => (
+                                                                    <span key={'t'+i} className="dish-badge" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8b5cf6' }}>
+                                                                        <i className="ph-bold ph-tag"></i> {t}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </td>
+                                                    )}
+                                                    {activeTab === 'stays' && (
+                                                        <td className="col-stay-details">
+                                                            <div className="dish-list flex flex-wrap gap-1">
+                                                                {isObj && item.stayType && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3b82f6' }}>
+                                                                        <i className="ph-bold ph-bed"></i> {item.stayType}
+                                                                    </span>
+                                                                )}
+                                                                {isObj && item.checkIn && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(16,185,129,0.15)', color: '#10b981' }}>
+                                                                        <i className="ph-bold ph-calendar-plus"></i> {item.checkIn}
+                                                                    </span>
+                                                                )}
+                                                                {isObj && item.checkOut && (
+                                                                    <span className="dish-badge" style={{ backgroundColor: 'rgba(239,68,68,0.15)', color: '#ef4444' }}>
+                                                                        <i className="ph-bold ph-calendar-minus"></i> {item.checkOut}
+                                                                    </span>
+                                                                )}
+                                                                {(isObj && item.amenities ? item.amenities : []).map((a, i) => (
+                                                                    <span key={'a'+i} className="dish-badge" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8b5cf6' }}>
+                                                                        {a}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </td>
+                                                    )}
                                                     <td className="text-right">
                                                         <div className="action-group">
+                                                            {activeTab === 'bucketList' && (
+                                                                <React.Fragment>
+                                                                    <button
+                                                                        onClick={(e) => moveToVisited(e, index, 'placesVisited')}
+                                                                        className="action-btn"
+                                                                        style={{ color: 'var(--primary)', background: 'var(--primary-light)' }}
+                                                                        title="Move to Places Visited"
+                                                                    >
+                                                                        <i className="ph-bold ph-map-pin"></i>
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={(e) => moveToVisited(e, index, 'treks')}
+                                                                        className="action-btn"
+                                                                        style={{ color: '#8b5cf6', background: 'rgba(139,92,246,0.1)' }}
+                                                                        title="Move to Treks"
+                                                                    >
+                                                                        <i className="ph-bold ph-mountains"></i>
+                                                                    </button>
+                                                                </React.Fragment>
+                                                            )}
                                                             <button
                                                                 onClick={() => startEdit(index, item)}
                                                                 className="action-btn edit"
@@ -659,7 +1488,7 @@
 
                     /* Content */
                     .content-area { padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
-                    .toolbar-row { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+                    .toolbar-row { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
                     
                     .search-wrapper { flex: 1; min-width: 250px; position: relative; }
                     .search-wrapper i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
@@ -674,11 +1503,36 @@
                     }
                     .add-input-wrapper.grid-mode-extended { flex: 2; }
                     .add-input-wrapper.universal-extended { flex: 2; } /* Make wider normally too */
+                    .add-input-wrapper.column-extended {
+                        flex-direction: column;
+                        align-items: stretch;
+                        padding: 1.25rem;
+                        gap: 1rem;
+                    }
 
-                    .inputs-group { display: flex; gap: 0.5rem; flex: 1; }
+                    .form-main-row { display: flex; width: 100%; gap: 0.5rem; align-items: center; }
+
+                    .dish-manager-container {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        border-top: 1px dashed var(--border);
+                        padding-top: 1rem;
+                    }
+                    .dish-manager-label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.25rem; }
+                    .dish-inputs { display: flex; gap: 0.5rem; }
+                    
+                    .trek-specs-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                        gap: 0.75rem;
+                    }
+
+                    .inputs-group { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; flex: 1; }
                     .add-input-wrapper input { background: transparent; border: none; color: var(--text-primary); }
-                    .add-input-wrapper .main-input { flex: 2; font-weight: 500; font-size: 1rem; }
-                    .add-input-wrapper .sub-input { flex: 1.5; font-size: 0.9rem; border-left: 1px solid var(--border); padding-left: 0.5rem; color: var(--text-secondary); }
+                    .add-input-wrapper .main-input { width: 100%; font-weight: 500; font-size: 1rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.5rem; }
+                    .add-input-wrapper .sub-input { flex: 1; min-width: 120px; font-size: 0.9rem; padding-top: 0.2rem; color: var(--text-secondary); }
                     .add-input-wrapper input:focus { outline: none; }
 
                     .file-upload-container { padding: 0 0.5rem; border-left: 1px solid var(--border); }
@@ -698,8 +1552,34 @@
                     .details-table tr:hover td { background: rgba(255,255,255,0.03); }
                     .details-table input { background: var(--bg-app); border: 1px solid var(--border); color: var(--text-primary); padding: 0.4rem; border-radius: 4px; width: 100%; }
                     .text-right { text-align: right; }
-                    .col-name { width: 40%; } .col-city { width: 25%; } .col-remarks { width: 25%; } .col-actions { width: 10%; }
+                    .col-name { width: 30%; } .col-city { width: 15%; } .col-remarks { width: 20%; } .col-dishes { width: 25%; } .col-actions { width: 10%; }
                     .cell-wrapper { display: flex; align-items: center; gap: 0.5rem; }
+                    
+                    .dish-list {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.35rem;
+                    }
+                    .dish-badge {
+                        font-size: 0.75rem;
+                        padding: 0.2rem 0.5rem;
+                        border-radius: 12px;
+                        white-space: nowrap;
+                        color: #fff;
+                        font-weight: 500;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.25rem;
+                    }
+                    .rating-good { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+                    .rating-avg { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+                    .rating-bad { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+                    .rating-others { background: rgba(148, 163, 184, 0.2); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+                    
+                    .dish-manager select option {
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                    }
                     .text-disabled { color: var(--text-muted); opacity: 0.5; font-style: italic; }
                     .text-secondary { color: var(--text-secondary); }
 

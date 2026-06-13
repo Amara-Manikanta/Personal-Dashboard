@@ -350,6 +350,11 @@
           "name": "Sri Venkateswara Swamy Temple",
           "city": "Vadapalli",
           "remarks": "-"
+        },
+        {
+          "name": "Swarnagiri Temple",
+          "city": "Hyderabad",
+          "remarks": "-"
         }
       ],
       "placesToVisit": [
@@ -374,13 +379,22 @@
         {
           "name": "Maryada Ramana",
           "city": "Hyderabad",
-          "remarks": "Kondapur"
+          "remarks": "Kondapur",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/zoVGXfT1V49UvXvC9"
         },
         {
           "name": "Chaitanya Foods",
-          "city": "Hyderabad",
-          "remarks": "JNTU Metro, Boneless Chicken Biryani",
-          "image": ""
+          "city": "Hitech City",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/Kb6fR94hTgSoSy7X9",
+          "dishes": [
+            {
+              "name": "Boneless Chicken Biryani",
+              "rating": "good"
+            }
+          ]
         },
         {
           "name": "Varalakshmi Tiffens",
@@ -390,28 +404,148 @@
         {
           "name": "Shah Ghouse",
           "city": "Hyderabad",
-          "remarks": "Mutton Biryani",
-          "image": ""
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Mutton Biryani",
+              "rating": "good"
+            }
+          ]
         },
         {
           "name": "United Telugu Kitchen",
-          "city": "Vijaywada",
-          "remarks": "-"
+          "city": "Vijaywada,Banglore",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59"
         },
         {
           "name": "Gufha Restaurant",
           "city": "Tirupati",
-          "remarks": "-"
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/2BVDGAzhURrCYBsZA"
         },
         {
           "name": "The Moonshine Project",
-          "city": "Hyderabad",
-          "remarks": "Jubliee Hills"
+          "city": "Jubliee Hills",
+          "remarks": "-",
+          "image": ""
         },
         {
           "name": "Yum Yum Tree Arabian Hyderabad",
           "city": "Madhapur",
-          "remarks": "Ordered chicken chef's spl and bbq Mandi taste was avg"
+          "remarks": "Average Restaurant food quality Decreased",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/Zd7Ay4VK8S5hUa3n8",
+          "dishes": [
+            {
+              "name": "chicken chef's spl Mandi",
+              "rating": "bad"
+            },
+            {
+              "name": "Chicken BBQ Mandi",
+              "rating": "avg"
+            }
+          ]
+        },
+        {
+          "name": "Padmavathi tiffens",
+          "city": "Madhapur",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/cCX4wggUTyWEtFck7",
+          "dishes": [
+            {
+              "name": "Egg Dosa",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Gamyam Telugu Kitchen",
+          "city": "Jubilee Hills",
+          "remarks": "Average Restaurant",
+          "mapLink": "https://maps.app.goo.gl/GNMoYUbmZMA91psWA",
+          "dishes": [
+            {
+              "name": "Kodi Guddu Miryala Fry",
+              "rating": "avg"
+            },
+            {
+              "name": "Chicken Ghee Roast",
+              "rating": "avg"
+            },
+            {
+              "name": "Rayalaseema Karam Wings",
+              "rating": "avg"
+            },
+            {
+              "name": "Bommarillu Blast",
+              "rating": "good"
+            },
+            {
+              "name": "Kobbari Kick",
+              "rating": "bad"
+            },
+            {
+              "name": "Nalli Ghost Biryani",
+              "rating": "avg"
+            }
+          ]
+        },
+        {
+          "name": "Amma Dosa",
+          "city": "Ramagundam",
+          "remarks": "-",
+          "mapLink": "",
+          "dishes": [
+            {
+              "name": "Dosa",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Subbaya Gari Hotel",
+          "city": "Kakinada",
+          "remarks": "-",
+          "mapLink": "https://maps.app.goo.gl/dd6cpFLnocv4Q4BS6",
+          "dishes": [
+            {
+              "name": "Punugulu Curry",
+              "rating": "good"
+            },
+            {
+              "name": "Guttu Vankayi",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "ANTERVEDI",
+          "city": "Kondapur",
+          "remarks": "-",
+          "mapLink": "https://share.google/jP3ldtetvsjHd8YhP",
+          "dishes": [
+            {
+              "name": "Crispy corn",
+              "rating": "avg"
+            },
+            {
+              "name": "Manchuria",
+              "rating": "avg"
+            },
+            {
+              "name": "Panner tikka Curry",
+              "rating": "bad"
+            },
+            {
+              "name": "Garlic Nons",
+              "rating": "bad"
+            }
+          ]
         }
       ],
       "food": [
@@ -795,12 +929,44 @@
         {
           "name": "Neemsi Restaurant",
           "city": "JP Nagar",
-          "remarks": "-"
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/SkXUrJbT2E4LV5d76",
+          "dishes": [
+            {
+              "name": "Thai Coconut and Lemon grass soup",
+              "rating": "good"
+            },
+            {
+              "name": "Afghani Creamy Broccoli with Crispy Panko Garlic Crust",
+              "rating": "good"
+            },
+            {
+              "name": "Mysore Pak Cheese Cake with Pan Crumble",
+              "rating": "good"
+            },
+            {
+              "name": "Crunchy Lotus Stem in a Spicy-Sweet Chili Glaze",
+              "rating": "good"
+            }
+          ]
         },
         {
           "name": "Haldigrams",
           "city": "HSR Layout",
           "remarks": "-"
+        },
+        {
+          "name": "Babai Tiffins",
+          "city": "HSR Layout",
+          "remarks": "-",
+          "mapLink": "https://maps.app.goo.gl/MWkKnMfSkBpRKrk46",
+          "dishes": [
+            {
+              "name": "Podi Dosa",
+              "rating": "good"
+            }
+          ]
         }
       ],
       "food": [
@@ -838,10 +1004,46 @@
         }
       ],
       "treks": [
-        "zpoint trek",
-        "Matanga Hill",
-        "Anthargange Cave Trekking",
-        "Chunchi Falls"
+        {
+          "name": "zpoint trek",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "distance": "6 Km",
+          "altitude": "4,921 feet",
+          "difficulty": "Beginner",
+          "bestTime": "Monsoon",
+          "permit": "No",
+          "safetyAlerts": true,
+          "isVisited": false
+        },
+        {
+          "name": "Matanga Hill",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "distance": "2",
+          "altitude": "1,726",
+          "difficulty": "Beginner"
+        },
+        {
+          "name": "Anthargange Cave Trekking",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "distance": "4",
+          "altitude": "4,022",
+          "difficulty": "Beginner"
+        },
+        {
+          "name": "Chunchi Falls",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "distance": "2",
+          "altitude": "1,410",
+          "difficulty": "Beginner"
+        }
       ],
       "stays": [
         "Wheel to hills stay inn Service Apartments",
@@ -1141,9 +1343,46 @@
       ],
       "placesToVisit": [],
       "restaurants": [
-        "Cormandal Cafe",
-        "Cafe Qualita",
-        "Crepe in touch"
+        {
+          "name": "Cormandal Cafe",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Burnt American cheese cake",
+              "rating": "good"
+            },
+            {
+              "name": "Mango pad thai salad",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Cafe Qualita",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Florentine Spinach Pizza",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Crepe in touch",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Pondy Brest",
+              "rating": "good"
+            }
+          ]
+        }
       ],
       "food": [
         {
@@ -1250,9 +1489,17 @@
         "Lachen"
       ],
       "restaurants": [],
-      "food": [],
+      "food": [
+        {
+          "name": "Ratnapark paun bhandar",
+          "city": "Sikkim",
+          "remarks": "-",
+          "image": ""
+        }
+      ],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Singapore": {
       "visited": true,
