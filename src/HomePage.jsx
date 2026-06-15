@@ -42,10 +42,6 @@ window.HomePage = ({ onNavigate }) => {
                         </div>
                         <h2>Novels Dashboard</h2>
                         <p className="card-description">Track your reading journey</p>
-                        <div className="card-stats">
-                            <span className="stat-number">{stats.novels}</span>
-                            <span className="stat-label">Books</span>
-                        </div>
                         <div className="card-action">
                             <span>Open Dashboard</span>
                             <i className="ph-bold ph-arrow-right"></i>
@@ -58,10 +54,6 @@ window.HomePage = ({ onNavigate }) => {
                         </div>
                         <h2>Travel Tracker</h2>
                         <p className="card-description">Map your adventures</p>
-                        <div className="card-stats">
-                            <span className="stat-number">{stats.visitedStates || 0}</span>
-                            <span className="stat-label">States</span>
-                        </div>
                         <div className="card-action">
                             <span>Open Dashboard</span>
                             <i className="ph-bold ph-arrow-right"></i>
@@ -74,11 +66,6 @@ window.HomePage = ({ onNavigate }) => {
                         </div>
                         <h2>Writing Dashboard</h2>
                         <p className="card-description">Organize your quotes & ideas</p>
-                        <div className="card-stats">
-                            <span className="stat-number">
-                                {window.writingData ? window.writingData.reduce((acc, item) => acc + (item.quotes ? item.quotes.length : 0), 0) : 0}
-                            </span>
-                        </div>
                         <div className="card-action">
                             <span>Open Dashboard</span>
                             <i className="ph-bold ph-arrow-right"></i>
@@ -91,10 +78,6 @@ window.HomePage = ({ onNavigate }) => {
                         </div>
                         <h2>Clothes Tracker</h2>
                         <p className="card-description">Manage your wardrobe</p>
-                        <div className="card-stats">
-                            <span className="stat-number">{stats.clothes}</span>
-                            <span className="stat-label">Items</span>
-                        </div>
                         <div className="card-action">
                             <span>Open Dashboard</span>
                             <i className="ph-bold ph-arrow-right"></i>
@@ -102,20 +85,6 @@ window.HomePage = ({ onNavigate }) => {
                     </div>
 
 
-                    <div className="dashboard-card sync-card" onClick={() => onNavigate('sync')}>
-                        <div className="card-icon">
-                            <i className="ph-fill ph-cloud-arrows"></i>
-                        </div>
-                        <h2>Sync & Backup</h2>
-                        <p className="card-description">Synchronize data with GitHub</p>
-                        <div className="card-stats">
-                            <span className="stat-label">Online</span>
-                        </div>
-                        <div className="card-action">
-                            <span>Open Sync</span>
-                            <i className="ph-bold ph-arrow-right"></i>
-                        </div>
-                    </div>
                 </div>
             </div>
 

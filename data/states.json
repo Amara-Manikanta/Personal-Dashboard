@@ -371,15 +371,33 @@
         "Arma Konda"
       ],
       "restaurants": [
-        "Rubix Cube",
+        {
+          "name": "Rubix Cube",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": ""
+        },
         "Casa de reo",
-        "Krishnapatnam",
+        {
+          "name": "Krishnapatnam",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": "",
+          "cuisines": [
+            "Chinese",
+            "South Indian"
+          ],
+          "ambiences": [
+            "Fine Dining",
+            "Pub/Bar"
+          ]
+        },
         "Foddie Train",
         "Hotel Shadab",
         {
           "name": "Maryada Ramana",
-          "city": "Hyderabad",
-          "remarks": "Kondapur",
+          "city": "Kondapur",
+          "remarks": "-",
           "image": "",
           "mapLink": "https://maps.app.goo.gl/zoVGXfT1V49UvXvC9"
         },
@@ -398,8 +416,9 @@
         },
         {
           "name": "Varalakshmi Tiffens",
-          "city": "Hyderabad",
-          "remarks": "Gachibowli"
+          "city": "Gachibowli",
+          "remarks": "-",
+          "image": ""
         },
         {
           "name": "Shah Ghouse",
@@ -467,6 +486,7 @@
           "name": "Gamyam Telugu Kitchen",
           "city": "Jubilee Hills",
           "remarks": "Average Restaurant",
+          "image": "",
           "mapLink": "https://maps.app.goo.gl/GNMoYUbmZMA91psWA",
           "dishes": [
             {
@@ -493,24 +513,37 @@
               "name": "Nalli Ghost Biryani",
               "rating": "avg"
             }
+          ],
+          "cuisines": [
+            "Chinese"
+          ],
+          "ambiences": [
+            "Fine Dining"
           ]
         },
         {
           "name": "Amma Dosa",
           "city": "Ramagundam",
           "remarks": "-",
-          "mapLink": "",
+          "image": "",
           "dishes": [
             {
               "name": "Dosa",
               "rating": "good"
             }
+          ],
+          "cuisines": [
+            "Street Food"
+          ],
+          "ambiences": [
+            "Quick Tiffin"
           ]
         },
         {
           "name": "Subbaya Gari Hotel",
           "city": "Kakinada",
           "remarks": "-",
+          "image": "",
           "mapLink": "https://maps.app.goo.gl/dd6cpFLnocv4Q4BS6",
           "dishes": [
             {
@@ -520,13 +553,24 @@
             {
               "name": "Guttu Vankayi",
               "rating": "good"
+            },
+            {
+              "name": "Sambar",
+              "rating": "good"
             }
+          ],
+          "cuisines": [
+            "South Indian"
+          ],
+          "ambiences": [
+            "Casual Dining"
           ]
         },
         {
           "name": "ANTERVEDI",
           "city": "Kondapur",
           "remarks": "-",
+          "image": "",
           "mapLink": "https://share.google/jP3ldtetvsjHd8YhP",
           "dishes": [
             {
@@ -545,6 +589,72 @@
               "name": "Garlic Nons",
               "rating": "bad"
             }
+          ],
+          "cuisines": [
+            "South Indian"
+          ],
+          "ambiences": [
+            "Fine Dining"
+          ]
+        },
+        {
+          "name": "World of Tortillas",
+          "city": "Kakinada",
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Cottage cheese in paprica sauce with flavoured rice",
+              "rating": "good"
+            },
+            {
+              "name": "Penne in arrablata pasta",
+              "rating": "good"
+            }
+          ],
+          "cuisines": [
+            "Chinese"
+          ],
+          "ambiences": [
+            "Fine Dining"
+          ]
+        },
+        {
+          "name": "Kritaa Nagar",
+          "city": "Financial District",
+          "remarks": "-",
+          "mapLink": "https://maps.app.goo.gl/aHPPJ3PihNX2xYxk7",
+          "dishes": [
+            {
+              "name": "Japan Chicken",
+              "rating": "good"
+            },
+            {
+              "name": "Chicken RRR",
+              "rating": "avg"
+            },
+            {
+              "name": "Mushroom Peshwari",
+              "rating": "bad"
+            },
+            {
+              "name": "Special Chicken Biryani Boneless",
+              "rating": "avg"
+            },
+            {
+              "name": "Kaju Panner Cury",
+              "rating": "good"
+            },
+            {
+              "name": "Filter Coffee Tiramisu",
+              "rating": "bad"
+            }
+          ],
+          "cuisines": [
+            "Continental"
+          ],
+          "ambiences": [
+            "Fine Dining"
           ]
         }
       ],
@@ -587,7 +697,20 @@
         }
       ],
       "treks": [
-        "Vanajangi"
+        {
+          "name": "Vanajangi",
+          "city": "Alluri Sitarama Raju district",
+          "remarks": "-",
+          "image": "",
+          "distance": "6",
+          "altitude": "3400",
+          "difficulty": "Beginner",
+          "permit": "No",
+          "terrain": "Rocky Paths & Big Stones",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/mhFqq8WvH8wFV1RMA"
+        }
       ],
       "stays": [],
       "highlights": []
@@ -743,13 +866,54 @@
           "name": "Jogini Falls",
           "city": "Vashisht",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "distance": "6",
+          "altitude": "7,850",
+          "difficulty": "Medium",
+          "permit": "No",
+          "terrain": "Rocky Paths & Big Stones",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/tr585fCpcbFcPSrL7"
         },
-        "Chandratal Lake",
-        "Dhankar Lake"
+        {
+          "name": "Chandratal Lake",
+          "city": "Spiti Valley",
+          "remarks": "no trek direct road route",
+          "image": "",
+          "distance": "2",
+          "altitude": "14100",
+          "difficulty": "Beginner",
+          "bestTime": "Mid-June to mid-October",
+          "permit": "No",
+          "terrain": "Steep Climbs",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/NhYi62g7RnJwYGjx6"
+        },
+        {
+          "name": "Dhankar Lake",
+          "city": "Spiti Valley",
+          "remarks": "-",
+          "image": "",
+          "distance": "6",
+          "altitude": "14,010",
+          "difficulty": "Medium",
+          "bestTime": "June to September",
+          "permit": "No",
+          "terrain": "Rocky Paths & Big Stones",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/XkYVrbRFiuGhbKY87"
+        }
       ],
       "stays": [
-        "Kunzom spiti inn",
+        {
+          "name": "Kunzom spiti inn",
+          "city": "-",
+          "remarks": "-",
+          "image": ""
+        },
         "Swiss camps",
         "Hotel Grand",
         "Ride At Hill-Nihal Hotel & Cottage",
@@ -757,7 +921,37 @@
         "Neha Residency",
         "House stay"
       ],
-      "highlights": []
+      "highlights": [
+        {
+          "name": "Chandratal Lake",
+          "city": "Spiti Valley",
+          "remarks": "no trek direct road route",
+          "image": "",
+          "distance": "2",
+          "altitude": "14100",
+          "difficulty": "Beginner",
+          "bestTime": "Mid-June to mid-October",
+          "permit": "No",
+          "terrain": "Steep Climbs",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/NhYi62g7RnJwYGjx6"
+        },
+        {
+          "name": "Jogini Falls",
+          "city": "Vashisht",
+          "remarks": "-",
+          "image": "",
+          "distance": "6",
+          "altitude": "7,850",
+          "difficulty": "Beginner",
+          "permit": "No",
+          "terrain": "Rocky Paths & Big Stones",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/tr585fCpcbFcPSrL7"
+        }
+      ]
     },
     "Jharkhand": {
       "visited": false,
@@ -771,65 +965,242 @@
     "Karnataka": {
       "visited": true,
       "placesVisited": [
-        "Chamundeshwari Temple",
-        "Hazara Rama Temple",
-        "Gagan Mahal",
-        "Kallathgiri Falls",
-        "Stepped Tank",
-        "Lalbagh",
-        "Mullayanagiri",
-        "Mahanaavami dibba",
-        "Nandi Hills",
-        "Laxmi Narasimha Temple",
-        "Jawaharlal Nehru Planetarium",
-        "Malpe Beach",
-        "Bull Temple",
-        "Underground Prasanna Virupaksha shiva temple",
-        "Golden Temple",
-        "Agara Lake",
-        "Vidhana Soudha",
-        "Honnammanahalla Falls",
-        "Innovative film city",
-        "Aqua World Underwater",
-        "Murdeshwar",
-        "Ram Footsteps Chintamani",
-        "Raja's Seat",
-        "Kadalekalu Gnesha Temple",
-        "Monolithic Bull",
-        "Club Cabana",
-        "Makalidurga Fort Trekking",
-        "St. Philomena's Church",
-        "Elephant stable",
-        "Maravanthe Beach",
-        "Wonderla",
-        "Mall Of Asia",
-        "Queens palace basement",
-        "Coracle ride",
-        "Mini Golf Madness",
-        "Mysuru Zoo",
-        "Shanti Falls",
-        "BTM Lake",
-        "Anjanadri Hill",
-        "Sri Krishna temple",
-        "Mysore Palace(Amba Vilas Palace)",
-        "Lotus Mahal",
-        "Brindavan Gardens",
-        "Indian Music experiance museum",
-        "Jog Falls",
-        "Government Aquarium",
-        "Pyramid of alley",
-        "Badavilinga Temple",
-        "Virupaksha Temple",
-        "Payana Car Museum",
-        "Tala Kaveri",
-        "Queens Bath",
-        "Zanana Enclosure",
-        "Birds of paradise",
-        "Vijaya Vithala Temple",
-        "Jhari Water Falls",
-        "Sanapur Lake",
-        "Hampi",
-        "Mysore Palace"
+        {
+          "name": "Chamundeshwari Temple",
+          "city": "Mysore"
+        },
+        {
+          "name": "Hazara Rama Temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Gagan Mahal",
+          "city": "Anegundi (near Hampi)"
+        },
+        {
+          "name": "Kallathgiri Falls",
+          "city": "Chikmagalur"
+        },
+        {
+          "name": "Stepped Tank",
+          "city": "Hampi"
+        },
+        {
+          "name": "Lalbagh",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Mullayanagiri",
+          "city": "Chikmagalur"
+        },
+        {
+          "name": "Mahanaavami dibba",
+          "city": "Hampi"
+        },
+        {
+          "name": "Nandi Hills",
+          "city": "Chikkaballapur (near Bangalore)"
+        },
+        {
+          "name": "Laxmi Narasimha Temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Jawaharlal Nehru Planetarium",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Malpe Beach",
+          "city": "Udupi"
+        },
+        {
+          "name": "Bull Temple",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Underground Prasanna Virupaksha shiva temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Golden Temple",
+          "city": "Bylakuppe (near Coorg)"
+        },
+        {
+          "name": "Agara Lake",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Vidhana Soudha",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Honnammanahalla Falls",
+          "city": "Chikmagalur"
+        },
+        {
+          "name": "Innovative film city",
+          "city": "Bidadi (near Bangalore)"
+        },
+        {
+          "name": "Aqua World Underwater",
+          "city": "Mysore"
+        },
+        {
+          "name": "Murdeshwar",
+          "city": "Uttara Kannada Coast"
+        },
+        {
+          "name": "Ram Footsteps Chintamani",
+          "city": "Anegundi (near Hampi)"
+        },
+        {
+          "name": "Raja's Seat",
+          "city": "Coorg"
+        },
+        {
+          "name": "Kadalekalu Gnesha Temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Monolithic Bull",
+          "city": "Hampi"
+        },
+        {
+          "name": "Club Cabana",
+          "city": "Devanahalli (near Bangalore)"
+        },
+        {
+          "name": "Makalidurga Fort Trekking",
+          "city": "Doddaballapur (near Bangalore)"
+        },
+        {
+          "name": "St. Philomena's Church",
+          "city": "Mysore"
+        },
+        {
+          "name": "Elephant stable",
+          "city": "Hampi"
+        },
+        {
+          "name": "Maravanthe Beach",
+          "city": "Kundapura"
+        },
+        {
+          "name": "Wonderla",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Mall Of Asia",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Queens palace basement",
+          "city": "Hampi"
+        },
+        {
+          "name": "Coracle ride",
+          "city": "Hampi / Sanapur Lake"
+        },
+        {
+          "name": "Mini Golf Madness",
+          "city": "Indiranagar, Bangalore"
+        },
+        {
+          "name": "Mysuru Zoo",
+          "city": "Mysore"
+        },
+        {
+          "name": "Shanti Falls",
+          "city": "Chikmagalur"
+        },
+        {
+          "name": "BTM Lake",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Anjanadri Hill",
+          "city": "Anegundi (near Hampi)"
+        },
+        {
+          "name": "Sri Krishna temple",
+          "city": "Udupi"
+        },
+        {
+          "name": "Mysore Palace(Amba Vilas Palace)",
+          "city": "Mysore"
+        },
+        {
+          "name": "Lotus Mahal",
+          "city": "Hampi"
+        },
+        {
+          "name": "Brindavan Gardens",
+          "city": "Mysore"
+        },
+        {
+          "name": "Indian Music experiance museum",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Jog Falls",
+          "city": "Sagara"
+        },
+        {
+          "name": "Government Aquarium",
+          "city": "Bangalore"
+        },
+        {
+          "name": "Pyramid of alley",
+          "city": "Kanakapura Road (near Bangalore)"
+        },
+        {
+          "name": "Badavilinga Temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Virupaksha Temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Payana Car Museum",
+          "city": "Mysore Highway"
+        },
+        {
+          "name": "Tala Kaveri",
+          "city": "Coorg"
+        },
+        {
+          "name": "Queens Bath",
+          "city": "Hampi"
+        },
+        {
+          "name": "Zanana Enclosure",
+          "city": "Hampi"
+        },
+        {
+          "name": "Birds of paradise",
+          "city": "Coorg"
+        },
+        {
+          "name": "Vijaya Vithala Temple",
+          "city": "Hampi"
+        },
+        {
+          "name": "Jhari Water Falls",
+          "city": "Chikmagalur"
+        },
+        {
+          "name": "Sanapur Lake",
+          "city": "Hampi"
+        },
+        {
+          "name": "Hampi",
+          "city": "Bellary Region"
+        },
+        {
+          "name": "Mysore Palace",
+          "city": "Mysore"
+        }
       ],
       "placesToVisit": [
         "Vatada hosahalli lake",
@@ -891,14 +1262,27 @@
         }
       ],
       "restaurants": [
-        "The Big Barbeque Buffet",
+        {
+          "name": "The Big Barbeque Buffet",
+          "city": "-",
+          "remarks": "-",
+          "image": ""
+        },
         "Plan B",
         "Barbeque",
         {
           "name": "United telugu kitchen",
           "city": "Konanakunte road",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "cuisines": [
+            "South Indian",
+            "Chinese"
+          ],
+          "ambiences": [
+            "Family Friendly",
+            "Fine Dining"
+          ]
         },
         {
           "name": "Dhaba Stories",
@@ -914,7 +1298,37 @@
           "name": "Fiesta by Barbeque Nation",
           "city": "Vega City, Bannerghatta Road",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "dishes": [
+            {
+              "name": "Crispy corn",
+              "rating": "good"
+            },
+            {
+              "name": "Chicken Dum Biryani",
+              "rating": "good"
+            },
+            {
+              "name": "Deserts",
+              "rating": "avg"
+            },
+            {
+              "name": "Pani Puri",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [
+            "North Indian",
+            "South Indian",
+            "Continental",
+            "Chinese",
+            "Italian",
+            "Desserts"
+          ],
+          "ambiences": [
+            "Fine Dining",
+            "Family Friendly"
+          ]
         },
         "The Dhaba Strories",
         "HAMPI PARADISE RESTAURANT",
@@ -924,7 +1338,13 @@
           "name": "Palleturi Dosa",
           "city": "HSR Layout",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "cuisines": [
+            "Andhra Tiffins"
+          ],
+          "ambiences": [
+            "Quick Tiffin"
+          ]
         },
         {
           "name": "Neemsi Restaurant",
@@ -949,23 +1369,46 @@
               "name": "Crunchy Lotus Stem in a Spicy-Sweet Chili Glaze",
               "rating": "good"
             }
+          ],
+          "cuisines": [
+            "Continental",
+            "Chinese"
+          ],
+          "ambiences": [
+            "Family Friendly",
+            "Fine Dining"
           ]
         },
         {
           "name": "Haldigrams",
           "city": "HSR Layout",
-          "remarks": "-"
+          "remarks": "-",
+          "image": "",
+          "cuisines": [
+            "North Indian"
+          ],
+          "ambiences": [
+            "Casual Dining"
+          ]
         },
         {
           "name": "Babai Tiffins",
           "city": "HSR Layout",
           "remarks": "-",
+          "image": "",
           "mapLink": "https://maps.app.goo.gl/MWkKnMfSkBpRKrk46",
           "dishes": [
             {
               "name": "Podi Dosa",
               "rating": "good"
             }
+          ],
+          "cuisines": [
+            "Andhra Tiffins"
+          ],
+          "ambiences": [
+            "Quick Tiffin",
+            "Casual Dining"
           ]
         }
       ],
@@ -1015,7 +1458,7 @@
           "bestTime": "Monsoon",
           "permit": "No",
           "safetyAlerts": true,
-          "isVisited": false
+          "isVisited": true
         },
         {
           "name": "Matanga Hill",
@@ -1024,7 +1467,8 @@
           "image": "",
           "distance": "2",
           "altitude": "1,726",
-          "difficulty": "Beginner"
+          "difficulty": "Beginner",
+          "isVisited": true
         },
         {
           "name": "Anthargange Cave Trekking",
@@ -1033,7 +1477,8 @@
           "image": "",
           "distance": "4",
           "altitude": "4,022",
-          "difficulty": "Beginner"
+          "difficulty": "Beginner",
+          "isVisited": true
         },
         {
           "name": "Chunchi Falls",
@@ -1042,23 +1487,44 @@
           "image": "",
           "distance": "2",
           "altitude": "1,410",
-          "difficulty": "Beginner"
+          "difficulty": "Beginner",
+          "isVisited": true
         }
       ],
       "stays": [
         "Wheel to hills stay inn Service Apartments",
         {
           "name": "Club Cabana",
-          "city": "Airport Road",
+          "city": "Devanahalli (near Bangalore)",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "stayType": "Resort",
+          "amenities": [
+            "🏊 Pool"
+          ]
         },
-        "Far Trek 001 3 BHK Apartment near IIM B",
+        {
+          "name": "Far Trek 001 3 BHK Apartment near IIM B",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "stayType": "Service Apartment",
+          "amenities": [
+            "📶 Wi-Fi",
+            "🍳 Kitchen",
+            "❄️ AC",
+            "🅿️ Parking"
+          ]
+        },
         {
           "name": "Rocky Medows Resort",
           "city": "Hampi",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "stayType": "Resort",
+          "amenities": [
+            "☕ Breakfast"
+          ]
         },
         "Tirmul Facing"
       ],
@@ -1127,24 +1593,79 @@
     "Maharashtra": {
       "visited": true,
       "placesVisited": [
-        "Alibug fort/Kolaba",
-        "Golden Pakkode",
-        "Gateway of India",
-        "7 Wonders",
-        "Marine Drive",
+        {
+          "name": "Alibug fort/Kolaba",
+          "city": "Alibug",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Golden Pakkode",
+          "city": "Bhyandar",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Gateway of India",
+          "city": "Churchgate",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "7 Wonders",
+          "city": "Airoli",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Marine Drive",
+          "city": "Churchgate",
+          "remarks": "-",
+          "image": ""
+        },
         "Khandala Ghat view Point",
         "Narayani Dham Temple",
-        "Jehangir art gallery",
-        "Mahankalli Caves",
+        {
+          "name": "Jehangir art gallery",
+          "city": "Churchgate",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Mahankalli Caves",
+          "city": "Borivalli",
+          "remarks": "-",
+          "image": ""
+        },
         "Karla Bhuda Caves",
         "Imagica",
-        "Vasai Creek",
-        "Essel World",
+        {
+          "name": "Vasai Creek",
+          "city": "Vasai",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Essel World",
+          "city": "Bhyander",
+          "remarks": "-",
+          "image": ""
+        },
         "Uttan Beach",
         "Shiridi Temple",
-        "Loins Point",
+        {
+          "name": "Loins Point",
+          "city": "Lonavala",
+          "remarks": "-",
+          "image": ""
+        },
         "Veermata Jijabai Bhosale Udyan And Zoo",
-        "Alibug Beach"
+        {
+          "name": "Alibug Beach",
+          "city": "Alibug",
+          "remarks": "-",
+          "image": ""
+        }
       ],
       "placesToVisit": [
         "Harishchandragad Trek",
@@ -1153,7 +1674,26 @@
         "Dandi Beach",
         "Kalsubai"
       ],
-      "restaurants": [],
+      "restaurants": [
+        {
+          "name": "Pride Kitchen",
+          "city": "Airoli",
+          "remarks": "-",
+          "mapLink": "",
+          "dishes": [
+            {
+              "name": "Chicken Biryani",
+              "rating": "good"
+            }
+          ],
+          "cuisines": [
+            "South Indian"
+          ],
+          "ambiences": [
+            "Casual Dining"
+          ]
+        }
+      ],
       "food": [
         "Pani Puri",
         "Vada Pav",
@@ -1163,13 +1703,70 @@
         "Paradise chicken biryani - Airoli"
       ],
       "treks": [
-        "Irshalgad Fort",
-        "Kothaligad",
-        "Karnala Fort"
+        {
+          "name": "Irshalgad Fort",
+          "city": "Irshalwadi",
+          "remarks": "-",
+          "image": "",
+          "distance": "6.5",
+          "altitude": "3,700",
+          "difficulty": "Medium",
+          "bestTime": "Monsoon",
+          "permit": "No",
+          "terrain": "Forest & Mud Paths",
+          "safetyAlerts": false,
+          "isVisited": true
+        },
+        {
+          "name": "Kothaligad",
+          "city": "Karjat",
+          "remarks": "-",
+          "image": "",
+          "distance": "7",
+          "altitude": "3100",
+          "difficulty": "Beginner",
+          "permit": "No",
+          "terrain": "Stone Steps",
+          "safetyAlerts": false,
+          "isVisited": true
+        },
+        {
+          "name": "Karnala Fort",
+          "city": "Panvel Taluka",
+          "remarks": "-",
+          "image": "",
+          "distance": "6",
+          "altitude": "1,440",
+          "difficulty": "Beginner",
+          "permit": "No",
+          "terrain": "Forest & Mud Paths",
+          "safetyAlerts": false,
+          "isVisited": true
+        }
       ],
       "stays": [
         "Sai Inn Resort",
         "Rivergate Resort"
+      ],
+      "highlights": [
+        {
+          "name": "Pride Kitchen",
+          "city": "Airoli",
+          "remarks": "-",
+          "mapLink": "",
+          "dishes": [
+            {
+              "name": "Chicken Biryani",
+              "rating": "good"
+            }
+          ],
+          "cuisines": [
+            "South Indian"
+          ],
+          "ambiences": [
+            "Casual Dining"
+          ]
+        }
       ]
     },
     "Manipur": {
@@ -1209,10 +1806,49 @@
       ],
       "restaurants": [],
       "food": [],
-      "treks": [],
+      "treks": [
+        {
+          "name": "Double decker root bridge",
+          "city": "-",
+          "remarks": "-",
+          "mapLink": "",
+          "distance": "",
+          "altitude": "",
+          "difficulty": "Medium",
+          "bestTime": "",
+          "permit": "No",
+          "timeTaken": "",
+          "terrain": "Stone Steps",
+          "safetyAlerts": false,
+          "isVisited": true
+        }
+      ],
       "stays": [
         "Lilly resturant",
         "Smoky tribe falls coffee"
+      ],
+      "highlights": [
+        {
+          "name": "Double decker root bridge",
+          "city": "-",
+          "remarks": "-",
+          "mapLink": "",
+          "distance": "",
+          "altitude": "",
+          "difficulty": "Medium",
+          "bestTime": "",
+          "permit": "No",
+          "timeTaken": "",
+          "terrain": "Stone Steps",
+          "safetyAlerts": false,
+          "isVisited": true
+        },
+        {
+          "name": "Blue lagoom"
+        },
+        {
+          "name": "Cliff jumping"
+        }
       ]
     },
     "Nagaland": {
@@ -1538,7 +2174,23 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [
+        {
+          "name": "ibis Styles Singapore On Macpherson",
+          "city": "MacPherson",
+          "remarks": "-",
+          "stayType": "Hotel",
+          "checkIn": "",
+          "checkOut": "",
+          "amenities": [
+            "🏊 Pool",
+            "📶 Wi-Fi",
+            "❄️ AC",
+            "☕ Breakfast"
+          ]
+        }
+      ],
+      "highlights": []
     },
     "Srinagar": {
       "visited": false,
@@ -1652,13 +2304,46 @@
       "restaurants": [],
       "food": [],
       "treks": [
-        "Kedarnath"
+        {
+          "name": "Kedarnath",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "distance": "36",
+          "altitude": "11,755",
+          "difficulty": "Hard",
+          "bestTime": "May to June",
+          "permit": "No",
+          "terrain": "Steep Climbs",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
+        }
       ],
       "stays": [
         "Tiwari Hotel",
         "Hotel Devlok",
-        "Hotel yog tapovan",
-        "Bungee Jumping"
+        "Hotel yog tapovan"
+      ],
+      "highlights": [
+        {
+          "name": "Bungee Jumping"
+        },
+        {
+          "name": "Kedarnath",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "distance": "36",
+          "altitude": "11,755",
+          "difficulty": "Hard",
+          "bestTime": "May to June",
+          "permit": "No",
+          "terrain": "Steep Climbs",
+          "safetyAlerts": false,
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
+        }
       ]
     },
     "Vietnam": {
