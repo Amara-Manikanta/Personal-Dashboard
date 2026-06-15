@@ -273,6 +273,25 @@
             }
         };
 
+        const toggleHighlight = (e, item) => {
+            if (e && e.stopPropagation) e.stopPropagation();
+            if (!data) return;
+
+            const highlightsList = [...(data.highlights || [])];
+            const itemName = typeof item === 'object' ? item.name : item;
+            const isObj = typeof item === 'object' && item !== null;
+            
+            const existingIndex = highlightsList.findIndex(h => (typeof h === 'object' ? h.name : h) === itemName);
+            
+            if (existingIndex >= 0) {
+                highlightsList.splice(existingIndex, 1);
+            } else {
+                highlightsList.push(isObj ? { ...item } : { name: itemName });
+            }
+            
+            handleSave({ highlights: highlightsList });
+        };
+
         const moveToVisited = (e, index, targetTab) => {
             if (e && e.stopPropagation) e.stopPropagation();
             if (!data) return;
@@ -383,6 +402,14 @@
                 updatedItem.safetyAlerts = editItem.safetyAlerts;
                 updatedItem.isVisited = editItem.isVisited;
                 if (editItem.mapLink) updatedItem.mapLink = editItem.mapLink.trim();
+            }
+            if (activeTab === 'stays') {
+                if (editItem.stayType) updatedItem.stayType = editItem.stayType;
+                if (editItem.checkIn) updatedItem.checkIn = editItem.checkIn;
+                if (editItem.checkOut) updatedItem.checkOut = editItem.checkOut;
+                if (editItem.amenities && editItem.amenities.length > 0) {
+                    updatedItem.amenities = editItem.amenities;
+                }
             }
 
             list[index] = updatedItem;
@@ -499,18 +526,13 @@
 
                     {/* Treks Global Stats */}
                     {activeTab === 'treks' && (
-                        <div className="flex justify-between items-center bg-background-alt p-4 rounded-lg border border-border/50 mb-4 shadow-sm">
-                            <div className="flex items-center gap-3 text-primary">
-                                <div className="p-2 bg-primary/10 rounded-full">
-                                    <i className="ph-fill ph-mountains text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-lg leading-tight">Total Kms Covered</h3>
-                                    <p className="text-sm text-text-muted">From {currentList.filter(i => i && i.isVisited).length} visited treks</p>
-                                </div>
-                            </div>
-                            <div className="text-3xl font-bold text-text">
-                                {totalTrekKms.toFixed(1).replace(/\.0$/, '')} <span className="text-lg font-medium text-text-muted">km</span>
+                        <div className="flex justify-between items-center bg-background-alt p-3 rounded-lg border border-border/50 mb-4 shadow-sm">
+                            <div className="flex items-center gap-2 text-text">
+                                <i className="ph-fill ph-mountains text-xl text-primary"></i>
+                                <span className="font-semibold">Total Kms Covered:</span>
+                                <span className="text-sm text-text-muted">
+                                    {totalTrekKms.toFixed(1).replace(/\.0$/, '')} km from {currentList.filter(i => i && typeof i === 'object' && i.isVisited).length} visited treks
+                                </span>
                             </div>
                         </div>
                     )}
@@ -749,13 +771,18 @@
                                             <option value="Hard">Hard</option>
                                         </select>
                                         
-                                        <input
-                                            type="text"
+                                        <select
                                             value={newTerrain}
                                             onChange={(e) => setNewTerrain(e.target.value)}
-                                            placeholder="Terrain (e.g. Forest)"
-                                            className="edit-input"
-                                        />
+                                            className="edit-input bg-background"
+                                        >
+                                            <option value="">Select Terrain</option>
+                                            <option value="Forest & Mud Paths">Forest & Mud Paths</option>
+                                            <option value="Rocky Paths & Big Stones">Rocky Paths & Big Stones</option>
+                                            <option value="Steep Climbs">Steep Climbs</option>
+                                            <option value="Stone Steps">Stone Steps</option>
+                                            <option value="Snow & Ice Trails">Snow & Ice Trails</option>
+                                        </select>
                                         <input
                                             type="text"
                                             value={newBestTime}
@@ -1064,7 +1091,14 @@
                                                                         <option value="Hard">Hard</option>
                                                                     </select>
                                                                     <input type="text" className="edit-input text-xs w-full" value={editItem.timeTaken || ''} onChange={(e) => setEditItem({ ...editItem, timeTaken: e.target.value })} placeholder="Time" />
-                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.terrain || ''} onChange={(e) => setEditItem({ ...editItem, terrain: e.target.value })} placeholder="Terrain" />
+                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.terrain || ''} onChange={(e) => setEditItem({ ...editItem, terrain: e.target.value })}>
+                                                                        <option value="">Select Terrain</option>
+                                                                        <option value="Forest & Mud Paths">Forest & Mud Paths</option>
+                                                                        <option value="Rocky Paths & Big Stones">Rocky Paths & Big Stones</option>
+                                                                        <option value="Steep Climbs">Steep Climbs</option>
+                                                                        <option value="Stone Steps">Stone Steps</option>
+                                                                        <option value="Snow & Ice Trails">Snow & Ice Trails</option>
+                                                                    </select>
                                                                     <input type="text" className="edit-input text-xs w-full" value={editItem.bestTime || ''} onChange={(e) => setEditItem({ ...editItem, bestTime: e.target.value })} placeholder="Season" />
                                                                     <select className="edit-input text-xs w-full bg-background" value={editItem.permit || 'No'} onChange={(e) => setEditItem({ ...editItem, permit: e.target.value })}>
                                                                         <option value="No">No Permit</option>
@@ -1079,7 +1113,7 @@
                                                         )}
                                                         {activeTab === 'restaurants' && (
                                                             <td className="col-dishes">
-                                                                <div className="dish-manager">
+                                                                <div className="dish-manager mb-2">
                                                                     <div className="dish-inputs flex gap-1 mb-2">
                                                                         <input 
                                                                             type="text" 
@@ -1107,6 +1141,36 @@
                                                                                 <span>{dish.name}</span>
                                                                                 <i className="ph-bold ph-x cursor-pointer opacity-70 hover:opacity-100" onClick={() => removeDishFromEdit(i)}></i>
                                                                             </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="border-t border-border/50 pt-2 mb-2">
+                                                                    <div className="text-[10px] text-text-muted mb-1 uppercase tracking-wider">Cuisines</div>
+                                                                    <div className="flex flex-wrap gap-1">
+                                                                        {CUISINE_OPTIONS.map(c => (
+                                                                            <button
+                                                                                key={c}
+                                                                                type="button"
+                                                                                onClick={(e) => { e.preventDefault(); setEditItem(prev => ({ ...prev, cuisines: (prev.cuisines || []).includes(c) ? (prev.cuisines || []).filter(x => x !== c) : [...(prev.cuisines || []), c] })) }}
+                                                                                className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.cuisines || []).includes(c) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary'}`}
+                                                                            >
+                                                                                {c}
+                                                                            </button>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="border-t border-border/50 pt-2">
+                                                                    <div className="text-[10px] text-text-muted mb-1 uppercase tracking-wider">Ambiences</div>
+                                                                    <div className="flex flex-wrap gap-1">
+                                                                        {AMBIENCE_OPTIONS.map(a => (
+                                                                            <button
+                                                                                key={a}
+                                                                                type="button"
+                                                                                onClick={(e) => { e.preventDefault(); setEditItem(prev => ({ ...prev, ambiences: (prev.ambiences || []).includes(a) ? (prev.ambiences || []).filter(x => x !== a) : [...(prev.ambiences || []), a] })) }}
+                                                                                className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.ambiences || []).includes(a) ? 'bg-secondary text-white border-secondary' : 'bg-background border-border text-text-secondary'}`}
+                                                                            >
+                                                                                {a}
+                                                                            </button>
                                                                         ))}
                                                                     </div>
                                                                 </div>
@@ -1210,7 +1274,12 @@
                                                                     <i className={`ph-fill ${isVisited ? 'ph-check-circle text-green-500' : 'ph-circle text-text-muted/50'} text-xl cursor-pointer hover:opacity-80 transition-opacity`} 
                                                                        onClick={() => {
                                                                            const list = [...(data[activeTab] || [])];
-                                                                           list[index] = { ...list[index], isVisited: !list[index].isVisited };
+                                                                           const currentItem = list[index];
+                                                                           if (typeof currentItem === 'string') {
+                                                                               list[index] = { name: currentItem, isVisited: true };
+                                                                           } else {
+                                                                               list[index] = { ...currentItem, isVisited: !currentItem.isVisited };
+                                                                           }
                                                                            handleSave({ [activeTab]: list });
                                                                        }} 
                                                                        title={isVisited ? "Mark as Not Visited" : "Mark as Visited"}></i>
@@ -1370,6 +1439,17 @@
                                                                     </button>
                                                                 </React.Fragment>
                                                             )}
+                                                            <button
+                                                                onClick={(e) => toggleHighlight(e, item)}
+                                                                className="action-btn"
+                                                                style={{ 
+                                                                    color: (data.highlights || []).some(h => (typeof h === 'object' ? h.name : h) === name) ? '#eab308' : 'var(--text-muted)', 
+                                                                    background: (data.highlights || []).some(h => (typeof h === 'object' ? h.name : h) === name) ? 'rgba(234,179,8,0.1)' : 'var(--background-alt)' 
+                                                                }}
+                                                                title={(data.highlights || []).some(h => (typeof h === 'object' ? h.name : h) === name) ? "Remove from Highlights" : "Add to Highlights"}
+                                                            >
+                                                                <i className={(data.highlights || []).some(h => (typeof h === 'object' ? h.name : h) === name) ? "ph-fill ph-star" : "ph-bold ph-star"}></i>
+                                                            </button>
                                                             <button
                                                                 onClick={() => startEdit(index, item)}
                                                                 className="action-btn edit"
