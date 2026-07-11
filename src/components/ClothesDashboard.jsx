@@ -69,7 +69,7 @@ window.ClothesDashboard = ({ onBackToHome }) => {
 
     const filteredAndSortedClothes = useMemo(() => {
         let result = clothes.filter(item => {
-            const matchesSearch = item.modelName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            const matchesSearch = (item.modelName || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
                 (item.colour && item.colour.toLowerCase().includes(searchQuery.toLowerCase())) ||
                 (item.brand && item.brand.toLowerCase().includes(searchQuery.toLowerCase()));
             
