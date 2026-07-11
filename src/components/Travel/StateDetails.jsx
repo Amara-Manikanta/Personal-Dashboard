@@ -444,8 +444,8 @@
         const filteredList = currentList
             .map((item, index) => ({ item, index }))
             .filter(({ item }) => {
-                const text = typeof item === 'object' ? (item.name + (item.city || '') + (item.remarks || '')) : item;
-                return text.toLowerCase().includes(searchTerm.toLowerCase());
+                const text = (typeof item === 'object' && item !== null) ? ((item.name || '') + (item.city || '') + (item.remarks || '')) : (item || '');
+                return String(text).toLowerCase().includes(String(searchTerm).toLowerCase());
             });
 
         const isGridView = activeTab === 'food' && isLocalhost;
@@ -1323,10 +1323,10 @@
                                                         <td className="col-trek-details">
                                                             <div className="dish-list flex flex-wrap gap-1">
                                                                 <span className="dish-badge" style={{ backgroundColor: 'rgba(59,130,246,0.15)', color: '#3b82f6' }}>
-                                                                    <i className="ph-bold ph-ruler"></i> {distance ? (distance.toLowerCase().includes('km') ? distance : `${distance} km`) : '-'}
+                                                                    <i className="ph-bold ph-ruler"></i> {distance ? (String(distance).toLowerCase().includes('km') ? distance : `${distance} km`) : '-'}
                                                                 </span>
                                                                 <span className="dish-badge" style={{ backgroundColor: 'rgba(139,92,246,0.15)', color: '#8b5cf6' }}>
-                                                                    <i className="ph-bold ph-mountains"></i> {altitude ? (altitude.toLowerCase().includes('ft') ? altitude : `${altitude} ft`) : '-'}
+                                                                    <i className="ph-bold ph-mountains"></i> {altitude ? (String(altitude).toLowerCase().includes('ft') ? altitude : `${altitude} ft`) : '-'}
                                                                 </span>
                                                                 {timeTaken && (
                                                                     <span className="dish-badge" style={{ backgroundColor: 'rgba(245,158,11,0.15)', color: '#f59e0b' }}>

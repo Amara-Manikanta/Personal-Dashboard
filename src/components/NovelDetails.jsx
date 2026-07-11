@@ -204,7 +204,7 @@ window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdat
                     <div className="detail-meta-block">
                         <div className="meta-item">
                             <span className="label">Status</span>
-                            <span className={`status-pill ${status.toLowerCase().replace(' ', '-')}`}>{status}</span>
+                            <span className={`status-pill ${(status || '').toLowerCase().replace(' ', '-')}`}>{status}</span>
                         </div>
                         {status === "Currently Reading" && (
                             <div className="meta-item" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem' }}>

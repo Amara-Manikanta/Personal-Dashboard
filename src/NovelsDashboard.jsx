@@ -383,9 +383,9 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
 
             if (searchTerm) {
                 const lowerTerm = searchTerm.toLowerCase();
-                const matchesValid = novel.title.toLowerCase().includes(lowerTerm) ||
-                    novel.author.toLowerCase().includes(lowerTerm) ||
-                    novel.genre.toLowerCase().includes(lowerTerm);
+                const matchesValid = (novel.title || '').toLowerCase().includes(lowerTerm) ||
+                    (novel.author || '').toLowerCase().includes(lowerTerm) ||
+                    (novel.genre || '').toLowerCase().includes(lowerTerm);
                 if (!matchesValid) return false;
             }
 

@@ -42,5 +42,37 @@
   {
     "name": "J. K. Rowling",
     "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiW9wNKQPmx8ufqxuKQ4CKg0Rrw8KC4D8Qog&s"
+  },
+  {
+    "name": "Durjoy Datta",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNdNPwKORZOrH0UcUFkv02V-tIOm82huCyl_aFQcsOstw4wgGNuBz0cA8&s=10"
+  },
+  {
+    "name": "Enid Blyton",
+    "photo": "https://www.enidblyton.co.uk/wp-content/uploads/2019/08/Enid-Blyton15.jpg"
+  },
+  {
+    "name": "Sudha Murthy",
+    "photo": "https://sudhamurty.in/wp-content/uploads/2024/02/Sudha-Murty-scaled.webp"
+  },
+  {
+    "name": "Robin Sharma",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRew7D3uSGnEfE9K1jidqODptSqNqAiG2NdsW1d1Y-1kNqDF3WCt3WJcvQ1&s=10"
+  },
+  {
+    "name": "Amish Tripathi",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Amish_with_his_books_2020.jpg/960px-Amish_with_his_books_2020.jpg"
+  },
+  {
+    "name": "Andy Weir",
+    "photo": "https://static01.nyt.com/images/2026/03/20/multimedia/20tbr-podcast-andy-weir-photo-01-tzvb/20tbr-podcast-andy-weir-photo-01-tzvb-mediumSquareAt3X.jpg"
+  },
+  {
+    "name": "Anuj Tiwari",
+    "photo": "https://www.worldmarketingcongress.org/world-digital-marketing-congress/role-players/2025/images/anuj-tiwari.jpg"
+  },
+  {
+    "name": "Colleen Hoover",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCDzpVO4YfoE4fbbnFXH6xej9a-XefLSRgk31-ZmvX8g&s=10"
   }
 ]

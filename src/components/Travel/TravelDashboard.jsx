@@ -30,12 +30,12 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         const searchLower = searchTerm.toLowerCase();
 
         // Search in name
-        if (item.name.toLowerCase().includes(searchLower)) return true;
+        if ((item.name || '').toLowerCase().includes(searchLower)) return true;
         if (!searchTerm) return true;
 
         // Helper to search in arrays
         const searchInArray = (arr) => arr && arr.some(i => {
-            if (typeof i === 'string') return i.toLowerCase().includes(searchLower);
+            if (typeof i === 'string') return String(i).toLowerCase().includes(searchLower);
             if (typeof i === 'object' && i !== null) {
                 return (i.name || '').toLowerCase().includes(searchLower) ||
                     (i.city || '').toLowerCase().includes(searchLower) ||
@@ -189,7 +189,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                                 <p>Your bucket list is empty. Add something you dream of doing!</p>
                             </div>
                         ) : (
-                            bucketList.filter(item => item.text.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
+                            bucketList.filter(item => (item.text || '').toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
                                 <div key={item.id} className={`bucket-item ${item.completed ? 'completed' : ''}`}>
                                     <button
                                         className="check-btn"

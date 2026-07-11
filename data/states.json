@@ -344,7 +344,8 @@
         {
           "name": "Dargah",
           "city": "Kadapa",
-          "remarks": "-"
+          "remarks": "Masjid",
+          "image": ""
         },
         {
           "name": "Sri Venkateswara Swamy Temple",
@@ -383,13 +384,8 @@
           "city": "Hyderabad",
           "remarks": "-",
           "image": "",
-          "cuisines": [
-            "Chinese",
-            "South Indian"
-          ],
           "ambiences": [
-            "Fine Dining",
-            "Pub/Bar"
+            "Fine Dining"
           ]
         },
         "Foddie Train",
@@ -656,6 +652,30 @@
           "ambiences": [
             "Fine Dining"
           ]
+        },
+        {
+          "name": "New Peacock Resturant",
+          "city": "Karimnagar",
+          "remarks": "-",
+          "mapLink": "",
+          "dishes": [
+            {
+              "name": "Mancho Soup",
+              "rating": "avg"
+            },
+            {
+              "name": "Veg Manchuria",
+              "rating": "avg"
+            },
+            {
+              "name": "Veg Fried Rice",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [],
+          "ambiences": [
+            "Casual Dining"
+          ]
         }
       ],
       "food": [
@@ -713,7 +733,14 @@
         }
       ],
       "stays": [],
-      "highlights": []
+      "highlights": [
+        {
+          "name": "Vanajangi",
+          "city": "Vanajangi",
+          "remarks": "-",
+          "image": ""
+        }
+      ]
     },
     "Assam": {
       "visited": true,
