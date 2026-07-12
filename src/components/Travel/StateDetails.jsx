@@ -13,8 +13,8 @@
         { id: 'stays', label: 'Stays', icon: 'ph-bed' }
     ];
 
-    const CUISINE_OPTIONS = ['Andhra Tiffins', 'North Indian', 'South Indian', 'Continental', 'Fusion Veg', 'Chinese', 'Italian', 'Cafe', 'Desserts', 'Street Food'];
-    const AMBIENCE_OPTIONS = ['Casual Dining', 'Fine Dining', 'Quick Tiffin', 'Family Friendly', 'Romantic', 'Rooftop', 'Pub/Bar', 'Late Night'];
+    const CUISINE_OPTIONS = ['Tiffins', 'North Indian', 'South Indian', 'Continental', 'Fusion', 'Chinese', 'Italian', 'Cafe', 'Desserts', 'Street Food'];
+    const AMBIENCE_OPTIONS = ['Casual', 'Fancy', 'Quick Bite', 'Family', 'Romantic', 'Rooftop', 'Bar', 'Late Night'];
     
     const TRIP_TYPE_OPTIONS = ['Nature & Lakes', 'High Peaks', 'Wildlife', 'Heritage Sites', 'Beaches', 'Waterfalls', 'City Tour'];
     const SEASON_OPTIONS = ['Monsoon', 'Winter', 'Post-Monsoon', 'Summer', 'All Year'];
