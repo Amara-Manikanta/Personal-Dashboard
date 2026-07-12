@@ -580,3 +580,70 @@
     border-radius: 99px !important;
     box-shadow: var(--glow-primary) !important;
 }
+
+/* ==========================================================================
+   Stats Board Overrides
+   ========================================================================== */
+#root .authors-stats-container {
+    background: rgba(17, 20, 28, 0.45) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 2rem !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+#root .stats-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+#root .stats-table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 0.5rem !important;
+}
+
+#root .stats-table th {
+    background: rgba(255, 255, 255, 0.02) !important;
+    color: var(--text-muted) !important;
+    padding: 1rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+#root .stats-table td {
+    background: rgba(255, 255, 255, 0.01) !important;
+    padding: 1rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+    transition: all var(--transition-fast) !important;
+}
+
+#root .stats-table tr:hover td {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+#root .count-badge {
+    background: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 99px !important;
+    font-weight: 700 !important;
+}
+
+#root .rating-bar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 99px !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+#root .rating-bar-fill {
+    background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
+    box-shadow: var(--glow-primary) !important;
+}
