@@ -304,6 +304,43 @@ window.WritingDashboard = ({ onBackToHome }) => {
         if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
     };
 
+    const handleToggleQuotePublished = (quoteIndex) => {
+        if (!selectedGenre) return;
+        const rawData = window.writingData || [];
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], isPublished: !newQuotes[quoteIndex].isPublished };
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], isPublished: !newQuotes[quoteIndex].isPublished };
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) window.api.saveWriting(updatedData);
+        if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
+    };
+
     const handleUpdateModifiedQuote = (quoteIndex, newText) => {
         if (!selectedGenre) return;
         const rawData = window.writingData || [];
@@ -394,7 +431,20 @@ window.WritingDashboard = ({ onBackToHome }) => {
                                 <p className="story-snippet">{story.description}</p>
                                 <div className="story-actions">
                                     <button className="story-btn" onClick={(e) => openEditModal(story, e)}>
-                                        <i className="ph-bold ph-pencil-simple"></i> Edit Info
+                                        <i className="ph-bold ph-pencil-simple"></i> Edit
+                                    </button>
+                                    <button 
+                                        className="story-btn"
+                                        style={story.status === 'Published' ? { background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success)', borderColor: 'rgba(16, 185, 129, 0.3)' } : {}}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            const newStatus = story.status === 'Published' ? 'Draft' : 'Published';
+                                            const updatedStory = { ...story, status: newStatus };
+                                            handleUpdateStoryParts(updatedStory);
+                                        }}
+                                    >
+                                        <i className={`ph-bold ${story.status === 'Published' ? 'ph-check-circle' : 'ph-paper-plane-tilt'}`}></i> 
+                                        {story.status === 'Published' ? 'Published' : 'Draft'}
                                     </button>
                                     <button className="story-btn primary">
                                         <i className="ph-bold ph-book-open"></i> Open
@@ -513,6 +563,15 @@ window.WritingDashboard = ({ onBackToHome }) => {
                                                     style={{ cursor: 'pointer' }}
                                                 />
                                                 Finished
+                                            </label>
+                                            <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: quote.isPublished ? 'var(--success)' : 'var(--text-muted)', cursor: 'pointer' }}>
+                                                <input 
+                                                    type="checkbox" 
+                                                    checked={quote.isPublished || false} 
+                                                    onChange={() => handleToggleQuotePublished(index)} 
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                                Published
                                             </label>
                                         </div>
                                     </div>
