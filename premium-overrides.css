@@ -647,3 +647,32 @@
     background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
     box-shadow: var(--glow-primary) !important;
 }
+
+/* ==========================================================================
+   Multi-Select Tags (Cuisines, Ambience, etc.)
+   ========================================================================== */
+#root .tag-select-btn {
+    padding: 0.4rem 1rem !important;
+    border-radius: 99px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-secondary) !important;
+    cursor: pointer !important;
+    transition: all var(--transition-fast) !important;
+}
+
+#root .tag-select-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: var(--text-primary) !important;
+}
+
+#root .tag-select-btn.active {
+    background: linear-gradient(135deg, var(--primary), #4f46e5) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: var(--glow-primary) !important;
+    transform: translateY(-1px) !important;
+}

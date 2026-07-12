@@ -698,7 +698,7 @@
                                                         key={c}
                                                         type="button"
                                                         onClick={(e) => { e.preventDefault(); setNewCuisines(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]) }}
-                                                        className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${newCuisines.includes(c) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary hover:border-primary/50'}`}
+                                                        className={`tag-select-btn ${newCuisines.includes(c) ? 'active' : ''}`}
                                                     >
                                                         {c}
                                                     </button>
@@ -713,7 +713,7 @@
                                                         key={a}
                                                         type="button"
                                                         onClick={(e) => { e.preventDefault(); setNewAmbiences(prev => prev.includes(a) ? prev.filter(x => x !== a) : [...prev, a]) }}
-                                                        className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${newAmbiences.includes(a) ? 'bg-secondary text-white border-secondary' : 'bg-background border-border text-text-secondary hover:border-secondary/50'}`}
+                                                        className={`tag-select-btn ${newAmbiences.includes(a) ? 'active' : ''}`}
                                                     >
                                                         {a}
                                                     </button>
