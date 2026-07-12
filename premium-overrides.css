@@ -1,0 +1,582 @@
+/* PREMIUM DARK GLASSMORPHISM OVERRIDES */
+#root, body {
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Glass Background & Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(8, 9, 13, 0.5) !important;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 99px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary) !important;
+    box-shadow: var(--glow-primary);
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+#root .app-header,
+#root .dashboard-header {
+    background: rgba(13, 16, 23, 0.6) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    padding: 0.75rem 0 !important;
+}
+
+#root .logo h1,
+#root .header-left h1 {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #ffffff, #cbd5e1) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+#root .logo-icon {
+    font-size: 1.75rem !important;
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+#root .nav-tabs,
+#root .view-toggles,
+#root .filter-tabs {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 0.25rem !important;
+    border-radius: 99px !important;
+    display: flex !important;
+    gap: 0.25rem !important;
+}
+
+#root .nav-tab,
+#root .view-toggles button,
+#root .filter-tabs button {
+    padding: 0.5rem 1.25rem !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    border-radius: 99px !important;
+    color: var(--text-muted) !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all var(--transition-normal) !important;
+}
+
+#root .nav-tab.active,
+#root .view-toggles button.active,
+#root .filter-tabs button.active {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+    box-shadow: var(--glow-primary) !important;
+}
+
+#root .nav-tab:hover:not(.active),
+#root .view-toggles button:hover:not(.active),
+#root .filter-tabs button:hover:not(.active) {
+    color: var(--text-secondary) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ==========================================================================
+   Search Bars & Inputs
+   ========================================================================== */
+#root .search-bar input,
+#root .search-box input,
+#root .search-wrapper input,
+#root .glass-input,
+#root input[type="text"],
+#root input[type="number"],
+#root input[type="date"],
+#root select,
+#root textarea {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-primary) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.625rem 1rem !important;
+    outline: none !important;
+    transition: all var(--transition-fast) !important;
+}
+
+#root .search-bar input:focus,
+#root .search-box input:focus,
+#root .search-wrapper input:focus,
+#root .glass-input:focus,
+#root input[type="text"]:focus,
+#root input[type="number"]:focus,
+#root input[type="date"]:focus,
+#root select:focus,
+#root textarea:focus {
+    border-color: var(--primary) !important;
+    background: rgba(99, 102, 241, 0.05) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+#root .search-bar input,
+#root .search-box input,
+#root .search-wrapper input {
+    border-radius: 99px !important;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+#root .btn-primary,
+#root .add-btn,
+#root .save-btn,
+#root .submit-btn,
+#root .btn-premium {
+    background: linear-gradient(135deg, var(--primary), #4f46e5) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.625rem 1.25rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all var(--transition-fast) !important;
+    box-shadow: none !important;
+}
+
+#root .btn-primary:hover,
+#root .add-btn:hover,
+#root .save-btn:hover,
+#root .submit-btn:hover,
+#root .btn-premium:hover {
+    box-shadow: var(--glow-primary) !important;
+    filter: brightness(1.1) !important;
+    transform: translateY(-1px) !important;
+}
+
+#root .btn-secondary,
+#root .export-btn,
+#root .cancel-btn {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-secondary) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.625rem 1.25rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all var(--transition-fast) !important;
+}
+
+#root .btn-secondary:hover,
+#root .export-btn:hover,
+#root .export-btn.active,
+#root .cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--text-primary) !important;
+}
+
+#root .btn-icon {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-secondary) !important;
+    width: 36px;
+    height: 36px;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all var(--transition-fast) !important;
+}
+
+#root .btn-icon:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    transform: scale(1.05) !important;
+}
+
+/* ==========================================================================
+   Sidebar Filters
+   ========================================================================== */
+#root .filter-sidebar {
+    background: rgba(17, 20, 28, 0.45) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 1.5rem !important;
+}
+
+#root .filter-group-title {
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* ==========================================================================
+   Modals
+   ========================================================================== */
+.modal-overlay,
+#root .modal-overlay {
+    background-color: rgba(8, 9, 13, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.modal-content,
+#root .modal-content {
+    background: rgba(17, 20, 28, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-xl) !important;
+    max-width: 600px !important;
+    width: 90% !important;
+}
+
+.modal-header,
+#root .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding-bottom: 1rem !important;
+}
+
+.modal-close,
+#root .modal-close {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-secondary) !important;
+    border-radius: 50% !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.modal-close:hover,
+#root .modal-close:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ==========================================================================
+   Dashboard Cards (Novels, States, Clothes)
+   ========================================================================== */
+#root .novel-card,
+#root .state-card,
+#root .item-card,
+#root .quote-card,
+#root .stats-panel,
+#root .stats-box {
+    background: rgba(17, 20, 28, 0.45) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-md) !important;
+    transition: all var(--transition-normal) !important;
+}
+
+#root .novel-card:hover,
+#root .state-card:hover,
+#root .item-card:hover,
+#root .stats-panel:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+#root .card-image-wrapper {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Travel State Card Specifics */
+#root .state-card.visited {
+    border-left: 4px solid var(--success) !important;
+}
+
+#root .state-stats .stat {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-secondary) !important;
+}
+
+#root .badge-visited {
+    color: var(--success) !important;
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4)) !important;
+}
+
+/* Status Badges with Custom Glows */
+#root .status-badge,
+#root .badge {
+    border-radius: 99px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.25rem 0.75rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#root .status-read,
+#root .status-completed,
+#root .badge-success {
+    background: rgba(16, 185, 129, 0.1) !important;
+    color: var(--success) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+#root .status-reading,
+#root .status-inprogress,
+#root .badge-warning {
+    background: rgba(245, 158, 11, 0.1) !important;
+    color: var(--warning) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+#root .status-tbr,
+#root .status-draft,
+#root .badge-muted {
+    background: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+}
+
+/* ==========================================================================
+   Details Overlay Panels (Novel Details, State Details)
+   ========================================================================== */
+#root .novel-details,
+#root .state-details-container {
+    background: transparent !important;
+}
+
+#root .state-details {
+    background: rgba(17, 20, 28, 0.35) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 2.5rem !important;
+}
+
+#root .detail-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding-top: 2rem !important;
+    margin-top: 2rem !important;
+}
+
+/* State Details Hero */
+#root .details-hero {
+    background: rgba(17, 20, 28, 0.45) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 3rem 2rem 2rem !important;
+}
+
+#root .state-title {
+    font-size: 3.5rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #ffffff, #94a3b8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+#root .visited-toggle {
+    border-radius: 99px !important;
+    font-weight: 600 !important;
+}
+
+#root .tabs-sticky-wrapper {
+    background: rgba(8, 9, 13, 0.6) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#root .tab-item {
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    color: var(--text-muted) !important;
+}
+
+#root .tab-item.active {
+    color: var(--primary) !important;
+}
+
+#root .active-indicator {
+    box-shadow: 0 -2px 10px rgba(99, 102, 241, 0.6) !important;
+    background: var(--primary) !important;
+}
+
+#root .tab-badge {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#root .tab-item.active .tab-badge {
+    background: var(--primary) !important;
+    box-shadow: var(--glow-primary) !important;
+}
+
+/* ==========================================================================
+   Trek & Food Overhauls
+   ========================================================================== */
+#root .trek-item,
+#root .restaurant-item {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.5rem !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all var(--transition-normal) !important;
+}
+
+#root .trek-item:hover,
+#root .restaurant-item:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--glow-primary) !important;
+}
+
+#root .add-input-wrapper {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-xl) !important;
+}
+
+/* Trek Specs Grid Cards */
+#root .trek-specs-grid > div {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1rem !important;
+}
+
+#root .table-card {
+    background: rgba(17, 20, 28, 0.45) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+#root .details-table th {
+    background: rgba(255, 255, 255, 0.02) !important;
+    color: var(--text-secondary) !important;
+}
+
+#root .details-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+#root .dish-badge {
+    border-radius: 99px !important;
+    font-weight: 600 !important;
+    padding: 0.2rem 0.625rem !important;
+}
+
+#root .rating-good {
+    background: rgba(16, 185, 129, 0.1) !important;
+    color: var(--success) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+#root .rating-avg {
+    background: rgba(245, 158, 11, 0.1) !important;
+    color: var(--warning) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+#root .rating-bad {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: var(--error) !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+#root .food-card {
+    background: rgba(17, 20, 28, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--radius-xl) !important;
+}
+
+#root .food-card:hover {
+    border-color: rgba(99, 102, 241, 0.2) !important;
+    box-shadow: var(--glow-primary) !important;
+}
+
+/* ==========================================================================
+   Clothes Grid & Filter Alignment
+   ========================================================================== */
+#root .clothes-dashboard-layout {
+    display: grid !important;
+    gap: 2rem !important;
+    align-items: start !important;
+}
+
+#root .clothes-grid {
+    display: grid !important;
+    gap: 1.5rem !important;
+}
+
+/* ==========================================================================
+   Writing Dashboard & Story Details
+   ========================================================================== */
+#root .writing-dashboard {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+}
+
+#root .poetry-card,
+#root .story-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.5rem !important;
+    transition: all var(--transition-normal) !important;
+}
+
+#root .poetry-card:hover,
+#root .story-card:hover {
+    border-color: rgba(236, 72, 153, 0.2) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    box-shadow: var(--glow-secondary) !important;
+}
+
+#root .story-part-item {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* ==========================================================================
+   Sync Dashboard Progress Styles
+   ========================================================================== */
+#root .sync-progress-bar {
+    background: rgba(255, 255, 255, 0.05) !important;
+    height: 8px !important;
+    border-radius: 99px !important;
+    overflow: hidden !important;
+}
+
+#root .sync-progress-fill {
+    background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
+    height: 100% !important;
+    border-radius: 99px !important;
+    box-shadow: var(--glow-primary) !important;
+}
