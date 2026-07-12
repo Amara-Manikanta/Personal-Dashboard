@@ -260,10 +260,10 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
-                    background: var(--bg-app);
-                    padding: 0.25rem 0.75rem;
-                    border-radius: var(--radius-md);
-                    border: 1px solid var(--border);
+                    background: rgba(255, 255, 255, 0.03);
+                    padding: 0.5rem 1rem;
+                    border-radius: 99px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
                 }
                 .gr-label {
                     font-size: 0.875rem;
@@ -271,19 +271,29 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                     font-weight: 600;
                     display: flex;
                     align-items: center;
-                    gap: 0.25rem;
+                    gap: 0.4rem;
                 }
                 .gr-icon {
                     font-family: serif;
                     font-weight: bold;
+                    background: var(--text-secondary);
+                    color: var(--bg-main);
+                    width: 18px;
+                    height: 18px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 4px;
+                    font-size: 0.75rem;
                 }
                 .gr-input {
                     background: transparent !important;
                     border: none !important;
-                    width: 60px !important;
+                    width: 50px !important;
                     padding: 0 !important;
                     font-weight: 600;
                     text-align: right;
+                    box-shadow: none !important;
                 }
                 .gr-input:focus {
                     outline: none;
@@ -414,113 +424,128 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
             </div>
 
             <style>{`
-                .novel - form {
+                .novel-form {
                     display: flex;
-                flex-direction: column;
-                gap: 1.25rem;
+                    flex-direction: column;
+                    gap: 1.25rem;
                 }
                 .form-group {
                     display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
+                    flex-direction: column;
+                    gap: 0.5rem;
                 }
                 .form-row {
                     display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
                 }
                 .novel-form label {
-                    font - size: 0.875rem;
-                font-weight: 600;
-                color: var(--text-secondary);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                 }
                 .novel-form input, .novel-form select, .novel-form textarea {
-                    background: var(--bg-app);
-                border: 1px solid var(--border);
-                padding: 0.75rem;
-                border-radius: var(--radius-md);
-                color: var(--text-primary);
-                outline: none;
-                font-family: inherit;
+                    background: rgba(255, 255, 255, 0.03);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    padding: 0.75rem 1rem;
+                    border-radius: var(--radius-md);
+                    color: var(--text-primary);
+                    outline: none;
+                    font-family: inherit;
+                    transition: all var(--transition-fast, 0.2s ease);
+                    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
                 .novel-form input:focus, .novel-form select:focus, .novel-form textarea:focus {
-                    border - color: var(--primary);
+                    border-color: var(--primary);
+                    background: rgba(255, 255, 255, 0.06);
+                    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
 
                 .rating-input {
                     display: flex;
-                gap: 0.5rem;
+                    gap: 0.5rem;
                 }
                 .star-select-btn {
                     background: none;
-                border: none;
-                color: var(--text-muted);
-                font-size: 1.5rem;
-                cursor: pointer;
-                transition: transform 0.2s;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.1);
+                    font-size: 1.75rem;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
                 }
                 .star-select-btn.active {
                     color: #fbbf24;
+                    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.4));
                 }
                 .star-select-btn:hover {
-                    transform: scale(1.2);
+                    transform: scale(1.15) translateY(-2px);
                 }
 
                 .form-actions {
                     display: flex;
-                justify-content: flex-end;
-                gap: 1rem;
-                margin-top: 1rem;
+                    justify-content: flex-end;
+                    gap: 1rem;
+                    margin-top: 1.5rem;
+                    padding-top: 1.5rem;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
                 }
                 .btn-primary, .btn-secondary {
-                    padding: 0.75rem 1.5rem;
-                border-radius: var(--radius-md);
-                font-weight: 600;
-                cursor: pointer;
-                border: none;
+                    padding: 0.75rem 1.75rem;
+                    border-radius: 99px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    border: none;
+                    transition: all var(--transition-fast, 0.2s ease);
                 }
 
                 .btn-primary {
-                    background: var(--primary);
-                color: white;
+                    background: linear-gradient(135deg, var(--primary), #4f46e5);
+                    color: white;
+                    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
                 }
                 .btn-primary:hover {
-                    background: var(--primary-hover);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
                 }
 
                 .progress-type-toggle {
                     display: flex;
-                gap: 0.5rem;
+                    gap: 0.5rem;
+                    background: rgba(0,0,0,0.2);
+                    padding: 0.25rem;
+                    border-radius: 99px;
                 }
                 .toggle-btn {
-                    font - size: 0.75rem;
-                padding: 0.25rem 0.75rem;
-                border-radius: 9999px;
-                border: 1px solid var(--border);
-                cursor: pointer;
-                color: var(--text-muted);
-                background: var(--bg-app);
-                transition: all 0.2s;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    padding: 0.25rem 0.75rem;
+                    border-radius: 99px;
+                    border: none;
+                    cursor: pointer;
+                    color: var(--text-muted);
+                    background: transparent;
+                    transition: all 0.2s;
                 }
                 .toggle-btn:hover {
                     color: var(--text-primary);
-                border-color: var(--text-muted);
                 }
                 .toggle-btn.active {
                     background: var(--primary);
-                border-color: var(--primary);
-                color: white;
+                    color: white;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
                 }
 
                 .btn-secondary {
-                    background: var(--bg-accent);
-                color: var(--text-primary);
+                    background: rgba(255, 255, 255, 0.05);
+                    color: var(--text-primary);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
                 }
                 .btn-secondary:hover {
-                    background: var(--bg-surface-hover);
+                    background: rgba(255, 255, 255, 0.1);
                 }
             `}</style>
         </form>
