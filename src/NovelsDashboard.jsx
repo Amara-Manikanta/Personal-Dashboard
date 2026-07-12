@@ -523,7 +523,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
 
                             {filteredNovels.length > 0 ? (
                                 <div className="novels-grid" style={{
-                                    gridTemplateColumns: isFilterVisible ? 'repeat(auto-fill, minmax(280px, 1fr))' : 'repeat(auto-fill, minmax(240px, 1fr))'
+                                    gridTemplateColumns: isFilterVisible ? 'repeat(3, 1fr)' : 'repeat(4, 1fr)'
                                 }}>
                                     {filteredNovels.map(novel => (
                                         <window.NovelCard
