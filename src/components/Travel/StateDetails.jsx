@@ -691,7 +691,7 @@
                                     {/* Cuisines & Ambience Multi-select */}
                                     <div className="mt-4 border-t border-dashed border-border pt-3">
                                         <div className="mb-3">
-                                            <div className="dish-manager-label mb-2">Cuisine / Food Category</div>
+                                            <div className="dish-manager-label mb-2">Cuisine</div>
                                             <div className="flex flex-wrap gap-2">
                                                 {CUISINE_OPTIONS.map(c => (
                                                     <button
@@ -706,7 +706,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="dish-manager-label mb-2">Ambience / Vibe</div>
+                                            <div className="dish-manager-label mb-2">Ambience</div>
                                             <div className="flex flex-wrap gap-2">
                                                 {AMBIENCE_OPTIONS.map(a => (
                                                     <button
