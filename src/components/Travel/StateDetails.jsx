@@ -1152,7 +1152,7 @@
                                                                                 key={c}
                                                                                 type="button"
                                                                                 onClick={(e) => { e.preventDefault(); setEditItem(prev => ({ ...prev, cuisines: (prev.cuisines || []).includes(c) ? (prev.cuisines || []).filter(x => x !== c) : [...(prev.cuisines || []), c] })) }}
-                                                                                className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.cuisines || []).includes(c) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary'}`}
+                                                                                className={`tag-select-btn ${(editItem.cuisines || []).includes(c) ? 'active' : ''}`}
                                                                             >
                                                                                 {c}
                                                                             </button>
@@ -1167,7 +1167,7 @@
                                                                                 key={a}
                                                                                 type="button"
                                                                                 onClick={(e) => { e.preventDefault(); setEditItem(prev => ({ ...prev, ambiences: (prev.ambiences || []).includes(a) ? (prev.ambiences || []).filter(x => x !== a) : [...(prev.ambiences || []), a] })) }}
-                                                                                className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.ambiences || []).includes(a) ? 'bg-secondary text-white border-secondary' : 'bg-background border-border text-text-secondary'}`}
+                                                                                className={`tag-select-btn ${(editItem.ambiences || []).includes(a) ? 'active' : ''}`}
                                                                             >
                                                                                 {a}
                                                                             </button>
