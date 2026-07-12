@@ -4,6 +4,8 @@ window.WritingDashboard = ({ onBackToHome }) => {
     const { useMemo, useState, useEffect } = React;
     const [activeTab, setActiveTab] = useState('quotes');
     const [selectedGenre, setSelectedGenre] = useState(null);
+    const [quoteSearchQuery, setQuoteSearchQuery] = useState("");
+    const [storySearchQuery, setStorySearchQuery] = useState("");
     const [selectedStory, setSelectedStory] = useState(null);
     const [stories, setStories] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -362,12 +364,21 @@ window.WritingDashboard = ({ onBackToHome }) => {
         if (activeTab === 'stories') {
             return (
                 <div className="stories-view-container">
-                    <div className="view-header">
+                    <div className="view-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                         <h2>All Stories</h2>
+                        <div className="search-bar">
+                            <i className="ph ph-magnifying-glass"></i>
+                            <input
+                                type="text"
+                                placeholder="Search stories..."
+                                value={storySearchQuery}
+                                onChange={(e) => setStorySearchQuery(e.target.value)}
+                            />
+                        </div>
                     </div>
 
                     <div className="stories-list">
-                        {stories.map(story => (
+                        {stories.filter(s => s.title.toLowerCase().includes(storySearchQuery.toLowerCase()) || (s.genre && s.genre.toLowerCase().includes(storySearchQuery.toLowerCase()))).map(story => (
                             <div key={story.id} className="story-card" onClick={() => setSelectedStory(story)}>
                                 <div className="story-header">
                                     <h3>{story.title}</h3>
@@ -409,13 +420,22 @@ window.WritingDashboard = ({ onBackToHome }) => {
                 <div className="quotes-list">
                     <div className="view-header" style={{ marginBottom: "1rem" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                            <button className="back-button-inline" onClick={() => setSelectedGenre(null)}>
+                            <button className="back-button-inline" onClick={() => { setSelectedGenre(null); setQuoteSearchQuery(""); }}>
                                 <i className="ph-bold ph-arrow-left"></i>
                                 Back to Genres
                             </button>
                             <h2 style={{ fontSize: "2rem", margin: 0 }}>{selectedGenre.genre} Quotes</h2>
                         </div>
-                        <div style={{ display: "flex", gap: "0.75rem" }}>
+                        <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                            <div className="search-bar">
+                                <i className="ph ph-magnifying-glass"></i>
+                                <input
+                                    type="text"
+                                    placeholder="Search quotes..."
+                                    value={quoteSearchQuery}
+                                    onChange={(e) => setQuoteSearchQuery(e.target.value)}
+                                />
+                            </div>
                             <button className="add-btn" onClick={() => setIsAddQuoteModalOpen(true)}>
                                 <i className="ph-bold ph-plus"></i> Add Quote
                             </button>
@@ -431,7 +451,10 @@ window.WritingDashboard = ({ onBackToHome }) => {
                             <p>No quotes yet for this genre.</p>
                         </div>
                     ) : (
-                        selectedGenre.quotes.map((quote, index) => {
+                        selectedGenre.quotes.map((q, i) => ({ ...q, originalIndex: i }))
+                        .filter(q => q.original.toLowerCase().includes(quoteSearchQuery.toLowerCase()) || (q.modified && q.modified.toLowerCase().includes(quoteSearchQuery.toLowerCase())))
+                        .map((quote) => {
+                            const index = quote.originalIndex;
                             const isUnedited = !quote.finished;
                             return (
                                 <div key={index} className={`quote-card-item ${quote.finished ? 'locked' : ''}`} style={{ 
@@ -541,7 +564,7 @@ window.WritingDashboard = ({ onBackToHome }) => {
 
                 <div className="genre-grid">
                     {stats.genres.map((genre) => (
-                        <div key={genre.genre} className="genre-card" onClick={() => setSelectedGenre(genre)}>
+                        <div key={genre.genre} className="genre-card" onClick={() => { setSelectedGenre(genre); setQuoteSearchQuery(""); }}>
                             <div className="genre-header">
                                 <h3>{genre.genre}</h3>
                                 <span className="genre-total">{genre.total || 0} Quotes</span>
@@ -593,14 +616,14 @@ window.WritingDashboard = ({ onBackToHome }) => {
                         <div className="nav-tabs">
                             <button
                                 className={`nav-tab ${activeTab === 'quotes' ? 'active' : ''}`}
-                                onClick={() => { setActiveTab('quotes'); setSelectedGenre(null); setSelectedStory(null); }}
+                                onClick={() => { setActiveTab('quotes'); setSelectedGenre(null); setSelectedStory(null); setStorySearchQuery(""); setQuoteSearchQuery(""); }}
                             >
                                 <i className="ph-bold ph-quotes"></i>
                                 Quotes
                             </button>
                             <button
                                 className={`nav-tab ${activeTab === 'stories' ? 'active' : ''}`}
-                                onClick={() => { setActiveTab('stories'); setSelectedGenre(null); setSelectedStory(null); }}
+                                onClick={() => { setActiveTab('stories'); setSelectedGenre(null); setSelectedStory(null); setStorySearchQuery(""); setQuoteSearchQuery(""); }}
                             >
                                 <i className="ph-bold ph-book-open"></i>
                                 Stories
