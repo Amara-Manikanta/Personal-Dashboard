@@ -385,7 +385,7 @@
           "remarks": "-",
           "image": "",
           "ambiences": [
-            "Fine Dining"
+            "Posh"
           ]
         },
         "Foddie Train",
@@ -511,10 +511,10 @@
             }
           ],
           "cuisines": [
-            "Chinese"
+            "Asian"
           ],
           "ambiences": [
-            "Fine Dining"
+            "Posh"
           ]
         },
         {
@@ -529,10 +529,10 @@
             }
           ],
           "cuisines": [
-            "Street Food"
+            "Chats"
           ],
           "ambiences": [
-            "Quick Tiffin"
+            "Grab & Go"
           ]
         },
         {
@@ -556,10 +556,10 @@
             }
           ],
           "cuisines": [
-            "South Indian"
+            "Curries"
           ],
           "ambiences": [
-            "Casual Dining"
+            "Casual"
           ]
         },
         {
@@ -587,10 +587,10 @@
             }
           ],
           "cuisines": [
-            "South Indian"
+            "Curries"
           ],
           "ambiences": [
-            "Fine Dining"
+            "Posh"
           ]
         },
         {
@@ -609,10 +609,10 @@
             }
           ],
           "cuisines": [
-            "Chinese"
+            "Asian"
           ],
           "ambiences": [
-            "Fine Dining"
+            "Posh"
           ]
         },
         {
@@ -647,10 +647,10 @@
             }
           ],
           "cuisines": [
-            "Continental"
+            "Western"
           ],
           "ambiences": [
-            "Fine Dining"
+            "Posh"
           ]
         },
         {
@@ -674,7 +674,23 @@
           ],
           "cuisines": [],
           "ambiences": [
-            "Casual Dining"
+            "Casual"
+          ]
+        },
+        {
+          "name": "TARO - Pan Asian Resturant & Bar",
+          "city": "Jubliee Hills",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/HQL4g9t3eBK8nd5o8",
+          "dishes": [
+            {
+              "name": "Osakana Sushi Boat",
+              "rating": "good"
+            }
+          ],
+          "ambiences": [
+            "Romantic"
           ]
         }
       ],
@@ -1303,12 +1319,12 @@
           "remarks": "-",
           "image": "",
           "cuisines": [
-            "South Indian",
-            "Chinese"
+            "Curries",
+            "Asian"
           ],
           "ambiences": [
-            "Family Friendly",
-            "Fine Dining"
+            "Family",
+            "Posh"
           ]
         },
         {
@@ -1345,16 +1361,16 @@
             }
           ],
           "cuisines": [
-            "North Indian",
-            "South Indian",
-            "Continental",
-            "Chinese",
-            "Italian",
-            "Desserts"
+            "Local Meals",
+            "Curries",
+            "Western",
+            "Asian",
+            "Pizza & Pasta",
+            "Sweets"
           ],
           "ambiences": [
-            "Fine Dining",
-            "Family Friendly"
+            "Posh",
+            "Family"
           ]
         },
         "The Dhaba Strories",
@@ -1367,10 +1383,10 @@
           "remarks": "-",
           "image": "",
           "cuisines": [
-            "Andhra Tiffins"
+            "Snacks"
           ],
           "ambiences": [
-            "Quick Tiffin"
+            "Grab & Go"
           ]
         },
         {
@@ -1398,12 +1414,12 @@
             }
           ],
           "cuisines": [
-            "Continental",
-            "Chinese"
+            "Western",
+            "Asian"
           ],
           "ambiences": [
-            "Family Friendly",
-            "Fine Dining"
+            "Family",
+            "Posh"
           ]
         },
         {
@@ -1412,10 +1428,10 @@
           "remarks": "-",
           "image": "",
           "cuisines": [
-            "North Indian"
+            "Local Meals"
           ],
           "ambiences": [
-            "Casual Dining"
+            "Casual"
           ]
         },
         {
@@ -1431,11 +1447,11 @@
             }
           ],
           "cuisines": [
-            "Andhra Tiffins"
+            "Snacks"
           ],
           "ambiences": [
-            "Quick Tiffin",
-            "Casual Dining"
+            "Grab & Go",
+            "Casual"
           ]
         }
       ],
@@ -1714,10 +1730,10 @@
             }
           ],
           "cuisines": [
-            "South Indian"
+            "Curries"
           ],
           "ambiences": [
-            "Casual Dining"
+            "Casual"
           ]
         }
       ],
