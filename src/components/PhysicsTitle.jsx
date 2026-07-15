@@ -107,9 +107,11 @@ window.PhysicsTitle = () => {
                 const char = sourceText[charIndex++];
                 const y = 20 + (row * spacingY);
 
-                const body = Bodies.rectangle(x, y, boxSize, boxSize, {
-                    restitution: 0.5, 
-                    frictionAir: 0.05,
+                // Use circles instead of rectangles! Corners snag on each other, circles perfectly slide off.
+                const body = Bodies.circle(x, y, boxSize/1.8, {
+                    restitution: 0.8, 
+                    frictionAir: 0.02,
+                    friction: 0, // Zero surface friction so they are slippery like glass
                     density: 0.005,
                     collisionFilter: { group: colGroup },
                     render: { visible: false } 
