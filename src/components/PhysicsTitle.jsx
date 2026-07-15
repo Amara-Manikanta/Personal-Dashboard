@@ -198,22 +198,35 @@ window.PhysicsTitle = () => {
             }
         });
 
-        // Apply a gentle restoring force and an aggressive "knot breaker" reset
+        // Apply a stronger restoring force and an absolute clamp to remove knots entirely
         Events.on(engine, 'beforeUpdate', () => {
             letterBodies.forEach(lb => {
-                const dx = lb.originalX - lb.body.position.x;
+                let currentX = lb.body.position.x;
+                const dx = lb.originalX - currentX;
                 const dy = lb.originalY - lb.body.position.y;
                 
-                // KNOT BREAKER: If a letter is pulled extremely far out of bounds (flipped upside down or dragged across 3+ columns),
-                // we instantly teleport it back to its original location to untie the knot.
-                if (Math.abs(dx) > 100 || Math.abs(dy) > 150) {
-                    Matter.Body.setPosition(lb.body, { x: lb.originalX, y: lb.originalY });
+                // NO KNOTS: Absolutely prevent any string from moving more than 35px horizontally from its column.
+                // This makes it physically impossible for strings to wrap around each other.
+                if (dx < -35) {
+                    currentX = lb.originalX + 35;
+                    Matter.Body.setPosition(lb.body, { x: currentX, y: lb.body.position.y });
+                    Matter.Body.setVelocity(lb.body, { x: 0, y: lb.body.velocity.y });
+                } else if (dx > 35) {
+                    currentX = lb.originalX - 35;
+                    Matter.Body.setPosition(lb.body, { x: currentX, y: lb.body.position.y });
+                    Matter.Body.setVelocity(lb.body, { x: 0, y: lb.body.velocity.y });
+                }
+                
+                if (Math.abs(dy) > 100) {
+                    Matter.Body.setPosition(lb.body, { x: currentX, y: lb.originalY });
                     Matter.Body.setVelocity(lb.body, { x: 0, y: 0 });
-                } 
-                // NORMAL RESTORING FORCE: If it's just slightly displaced, gently pull it back to its column
-                else if (Math.abs(dx) > 0.5) {
+                }
+
+                // NORMAL RESTORING FORCE: Pull back to column much faster
+                const newDx = lb.originalX - currentX;
+                if (Math.abs(newDx) > 0.5) {
                     Matter.Body.applyForce(lb.body, lb.body.position, {
-                        x: dx * 0.000005, // Very tiny force so it doesn't look unnatural
+                        x: newDx * 0.00002, // Stronger restoring force
                         y: 0
                     });
                 }
