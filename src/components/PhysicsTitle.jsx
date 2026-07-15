@@ -109,8 +109,8 @@ window.PhysicsTitle = () => {
 
                 // Use circles instead of rectangles! Corners snag on each other, circles perfectly slide off.
                 const body = Bodies.circle(x, y, boxSize/1.8, {
-                    restitution: 0.8, 
-                    frictionAir: 0.02,
+                    restitution: 0.1, // Minimal bounce to prevent chaotic energy
+                    frictionAir: 0.05, // More air resistance to settle faster
                     friction: 0, // Zero surface friction so they are slippery like glass
                     density: 0.005,
                     collisionFilter: { group: colGroup },
@@ -126,7 +126,7 @@ window.PhysicsTitle = () => {
                         pointA: { x: x, y: 0 },
                         bodyB: body,
                         pointB: { x: 0, y: -spacingY/2 },
-                        stiffness: 0.9,
+                        stiffness: 1.0, // Perfectly rigid string
                         damping: 0.1,
                         render: { visible: false } 
                     });
@@ -138,7 +138,7 @@ window.PhysicsTitle = () => {
                         bodyB: body,
                         pointB: { x: 0, y: -spacingY/2 },
                         length: 5,
-                        stiffness: 0.9,
+                        stiffness: 1.0, // Perfectly rigid string
                         damping: 0.1,
                         render: { visible: false } 
                     });
@@ -162,7 +162,7 @@ window.PhysicsTitle = () => {
         const mouseConstraint = MouseConstraint.create(engine, {
             mouse: mouse,
             constraint: {
-                stiffness: 0.1,
+                stiffness: 0.01, // Extremely weak mouse pull so it brushes instead of violently yanking into knots
                 render: { visible: false }
             }
         });
