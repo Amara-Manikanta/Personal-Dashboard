@@ -60,7 +60,11 @@ window.PhysicsTitle = () => {
 
         const engine = Engine.create();
         engineRef.current = engine;
-        engine.world.gravity.y = 1.0; 
+        engine.world.gravity.y = 1.5; // Stronger gravity to pull strings tight
+        
+        // Improve solver accuracy for long chains
+        engine.positionIterations = 10;
+        engine.velocityIterations = 10;
 
         const container = sceneRef.current;
         const width = container.clientWidth || 1000;
@@ -150,7 +154,8 @@ window.PhysicsTitle = () => {
                     body, 
                     constraint, 
                     size: boxSize,
-                    isFirst: row === 0
+                    isFirst: row === 0,
+                    originalX: x // Save original X to apply restoring force later
                 });
                 
                 Composite.add(engine.world, [body, constraint]);
@@ -190,6 +195,20 @@ window.PhysicsTitle = () => {
                     break; 
                 }
             }
+        });
+
+        // Apply a gentle restoring force to guarantee strings eventually hang perfectly straight
+        Events.on(engine, 'beforeUpdate', () => {
+            letterBodies.forEach(lb => {
+                const dx = lb.originalX - lb.body.position.x;
+                // If it's displaced, gently pull it back to its original column
+                if (Math.abs(dx) > 0.5) {
+                    Matter.Body.applyForce(lb.body, lb.body.position, {
+                        x: dx * 0.000005, // Very tiny force so it doesn't look unnatural
+                        y: 0
+                    });
+                }
+            });
         });
 
         let rafId;
