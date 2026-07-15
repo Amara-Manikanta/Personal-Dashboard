@@ -1,13 +1,14 @@
 window.HomePage = ({ onNavigate }) => {
     const { useState, useEffect } = React;
+    const PhysicsTitle = window.PhysicsTitle;
 
     return (
         <div className="home-page">
             <div className="home-container">
-                <div className="home-header">
+                <div className="home-header" style={{ marginBottom: '2rem' }}>
                     <i className="ph-fill ph-compass logo-icon"></i>
-                    <h1>My Life <span className="text-accent">Tracker</span></h1>
-                    <p className="subtitle">Your personal space for books, travel, writing, and style</p>
+                    {PhysicsTitle ? <PhysicsTitle text="My Life Tracker" /> : <h1>My Life <span className="text-accent">Tracker</span></h1>}
+                    <p className="subtitle" style={{ marginTop: '-2rem' }}>Your personal space for books, travel, writing, and style</p>
                 </div>
 
                 <div className="dashboard-cards">
