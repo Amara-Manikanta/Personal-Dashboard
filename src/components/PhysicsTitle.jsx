@@ -88,27 +88,30 @@ window.PhysicsTitle = () => {
         const sourceText = "A JOURNEY OF A THOUSAND MILES BEGINS WITH A SINGLE STEP - TRACK YOUR NOVELS TRAVEL CLOTHES AND WRITING WITH THIS LIFE TRACKER... ".repeat(15);
         let charIndex = 0;
 
-        const cols = Math.floor(width / 35);
-        const rows = 12;
+        const spacingX = 30;
+        const spacingY = 30;
         const boxSize = 25;
-        const startX = (width - (cols * 35)) / 2 + 15;
+        const cols = Math.floor(width / spacingX);
+        const rows = 12;
+        const startX = (width - (cols * spacingX)) / 2 + (spacingX/2);
         
         const letterBodies = [];
         const allBodies = []; 
 
         for (let col = 0; col < cols; col++) {
+            const colGroup = Matter.Body.nextGroup(true); // Same group for entire column so they don't explode
             let previousBody = null;
-            const x = startX + (col * 35);
+            const x = startX + (col * spacingX);
             
             for (let row = 0; row < rows; row++) {
                 const char = sourceText[charIndex++];
-                const y = 20 + (row * 35);
+                const y = 20 + (row * spacingY);
 
                 const body = Bodies.rectangle(x, y, boxSize, boxSize, {
                     restitution: 0.5, 
                     frictionAir: 0.05,
                     density: 0.005,
-                    collisionFilter: { group: Matter.Body.nextGroup(true) }, // Strings in same col don't collide with each other to prevent spazzing
+                    collisionFilter: { group: colGroup },
                     render: { visible: false } 
                 });
                 
@@ -120,8 +123,8 @@ window.PhysicsTitle = () => {
                     constraint = Constraint.create({
                         pointA: { x: x, y: 0 },
                         bodyB: body,
-                        pointB: { x: 0, y: -boxSize/2 },
-                        stiffness: 0.8,
+                        pointB: { x: 0, y: -spacingY/2 },
+                        stiffness: 0.9,
                         damping: 0.1,
                         render: { visible: false } 
                     });
@@ -129,10 +132,11 @@ window.PhysicsTitle = () => {
                     // Anchor to previous body
                     constraint = Constraint.create({
                         bodyA: previousBody,
-                        pointA: { x: 0, y: boxSize/2 },
+                        pointA: { x: 0, y: spacingY/2 },
                         bodyB: body,
-                        pointB: { x: 0, y: -boxSize/2 },
-                        stiffness: 0.8,
+                        pointB: { x: 0, y: -spacingY/2 },
+                        length: 5,
+                        stiffness: 0.9,
                         damping: 0.1,
                         render: { visible: false } 
                     });
