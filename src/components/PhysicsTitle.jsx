@@ -155,7 +155,8 @@ window.PhysicsTitle = () => {
                     constraint, 
                     size: boxSize,
                     isFirst: row === 0,
-                    originalX: x // Save original X to apply restoring force later
+                    originalX: x, // Save original X to apply restoring force
+                    originalY: y  // Save original Y to break knots
                 });
                 
                 Composite.add(engine.world, [body, constraint]);
@@ -197,12 +198,20 @@ window.PhysicsTitle = () => {
             }
         });
 
-        // Apply a gentle restoring force to guarantee strings eventually hang perfectly straight
+        // Apply a gentle restoring force and an aggressive "knot breaker" reset
         Events.on(engine, 'beforeUpdate', () => {
             letterBodies.forEach(lb => {
                 const dx = lb.originalX - lb.body.position.x;
-                // If it's displaced, gently pull it back to its original column
-                if (Math.abs(dx) > 0.5) {
+                const dy = lb.originalY - lb.body.position.y;
+                
+                // KNOT BREAKER: If a letter is pulled extremely far out of bounds (flipped upside down or dragged across 3+ columns),
+                // we instantly teleport it back to its original location to untie the knot.
+                if (Math.abs(dx) > 100 || Math.abs(dy) > 150) {
+                    Matter.Body.setPosition(lb.body, { x: lb.originalX, y: lb.originalY });
+                    Matter.Body.setVelocity(lb.body, { x: 0, y: 0 });
+                } 
+                // NORMAL RESTORING FORCE: If it's just slightly displaced, gently pull it back to its column
+                else if (Math.abs(dx) > 0.5) {
                     Matter.Body.applyForce(lb.body, lb.body.position, {
                         x: dx * 0.000005, // Very tiny force so it doesn't look unnatural
                         y: 0
