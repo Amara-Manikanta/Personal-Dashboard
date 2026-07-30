@@ -414,7 +414,13 @@
           "name": "Varalakshmi Tiffens",
           "city": "Gachibowli",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "cuisines": [
+            "Local Meals"
+          ],
+          "ambiences": [
+            "Grab & Go"
+          ]
         },
         {
           "name": "Shah Ghouse",
@@ -426,6 +432,9 @@
               "name": "Mutton Biryani",
               "rating": "good"
             }
+          ],
+          "ambiences": [
+            "Casual"
           ]
         },
         {
@@ -433,20 +442,32 @@
           "city": "Vijaywada,Banglore",
           "remarks": "-",
           "image": "",
-          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59"
+          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59",
+          "cuisines": [
+            "Mixed"
+          ],
+          "ambiences": [
+            "Posh"
+          ]
         },
         {
           "name": "Gufha Restaurant",
           "city": "Tirupati",
           "remarks": "-",
           "image": "",
-          "mapLink": "https://maps.app.goo.gl/2BVDGAzhURrCYBsZA"
+          "mapLink": "https://maps.app.goo.gl/2BVDGAzhURrCYBsZA",
+          "ambiences": [
+            "Casual"
+          ]
         },
         {
           "name": "The Moonshine Project",
           "city": "Jubliee Hills",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "ambiences": [
+            "Bar"
+          ]
         },
         {
           "name": "Yum Yum Tree Arabian Hyderabad",
@@ -612,7 +633,7 @@
             "Asian"
           ],
           "ambiences": [
-            "Posh"
+            "Casual"
           ]
         },
         {
@@ -2254,23 +2275,68 @@
           "image": ""
         },
         "Sri Lakshmi Narayani Golden Temple",
-        "Light house",
+        {
+          "name": "Light house",
+          "city": "Mahabalipuram",
+          "remarks": "-",
+          "image": ""
+        },
         "Panch Rath",
         "Dolphin Nose view point",
-        "Pine Forest",
-        "Marina beach",
-        "Private tea estate",
-        "Ooty lake",
-        "Pykara Lake/ Paykara Waterfalls",
-        "The Madras Regimental museum",
+        {
+          "name": "Pine Forest",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Marina beach",
+          "city": "Chennai",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Private tea estate",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Ooty lake",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "Pykara Lake/ Paykara Waterfalls",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        },
+        {
+          "name": "The Madras Regimental museum",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        },
         "Valluvar Kottam",
         "Butterball",
-        "Seashore Temple",
+        {
+          "name": "Seashore Temple",
+          "city": "Mahabalipuram",
+          "remarks": "-",
+          "image": ""
+        },
         "Ekambaranathar Temple West Gopuram",
         "Kodaikanal",
         "Adiyogi",
         "Arunachalam Temple",
-        "Chocolate factory"
+        {
+          "name": "Chocolate factory",
+          "city": "Ooty",
+          "remarks": "-",
+          "image": ""
+        }
       ],
       "placesToVisit": [
         "Guna caves",

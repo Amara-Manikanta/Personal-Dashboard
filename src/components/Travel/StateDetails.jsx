@@ -23,6 +23,27 @@
     const STAY_TYPE_OPTIONS = ['Hotel', 'Resort', 'Service Apartment', 'Villa', 'Transit Stay', 'Hostel', 'Homestay'];
     const AMENITY_OPTIONS = ['🏊 Pool', '📶 Wi-Fi', '🍳 Kitchen', '🅿️ Parking', '❄️ AC', '☕ Breakfast'];
 
+    const PLACE_CATEGORIES = [
+        { id: 'Temple', label: 'Temple', icon: 'ph-buildings', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
+        { id: 'Adventure', label: 'Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)' },
+        { id: 'Waterfall', label: 'Waterfall', icon: 'ph-drop', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
+        { id: 'Viewpoint', label: 'Viewpoint', icon: 'ph-binoculars', color: '#8b5cf6', bg: 'rgba(139,92,246,0.15)' },
+        { id: 'Beach', label: 'Beach', icon: 'ph-sun-horizon', color: '#eab308', bg: 'rgba(234,179,8,0.15)' },
+        { id: 'Museum', label: 'Museum', icon: 'ph-bank', color: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
+        { id: 'Nature & Park', label: 'Nature & Park', icon: 'ph-tree', color: '#10b981', bg: 'rgba(16,185,129,0.15)' },
+        { id: 'Fort & Heritage', label: 'Fort & Heritage', icon: 'ph-castle-turret', color: '#78716c', bg: 'rgba(120,113,108,0.15)' },
+        { id: 'Shopping', label: 'Shopping', icon: 'ph-shopping-bag', color: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
+        { id: 'Amusement & Theme Park', label: 'Amusement & Theme Park', icon: 'ph-confetti', color: '#f97316', bg: 'rgba(249,115,22,0.15)' },
+        { id: 'Street Food Spot', label: 'Street Food Spot', icon: 'ph-cooking-pot', color: '#fb7185', bg: 'rgba(251,113,133,0.15)' },
+        { id: 'Religious & Spiritual', label: 'Religious & Spiritual', icon: 'ph-hands-praying', color: '#14b8a6', bg: 'rgba(20,184,166,0.15)' },
+        { id: 'Lake & Dam', label: 'Lake & Dam', icon: 'ph-waves', color: '#0ea5e9', bg: 'rgba(14,165,233,0.15)' },
+        { id: 'Hill Station', label: 'Hill Station', icon: 'ph-mountains', color: '#059669', bg: 'rgba(5,150,105,0.15)' },
+        { id: 'Camping', label: 'Camping', icon: 'ph-tent', color: '#84cc16', bg: 'rgba(132,204,22,0.15)' },
+        { id: 'Cultural & Events', label: 'Cultural & Events', icon: 'ph-mask-happy', color: '#7c3aed', bg: 'rgba(124,58,237,0.15)' },
+        { id: 'Wellness & Spa', label: 'Wellness & Spa', icon: 'ph-flower-lotus', color: '#d946ef', bg: 'rgba(217,70,239,0.15)' },
+        { id: 'Other', label: 'Other', icon: 'ph-map-pin', color: '#64748b', bg: 'rgba(100,116,139,0.15)' }
+    ];
+
     // Check for localhost
     const isLocalhost = window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1' ||
@@ -42,15 +63,17 @@
         const [uploadedImagePath, setUploadedImagePath] = useState('');
 
         const [searchTerm, setSearchTerm] = useState('');
+        const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
 
         // Edit State
         const [editingIndex, setEditingIndex] = useState(-1);
-        const [editItem, setEditItem] = useState({ name: '', city: '', remarks: '', image: '', mapLink: '', dishes: [] });
+        const [editItem, setEditItem] = useState({ name: '', city: '', remarks: '', category: '', image: '', mapLink: '', dishes: [] });
         const [editUploading, setEditUploading] = useState(false);
         const [newDishName, setNewDishName] = useState('');
         const [newDishRating, setNewDishRating] = useState('good');
 
         // Add Form Extended State
+        const [newCategory, setNewCategory] = useState('');
         const [newDishes, setNewDishes] = useState([]);
         const [newAddDishName, setNewAddDishName] = useState('');
         const [newAddDishRating, setNewAddDishRating] = useState('good');
@@ -86,6 +109,8 @@
             setNewItem('');
             setNewCity('');
             setNewRemarks('');
+            setNewCategory('');
+            setSelectedCategoryFilter('all');
             setUploadedImagePath('');
             setNewDishName('');
             setNewDishRating('good');
@@ -196,6 +221,7 @@
                 name: newItem.trim(),
                 city: newCity.trim() || '-',
                 remarks: newRemarks.trim() || '-',
+                category: newCategory || undefined,
                 image: isGridView ? uploadedImagePath : undefined,
                 mapLink: (activeTab === 'restaurants' || activeTab === 'treks') ? newMapLink.trim() : undefined,
                 dishes: activeTab === 'restaurants' ? [...newDishes] : undefined,
@@ -227,6 +253,7 @@
             setNewItem('');
             setNewCity('');
             setNewRemarks('');
+            setNewCategory('');
             setNewDishes([]);
             setNewAddDishName('');
             setNewAddDishRating('good');
@@ -324,6 +351,7 @@
                     name: item.name || '',
                     city: item.city || '',
                     remarks: item.remarks || '',
+                    category: item.category || '',
                     image: item.image || '',
                     mapLink: item.mapLink || '',
                     dishes: item.dishes || [],
@@ -344,7 +372,7 @@
                     isVisited: item.isVisited || false
                 });
             } else {
-                setEditItem({ name: item, city: '', remarks: '', image: '', mapLink: '', dishes: [], cuisines: [], ambiences: [], tripTypes: [], season: 'All Year', travelDuration: '', priority: 'Medium', distance: '', altitude: '', difficulty: 'Beginner', bestTime: '', permit: 'No', timeTaken: '', terrain: '', safetyAlerts: false, isVisited: false });
+                setEditItem({ name: item, city: '', remarks: '', category: '', image: '', mapLink: '', dishes: [], cuisines: [], ambiences: [], tripTypes: [], season: 'All Year', travelDuration: '', priority: 'Medium', distance: '', altitude: '', difficulty: 'Beginner', bestTime: '', permit: 'No', timeTaken: '', terrain: '', safetyAlerts: false, isVisited: false });
             }
             setNewDishName('');
             setNewDishRating('good');
@@ -352,7 +380,7 @@
 
         const cancelEdit = () => {
             setEditingIndex(-1);
-            setEditItem({ name: '', city: '', remarks: '', image: '', mapLink: '', dishes: [], cuisines: [], ambiences: [], tripTypes: [], season: 'All Year', travelDuration: '', priority: 'Medium', distance: '', altitude: '', difficulty: 'Beginner', bestTime: '', permit: 'No', timeTaken: '', terrain: '', safetyAlerts: false, isVisited: false });
+            setEditItem({ name: '', city: '', remarks: '', category: '', image: '', mapLink: '', dishes: [], cuisines: [], ambiences: [], tripTypes: [], season: 'All Year', travelDuration: '', priority: 'Medium', distance: '', altitude: '', difficulty: 'Beginner', bestTime: '', permit: 'No', timeTaken: '', terrain: '', safetyAlerts: false, isVisited: false });
             setNewDishName('');
             setNewDishRating('good');
         };
@@ -366,6 +394,7 @@
                 name: editItem.name.trim(),
                 city: editItem.city.trim() || '-',
                 remarks: editItem.remarks.trim() || '-',
+                category: editItem.category || undefined,
                 image: editItem.image
             };
             
@@ -444,9 +473,29 @@
         const filteredList = currentList
             .map((item, index) => ({ item, index }))
             .filter(({ item }) => {
-                const text = (typeof item === 'object' && item !== null) ? ((item.name || '') + (item.city || '') + (item.remarks || '')) : (item || '');
+                const isObj = typeof item === 'object' && item !== null;
+                const category = isObj ? (item.category || '') : '';
+                
+                // Category Filter
+                if (selectedCategoryFilter !== 'all') {
+                    if (category !== selectedCategoryFilter) return false;
+                }
+
+                // Search Filter
+                const text = isObj ? ((item.name || '') + ' ' + (item.city || '') + ' ' + (item.remarks || '') + ' ' + category) : (item || '');
                 return String(text).toLowerCase().includes(String(searchTerm).toLowerCase());
             });
+
+        const renderCategoryBadge = (catId) => {
+            if (!catId) return null;
+            const cat = PLACE_CATEGORIES.find(c => c.id === catId);
+            if (!cat) return null;
+            return (
+                <span className="dish-badge" style={{ backgroundColor: cat.bg, color: cat.color, border: `1px solid ${cat.color}40` }} title={cat.label}>
+                    <i className={`ph-bold ${cat.icon}`}></i> {cat.label}
+                </span>
+            );
+        };
 
         const isGridView = activeTab === 'food' && isLocalhost;
 
@@ -537,6 +586,33 @@
                         </div>
                     )}
 
+                    {/* Category Filter Bar */}
+                    <div className="category-filter-bar mb-4 overflow-x-auto">
+                        <div className="flex gap-2 py-1 scrollbar-none items-center flex-wrap">
+                            <button
+                                onClick={() => setSelectedCategoryFilter('all')}
+                                className={`px-3 py-1.5 rounded-full text-xs font-medium border whitespace-nowrap transition-all flex items-center gap-1.5 ${selectedCategoryFilter === 'all' ? 'bg-primary text-white border-primary shadow-sm' : 'bg-background-alt border-border/50 text-text-secondary hover:border-primary/50'}`}
+                            >
+                                <i className="ph-bold ph-squares-four"></i>
+                                <span>All Categories</span>
+                            </button>
+                            {PLACE_CATEGORIES.map(cat => {
+                                const isActive = selectedCategoryFilter === cat.id;
+                                return (
+                                    <button
+                                        key={cat.id}
+                                        onClick={() => setSelectedCategoryFilter(isActive ? 'all' : cat.id)}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-medium border whitespace-nowrap transition-all flex items-center gap-1.5 ${isActive ? 'text-white border-transparent shadow-sm' : 'bg-background-alt border-border/50 text-text-secondary hover:border-primary/50'}`}
+                                        style={isActive ? { backgroundColor: cat.color, borderColor: cat.color } : {}}
+                                    >
+                                        <i className={`ph-bold ${cat.icon}`}></i>
+                                        <span>{cat.label}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
                     {/* Toolbar */}
                     <div className="toolbar-row">
                         <div className="search-wrapper">
@@ -575,6 +651,17 @@
                                             placeholder="City..."
                                             className="sub-input"
                                         />
+                                        <select
+                                            value={newCategory}
+                                            onChange={(e) => setNewCategory(e.target.value)}
+                                            className="sub-input bg-background cursor-pointer"
+                                            style={{ minWidth: '130px' }}
+                                        >
+                                            <option value="">Category...</option>
+                                            {PLACE_CATEGORIES.map(cat => (
+                                                <option key={cat.id} value={cat.id}>{cat.label}</option>
+                                            ))}
+                                        </select>
                                         {activeTab === 'restaurants' && (
                                             <input
                                                 type="text"
@@ -619,6 +706,23 @@
                                 <button type="submit" disabled={!newItem.trim() || uploading} className="add-btn">
                                     <i className="ph-bold ph-plus"></i>
                                 </button>
+                            </div>
+
+                            {/* Category Quick Selector inside Add Form */}
+                            <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-dashed border-border/50">
+                                <span className="text-xs text-text-muted font-medium mr-1">Category:</span>
+                                {PLACE_CATEGORIES.map(cat => (
+                                    <button
+                                        key={cat.id}
+                                        type="button"
+                                        onClick={(e) => { e.preventDefault(); setNewCategory(prev => prev === cat.id ? '' : cat.id); }}
+                                        className={`px-2 py-0.5 rounded-full text-[11px] font-medium border transition-all flex items-center gap-1 ${newCategory === cat.id ? 'text-white border-transparent shadow-sm' : 'bg-background border-border/60 text-text-secondary hover:border-primary/50'}`}
+                                        style={newCategory === cat.id ? { backgroundColor: cat.color, borderColor: cat.color } : {}}
+                                    >
+                                        <i className={`ph-bold ${cat.icon}`}></i>
+                                        <span>{cat.label}</span>
+                                    </button>
+                                ))}
                             </div>
 
                             {/* Dish Manager inside Add Form */}
@@ -996,7 +1100,10 @@
                                                     </div>
                                                 </div>
                                                 <div className="card-info">
-                                                    <h3>{name}</h3>
+                                                     <div className="flex items-center justify-between gap-2 flex-wrap">
+                                                         <h3>{name}</h3>
+                                                         {isObj && item.category && renderCategoryBadge(item.category)}
+                                                     </div>
                                                     {(restaurant !== '-' || city !== '-') && (
                                                         <div className="card-details">
                                                             {restaurant !== '-' && <div className="detail-row"><i className="ph-fill ph-storefront"></i> <span>{restaurant}</span></div>}
@@ -1052,6 +1159,16 @@
                                                                 placeholder="Name"
                                                                 autoFocus
                                                             />
+                                                            <select
+                                                                value={editItem.category || ''}
+                                                                onChange={(e) => setEditItem({ ...editItem, category: e.target.value })}
+                                                                className="edit-input text-xs mb-2 bg-background"
+                                                            >
+                                                                <option value="">Category (None)</option>
+                                                                {PLACE_CATEGORIES.map(cat => (
+                                                                    <option key={cat.id} value={cat.id}>{cat.label}</option>
+                                                                ))}
+                                                            </select>
                                                             {(activeTab === 'restaurants' || activeTab === 'treks') && (
                                                                 <input
                                                                     type="text"
@@ -1262,8 +1379,9 @@
                                             return (
                                                 <tr key={index} className="fade-in-up">
                                                     <td className="col-name">
-                                                        <div className="flex items-center gap-2">
+                                                        <div className="flex items-center gap-2 flex-wrap">
                                                             <span className="font-medium text-lg">{name}</span>
+                                                            {isObj && item.category && renderCategoryBadge(item.category)}
                                                             {isObj && item.mapLink && (
                                                                 <a href={item.mapLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors flex items-center justify-center p-1 rounded-full hover:bg-blue-500/10" title="View on Google Maps">
                                                                     <i className="ph-fill ph-map-pin text-xl"></i>
