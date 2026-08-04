@@ -17,212 +17,259 @@
           "name": "Golconda Fort",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Salar jang Museum",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "uppada beach",
           "city": "Kakinada",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Vanajangi",
           "city": "Vanajangi",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
           "name": "padampuram botanical garden",
           "city": "Araku",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Srivari Padalu",
           "city": "Tirumala",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Srivari Mettu",
           "city": "Tirumala",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Sudha Car Museum",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Charminar",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Lumbini Park",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Japali Anjaneya Swamy Temple",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
-        "Andhra Sabarimala",
+        {
+          "name": "Andhra Sabarimala",
+          "city": "-",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
         {
           "name": "galikonda view point",
           "city": "Araku",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Alipiri Mettulu",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Sri Venugopala Swamy Temple",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "kkd beach",
           "city": "Kakinada",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Eat Sreet",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Street Food Spot",
           "image": ""
         },
         {
           "name": "Shilparamam",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "coffee museum",
           "city": "Araku",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Qutab Shahi Tombs",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Sripada srivallabha swami temple",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Biodiversity Complex",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Laknavaram Cheruvu",
           "city": "Warangal",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
           "name": "Hussain Sagar",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
           "name": "Rock Garden",
           "city": "Tirumala",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Kailasagiri",
           "city": "VSKP",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Datatreya Birth Place",
           "city": "Pithapuram",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
-        "Papi Kondalu",
+        {
+          "name": "Papi Kondalu",
+          "city": "-",
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
+        },
         {
           "name": "Srikalahasti Temple",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Ananthagiri Hills",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Silathoranam",
           "city": "Tirumala",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
-          "name": "chaparai waterfall",
+          "name": "Chaparai waterfall",
           "city": "Araku",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "Sri Bhadrakalli Temple",
           "city": "Warangal",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kukkuteswara Temple",
           "city": "Pithapuram",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Step Well",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "KanakaDurga Temple",
           "city": "Vijaywada",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Nehru Zooligical Park",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         "Watch  Tower",
@@ -230,132 +277,162 @@
           "name": "Birla mandir",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Birla science museum",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Coringa Wild Life Sanctury",
           "city": "Kakinada",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Katika waterfalls",
           "city": "Araku",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "Boora caves",
           "city": "Araku",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Sri Padmavathi Ammavari",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Ganga Amma Temple",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kanipakam Temple",
           "city": "Tirupati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "1000 Pillar Temple",
           "city": "Warangal",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Indira Gandhi Zoological Park",
           "city": "VSKP",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Ramoji Film City",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Amusement & Theme Park",
           "image": ""
         },
         {
           "name": "Shri Jagannath temple",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kondanda ramaswamy Temple",
           "city": "Mamidada",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Vemulawada Temple",
           "city": "Karimnagar",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Shri Jagannath Temple",
           "city": "Hyderabad",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "The Grand Canyon of India",
           "city": "Kadapa",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
         },
         {
           "name": "Ramappa Temple",
           "city": "Warangal",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Sammakka Saralamma Temple",
           "city": "Medaram",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Sri Kodanda Ramaswamy Temple",
           "city": "Kadapa",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Lalitha Parameshwari Temple",
           "city": "Kadapa",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Dargah",
           "city": "Kadapa",
           "remarks": "Masjid",
+          "category": "Religious & Spiritual",
           "image": ""
         },
         {
           "name": "Sri Venkateswara Swamy Temple",
           "city": "Vadapalli",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Swarnagiri Temple",
           "city": "Hyderabad",
-          "remarks": "-"
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         }
       ],
       "placesToVisit": [
@@ -870,31 +947,115 @@
     "Himachal Pradesh": {
       "visited": true,
       "placesVisited": [
-        "Manikarnan Sahib(Hot spring)",
-        "Chicham Bridge",
-        "Nagar Castle",
+        {
+          "name": "Manikarnan Sahib(Hot spring)",
+          "city": "-",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
+        },
+        {
+          "name": "Chicham Bridge",
+          "city": "-",
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
+        },
+        {
+          "name": "Nagar Castle",
+          "city": "-",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
         "Dhankar Monestry",
-        "River Rafting",
+        {
+          "name": "River Rafting",
+          "city": "-",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
+        },
         "Langza",
-        "Tabo monestry",
-        "Hidimba Temple",
+        {
+          "name": "Tabo monestry",
+          "city": "-",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
+        },
+        {
+          "name": "Hidimba Temple",
+          "city": "-",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
         "Rothang Pass",
         "Hikkim",
-        "Vashishtha",
+        {
+          "name": "Vashishtha",
+          "city": "-",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
         "Sissu",
-        "Club House",
+        {
+          "name": "Club House",
+          "city": "-",
+          "remarks": "-",
+          "category": "Shopping",
+          "image": ""
+        },
         "Van husan",
         "Atul Tunnel",
         "Kunzum Pass",
         "Kufri",
-        "Green Valley",
-        "Gulaba",
-        "Kasol Manikaran",
+        {
+          "name": "Green Valley",
+          "city": "-",
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
+        },
+        {
+          "name": "Gulaba",
+          "city": "-",
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
+        },
+        {
+          "name": "Kasol Manikaran",
+          "city": "-",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
+        },
         "Manestory",
-        "Paragliding",
+        {
+          "name": "Paragliding",
+          "city": "-",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
+        },
         "Solang Valley",
-        "Mall Road",
-        "Key Monestry"
+        {
+          "name": "Mall Road",
+          "city": "-",
+          "remarks": "-",
+          "category": "Shopping",
+          "image": ""
+        },
+        {
+          "name": "Key Monestry",
+          "city": "-",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        }
       ],
       "placesToVisit": [
         "Kalath hot water springs",
@@ -1031,211 +1192,367 @@
       "placesVisited": [
         {
           "name": "Chamundeshwari Temple",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Hazara Rama Temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Gagan Mahal",
-          "city": "Anegundi (near Hampi)"
+          "city": "Anegundi (near Hampi)",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Kallathgiri Falls",
-          "city": "Chikmagalur"
+          "city": "Chikmagalur",
+          "remarks": "-",
+          "category": "Waterfall",
+          "image": ""
         },
         {
           "name": "Stepped Tank",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Lalbagh",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
         },
         {
           "name": "Mullayanagiri",
-          "city": "Chikmagalur"
+          "city": "Chikmagalur",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Mahanaavami dibba",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Nandi Hills",
-          "city": "Chikkaballapur (near Bangalore)"
+          "city": "Chikkaballapur (near Bangalore)",
+          "remarks": "-",
+          "category": "Hill Station",
+          "image": ""
         },
         {
           "name": "Laxmi Narasimha Temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Jawaharlal Nehru Planetarium",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
         },
         {
           "name": "Malpe Beach",
-          "city": "Udupi"
+          "city": "Udupi",
+          "remarks": "-",
+          "category": "Beach",
+          "image": ""
         },
         {
           "name": "Bull Temple",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Underground Prasanna Virupaksha shiva temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Golden Temple",
-          "city": "Bylakuppe (near Coorg)"
+          "city": "Bylakuppe (near Coorg)",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Agara Lake",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
         },
         {
           "name": "Vidhana Soudha",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Honnammanahalla Falls",
-          "city": "Chikmagalur"
+          "city": "Chikmagalur",
+          "remarks": "-",
+          "category": "Waterfall",
+          "image": ""
         },
         {
           "name": "Innovative film city",
-          "city": "Bidadi (near Bangalore)"
+          "city": "Bidadi (near Bangalore)",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
         },
         {
           "name": "Aqua World Underwater",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
         },
         {
           "name": "Murdeshwar",
-          "city": "Uttara Kannada Coast"
+          "city": "Uttara Kannada Coast",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Ram Footsteps Chintamani",
-          "city": "Anegundi (near Hampi)"
+          "city": "Anegundi (near Hampi)",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Raja's Seat",
-          "city": "Coorg"
+          "city": "Coorg",
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
         },
         {
           "name": "Kadalekalu Gnesha Temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Monolithic Bull",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Club Cabana",
-          "city": "Devanahalli (near Bangalore)"
+          "city": "Devanahalli (near Bangalore)",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
         },
         {
           "name": "Makalidurga Fort Trekking",
-          "city": "Doddaballapur (near Bangalore)"
+          "city": "Doddaballapur (near Bangalore)",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "St. Philomena's Church",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
         },
         {
           "name": "Elephant stable",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Maravanthe Beach",
-          "city": "Kundapura"
+          "city": "Kundapura",
+          "remarks": "-",
+          "category": "Beach",
+          "image": ""
         },
         {
           "name": "Wonderla",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
         },
         {
           "name": "Mall Of Asia",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Shopping",
+          "image": ""
         },
         {
           "name": "Queens palace basement",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Coracle ride",
-          "city": "Hampi / Sanapur Lake"
+          "city": "Hampi / Sanapur Lake",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Mini Golf Madness",
-          "city": "Indiranagar, Bangalore"
+          "city": "Indiranagar, Bangalore",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Mysuru Zoo",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
         },
         {
           "name": "Shanti Falls",
-          "city": "Chikmagalur"
+          "city": "Chikmagalur",
+          "remarks": "-",
+          "category": "Waterfall",
+          "image": ""
         },
         {
           "name": "BTM Lake",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
         },
         {
           "name": "Anjanadri Hill",
-          "city": "Anegundi (near Hampi)"
+          "city": "Anegundi (near Hampi)",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Sri Krishna temple",
-          "city": "Udupi"
+          "city": "Udupi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Mysore Palace(Amba Vilas Palace)",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Lotus Mahal",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Brindavan Gardens",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
         },
         {
           "name": "Indian Music experiance museum",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
         },
         {
           "name": "Jog Falls",
-          "city": "Sagara"
+          "city": "Sagara",
+          "remarks": "-",
+          "category": "Waterfall",
+          "image": ""
         },
         {
           "name": "Government Aquarium",
-          "city": "Bangalore"
+          "city": "Bangalore",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
         },
         {
           "name": "Pyramid of alley",
-          "city": "Kanakapura Road (near Bangalore)"
+          "city": "Kanakapura Road (near Bangalore)",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
         },
         {
           "name": "Badavilinga Temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Virupaksha Temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Payana Car Museum",
-          "city": "Mysore Highway"
+          "city": "Mysore Highway",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
         },
         {
           "name": "Tala Kaveri",
-          "city": "Coorg"
+          "city": "Coorg",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Queens Bath",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         },
         {
           "name": "Zanana Enclosure",
@@ -1243,19 +1560,31 @@
         },
         {
           "name": "Birds of paradise",
-          "city": "Coorg"
+          "city": "Coorg",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
         },
         {
           "name": "Vijaya Vithala Temple",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         },
         {
           "name": "Jhari Water Falls",
-          "city": "Chikmagalur"
+          "city": "Chikmagalur",
+          "remarks": "-",
+          "category": "Waterfall",
+          "image": ""
         },
         {
           "name": "Sanapur Lake",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
         },
         {
           "name": "Hampi",
@@ -1263,7 +1592,10 @@
         },
         {
           "name": "Mysore Palace",
-          "city": "Mysore"
+          "city": "Mysore",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
         }
       ],
       "placesToVisit": [
@@ -1515,6 +1847,7 @@
           "name": "zpoint trek",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": "",
           "distance": "6 Km",
           "altitude": "4,921 feet",
@@ -1528,30 +1861,39 @@
           "name": "Matanga Hill",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": "",
           "distance": "2",
           "altitude": "1,726",
           "difficulty": "Beginner",
+          "permit": "No",
+          "safetyAlerts": false,
           "isVisited": true
         },
         {
           "name": "Anthargange Cave Trekking",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": "",
           "distance": "4",
           "altitude": "4,022",
           "difficulty": "Beginner",
+          "permit": "No",
+          "safetyAlerts": false,
           "isVisited": true
         },
         {
           "name": "Chunchi Falls",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": "",
           "distance": "2",
           "altitude": "1,410",
           "difficulty": "Beginner",
+          "permit": "No",
+          "safetyAlerts": false,
           "isVisited": true
         }
       ],
