@@ -269,6 +269,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     const [selectedNovel, setSelectedNovel] = useState(null);
     const [activeTab, setActiveTab] = useState('novels'); // 'novels' or 'stats'
     const [isFilterVisible, setIsFilterVisible] = useState(false);
+    const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'shelf'
 
     // ---- Effects ----
     // Save to local storage whenever novels change
@@ -473,6 +474,24 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                             </div>
 
                             <div className="action-buttons">
+                                {/* View Toggle: Grid / Shelf */}
+                                <div className="view-toggle-bookshelf">
+                                    <button
+                                        className={`toggle-btn-bs ${viewMode === 'grid' ? 'active' : ''}`}
+                                        onClick={() => setViewMode('grid')}
+                                        title="Grid View"
+                                    >
+                                        <i className="ph-bold ph-squares-four"></i>
+                                    </button>
+                                    <button
+                                        className={`toggle-btn-bs ${viewMode === 'shelf' ? 'active' : ''}`}
+                                        onClick={() => setViewMode('shelf')}
+                                        title="Bookshelf View"
+                                    >
+                                        <i className="ph-bold ph-bookmarks-simple"></i>
+                                    </button>
+                                </div>
+
                                 <button
                                     className={`export-btn ${isFilterVisible ? 'active' : ''}`}
                                     onClick={() => setIsFilterVisible(!isFilterVisible)}
@@ -522,19 +541,28 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                             </div>
 
                             {filteredNovels.length > 0 ? (
-                                <div className="novels-grid" style={{
-                                    gridTemplateColumns: isFilterVisible ? 'repeat(3, 1fr)' : 'repeat(4, 1fr)'
-                                }}>
-                                    {filteredNovels.map(novel => (
-                                        <window.NovelCard
-                                            key={novel.id}
-                                            novel={novel}
-                                            onEdit={openEditModal}
-                                            onDelete={initiateDelete}
-                                            onSelect={setSelectedNovel}
-                                        />
-                                    ))}
-                                </div>
+                                viewMode === 'shelf' ? (
+                                    <window.BookshelfView
+                                        novels={filteredNovels}
+                                        onSelect={setSelectedNovel}
+                                        onEdit={openEditModal}
+                                        onDelete={initiateDelete}
+                                    />
+                                ) : (
+                                    <div className="novels-grid" style={{
+                                        gridTemplateColumns: isFilterVisible ? 'repeat(3, 1fr)' : 'repeat(4, 1fr)'
+                                    }}>
+                                        {filteredNovels.map(novel => (
+                                            <window.NovelCard
+                                                key={novel.id}
+                                                novel={novel}
+                                                onEdit={openEditModal}
+                                                onDelete={initiateDelete}
+                                                onSelect={setSelectedNovel}
+                                            />
+                                        ))}
+                                    </div>
+                                )
                             ) : (
                                 <div className="empty-state">
                                     <i className="ph ph-mask-sad"></i>
@@ -989,6 +1017,37 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                 .action-buttons {
     display: flex;
     gap: 0.75rem;
+    align-items: center;
+}
+
+                .view-toggle-bookshelf {
+    display: flex;
+    background: var(--bg-surface);
+    padding: 0.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+                .toggle-btn-bs {
+    background: transparent;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+                .toggle-btn-bs.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.4);
+}
+                .toggle-btn-bs:hover:not(.active) {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.05);
 }
 
                 .home-btn {
