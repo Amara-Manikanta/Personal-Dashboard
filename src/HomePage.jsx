@@ -5,10 +5,10 @@ window.HomePage = ({ onNavigate }) => {
     return (
         <div className="home-page">
             <div className="home-container">
-                <div className="home-header" style={{ marginBottom: '2rem' }}>
+                <div className="home-header">
                     <i className="ph-fill ph-compass logo-icon"></i>
                     {PhysicsTitle ? <PhysicsTitle text="My Life Tracker" /> : <h1>My Life <span className="text-accent">Tracker</span></h1>}
-                    <p className="subtitle" style={{ marginTop: '-2rem' }}>Your personal space for books, travel, writing, and style</p>
+                    <p className="subtitle">Your personal space for books, travel, writing, and style</p>
                 </div>
 
                 <div className="dashboard-cards">
@@ -95,7 +95,7 @@ window.HomePage = ({ onNavigate }) => {
 
                 .home-header {
                     text-align: center;
-                    margin-bottom: 5rem;
+                    margin-bottom: 3rem;
                 }
 
                 .home-header .logo-icon {
