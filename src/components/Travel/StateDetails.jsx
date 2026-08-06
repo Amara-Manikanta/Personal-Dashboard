@@ -470,14 +470,26 @@
         const activeSection = SECTIONS.find(s => s.id === activeTab);
         const currentList = data[activeTab] || [];
 
+        // How many items sit in each category, so the filter bar can show counts
+        // and hide chips for categories nothing uses.
+        const categoryCounts = {};
+        let uncategorisedCount = 0;
+        currentList.forEach(item => {
+            const cat = (item && typeof item === 'object' && item.category) || '';
+            if (cat) categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+            else uncategorisedCount++;
+        });
+
         const filteredList = currentList
             .map((item, index) => ({ item, index }))
             .filter(({ item }) => {
                 const isObj = typeof item === 'object' && item !== null;
                 const category = isObj ? (item.category || '') : '';
-                
+
                 // Category Filter
-                if (selectedCategoryFilter !== 'all') {
+                if (selectedCategoryFilter === '__none') {
+                    if (category) return false;
+                } else if (selectedCategoryFilter !== 'all') {
                     if (category !== selectedCategoryFilter) return false;
                 }
 
@@ -575,42 +587,57 @@
 
                     {/* Treks Global Stats */}
                     {activeTab === 'treks' && (
-                        <div className="flex justify-between items-center bg-background-alt p-3 rounded-lg border border-border/50 mb-4 shadow-sm">
-                            <div className="flex items-center gap-2 text-text">
-                                <i className="ph-fill ph-mountains text-xl text-primary"></i>
-                                <span className="font-semibold">Total Kms Covered:</span>
-                                <span className="text-sm text-text-muted">
-                                    {totalTrekKms.toFixed(1).replace(/\.0$/, '')} km from {currentList.filter(i => i && typeof i === 'object' && i.isVisited).length} visited treks
-                                </span>
-                            </div>
+                        <div className="trek-stat-bar">
+                            <i className="ph-fill ph-mountains"></i>
+                            <span className="trek-stat-value">{totalTrekKms.toFixed(1).replace(/\.0$/, '')} km</span>
+                            <span className="trek-stat-label">
+                                covered across {currentList.filter(i => i && typeof i === 'object' && i.isVisited).length} visited treks
+                            </span>
                         </div>
                     )}
 
-                    {/* Category Filter Bar */}
-                    <div className="category-filter-bar mb-4 overflow-x-auto">
-                        <div className="flex gap-2 py-1 scrollbar-none items-center flex-wrap">
+                    {/* Category Filter Bar — only categories present in this list are shown */}
+                    <div className="cat-filter">
+                        <button
+                            onClick={() => setSelectedCategoryFilter('all')}
+                            className={`cat-chip ${selectedCategoryFilter === 'all' ? 'is-active' : ''}`}
+                        >
+                            <i className="ph-bold ph-squares-four"></i>
+                            <span>All</span>
+                            <span className="cat-chip-count">{currentList.length}</span>
+                        </button>
+
+                        {PLACE_CATEGORIES.map(cat => {
+                            const count = categoryCounts[cat.id] || 0;
+                            if (!count) return null;
+
+                            const isActive = selectedCategoryFilter === cat.id;
+                            return (
+                                <button
+                                    key={cat.id}
+                                    onClick={() => setSelectedCategoryFilter(isActive ? 'all' : cat.id)}
+                                    className={`cat-chip ${isActive ? 'is-active' : ''}`}
+                                    style={isActive
+                                        ? { background: cat.color, borderColor: cat.color, boxShadow: `0 4px 14px ${cat.bg}` }
+                                        : { '--chip-accent': cat.color }}
+                                >
+                                    <i className={`ph-bold ${cat.icon}`} style={isActive ? {} : { color: cat.color }}></i>
+                                    <span>{cat.label}</span>
+                                    <span className="cat-chip-count">{count}</span>
+                                </button>
+                            );
+                        })}
+
+                        {uncategorisedCount > 0 && (
                             <button
-                                onClick={() => setSelectedCategoryFilter('all')}
-                                className={`px-3 py-1.5 rounded-full text-xs font-medium border whitespace-nowrap transition-all flex items-center gap-1.5 ${selectedCategoryFilter === 'all' ? 'bg-primary text-white border-primary shadow-sm' : 'bg-background-alt border-border/50 text-text-secondary hover:border-primary/50'}`}
+                                onClick={() => setSelectedCategoryFilter(selectedCategoryFilter === '__none' ? 'all' : '__none')}
+                                className={`cat-chip is-muted ${selectedCategoryFilter === '__none' ? 'is-active' : ''}`}
                             >
-                                <i className="ph-bold ph-squares-four"></i>
-                                <span>All Categories</span>
+                                <i className="ph-bold ph-tag-simple"></i>
+                                <span>Uncategorised</span>
+                                <span className="cat-chip-count">{uncategorisedCount}</span>
                             </button>
-                            {PLACE_CATEGORIES.map(cat => {
-                                const isActive = selectedCategoryFilter === cat.id;
-                                return (
-                                    <button
-                                        key={cat.id}
-                                        onClick={() => setSelectedCategoryFilter(isActive ? 'all' : cat.id)}
-                                        className={`px-3 py-1.5 rounded-full text-xs font-medium border whitespace-nowrap transition-all flex items-center gap-1.5 ${isActive ? 'text-white border-transparent shadow-sm' : 'bg-background-alt border-border/50 text-text-secondary hover:border-primary/50'}`}
-                                        style={isActive ? { backgroundColor: cat.color, borderColor: cat.color } : {}}
-                                    >
-                                        <i className={`ph-bold ${cat.icon}`}></i>
-                                        <span>{cat.label}</span>
-                                    </button>
-                                );
-                            })}
-                        </div>
+                        )}
                     </div>
 
                     {/* Toolbar */}
@@ -651,17 +678,6 @@
                                             placeholder="City..."
                                             className="sub-input"
                                         />
-                                        <select
-                                            value={newCategory}
-                                            onChange={(e) => setNewCategory(e.target.value)}
-                                            className="sub-input bg-background cursor-pointer"
-                                            style={{ minWidth: '130px' }}
-                                        >
-                                            <option value="">Category...</option>
-                                            {PLACE_CATEGORIES.map(cat => (
-                                                <option key={cat.id} value={cat.id}>{cat.label}</option>
-                                            ))}
-                                        </select>
                                         {activeTab === 'restaurants' && (
                                             <input
                                                 type="text"
@@ -708,21 +724,36 @@
                                 </button>
                             </div>
 
-                            {/* Category Quick Selector inside Add Form */}
-                            <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-dashed border-border/50">
-                                <span className="text-xs text-text-muted font-medium mr-1">Category:</span>
-                                {PLACE_CATEGORIES.map(cat => (
-                                    <button
-                                        key={cat.id}
-                                        type="button"
-                                        onClick={(e) => { e.preventDefault(); setNewCategory(prev => prev === cat.id ? '' : cat.id); }}
-                                        className={`px-2 py-0.5 rounded-full text-[11px] font-medium border transition-all flex items-center gap-1 ${newCategory === cat.id ? 'text-white border-transparent shadow-sm' : 'bg-background border-border/60 text-text-secondary hover:border-primary/50'}`}
-                                        style={newCategory === cat.id ? { backgroundColor: cat.color, borderColor: cat.color } : {}}
-                                    >
-                                        <i className={`ph-bold ${cat.icon}`}></i>
-                                        <span>{cat.label}</span>
-                                    </button>
-                                ))}
+                            {/* Category picker — the only category control in this form */}
+                            <div className="cat-picker">
+                                <span className="cat-picker-label">
+                                    Category
+                                    {newCategory && (
+                                        <button type="button" className="cat-picker-clear" onClick={() => setNewCategory('')}>
+                                            clear
+                                        </button>
+                                    )}
+                                </span>
+                                <div className="cat-picker-options">
+                                    {PLACE_CATEGORIES.map(cat => {
+                                        const isPicked = newCategory === cat.id;
+                                        return (
+                                            <button
+                                                key={cat.id}
+                                                type="button"
+                                                title={cat.label}
+                                                onClick={(e) => { e.preventDefault(); setNewCategory(prev => prev === cat.id ? '' : cat.id); }}
+                                                className={`cat-chip cat-chip-sm ${isPicked ? 'is-active' : ''}`}
+                                                style={isPicked
+                                                    ? { background: cat.color, borderColor: cat.color }
+                                                    : { '--chip-accent': cat.color }}
+                                            >
+                                                <i className={`ph-bold ${cat.icon}`} style={isPicked ? {} : { color: cat.color }}></i>
+                                                <span>{cat.label}</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             </div>
 
                             {/* Dish Manager inside Add Form */}
@@ -1100,7 +1131,7 @@
                                                     </div>
                                                 </div>
                                                 <div className="card-info">
-                                                     <div className="flex items-center justify-between gap-2 flex-wrap">
+                                                     <div className="name-cell name-cell-spread">
                                                          <h3>{name}</h3>
                                                          {isObj && item.category && renderCategoryBadge(item.category)}
                                                      </div>
@@ -1379,8 +1410,8 @@
                                             return (
                                                 <tr key={index} className="fade-in-up">
                                                     <td className="col-name">
-                                                        <div className="flex items-center gap-2 flex-wrap">
-                                                            <span className="font-medium text-lg">{name}</span>
+                                                        <div className="name-cell">
+                                                            <span className="name-cell-title">{name}</span>
                                                             {isObj && item.category && renderCategoryBadge(item.category)}
                                                             {isObj && item.mapLink && (
                                                                 <a href={item.mapLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors flex items-center justify-center p-1 rounded-full hover:bg-blue-500/10" title="View on Google Maps">
@@ -1841,6 +1872,164 @@
                     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
                     @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+                    /* ----- Category chips (filter bar + add-form picker) -----
+                       This file was written with Tailwind utility classes, but no
+                       Tailwind build is loaded, so those classes rendered as bare
+                       browser buttons. These are real styles for the same UI. */
+                    .cat-filter {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-bottom: 1.25rem;
+                        padding-bottom: 0.35rem;
+                        overflow-x: auto;
+                        scrollbar-width: thin;
+                        scrollbar-color: rgba(255,255,255,0.12) transparent;
+                    }
+
+                    .cat-filter::-webkit-scrollbar { height: 4px; }
+                    .cat-filter::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+                    .cat-chip {
+                        --chip-accent: var(--primary);
+                        flex: 0 0 auto;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.4rem;
+                        padding: 0.4rem 0.85rem;
+                        border-radius: 99px;
+                        border: 1px solid var(--border);
+                        background: rgba(255, 255, 255, 0.035);
+                        color: var(--text-secondary);
+                        font-family: inherit;
+                        font-size: 0.78rem;
+                        font-weight: 500;
+                        white-space: nowrap;
+                        cursor: pointer;
+                        transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+                    }
+
+                    .cat-chip i { font-size: 0.9rem; line-height: 1; }
+
+                    .cat-chip:hover {
+                        border-color: var(--chip-accent);
+                        background: rgba(255, 255, 255, 0.06);
+                        color: var(--text-primary);
+                        transform: translateY(-1px);
+                    }
+
+                    .cat-chip.is-active {
+                        color: #fff;
+                        font-weight: 600;
+                        border-color: transparent;
+                        background: var(--primary);
+                    }
+
+                    .cat-chip.is-active i { color: #fff !important; }
+                    .cat-chip.is-muted i { color: var(--text-muted); }
+
+                    .cat-chip-count {
+                        min-width: 1.15rem;
+                        padding: 0 0.3rem;
+                        border-radius: 99px;
+                        background: rgba(255, 255, 255, 0.08);
+                        font-size: 0.68rem;
+                        font-variant-numeric: tabular-nums;
+                        text-align: center;
+                    }
+
+                    .cat-chip.is-active .cat-chip-count { background: rgba(0, 0, 0, 0.22); }
+
+                    /* Compact variant used inside the add form */
+                    .cat-chip-sm { padding: 0.25rem 0.6rem; font-size: 0.72rem; gap: 0.3rem; }
+                    .cat-chip-sm i { font-size: 0.8rem; }
+
+                    .cat-picker {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 0.75rem;
+                        padding-top: 0.75rem;
+                        margin-top: 0.25rem;
+                        border-top: 1px dashed var(--border);
+                    }
+
+                    .cat-picker-label {
+                        flex: 0 0 auto;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.4rem;
+                        padding-top: 0.3rem;
+                        color: var(--text-muted);
+                        font-size: 0.72rem;
+                        font-weight: 600;
+                        letter-spacing: 0.04em;
+                        text-transform: uppercase;
+                    }
+
+                    .cat-picker-clear {
+                        background: none;
+                        border: none;
+                        padding: 0;
+                        color: var(--primary);
+                        font-family: inherit;
+                        font-size: 0.68rem;
+                        text-transform: none;
+                        letter-spacing: 0;
+                        cursor: pointer;
+                    }
+
+                    .cat-picker-clear:hover { text-decoration: underline; }
+
+                    .cat-picker-options {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.35rem;
+                    }
+
+                    /* Leave room for the magnifier icon sitting inside the field */
+                    #root .search-wrapper { position: relative; display: flex; align-items: center; flex: 1; }
+                    #root .search-wrapper > i {
+                        position: absolute;
+                        left: 1rem;
+                        color: var(--text-muted);
+                        pointer-events: none;
+                        font-size: 0.95rem;
+                        z-index: 1;
+                    }
+                    #root .search-wrapper input { padding-left: 2.6rem !important; width: 100%; }
+
+                    /* Name + category badge, so the badge never crowds the title */
+                    .name-cell {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        flex-wrap: wrap;
+                    }
+
+                    .name-cell-spread { justify-content: space-between; }
+
+                    .name-cell-title {
+                        font-size: 1.05rem;
+                        font-weight: 500;
+                        color: var(--text-primary);
+                    }
+
+                    /* Treks summary bar */
+                    .trek-stat-bar {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        padding: 0.85rem 1.1rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-lg);
+                        background: rgba(255, 255, 255, 0.03);
+                    }
+
+                    .trek-stat-bar i { font-size: 1.25rem; color: var(--primary); }
+                    .trek-stat-value { font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+                    .trek-stat-label { color: var(--text-muted); font-size: 0.85rem; }
+
                     @media (max-width: 768px) {
                         .toolbar-row { flex-direction: column; }
                         .inputs-group { flex-direction: column; }
@@ -1848,6 +2037,8 @@
                         .sub-input { border-left: none !important; border-top: 1px solid var(--border); }
                         .col-city, .col-remarks { display: none; } .col-name { width: 80%; }
                         .table-card { overflow-x: auto; }
+                        .cat-picker { flex-direction: column; gap: 0.5rem; }
+                        .cat-picker-options { max-height: 5.5rem; overflow-y: auto; }
                     }
                 `}</style>
             </div>

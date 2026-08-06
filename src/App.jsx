@@ -178,7 +178,18 @@ const App = () => {
                 />
             )}
 
-            {currentView === 'novels' && (
+            {/* Dashboards read from the window.* globals filled by the fetch above,
+                and they snapshot that data on mount. Deep-linking straight to one
+                (or refreshing on it) must therefore wait for the load to finish,
+                or the page renders permanently empty. */}
+            {currentView !== 'home' && loading && (
+                <div className="app-loading">
+                    <i className="ph-bold ph-circle-notch"></i>
+                    <span>Loading your data…</span>
+                </div>
+            )}
+
+            {currentView === 'novels' && !loading && (
                 <window.NovelsDashboard
                     onBackToHome={handleBackToHome}
                     onAuthorClick={(author) => {
@@ -188,7 +199,7 @@ const App = () => {
                 />
             )}
 
-            {currentView === 'author-page' && (
+            {currentView === 'author-page' && !loading && (
                 <window.AuthorPage
                     authorName={selectedAuthorName}
                     novels={window.novelsData || []}
@@ -208,7 +219,7 @@ const App = () => {
                 />
             )}
 
-            {currentView === 'travel' && (
+            {currentView === 'travel' && !loading && (
                 <window.TravelDashboard
                     onBackToHome={handleBackToHome}
                     onNavigateToState={(stateName) => {
@@ -218,11 +229,11 @@ const App = () => {
                 />
             )}
 
-            {currentView === 'writing' && (
+            {currentView === 'writing' && !loading && (
                 <window.WritingDashboard onBackToHome={handleBackToHome} />
             )}
 
-            {currentView === 'state-details' && (
+            {currentView === 'state-details' && !loading && (
                 console.log("Rendering StateDetails, window.StateDetails is:", window.StateDetails) ||
                 <window.StateDetails
                     stateName={selectedStateName}
@@ -230,11 +241,11 @@ const App = () => {
                 />
             )}
 
-            {currentView === 'sync' && (
+            {currentView === 'sync' && !loading && (
                 <window.SyncDashboard onBackToHome={handleBackToHome} />
             )}
 
-            {currentView === 'clothes' && (
+            {currentView === 'clothes' && !loading && (
                 <window.ClothesDashboard onBackToHome={handleBackToHome} />
             )}
         </div>
