@@ -676,3 +676,27 @@
     box-shadow: var(--glow-primary) !important;
     transform: translateY(-1px) !important;
 }
+
+/* ==========================================================================
+   Full-page loading state (shown while the initial data fetch is in flight)
+   ========================================================================== */
+#root .app-loading {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+#root .app-loading i {
+    font-size: 2rem;
+    color: var(--primary);
+    animation: app-loading-spin 1s linear infinite;
+}
+
+@keyframes app-loading-spin {
+    to { transform: rotate(360deg); }
+}
