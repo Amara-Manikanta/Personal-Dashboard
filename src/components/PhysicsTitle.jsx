@@ -6,6 +6,30 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
     const audioCtxRef = useRef(null);
     const [letters, setLetters] = useState([]);
     const [audioEnabled, setAudioEnabled] = useState(false);
+    // Rebuild key — the world must be built from the container's real box, so
+    // it is rebuilt whenever that box changes (first layout pass, resize).
+    const [sizeKey, setSizeKey] = useState('0x0');
+
+    useEffect(() => {
+        const el = sceneRef.current;
+        if (!el || typeof ResizeObserver === 'undefined') return;
+
+        let timer = null;
+        const measure = () => {
+            const w = el.clientWidth, h = el.clientHeight;
+            if (w < 80 || h < 80) return;
+            setSizeKey(`${Math.round(w)}x${Math.round(h)}`);
+        };
+
+        const ro = new ResizeObserver(() => {
+            clearTimeout(timer);
+            timer = setTimeout(measure, 150); // debounce so dragging a window edge doesn't thrash
+        });
+        ro.observe(el);
+        measure();
+
+        return () => { clearTimeout(timer); ro.disconnect(); };
+    }, []);
 
     // Audio setup
     const initAudio = () => {
@@ -47,6 +71,7 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
     useEffect(() => {
         if (!sceneRef.current) return;
         if (typeof Matter === 'undefined') return;
+        if (sizeKey === '0x0') return; // wait for a real measurement
 
         const Engine = Matter.Engine,
             Render = Matter.Render,
@@ -67,8 +92,9 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
         engine.velocityIterations = 10;
 
         const container = sceneRef.current;
-        const width = container.clientWidth || 600;
-        const height = container.clientHeight || 340;
+        const [measuredW, measuredH] = sizeKey.split('x').map(Number);
+        const width = measuredW || container.clientWidth;
+        const height = measuredH || container.clientHeight;
 
         const render = Render.create({
             element: container,
@@ -82,6 +108,10 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
         });
         
         render.canvas.style.opacity = '0';
+        // Match the container exactly — a canvas larger than its box puts most
+        // of the curtain outside the visible area and skews mouse mapping.
+        render.canvas.style.width = '100%';
+        render.canvas.style.height = '100%';
         render.canvas.style.position = 'absolute';
         render.canvas.style.top = '0';
         render.canvas.style.left = '0';
@@ -123,14 +153,17 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
 
                 // Use circles instead of rectangles! Corners snag on each other, circles perfectly slide off.
                 const body = Bodies.circle(x, y, boxSize/1.8, {
-                    restitution: 0.1, // Minimal bounce to prevent chaotic energy
-                    frictionAir: 0.05, // More air resistance to settle faster
+                    restitution: 0.02, // Almost no bounce — bounce is what keeps them buzzing
+                    frictionAir: 0.09, // More air resistance to settle faster
                     friction: 0, // Zero surface friction so they are slippery like glass
                     density: 0.005,
                     collisionFilter: { group: colGroup },
-                    render: { visible: false } 
+                    render: { visible: false }
                 });
-                
+
+                // Infinite inertia: letters stay upright and cannot spin up
+                Matter.Body.setInertia(body, Infinity);
+
                 allBodies.push(body);
 
                 let constraint;
@@ -208,39 +241,82 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
             }
         });
 
-        // Apply a stronger restoring force and an absolute clamp to remove knots entirely
-        Events.on(engine, 'beforeUpdate', () => {
-            letterBodies.forEach(lb => {
-                let currentX = lb.body.position.x;
-                const dx = lb.originalX - currentX;
-                const dy = lb.originalY - lb.body.position.y;
-                
-                // NO KNOTS: Absolutely prevent any string from moving more than 35px horizontally from its column.
-                // This makes it physically impossible for strings to wrap around each other.
-                if (dx < -14) {
-                    currentX = lb.originalX + 14;
-                    Matter.Body.setPosition(lb.body, { x: currentX, y: lb.body.position.y });
-                    Matter.Body.setVelocity(lb.body, { x: 0, y: lb.body.velocity.y });
-                } else if (dx > 14) {
-                    currentX = lb.originalX - 14;
-                    Matter.Body.setPosition(lb.body, { x: currentX, y: lb.body.position.y });
-                    Matter.Body.setVelocity(lb.body, { x: 0, y: lb.body.velocity.y });
-                }
-                
-                if (Math.abs(dy) > 80) {
-                    Matter.Body.setPosition(lb.body, { x: currentX, y: lb.originalY });
-                    Matter.Body.setVelocity(lb.body, { x: 0, y: 0 });
-                }
+        const MAX_DX = 22;
+        let agitatedTicks = 0;
 
-                // NORMAL RESTORING FORCE: Pull back to column much faster
-                const newDx = lb.originalX - currentX;
-                if (Math.abs(newDx) > 0.5) {
+        // Snap every letter back to its resting position and stop it dead.
+        const settleAll = () => {
+            letterBodies.forEach(lb => {
+                Matter.Body.setPosition(lb.body, { x: lb.originalX, y: lb.originalY });
+                Matter.Body.setVelocity(lb.body, { x: 0, y: 0 });
+                Matter.Body.setAngularVelocity(lb.body, 0);
+            });
+            agitatedTicks = 0;
+        };
+
+        // Keep the strings in their columns, then bleed energy so they always
+        // come to rest. Teleporting a body inside a rigid chain injects energy
+        // the solver immediately fights back against, so displacement is
+        // corrected with a spring + damping rather than a hard snap.
+        Events.on(engine, 'beforeUpdate', () => {
+            const dragging = !!mouseConstraint.body;
+            let totalSpeed = 0;
+
+            letterBodies.forEach(lb => {
+                const dx = lb.originalX - lb.body.position.x;
+                const dy = lb.originalY - lb.body.position.y;
+                const overshoot = Math.abs(dx) - MAX_DX;
+
+                // Past the column limit: pull back hard and damp along X instead
+                // of snapping, so the constraint solver has nothing to fight.
+                if (overshoot > 0) {
                     Matter.Body.applyForce(lb.body, lb.body.position, {
-                        x: newDx * 0.00002, // Stronger restoring force
+                        x: Math.sign(dx) * Math.min(overshoot, 40) * 0.00004,
+                        y: 0
+                    });
+                    Matter.Body.setVelocity(lb.body, {
+                        x: lb.body.velocity.x * 0.6,
+                        y: lb.body.velocity.y
+                    });
+                } else if (Math.abs(dx) > 0.5) {
+                    // Gentle restoring spring back towards the column
+                    Matter.Body.applyForce(lb.body, lb.body.position, {
+                        x: dx * 0.00002,
                         y: 0
                     });
                 }
+
+                // A body flung far off vertically is unrecoverable — park it.
+                if (Math.abs(dy) > 120) {
+                    Matter.Body.setPosition(lb.body, { x: lb.body.position.x, y: lb.originalY });
+                    Matter.Body.setVelocity(lb.body, { x: 0, y: 0 });
+                }
+
+                const speed = Math.abs(lb.body.velocity.x) + Math.abs(lb.body.velocity.y);
+                totalSpeed += speed;
+
+                // Below the noise floor, stop the body outright so tiny
+                // solver corrections cannot keep it buzzing forever.
+                if (!dragging && speed < 0.08) {
+                    Matter.Body.setVelocity(lb.body, { x: 0, y: 0 });
+                    Matter.Body.setAngularVelocity(lb.body, 0);
+                }
             });
+
+            if (dragging) {
+                agitatedTicks = 0;
+                return;
+            }
+
+            // Watchdog: if the curtain is still moving several seconds after the
+            // last interaction, it is stuck in a feedback loop — reset it.
+            const avgSpeed = totalSpeed / (letterBodies.length || 1);
+            if (avgSpeed > 0.25) {
+                agitatedTicks++;
+                if (agitatedTicks > 360) settleAll(); // ~6s at 60fps
+            } else {
+                agitatedTicks = Math.max(0, agitatedTicks - 2);
+            }
         });
 
         let rafId;
@@ -300,10 +376,12 @@ window.PhysicsTitle = ({ text = 'My Life Tracker' }) => {
             cancelAnimationFrame(rafId);
             Render.stop(render);
             Runner.stop(runner);
+            Composite.clear(engine.world, false);
             if (render.canvas) render.canvas.remove();
             Engine.clear(engine);
+            setLetters([]);
         };
-    }, []);
+    }, [sizeKey]);
 
     const words = String(text).trim().split(/\s+/);
     const lastWord = words.length > 1 ? words.pop() : null;

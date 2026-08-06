@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const { Storage } = require('./storage');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3010;
 const DATA_DIR = path.join(__dirname, 'data');
 
 app.use(cors());
@@ -33,55 +34,48 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 // You can change this to false to make the server Read-Only
 const ENABLE_WRITES = true;
 
-// Helper to read JSON file
-const readData = (filename) => {
-    const filePath = path.join(DATA_DIR, filename);
-    if (!fs.existsSync(filePath)) {
-        return null;
-    }
-    try {
-        const data = fs.readFileSync(filePath, 'utf8');
-        return JSON.parse(data);
-    } catch (err) {
-        console.error(`Error reading ${filename}:`, err);
-        return null;
-    }
-};
+// Snapshot retention. With pruning on, the first save of each file thins its
+// history to: everything from the last 24h, one per day for 30 days, one per
+// week beyond that (newest 5 always kept). Set false to keep every snapshot
+// forever — the old behaviour, which had grown to 388 files / 22MB.
+const PRUNE_OLD_SNAPSHOTS = true;
 
-// Helper to create a backup
-const createBackup = (filename) => {
-    const sourcePath = path.join(DATA_DIR, filename);
-    if (!fs.existsSync(sourcePath)) return;
+const storage = new Storage({ dataDir: DATA_DIR, backupDir: BACKUP_DIR, prune: PRUNE_OLD_SNAPSHOTS });
 
-    const timestamp = new Date().toISOString().replace(/:/g, '-');
-    const backupName = `${filename}.${timestamp}.bak`;
-    const destPath = path.join(BACKUP_DIR, backupName);
+const DATA_FILES = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json'];
 
-    try {
-        fs.copyFileSync(sourcePath, destPath);
-        console.log(`Backup created: ${backupName}`);
-    } catch (err) {
-        console.error(`Error creating backup for ${filename}:`, err);
-    }
-};
+// Read a data file, self-healing from the newest snapshot if it is corrupt.
+const readData = (filename) => storage.read(filename).data;
 
-// Helper to write JSON file
-const writeData = (filename, data) => {
+/**
+ * Shared handler: snapshot, validate, atomically write.
+ *
+ * A write that would drop most of the records is refused with 409 rather than
+ * silently applied — pass ?force=1 to override once the caller has confirmed.
+ */
+const handleWrite = (filename, label) => async (req, res) => {
     if (!ENABLE_WRITES) {
-        console.warn(`Write attempt blocked for ${filename} (Read-Only Mode)`);
-        return false;
+        return res.status(403).json({ success: false, message: 'Server is in read-only mode' });
     }
 
-    createBackup(filename);
+    const force = req.query.force === '1' || req.query.force === 'true';
+    const result = await storage.write(filename, req.body, { force });
 
-    const filePath = path.join(DATA_DIR, filename);
-    try {
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-        return true;
-    } catch (err) {
-        console.error(`Error writing ${filename}:`, err);
-        return false;
+    if (result.ok) {
+        return res.json({ success: true, records: result.after, snapshot: result.snapshot });
     }
+
+    if (result.code === 'DESTRUCTIVE_WRITE') {
+        return res.status(409).json({
+            success: false,
+            code: result.code,
+            message: `Refused: this would leave ${result.after} of ${result.before} ${label}. Retry with ?force=1 if intended.`,
+            before: result.before,
+            after: result.after
+        });
+    }
+
+    return res.status(500).json({ success: false, code: result.code, message: result.message || `Failed to save ${label}` });
 };
 
 // --- Novels ---
@@ -90,11 +84,7 @@ app.get('/api/novels', (req, res) => {
     res.json(data || []);
 });
 
-app.post('/api/novels', (req, res) => {
-    const success = writeData('novels.json', req.body);
-    if (success) res.json({ success: true });
-    else res.status(500).json({ success: false, message: 'Failed to save novels' });
-});
+app.post('/api/novels', handleWrite('novels.json', 'novels'));
 
 // --- States ---
 app.get('/api/states', (req, res) => {
@@ -102,11 +92,7 @@ app.get('/api/states', (req, res) => {
     res.json(data || {});
 });
 
-app.post('/api/states', (req, res) => {
-    const success = writeData('states.json', req.body);
-    if (success) res.json({ success: true });
-    else res.status(500).json({ success: false, message: 'Failed to save states' });
-});
+app.post('/api/states', handleWrite('states.json', 'states'));
 
 // --- Writing ---
 app.get('/api/writing', (req, res) => {
@@ -114,11 +100,7 @@ app.get('/api/writing', (req, res) => {
     res.json(data || []);
 });
 
-app.post('/api/writing', (req, res) => {
-    const success = writeData('writing.json', req.body);
-    if (success) res.json({ success: true });
-    else res.status(500).json({ success: false, message: 'Failed to save writing data' });
-});
+app.post('/api/writing', handleWrite('writing.json', 'writing entries'));
 
 // --- Stories ---
 // Assuming one file for all stories metadata/list
@@ -127,11 +109,7 @@ app.get('/api/stories', (req, res) => {
     res.json(data || []);
 });
 
-app.post('/api/stories', (req, res) => {
-    const success = writeData('stories.json', req.body);
-    if (success) res.json({ success: true });
-    else res.status(500).json({ success: false, message: 'Failed to save stories' });
-});
+app.post('/api/stories', handleWrite('stories.json', 'stories'));
 
 // --- Authors ---
 app.get('/api/authors', (req, res) => {
@@ -139,11 +117,7 @@ app.get('/api/authors', (req, res) => {
     res.json(data || []);
 });
 
-app.post('/api/authors', (req, res) => {
-    const success = writeData('authors.json', req.body);
-    if (success) res.json({ success: true });
-    else res.status(500).json({ success: false, message: 'Failed to save authors' });
-});
+app.post('/api/authors', handleWrite('authors.json', 'authors'));
 
 // --- Clothes ---
 app.get('/api/clothes', (req, res) => {
@@ -151,10 +125,43 @@ app.get('/api/clothes', (req, res) => {
     res.json(data || []);
 });
 
-app.post('/api/clothes', (req, res) => {
-    const success = writeData('clothes.json', req.body);
-    if (success) res.json({ success: true });
-    else res.status(500).json({ success: false, message: 'Failed to save clothes' });
+app.post('/api/clothes', handleWrite('clothes.json', 'clothes'));
+
+// --- Backups ---
+// Health summary: record counts, corrupt files, snapshot coverage.
+app.get('/api/backups/status', (req, res) => {
+    res.json(storage.status(DATA_FILES));
+});
+
+// Snapshot list, newest first. ?file=novels.json to scope it.
+app.get('/api/backups', (req, res) => {
+    res.json({ backups: storage.listBackups(req.query.file || null) });
+});
+
+// Contents of one snapshot, for previewing before a restore.
+app.get('/api/backups/:name', (req, res) => {
+    const name = path.basename(req.params.name);
+    const filePath = path.join(BACKUP_DIR, name);
+    if (!fs.existsSync(filePath)) return res.status(404).json({ success: false, message: 'Snapshot not found' });
+
+    try {
+        res.json({ success: true, name, data: JSON.parse(fs.readFileSync(filePath, 'utf8')) });
+    } catch (err) {
+        res.status(500).json({ success: false, message: `Snapshot is unreadable: ${err.message}` });
+    }
+});
+
+// Restore a snapshot. The current contents are snapshotted first, so this is
+// itself undoable via the returned undoSnapshot.
+app.post('/api/backups/restore', (req, res) => {
+    if (!ENABLE_WRITES) return res.status(403).json({ success: false, message: 'Server is in read-only mode' });
+
+    const { name } = req.body || {};
+    if (!name) return res.status(400).json({ success: false, message: 'Missing snapshot name' });
+
+    const result = storage.restore(name);
+    if (!result.ok) return res.status(result.code === 'NOT_FOUND' ? 404 : 500).json({ success: false, ...result });
+    res.json({ success: true, ...result });
 });
 
 // --- Image Upload ---
