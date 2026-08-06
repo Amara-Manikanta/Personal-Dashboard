@@ -11,7 +11,16 @@ const DATA_DIR = path.join(__dirname, 'data');
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' })); // Increased limit just in case
-app.use(express.static(path.join(__dirname, '.'))); // Serve static files from root
+// Serve static files from root. HTML/JSX/CSS are revalidated on every request:
+// they are compiled in the browser, so a cached copy means edits appear not to
+// take effect until a manual hard refresh.
+app.use(express.static(path.join(__dirname, '.'), {
+    setHeaders: (res, filePath) => {
+        if (/\.(html|jsx|js|css)$/.test(filePath)) {
+            res.setHeader('Cache-Control', 'no-cache');
+        }
+    }
+}));
 
 // Helper to ensure data directory exists
 if (!fs.existsSync(DATA_DIR)) {
