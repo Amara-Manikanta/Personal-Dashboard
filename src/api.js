@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = 'http://localhost:3010/api';
 // Assuming the user runs this on localhost or 127.0.0.1. Any other domain is treated as hosted (GitHub Pages)
 // We also treat 'file:' protocol (empty hostname) as localhost so it tries to hit the local backend server.
 const IS_LOCALHOST = window.location.hostname === 'localhost' ||
@@ -383,6 +383,11 @@ const api = {
 };
 
 window.api = api;
+// Single source of truth for the local server's address — components that talk
+// to endpoints outside the api object (e.g. backup status) should use this
+// rather than hardcoding the port again.
+window.API_BASE = API_BASE;
+window.IS_LOCALHOST = IS_LOCALHOST;
 
 // Global Constants
 window.GENRES = [
