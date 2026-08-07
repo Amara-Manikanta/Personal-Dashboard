@@ -790,6 +790,40 @@
           "ambiences": [
             "Romantic"
           ]
+        },
+        {
+          "name": "Echoes Living Room",
+          "city": "Madhapur",
+          "remarks": "-",
+          "mapLink": "https://maps.app.goo.gl/YL7q2WhhwdkZLYzX7",
+          "dishes": [
+            {
+              "name": "Delicate Corn Cream Cheese Chili oil Suchi",
+              "rating": "good"
+            },
+            {
+              "name": "Sunday Garden",
+              "rating": "good"
+            },
+            {
+              "name": "Southern Calfornia",
+              "rating": "good"
+            },
+            {
+              "name": "Kiwi & Pineapple Rush Drink",
+              "rating": "good"
+            },
+            {
+              "name": "Lotus Biscoff Crunchy Bliss Shake",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [
+            "Pizza & Pasta"
+          ],
+          "ambiences": [
+            "Romantic"
+          ]
         }
       ],
       "food": [
@@ -2546,11 +2580,23 @@
     "Singapore": {
       "visited": true,
       "placesVisited": [
-        "Universal studios",
+        {
+          "name": "Universal studios",
+          "city": "-",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
+        },
         "Vivo city mall",
         "Singapore flyer",
         "Flower Dome",
-        "Wings of time",
+        {
+          "name": "Wings of time",
+          "city": "-",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
+        },
         "Silosa point",
         "Buddha tooth relic temple",
         "Orchard road",
@@ -2558,7 +2604,13 @@
         "Little india",
         "Merlion park",
         "Marina bay sands",
-        "Super tree gove",
+        {
+          "name": "Super tree gove",
+          "city": "-",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
+        },
         "Cloud forest",
         "Gradens of the bay"
       ],
@@ -2596,7 +2648,25 @@
           ]
         }
       ],
-      "highlights": []
+      "highlights": [
+        {
+          "name": "Universal studios",
+          "city": "-",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
+        },
+        {
+          "name": "Wings of time",
+          "city": "-",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
+        },
+        {
+          "name": "Super tree gove"
+        }
+      ]
     },
     "Srinagar": {
       "visited": false,
