@@ -1,18 +1,193 @@
 
 console.log("Loading TravelDashboard.jsx (Restored)");
 
+/** Flat list of entries, optionally grouped under their state/country. */
+const EntryList = ({ entries, emptyIcon, emptyText, onSelect, groupByRegion }) => {
+    if (!entries.length) {
+        return (
+            <div className="empty-state">
+                <i className={`ph-duotone ${emptyIcon}`}></i>
+                <p>{emptyText}</p>
+            </div>
+        );
+    }
+
+    if (!groupByRegion) {
+        return (
+            <div className="entry-grid">
+                {entries.map((e, i) => (
+                    <button key={`${e.region}-${e.name}-${i}`} className="entry-tile" onClick={() => onSelect(e.region)}>
+                        <span className="entry-tile-name">{e.name}</span>
+                        <span className="entry-tile-meta">{[e.city, e.region].filter(Boolean).join(' · ')}</span>
+                    </button>
+                ))}
+            </div>
+        );
+    }
+
+    const groups = entries.reduce((acc, e) => {
+        (acc[e.region] = acc[e.region] || []).push(e);
+        return acc;
+    }, {});
+
+    // Busiest regions first — that is where the planning happens.
+    const ordered = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
+
+    return (
+        <div className="entry-groups">
+            {ordered.map(region => (
+                <section key={region} className="entry-group">
+                    <header className="entry-group-head">
+                        <button className="entry-group-title" onClick={() => onSelect(region)}>
+                            {region}
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </button>
+                        <span className="entry-group-count">{groups[region].length}</span>
+                    </header>
+                    <div className="entry-chip-wrap">
+                        {groups[region].map((e, i) => (
+                            <button
+                                key={`${e.name}-${i}`}
+                                className="entry-chip"
+                                onClick={() => onSelect(e.region)}
+                                title={e.remarks && e.remarks !== '-' ? e.remarks : e.name}
+                            >
+                                {e.name}
+                                {e.city && e.city !== '-' && <span className="entry-chip-city">{e.city}</span>}
+                            </button>
+                        ))}
+                    </div>
+                </section>
+            ))}
+        </div>
+    );
+};
+
+/** Treks carry distance/altitude/difficulty/terrain that nothing else showed. */
+const TrekList = ({ treks, onSelect }) => {
+    if (!treks.length) {
+        return (
+            <div className="empty-state">
+                <i className="ph-duotone ph-mountains"></i>
+                <p>No treks logged yet.</p>
+            </div>
+        );
+    }
+
+    const totalKm = treks.reduce((sum, t) => sum + (parseFloat((t.raw && t.raw.distance) || 0) || 0), 0);
+    const done = treks.filter(t => t.raw && t.raw.isVisited).length;
+
+    const difficultyClass = (d) => {
+        const v = String(d || '').toLowerCase();
+        if (v.startsWith('beg') || v === 'easy') return 'is-easy';
+        if (v.startsWith('med')) return 'is-medium';
+        if (v.startsWith('hard') || v.startsWith('diff') || v.startsWith('adv')) return 'is-hard';
+        return '';
+    };
+
+    return (
+        <div className="trek-view">
+            <div className="trek-summary">
+                <div><span className="trek-summary-value">{totalKm.toFixed(1).replace(/\.0$/, '')}</span> km logged</div>
+                <div><span className="trek-summary-value">{done}</span> of {treks.length} completed</div>
+            </div>
+
+            <div className="trek-grid">
+                {treks.map((t, i) => {
+                    const d = t.raw && typeof t.raw === 'object' ? t.raw : {};
+                    return (
+                        <button key={`${t.region}-${t.name}-${i}`} className="trek-card" onClick={() => onSelect(t.region)}>
+                            <div className="trek-card-head">
+                                <span className="trek-card-name">{t.name}</span>
+                                {d.isVisited && <i className="ph-fill ph-check-circle trek-done" title="Completed"></i>}
+                            </div>
+                            <div className="trek-card-region">{[d.city, t.region].filter(v => v && v !== '-').join(' · ')}</div>
+                            <div className="trek-card-facts">
+                                {d.distance && <span><i className="ph-bold ph-path"></i>{d.distance} km</span>}
+                                {d.altitude && <span><i className="ph-bold ph-arrow-up-right"></i>{d.altitude} ft</span>}
+                                {d.difficulty && <span className={`trek-diff ${difficultyClass(d.difficulty)}`}>{d.difficulty}</span>}
+                            </div>
+                            {d.terrain && d.terrain !== '-' && <div className="trek-card-terrain">{d.terrain}</div>}
+                            {d.safetyAlerts && (
+                                <div className="trek-card-alert"><i className="ph-fill ph-warning"></i> Safety alerts noted</div>
+                            )}
+                        </button>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+/** Visits grouped by year, for entries that carry a visitedDate. */
+const Timeline = ({ entries, onSelect }) => {
+    const dated = entries.filter(e => e.visitedDate);
+
+    if (!dated.length) {
+        return (
+            <div className="empty-state">
+                <i className="ph-duotone ph-calendar-blank"></i>
+                <p>No visit dates recorded yet.</p>
+                <p className="empty-hint">
+                    Open any state, edit a place, and set its visit date — dated visits will appear here grouped by year.
+                </p>
+            </div>
+        );
+    }
+
+    const byYear = dated.reduce((acc, e) => {
+        const year = String(e.visitedDate).slice(0, 4) || 'Undated';
+        (acc[year] = acc[year] || []).push(e);
+        return acc;
+    }, {});
+
+    const years = Object.keys(byYear).sort((a, b) => b.localeCompare(a));
+    const monthName = (iso) => {
+        const d = new Date(iso);
+        return isNaN(d) ? '' : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    };
+
+    return (
+        <div className="timeline-view">
+            {years.map(year => (
+                <section key={year} className="timeline-year">
+                    <header className="timeline-year-head">
+                        <h2>{year}</h2>
+                        <span>{byYear[year].length} {byYear[year].length === 1 ? 'visit' : 'visits'}</span>
+                    </header>
+                    <div className="timeline-items">
+                        {byYear[year]
+                            .sort((a, b) => String(b.visitedDate).localeCompare(String(a.visitedDate)))
+                            .map((e, i) => (
+                                <button key={`${e.name}-${i}`} className="timeline-item" onClick={() => onSelect(e.region)}>
+                                    <span className="timeline-date">{monthName(e.visitedDate)}</span>
+                                    <span className="timeline-name">{e.name}</span>
+                                    <span className="timeline-region">{[e.city, e.region].filter(v => v && v !== '-').join(' · ')}</span>
+                                </button>
+                            ))}
+                    </div>
+                </section>
+            ))}
+        </div>
+    );
+};
+
 window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
     const { useState, useEffect, useMemo } = React;
     const TravelData = window.TravelData || {};
     const { getStatesData, getCountriesData, getStateStats, getCountryStats, getBucketList, saveBucketList } = TravelData;
     const StateCard = window.StateCard;
 
-    const [viewMode, setViewMode] = useState('states'); // 'states' | 'countries' | 'bucket-list'
+    // 'states' | 'map' | 'countries' | 'wishlist' | 'treks' | 'timeline' | 'bucket-list'
+    const [viewMode, setViewMode] = useState('states');
     const [items, setItems] = useState([]);
     const [bucketList, setBucketList] = useState([]);
     const [newItemText, setNewItemText] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('all'); // 'all', 'visited'
+    const [sortBy, setSortBy] = useState('places'); // 'places' | 'name' | 'wishlist'
+
+    const REGION_VIEWS = ['states', 'map', 'countries'];
 
     useEffect(() => {
         if (!getStatesData || !getCountriesData) {
@@ -22,9 +197,69 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         if (viewMode === 'bucket-list') {
             setBucketList(getBucketList());
         } else {
-            setItems(viewMode === 'states' ? getStatesData() : getCountriesData());
+            setItems(viewMode === 'countries' ? getCountriesData() : getStatesData());
         }
     }, [viewMode]);
+
+    const totals = useMemo(
+        () => (window.TravelData && window.TravelData.getTravelTotals ? window.TravelData.getTravelTotals() : null),
+        [items]
+    );
+
+    /**
+     * Every individual entry across every state, flattened once so the
+     * dashboard can search, list and sort them without reopening each state.
+     */
+    const allEntries = useMemo(() => {
+        const source = getStatesData ? [...getStatesData(), ...(getCountriesData ? getCountriesData() : [])] : [];
+        const kinds = [
+            ['placesVisited', 'Place', 'ph-map-pin'],
+            ['placesToVisit', 'Wishlist', 'ph-binoculars'],
+            ['restaurants', 'Restaurant', 'ph-fork-knife'],
+            ['food', 'Food', 'ph-bowl-food'],
+            ['treks', 'Trek', 'ph-mountains'],
+            ['stays', 'Stay', 'ph-bed']
+        ];
+
+        const out = [];
+        source.forEach(region => {
+            kinds.forEach(([field, kind, icon]) => {
+                (region[field] || []).forEach(entry => {
+                    const isObj = entry && typeof entry === 'object';
+                    const name = isObj ? entry.name : entry;
+                    if (!name) return;
+                    out.push({
+                        name,
+                        kind,
+                        icon,
+                        field,
+                        region: region.name,
+                        city: isObj ? (entry.city || '') : '',
+                        remarks: isObj ? (entry.remarks || '') : '',
+                        category: isObj ? (entry.category || '') : '',
+                        visitedDate: isObj ? (entry.visitedDate || '') : '',
+                        raw: entry
+                    });
+                });
+            });
+        });
+        return out;
+    }, [items]);
+
+    const searchLower = searchTerm.trim().toLowerCase();
+
+    // Individual entries matching the search — shown alongside region cards so
+    // a hit like "Golconda" tells you what matched, not just which state.
+    const entryMatches = useMemo(() => {
+        if (!searchLower) return [];
+        return allEntries
+            .filter(e =>
+                e.name.toLowerCase().includes(searchLower) ||
+                e.city.toLowerCase().includes(searchLower) ||
+                e.remarks.toLowerCase().includes(searchLower) ||
+                e.category.toLowerCase().includes(searchLower))
+            .slice(0, 60);
+    }, [searchLower, allEntries]);
 
     const filteredItems = items.filter(item => {
         const searchLower = searchTerm.toLowerCase();
@@ -66,15 +301,14 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
             ? true
             : (filter === 'visited' ? (item.visited || (item.placesVisited && item.placesVisited.length > 0)) : true);
     }).sort((a, b) => {
-        // 1. Sort by places visited count (descending)
-        const countA = (a.placesVisited && a.placesVisited.length) || 0;
-        const countB = (b.placesVisited && b.placesVisited.length) || 0;
+        if (sortBy === 'name') return a.name.localeCompare(b.name);
+
+        const key = sortBy === 'wishlist' ? 'placesToVisit' : 'placesVisited';
+        const countA = (a[key] && a[key].length) || 0;
+        const countB = (b[key] && b[key].length) || 0;
         if (countA !== countB) return countB - countA;
 
-        // 2. Sort by visited status (visited first)
         if (a.visited !== b.visited) return a.visited ? -1 : 1;
-
-        // 3. Sort alphabetically
         return a.name.localeCompare(b.name);
     });
 
@@ -95,59 +329,180 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
                 <div className="header-stats">
                     <div className="stat-pill">
-                        <span className="label">{viewMode === 'states' ? 'States Visited' : 'Countries Visited'}</span>
-                        <span className="value">{stats.visitedStates || stats.visitedCountries} / {stats.totalStates || stats.totalCountries}</span>
+                        <span className="label">{viewMode === 'countries' ? 'Countries Visited' : 'States Visited'}</span>
+                        <span className="value">
+                            {viewMode === 'countries'
+                                ? (totals ? totals.countriesVisited : stats.visitedCountries)
+                                : `${totals ? totals.statesVisited : stats.visitedStates} / ${totals ? totals.statesTotal : stats.totalStates}`}
+                        </span>
                     </div>
                 </div>
             </header>
 
+            {/* Everything logged, across every state and country */}
+            {totals && (
+                <div className="travel-totals">
+                    {[
+                        ['ph-map-pin', totals.placesVisited, 'place visited', 'places visited', 'states'],
+                        ['ph-binoculars', totals.placesToVisit, 'to visit', 'to visit', 'wishlist'],
+                        ['ph-fork-knife', totals.restaurants, 'restaurant', 'restaurants', null],
+                        ['ph-bowl-food', totals.food, 'food to try', 'foods to try', null],
+                        ['ph-mountains', totals.treks, 'trek', 'treks', 'treks'],
+                        ['ph-bed', totals.stays, 'stay', 'stays', null],
+                        ['ph-globe-hemisphere-east', totals.countriesVisited, 'country', 'countries', 'countries']
+                    ].map(([icon, value, one, many, target]) => (
+                        <button
+                            key={many}
+                            className={`travel-total ${target ? 'is-clickable' : ''}`}
+                            onClick={() => target && setViewMode(target)}
+                            disabled={!target}
+                        >
+                            <i className={`ph-fill ${icon}`}></i>
+                            <span className="travel-total-value">{value}</span>
+                            <span className="travel-total-label">{value === 1 ? one : many}</span>
+                        </button>
+                    ))}
+                </div>
+            )}
+
+            {/* Data keyed under a name that matches neither list is invisible
+                everywhere else in the UI — say so rather than losing it. */}
+            {totals && totals.orphans.length > 0 && (
+                <div className="travel-orphans">
+                    <i className="ph-fill ph-warning"></i>
+                    <span>
+                        {totals.orphans.map(o => `“${o.name}” (${o.items} ${o.items === 1 ? 'entry' : 'entries'})`).join(', ')}
+                        {' '}{totals.orphans.length === 1 ? 'is' : 'are'} stored under a name that is not a known state or country, so
+                        {totals.orphans.length === 1 ? ' it does' : ' they do'} not appear in any list.
+                    </span>
+                </div>
+            )}
+
             <div className="controls-bar">
                 <div className="view-toggles">
-                    <button
-                        className={viewMode === 'states' ? 'active' : ''}
-                        onClick={() => setViewMode('states')}
-                    >
-                        India
-                    </button>
-                    <button
-                        className={viewMode === 'countries' ? 'active' : ''}
-                        onClick={() => setViewMode('countries')}
-                    >
-                        World
-                    </button>
-                    <button
-                        className={viewMode === 'bucket-list' ? 'active' : ''}
-                        onClick={() => setViewMode('bucket-list')}
-                    >
-                        Bucket List
-                    </button>
+                    {[
+                        ['states', 'India'],
+                        ['map', 'Map'],
+                        ['countries', 'World'],
+                        ['wishlist', 'To Visit'],
+                        ['treks', 'Treks'],
+                        ['timeline', 'Timeline'],
+                        ['bucket-list', 'Bucket List']
+                    ].map(([mode, label]) => (
+                        <button
+                            key={mode}
+                            className={viewMode === mode ? 'active' : ''}
+                            onClick={() => setViewMode(mode)}
+                        >
+                            {label}
+                        </button>
+                    ))}
                 </div>
 
                 <div className="search-box">
                     <i className="ph-bold ph-magnifying-glass"></i>
                     <input
                         type="text"
-                        placeholder={viewMode === 'bucket-list' ? "Search items..." : (viewMode === 'states' ? "Find a state..." : "Find a country...")}
+                        placeholder={{
+                            'bucket-list': 'Search items...',
+                            countries: 'Find a country...',
+                            wishlist: 'Search places to visit...',
+                            treks: 'Search treks...',
+                            timeline: 'Search visits...',
+                            map: 'Find a state...',
+                            states: 'Search states, places, food, treks...'
+                        }[viewMode] || 'Search...'}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
 
-                <div className="filter-tabs">
-                    <button
-                        className={filter === 'all' ? 'active' : ''}
-                        onClick={() => setFilter('all')}
-                    >
-                        All
-                    </button>
-                    <button
-                        className={filter === 'visited' ? 'active' : ''}
-                        onClick={() => setFilter('visited')}
-                    >
-                        Visited
-                    </button>
-                </div>
+                {REGION_VIEWS.includes(viewMode) && (
+                    <React.Fragment>
+                        <div className="filter-tabs">
+                            <button
+                                className={filter === 'all' ? 'active' : ''}
+                                onClick={() => setFilter('all')}
+                            >
+                                All
+                            </button>
+                            <button
+                                className={filter === 'visited' ? 'active' : ''}
+                                onClick={() => setFilter('visited')}
+                            >
+                                Visited
+                            </button>
+                        </div>
+
+                        {viewMode !== 'map' && (
+                            <div className="sort-select">
+                                <label htmlFor="travel-sort">Sort</label>
+                                <select id="travel-sort" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                                    <option value="places">Most places</option>
+                                    <option value="wishlist">Most to visit</option>
+                                    <option value="name">A–Z</option>
+                                </select>
+                            </div>
+                        )}
+                    </React.Fragment>
+                )}
             </div>
+
+            {/* Search hits on individual entries, not just region names */}
+            {searchLower && entryMatches.length > 0 && (
+                <div className="entry-matches">
+                    <div className="entry-matches-head">
+                        <h2>{entryMatches.length} {entryMatches.length === 1 ? 'match' : 'matches'} for “{searchTerm}”</h2>
+                    </div>
+                    <div className="entry-matches-list">
+                        {entryMatches.map((e, i) => (
+                            <button
+                                key={`${e.region}-${e.field}-${e.name}-${i}`}
+                                className="entry-match"
+                                onClick={() => onNavigateToState(e.region)}
+                            >
+                                <i className={`ph-fill ${e.icon}`}></i>
+                                <span className="entry-match-name">{e.name}</span>
+                                {e.city && <span className="entry-match-city">{e.city}</span>}
+                                <span className="entry-match-region">{e.region}</span>
+                                <span className="entry-match-kind">{e.kind}</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {viewMode === 'map' && (
+                <window.IndiaTileMap
+                    states={items}
+                    onSelect={onNavigateToState}
+                    filter={filter}
+                />
+            )}
+
+            {viewMode === 'wishlist' && (
+                <EntryList
+                    entries={allEntries.filter(e => e.field === 'placesToVisit' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
+                    emptyIcon="ph-binoculars"
+                    emptyText="Nothing on the list yet. Add places to visit from any state page."
+                    onSelect={onNavigateToState}
+                    groupByRegion
+                />
+            )}
+
+            {viewMode === 'treks' && (
+                <TrekList
+                    treks={allEntries.filter(e => e.field === 'treks' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
+                    onSelect={onNavigateToState}
+                />
+            )}
+
+            {viewMode === 'timeline' && (
+                <Timeline
+                    entries={allEntries.filter(e => e.field === 'placesVisited')}
+                    onSelect={onNavigateToState}
+                />
+            )}
 
             {viewMode === 'bucket-list' ? (
                 <div className="bucket-list-container">
@@ -217,7 +572,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                         )}
                     </div>
                 </div>
-            ) : (
+            ) : (viewMode === 'states' || viewMode === 'countries') && (
                 <div className="states-grid">
                     {filteredItems.map(item => (
                         <StateCard
@@ -366,7 +721,313 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                     gap: 1.5rem;
+                    align-items: stretch;
                 }
+
+                /* ---- Totals strip ---- */
+                .travel-totals {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                    gap: 0.75rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .travel-total {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.15rem;
+                    padding: 0.85rem 1rem;
+                    background: rgba(255,255,255,0.03);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-md);
+                    color: var(--text-secondary);
+                    font-family: inherit;
+                    text-align: left;
+                }
+
+                .travel-total i { font-size: 1rem; color: var(--primary); margin-bottom: 0.15rem; }
+                .travel-total-value { font-size: 1.35rem; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; line-height: 1; }
+                .travel-total-label { font-size: 0.72rem; color: var(--text-muted); }
+
+                .travel-total.is-clickable { cursor: pointer; transition: all 0.2s ease; }
+                .travel-total.is-clickable:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+                .travel-orphans {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 0.6rem;
+                    padding: 0.75rem 1rem;
+                    margin-bottom: 1.5rem;
+                    border: 1px solid rgba(251,191,36,0.3);
+                    background: rgba(251,191,36,0.07);
+                    border-radius: var(--radius-md);
+                    color: #fcd34d;
+                    font-size: 0.82rem;
+                    line-height: 1.5;
+                }
+
+                .travel-orphans i { flex-shrink: 0; margin-top: 0.1rem; }
+
+                .sort-select {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0 0.75rem;
+                    background: var(--bg-surface);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-md);
+                }
+
+                .sort-select label { color: var(--text-muted); font-size: 0.8rem; }
+
+                .sort-select select {
+                    background: transparent;
+                    border: none;
+                    color: var(--text-primary);
+                    font-family: inherit;
+                    font-size: 0.85rem;
+                    padding: 0.5rem 0;
+                    cursor: pointer;
+                    outline: none;
+                }
+
+                /* ---- Search hits on individual entries ---- */
+                .entry-matches {
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.02);
+                    border-radius: var(--radius-lg);
+                    padding: 1rem 1.25rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .entry-matches-head h2 {
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    color: var(--text-muted);
+                    margin: 0 0 0.75rem;
+                }
+
+                .entry-matches-list { display: flex; flex-direction: column; gap: 0.25rem; max-height: 320px; overflow-y: auto; }
+
+                .entry-match {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.65rem;
+                    padding: 0.5rem 0.6rem;
+                    background: transparent;
+                    border: none;
+                    border-radius: var(--radius-sm);
+                    color: var(--text-secondary);
+                    font-family: inherit;
+                    font-size: 0.88rem;
+                    text-align: left;
+                    cursor: pointer;
+                }
+
+                .entry-match:hover { background: rgba(99,102,241,0.12); color: #fff; }
+                .entry-match i { color: var(--primary); flex-shrink: 0; }
+                .entry-match-name { font-weight: 500; }
+                .entry-match-city, .entry-match-region { color: var(--text-muted); font-size: 0.78rem; }
+                .entry-match-region::before { content: '· '; }
+                .entry-match-kind {
+                    margin-left: auto;
+                    font-size: 0.65rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    color: var(--text-muted);
+                    flex-shrink: 0;
+                }
+
+                /* ---- Grouped entry lists (wishlist) ---- */
+                .entry-groups { display: flex; flex-direction: column; gap: 1.5rem; }
+
+                .entry-group {
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.02);
+                    border-radius: var(--radius-lg);
+                    padding: 1rem 1.25rem 1.25rem;
+                }
+
+                .entry-group-head {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 0.85rem;
+                }
+
+                .entry-group-title {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    background: none;
+                    border: none;
+                    padding: 0;
+                    color: var(--text-primary);
+                    font-family: inherit;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+
+                .entry-group-title:hover { color: var(--primary); }
+                .entry-group-title i { font-size: 0.85rem; opacity: 0.6; }
+
+                .entry-group-count {
+                    background: rgba(255,255,255,0.07);
+                    border-radius: 99px;
+                    padding: 0.1rem 0.6rem;
+                    font-size: 0.75rem;
+                    color: var(--text-muted);
+                    font-variant-numeric: tabular-nums;
+                }
+
+                .entry-chip-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+                .entry-chip {
+                    display: inline-flex;
+                    align-items: baseline;
+                    gap: 0.4rem;
+                    padding: 0.35rem 0.75rem;
+                    border-radius: 99px;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    color: var(--text-secondary);
+                    font-family: inherit;
+                    font-size: 0.8rem;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .entry-chip:hover { border-color: var(--primary); color: #fff; transform: translateY(-1px); }
+                .entry-chip-city { color: var(--text-muted); font-size: 0.7rem; }
+
+                .entry-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                    gap: 0.75rem;
+                }
+
+                .entry-tile {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.2rem;
+                    padding: 0.85rem 1rem;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    border-radius: var(--radius-md);
+                    text-align: left;
+                    font-family: inherit;
+                    cursor: pointer;
+                }
+
+                .entry-tile-name { color: var(--text-primary); font-weight: 500; font-size: 0.9rem; }
+                .entry-tile-meta { color: var(--text-muted); font-size: 0.75rem; }
+
+                /* ---- Treks ---- */
+                .trek-summary {
+                    display: flex;
+                    gap: 2rem;
+                    flex-wrap: wrap;
+                    padding: 1rem 1.25rem;
+                    margin-bottom: 1.25rem;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    border-radius: var(--radius-lg);
+                    color: var(--text-muted);
+                    font-size: 0.88rem;
+                }
+
+                .trek-summary-value { color: var(--text-primary); font-weight: 700; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+
+                .trek-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                    gap: 1rem;
+                }
+
+                .trek-card {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.45rem;
+                    padding: 1.1rem;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    border-radius: var(--radius-lg);
+                    text-align: left;
+                    font-family: inherit;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .trek-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+
+                .trek-card-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+                .trek-card-name { color: var(--text-primary); font-weight: 600; }
+                .trek-done { color: #10b981; }
+                .trek-card-region { color: var(--text-muted); font-size: 0.78rem; }
+
+                .trek-card-facts { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.15rem; }
+
+                .trek-card-facts span {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.3rem;
+                    padding: 0.2rem 0.55rem;
+                    border-radius: 99px;
+                    background: rgba(255,255,255,0.06);
+                    color: var(--text-secondary);
+                    font-size: 0.72rem;
+                    font-variant-numeric: tabular-nums;
+                }
+
+                .trek-diff.is-easy { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+                .trek-diff.is-medium { background: rgba(245,158,11,0.18); color: #fcd34d; }
+                .trek-diff.is-hard { background: rgba(239,68,68,0.18); color: #fca5a5; }
+
+                .trek-card-terrain { color: var(--text-muted); font-size: 0.75rem; }
+                .trek-card-alert { color: #fcd34d; font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; }
+
+                /* ---- Timeline ---- */
+                .timeline-view { display: flex; flex-direction: column; gap: 2rem; }
+
+                .timeline-year-head {
+                    display: flex;
+                    align-items: baseline;
+                    gap: 0.75rem;
+                    padding-bottom: 0.5rem;
+                    margin-bottom: 0.75rem;
+                    border-bottom: 1px solid var(--border);
+                }
+
+                .timeline-year-head h2 { margin: 0; font-size: 1.5rem; color: var(--text-primary); }
+                .timeline-year-head span { color: var(--text-muted); font-size: 0.82rem; }
+
+                .timeline-items { display: flex; flex-direction: column; gap: 0.3rem; }
+
+                .timeline-item {
+                    display: grid;
+                    grid-template-columns: 84px 1fr auto;
+                    gap: 1rem;
+                    align-items: baseline;
+                    padding: 0.55rem 0.75rem;
+                    background: transparent;
+                    border: none;
+                    border-radius: var(--radius-sm);
+                    color: var(--text-secondary);
+                    font-family: inherit;
+                    text-align: left;
+                    cursor: pointer;
+                }
+
+                .timeline-item:hover { background: rgba(99,102,241,0.1); }
+                .timeline-date { color: var(--text-muted); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+                .timeline-name { color: var(--text-primary); font-weight: 500; }
+                .timeline-region { color: var(--text-muted); font-size: 0.78rem; }
+
+                .empty-hint { font-size: 0.85rem; opacity: 0.75; max-width: 420px; margin: 0.5rem auto 0; }
 
                 .empty-state {
                     grid-column: 1 / -1;

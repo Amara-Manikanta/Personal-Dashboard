@@ -272,12 +272,7 @@
           "category": "Nature & Park",
           "image": ""
         },
-        {
-          "name": "Watch  Tower",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Watch  Tower",
         {
           "name": "Birla mandir",
           "city": "Hyderabad",
@@ -441,72 +436,17 @@
         }
       ],
       "placesToVisit": [
-        {
-          "name": "kothapalli waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ethipothala waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Dallapalli Hills",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "tatiguda waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "damaku view point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lambasingi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Statue of equatiy",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bhongir fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bhemili beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "ramakrishna beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Arma Konda",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "kothapalli waterfalls",
+        "Ethipothala waterfalls",
+        "Dallapalli Hills",
+        "tatiguda waterfalls",
+        "damaku view point",
+        "Lambasingi",
+        "Statue of equatiy",
+        "Bhongir fort",
+        "Bhemili beach",
+        "ramakrishna beach",
+        "Arma Konda"
       ],
       "restaurants": [
         {
@@ -515,12 +455,7 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Casa de reo",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Casa de reo",
         {
           "name": "Krishnapatnam",
           "city": "Hyderabad",
@@ -530,18 +465,8 @@
             "Posh"
           ]
         },
-        {
-          "name": "Foddie Train",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hotel Shadab",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Foddie Train",
+        "Hotel Shadab",
         {
           "name": "Maryada Ramana",
           "city": "Kondapur",
@@ -1023,12 +948,33 @@
       "treks": [],
       "stays": []
     },
+    "Chattisgarh": {
+      "visited": false,
+      "placesVisited": [],
+      "placesToVisit": [],
+      "restaurants": [],
+      "food": [],
+      "treks": [],
+      "stays": []
+    },
     "Goa": {
       "visited": false,
       "placesVisited": [],
       "placesToVisit": [],
       "restaurants": [],
       "food": [],
+      "treks": [],
+      "stays": []
+    },
+    "Gujrat": {
+      "visited": false,
+      "placesVisited": [],
+      "placesToVisit": [],
+      "restaurants": [],
+      "food": [
+        "Dhokla",
+        "Kachori"
+      ],
       "treks": [],
       "stays": []
     },
@@ -1056,12 +1002,7 @@
           "category": "Fort & Heritage",
           "image": ""
         },
-        {
-          "name": "Dhankar Monestry",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Dhankar Monestry",
         {
           "name": "River Rafting",
           "city": "-",
@@ -1069,12 +1010,7 @@
           "category": "Adventure",
           "image": ""
         },
-        {
-          "name": "Langza",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Langza",
         {
           "name": "Tabo monestry",
           "city": "-",
@@ -1089,18 +1025,8 @@
           "category": "Temple",
           "image": ""
         },
-        {
-          "name": "Rothang Pass",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hikkim",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Rothang Pass",
+        "Hikkim",
         {
           "name": "Vashishtha",
           "city": "-",
@@ -1108,12 +1034,7 @@
           "category": "Temple",
           "image": ""
         },
-        {
-          "name": "Sissu",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Sissu",
         {
           "name": "Club House",
           "city": "-",
@@ -1121,30 +1042,10 @@
           "category": "Shopping",
           "image": ""
         },
-        {
-          "name": "Van husan",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Atul Tunnel",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kunzum Pass",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kufri",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Van husan",
+        "Atul Tunnel",
+        "Kunzum Pass",
+        "Kufri",
         {
           "name": "Green Valley",
           "city": "-",
@@ -1166,12 +1067,7 @@
           "category": "Religious & Spiritual",
           "image": ""
         },
-        {
-          "name": "Manestory",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Manestory",
         {
           "name": "Paragliding",
           "city": "-",
@@ -1179,12 +1075,7 @@
           "category": "Adventure",
           "image": ""
         },
-        {
-          "name": "Solang Valley",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Solang Valley",
         {
           "name": "Mall Road",
           "city": "-",
@@ -1201,96 +1092,21 @@
         }
       ],
       "placesToVisit": [
-        {
-          "name": "Kalath hot water springs",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Atal Tanal",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Tosh",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bir Billing",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Parvati Valley",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chail",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Gulaba",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "tirthan valley",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kasol Manikaran",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Stagazing",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kinnaur",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chamba",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Spiti Valley",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "McLeod Ganj",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Paragliding",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Kalath hot water springs",
+        "Atal Tanal",
+        "Tosh",
+        "Bir Billing",
+        "Parvati Valley",
+        "Chail",
+        "Gulaba",
+        "tirthan valley",
+        "Kasol Manikaran",
+        "Stagazing",
+        "Kinnaur",
+        "Chamba",
+        "Spiti Valley",
+        "McLeod Ganj",
+        "Paragliding",
         {
           "name": "Rohtang Pass",
           "city": "Manali",
@@ -1357,42 +1173,12 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Swiss camps",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hotel Grand",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ride At Hill-Nihal Hotel & Cottage",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Angels inn",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Neha Residency",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "House stay",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Swiss camps",
+        "Hotel Grand",
+        "Ride At Hill-Nihal Hotel & Cottage",
+        "Angels inn",
+        "Neha Residency",
+        "House stay"
       ],
       "highlights": [
         {
@@ -1847,228 +1633,43 @@
         }
       ],
       "placesToVisit": [
-        {
-          "name": "Vatada hosahalli lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Tadiandamol",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kodachadri Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ranganathittu Bird Sanctuary",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jaganmohan Palace",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kopatty trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kurinjal Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "HAL Heritage Centre and Aerospace Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hogenakkal Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Gangadikal trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Balamuri-Yedamuri falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Horsley Hills",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bangalore Palace",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rail Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Panchami kallu",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ettina Bhuja",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nishani Motte Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ramadevara Betta",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Himavad Gopalaswamy Betta",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Gudibande Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Dodda Alada Mara",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Skandagiri",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Torch light parade ground",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chota Ladakh",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Munchanabele Dam",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Avalabetta",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sky Jumper, Trampoline park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kurinjal trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Netravati trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ballalarayana Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Tipu Sultan's Summer Palace",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Srinivasa Sagara",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kudremukh Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "mani biryani hoskote",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "TK Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kaigal Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bharachukki Waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Vatada hosahalli lake",
+        "Tadiandamol",
+        "Kodachadri Trek",
+        "Ranganathittu Bird Sanctuary",
+        "Jaganmohan Palace",
+        "Kopatty trek",
+        "Kurinjal Trek",
+        "HAL Heritage Centre and Aerospace Museum",
+        "Hogenakkal Falls",
+        "Gangadikal trek",
+        "Balamuri-Yedamuri falls",
+        "Horsley Hills",
+        "Bangalore Palace",
+        "Rail Museum",
+        "Panchami kallu",
+        "Ettina Bhuja",
+        "Nishani Motte Trek",
+        "Ramadevara Betta",
+        "Himavad Gopalaswamy Betta",
+        "Gudibande Fort",
+        "Dodda Alada Mara",
+        "Skandagiri",
+        "Torch light parade ground",
+        "Chota Ladakh",
+        "Munchanabele Dam",
+        "Avalabetta",
+        "Sky Jumper, Trampoline park",
+        "Kurinjal trek",
+        "Netravati trek",
+        "Ballalarayana Fort",
+        "Tipu Sultan's Summer Palace",
+        "Srinivasa Sagara",
+        "Kudremukh Trek",
+        "mani biryani hoskote",
+        "TK Falls",
+        "Kaigal Falls",
+        "Bharachukki Waterfalls",
         {
           "name": "Beach",
           "city": "Gokarna",
@@ -2097,18 +1698,8 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Plan B",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Barbeque",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Plan B",
+        "Barbeque",
         {
           "name": "United telugu kitchen",
           "city": "Konanakunte road",
@@ -2129,30 +1720,10 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Chai Galli",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Reddy's Resturant",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Thindi Bandi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Torq03",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Chai Galli",
+        "Reddy's Resturant",
+        "Thindi Bandi",
+        "Torq03",
         {
           "name": "Fiesta by Barbeque Nation",
           "city": "Vega City, Bannerghatta Road",
@@ -2189,30 +1760,10 @@
             "Family"
           ]
         },
-        {
-          "name": "The Dhaba Strories",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "HAMPI PARADISE RESTAURANT",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "1947",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hoy Punjabi Banaswadi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "The Dhaba Strories",
+        "HAMPI PARADISE RESTAURANT",
+        "1947",
+        "Hoy Punjabi Banaswadi",
         {
           "name": "Palleturi Dosa",
           "city": "HSR Layout",
@@ -2292,18 +1843,8 @@
         }
       ],
       "food": [
-        {
-          "name": "Meghana Biryani",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Babai Tiffens  Podi dosa",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Meghana Biryani",
+        "Babai Tiffens  Podi dosa",
         {
           "name": "Nandini Pedda",
           "city": "-",
@@ -2391,12 +1932,7 @@
         }
       ],
       "stays": [
-        {
-          "name": "Wheel to hills stay inn Service Apartments",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Wheel to hills stay inn Service Apartments",
         {
           "name": "Club Cabana",
           "city": "Devanahalli (near Bangalore)",
@@ -2430,200 +1966,45 @@
             "☕ Breakfast"
           ]
         },
-        {
-          "name": "Tirmul Facing",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Tirmul Facing"
       ],
       "highlights": []
     },
     "Kerala": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Sabarmallai",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Sabarmallai"
       ],
       "placesToVisit": [
-        {
-          "name": "Mattupetti Indo Swiss Farm",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kundala Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rose Garden",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nyayamakad Waterfall",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lakkom Water Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pothamedu View Point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Carmelagiri Elephant park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Meesapulimala",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kalari Kshetra",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Top Station",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Tata Tea Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Attukal Waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lockhart Gap",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Anamudi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Marayoor Dolmens",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chinnar Wildlife Sanctuary",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Echo point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chokramudi Peak",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jatayu earth centre",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chinnakanal Waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Athirapilly Treehouse",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Wonder Valley Adventure nd Amusement Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kolukkumalai Tea Estate",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kuthumkal Waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Photo Point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Eravikulam National Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Devikulam",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mattupetty Dam",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cheeyappara Waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Mattupetti Indo Swiss Farm",
+        "Kundala Lake",
+        "Rose Garden",
+        "Nyayamakad Waterfall",
+        "Lakkom Water Falls",
+        "Pothamedu View Point",
+        "Carmelagiri Elephant park",
+        "Meesapulimala",
+        "Kalari Kshetra",
+        "Top Station",
+        "Tata Tea Museum",
+        "Attukal Waterfalls",
+        "Lockhart Gap",
+        "Anamudi",
+        "Marayoor Dolmens",
+        "Chinnar Wildlife Sanctuary",
+        "Echo point",
+        "Chokramudi Peak",
+        "Jatayu earth centre",
+        "Chinnakanal Waterfalls",
+        "Athirapilly Treehouse",
+        "Wonder Valley Adventure nd Amusement Park",
+        "Kolukkumalai Tea Estate",
+        "Kuthumkal Waterfalls",
+        "Photo Point",
+        "Eravikulam National Park",
+        "Devikulam",
+        "Mattupetty Dam",
+        "Cheeyappara Waterfalls"
       ],
       "restaurants": [],
       "food": [
@@ -2641,12 +2022,7 @@
     "Madhya Pradesh": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Stupa of Sanchi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Stupa of Sanchi"
       ],
       "placesToVisit": [],
       "restaurants": [],
@@ -2687,18 +2063,8 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Khandala Ghat view Point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Narayani Dham Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Khandala Ghat view Point",
+        "Narayani Dham Temple",
         {
           "name": "Jehangir art gallery",
           "city": "Churchgate",
@@ -2711,18 +2077,8 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Karla Bhuda Caves",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Imagica",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Karla Bhuda Caves",
+        "Imagica",
         {
           "name": "Vasai Creek",
           "city": "Vasai",
@@ -2735,30 +2091,15 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Uttan Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Shiridi Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Uttan Beach",
+        "Shiridi Temple",
         {
           "name": "Loins Point",
           "city": "Lonavala",
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Veermata Jijabai Bhosale Udyan And Zoo",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Veermata Jijabai Bhosale Udyan And Zoo",
         {
           "name": "Alibug Beach",
           "city": "Alibug",
@@ -2767,36 +2108,11 @@
         }
       ],
       "placesToVisit": [
-        {
-          "name": "Harishchandragad Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Naneghat Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Harihar fort trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Dandi Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kalsubai",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Harishchandragad Trek",
+        "Naneghat Trek",
+        "Harihar fort trek",
+        "Dandi Beach",
+        "Kalsubai"
       ],
       "restaurants": [
         {
@@ -2819,42 +2135,12 @@
         }
       ],
       "food": [
-        {
-          "name": "Pani Puri",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Vada Pav",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pav Bhaji",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lonavala Chikki",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Modaks",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Paradise chicken biryani - Airoli",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Pani Puri",
+        "Vada Pav",
+        "Pav Bhaji",
+        "Lonavala Chikki",
+        "Modaks",
+        "Paradise chicken biryani - Airoli"
       ],
       "treks": [
         {
@@ -2899,18 +2185,8 @@
         }
       ],
       "stays": [
-        {
-          "name": "Sai Inn Resort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rivergate Resort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Sai Inn Resort",
+        "Rivergate Resort"
       ],
       "highlights": [
         {
@@ -2945,128 +2221,28 @@
     "Meghalaya": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Kakyaki",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Dawki river",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ploice bazar",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ward's lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Camping",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Garden of caves",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nohkalikai waterfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Single root bridge",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Blue lagoom",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mawlynnong village",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mawsmai caves",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cherry blossoms",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "krang suri falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "India - Bangladesh border",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cliff jumping",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mawphlang sacred forest",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Double decker root bridge",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Kakyaki",
+        "Dawki river",
+        "Ploice bazar",
+        "Ward's lake",
+        "Camping",
+        "Garden of caves",
+        "Nohkalikai waterfalls",
+        "Single root bridge",
+        "Blue lagoom",
+        "Mawlynnong village",
+        "Mawsmai caves",
+        "Cherry blossoms",
+        "krang suri falls",
+        "India - Bangladesh border",
+        "Cliff jumping",
+        "Mawphlang sacred forest",
+        "Double decker root bridge"
       ],
       "placesToVisit": [
-        {
-          "name": "Umiam Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rainbow Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Wei Shawdong",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Umiam Lake",
+        "Rainbow Falls",
+        "Wei Shawdong"
       ],
       "restaurants": [],
       "food": [],
@@ -3088,18 +2264,8 @@
         }
       ],
       "stays": [
-        {
-          "name": "Lilly resturant",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Smoky tribe falls coffee",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Lilly resturant",
+        "Smoky tribe falls coffee"
       ],
       "highlights": [
         {
@@ -3138,48 +2304,13 @@
       "visited": false,
       "placesVisited": [],
       "placesToVisit": [
-        {
-          "name": "Chitwan",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kathmandu",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nagarkot",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lumbini",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chandragiri Hills",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sarangkot",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pokhara",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Chitwan",
+        "Kathmandu",
+        "Nagarkot",
+        "Lumbini",
+        "Chandragiri Hills",
+        "Sarangkot",
+        "Pokhara"
       ],
       "restaurants": [],
       "food": [],
@@ -3189,106 +2320,26 @@
     "New Delhi": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "India Gate",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Akshardham Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jantar mantar",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lotus Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rashtrapati Bhavan",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Train Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Redfort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jahangir Palace",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Raj Ghat",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Taj Mahal",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Khas Mahal",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "India Gate",
+        "Akshardham Temple",
+        "Jantar mantar",
+        "Lotus Temple",
+        "Rashtrapati Bhavan",
+        "Train Museum",
+        "Redfort",
+        "Jahangir Palace",
+        "Raj Ghat",
+        "Taj Mahal",
+        "Khas Mahal"
       ],
       "placesToVisit": [
-        {
-          "name": "Humayu's Tomb",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Isckon",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Birla Mandir",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jama Masjid",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Humayu's Tomb",
+        "Isckon",
+        "Birla Mandir",
+        "Jama Masjid"
       ],
       "restaurants": [
-        {
-          "name": "Bagundi Andhra Kitchen",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Bagundi Andhra Kitchen"
       ],
       "food": [],
       "treks": [],
@@ -3297,30 +2348,10 @@
     "Odisha": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Konark/Chandrabhaga Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chilika Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Puri Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Puri Jagannath temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Konark/Chandrabhaga Beach",
+        "Chilika Lake",
+        "Puri Beach",
+        "Puri Jagannath temple",
         {
           "name": "Sun Temple",
           "city": "Konark",
@@ -3329,30 +2360,10 @@
         }
       ],
       "placesToVisit": [
-        {
-          "name": "Ashtanga Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "bird santurcy",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "lingraja Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "ASI Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Ashtanga Beach",
+        "bird santurcy",
+        "lingraja Temple",
+        "ASI Museum"
       ],
       "restaurants": [],
       "food": [
@@ -3374,117 +2385,37 @@
           "remarks": "-",
           "image": "uploads/1770014639317_img_4904.jpeg"
         },
-        {
-          "name": "Rasgulla",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Rasgulla"
       ],
       "treks": [],
       "stays": [
-        {
-          "name": "Susila Nivas",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Susila Nivas"
       ],
       "highlights": []
     },
     "Puducherry": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Sernity Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Sernity Beach",
         {
           "name": "Watch Tower",
           "city": "Vizianagaram",
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Paradise Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mangrove Forest",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "French War memorial",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rock Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Arovile Mytri Mandir",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Shanti Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pondichery Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "New Light House",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Edsen Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Promenade Beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Craft Bazar",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Old Light House",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Arulmigu Manakula Vinayagar Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Paradise Beach",
+        "Mangrove Forest",
+        "French War memorial",
+        "Rock Beach",
+        "Arovile Mytri Mandir",
+        "Shanti Park",
+        "Pondichery Museum",
+        "New Light House",
+        "Edsen Beach",
+        "Promenade Beach",
+        "Craft Bazar",
+        "Old Light House",
+        "Arulmigu Manakula Vinayagar Temple"
       ],
       "placesToVisit": [],
       "restaurants": [
@@ -3536,107 +2467,32 @@
           "remarks": "Cormandal cafe",
           "image": "uploads/1770011160115_img_6521.jpeg"
         },
-        {
-          "name": "Burnt American cheese cake - Cormandal cafe",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Florentine Spinach Pizza - Cafe Qualita",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pondy Brest - Crepe in touch",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Burnt American cheese cake - Cormandal cafe",
+        "Florentine Spinach Pizza - Cafe Qualita",
+        "Pondy Brest - Crepe in touch"
       ],
       "treks": [],
       "stays": [
-        {
-          "name": "Coffee ideas",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hope Cafe",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Crepe in touch",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cormandal Cafe",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Fizi Villa",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Italian Quality Relish",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Coffee ideas",
+        "Hope Cafe",
+        "Crepe in touch",
+        "Cormandal Cafe",
+        "Fizi Villa",
+        "Italian Quality Relish"
       ],
       "highlights": []
     },
     "Punjab": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Brahma Sarovar Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Golden Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Wagah Border",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Vaishno Devi Mandir",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Brahma Sarovar Temple",
+        "Golden Temple",
+        "Wagah Border",
+        "Vaishno Devi Mandir"
       ],
       "placesToVisit": [
-        {
-          "name": "Jallinwala Bagh",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Shri Durgiana Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Jallinwala Bagh",
+        "Shri Durgiana Temple"
       ],
       "restaurants": [],
       "food": [],
@@ -3647,186 +2503,36 @@
       "visited": false,
       "placesVisited": [],
       "placesToVisit": [
-        {
-          "name": "Mehrangarh Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Desert National Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lord Brahma Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "National Research Centre on Camels",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Salim Singh Ki Haveli",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jaisalmer Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "National Research Centre on Equines",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jantar Mantar",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Patwon ki Haveli",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bada Bagh",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Fateh Sagar Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jaswant Thada",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jal Mahal",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Step well",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hawa Mahal",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Gadisar Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Karni Mata Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nathmal Ki Haveli",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Amer Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sam Sand Dunes",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ambrai Ghat",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nahargarh Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Badi Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mount abhu",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pushkar Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mandore Garden",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jagmandir",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Junagarh Fort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "City Palace",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bishnoi Village",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Mehrangarh Fort",
+        "Desert National Park",
+        "Lord Brahma Temple",
+        "National Research Centre on Camels",
+        "Salim Singh Ki Haveli",
+        "Jaisalmer Fort",
+        "National Research Centre on Equines",
+        "Jantar Mantar",
+        "Patwon ki Haveli",
+        "Bada Bagh",
+        "Fateh Sagar Lake",
+        "Jaswant Thada",
+        "Jal Mahal",
+        "Step well",
+        "Hawa Mahal",
+        "Gadisar Lake",
+        "Karni Mata Temple",
+        "Nathmal Ki Haveli",
+        "Amer Fort",
+        "Sam Sand Dunes",
+        "Ambrai Ghat",
+        "Nahargarh Fort",
+        "Badi Lake",
+        "Mount abhu",
+        "Pushkar Lake",
+        "Mandore Garden",
+        "Jagmandir",
+        "Junagarh Fort",
+        "City Palace",
+        "Bishnoi Village"
       ],
       "restaurants": [],
       "food": [],
@@ -3843,80 +2549,20 @@
     "Sikkim": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Tashi View Point, Bojoghari",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kanchanjanga",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Zero Point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bakthangfalls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Scintillating Sister Waterfall",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sikkim Himalyan Zoological park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cornationbridge",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Tashi View Point, Bojoghari",
+        "Kanchanjanga",
+        "Zero Point",
+        "Bakthangfalls",
+        "Scintillating Sister Waterfall",
+        "Sikkim Himalyan Zoological park",
+        "Cornationbridge"
       ],
       "placesToVisit": [
-        {
-          "name": "Tsomgo Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nathula Pass",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Pelling skywalk",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Baba Harbhajan Mandir",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lachen",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Tsomgo Lake",
+        "Nathula Pass",
+        "Pelling skywalk",
+        "Baba Harbhajan Mandir",
+        "Lachen"
       ],
       "restaurants": [],
       "food": [
@@ -3941,24 +2587,9 @@
           "category": "Amusement & Theme Park",
           "image": ""
         },
-        {
-          "name": "Vivo city mall",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Singapore flyer",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Flower Dome",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Vivo city mall",
+        "Singapore flyer",
+        "Flower Dome",
         {
           "name": "Wings of time",
           "city": "-",
@@ -3966,48 +2597,13 @@
           "category": "Amusement & Theme Park",
           "image": ""
         },
-        {
-          "name": "Silosa point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Buddha tooth relic temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Orchard road",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Skyline Luge Singapore",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Little india",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Merlion park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Marina bay sands",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Silosa point",
+        "Buddha tooth relic temple",
+        "Orchard road",
+        "Skyline Luge Singapore",
+        "Little india",
+        "Merlion park",
+        "Marina bay sands",
         {
           "name": "Super tree gove",
           "city": "-",
@@ -4015,98 +2611,23 @@
           "category": "Nature & Park",
           "image": ""
         },
-        {
-          "name": "Cloud forest",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Gradens of the bay",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Cloud forest",
+        "Gradens of the bay"
       ],
       "placesToVisit": [
-        {
-          "name": "National orchid garden",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Singapore cable car",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Singapore botanic garden",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "IFly Singapore",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Singapore zoo",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sands skypark obersavtion desk",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "National museum of Singapore",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Skyline ride",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Arab stree",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Haji lane",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Suntec city",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Night Safari Nocturnal Wildlife Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "China square",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "National orchid garden",
+        "Singapore cable car",
+        "Singapore botanic garden",
+        "IFly Singapore",
+        "Singapore zoo",
+        "Sands skypark obersavtion desk",
+        "National museum of Singapore",
+        "Skyline ride",
+        "Arab stree",
+        "Haji lane",
+        "Suntec city",
+        "Night Safari Nocturnal Wildlife Park",
+        "China square"
       ],
       "restaurants": [],
       "food": [],
@@ -4165,30 +2686,15 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Sri Lakshmi Narayani Golden Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Sri Lakshmi Narayani Golden Temple",
         {
           "name": "Light house",
           "city": "Mahabalipuram",
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Panch Rath",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Dolphin Nose view point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Panch Rath",
+        "Dolphin Nose view point",
         {
           "name": "Pine Forest",
           "city": "Ooty",
@@ -4225,48 +2731,18 @@
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Valluvar Kottam",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Butterball",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Valluvar Kottam",
+        "Butterball",
         {
           "name": "Seashore Temple",
           "city": "Mahabalipuram",
           "remarks": "-",
           "image": ""
         },
-        {
-          "name": "Ekambaranathar Temple West Gopuram",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kodaikanal",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Adiyogi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Arunachalam Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
+        "Ekambaranathar Temple West Gopuram",
+        "Kodaikanal",
+        "Adiyogi",
+        "Arunachalam Temple",
         {
           "name": "Chocolate factory",
           "city": "Ooty",
@@ -4275,84 +2751,19 @@
         }
       ],
       "placesToVisit": [
-        {
-          "name": "Guna caves",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Doddabetta Peak",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Tea factory & museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Glendale Tea Factory Outlet",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Under Water aquarium",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Wallington Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Eucalyptus oil factory",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Arichalmunai",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ooty botanical garden",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Rallia Dam",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sim's Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Emerald lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lamb's rock",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Guna caves",
+        "Doddabetta Peak",
+        "Tea factory & museum",
+        "Glendale Tea Factory Outlet",
+        "Under Water aquarium",
+        "Wallington Lake",
+        "Eucalyptus oil factory",
+        "Arichalmunai",
+        "Ooty botanical garden",
+        "Rallia Dam",
+        "Sim's Park",
+        "Emerald lake",
+        "Lamb's rock"
       ],
       "restaurants": [],
       "food": [],
@@ -4363,30 +2774,10 @@
     "Uttar Pradesh": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Pontoon bridge",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Anand Bhawan Museum",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kashi vishwanath temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ganga Harathi",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Pontoon bridge",
+        "Anand Bhawan Museum",
+        "Kashi vishwanath temple",
+        "Ganga Harathi"
       ],
       "placesToVisit": [],
       "restaurants": [],
@@ -4397,194 +2788,39 @@
     "Uttarakhand": {
       "visited": true,
       "placesVisited": [
-        {
-          "name": "Treveni Ghat",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jwala Devi Temple",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Robber's Cave",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Bungee Jumping",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kempty Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Treveni Ghat",
+        "Jwala Devi Temple",
+        "Robber's Cave",
+        "Bungee Jumping",
+        "Kempty Falls"
       ],
       "placesToVisit": [
-        {
-          "name": "Camel's Back Road",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lal Tibba",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Shikhar Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mussoorie Adventure Park",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Company Garden",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chetwoode Hall",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Jharipani Falls",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Dhanaulti",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Gun Hill Point",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mindrolling Monastery",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cloud's End",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "auli sky resort",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Auli Artificial Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Mussoorie Lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kasmanda Palace",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Christ Church",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Tapovan",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "chenab lake",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Benog Wildlife Sanctuary",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Nag Tibba Trek",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Khalanga War Memorial",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Happy Valley",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Chattrakund",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Lake Mist",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Library Bazar",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sir George Everest's House",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Camel's Back Road",
+        "Lal Tibba",
+        "Shikhar Falls",
+        "Mussoorie Adventure Park",
+        "Company Garden",
+        "Chetwoode Hall",
+        "Jharipani Falls",
+        "Dhanaulti",
+        "Gun Hill Point",
+        "Mindrolling Monastery",
+        "Cloud's End",
+        "auli sky resort",
+        "Auli Artificial Lake",
+        "Mussoorie Lake",
+        "Kasmanda Palace",
+        "Christ Church",
+        "Tapovan",
+        "chenab lake",
+        "Benog Wildlife Sanctuary",
+        "Nag Tibba Trek",
+        "Khalanga War Memorial",
+        "Happy Valley",
+        "Chattrakund",
+        "Lake Mist",
+        "Library Bazar",
+        "Sir George Everest's House"
       ],
       "restaurants": [],
       "food": [],
@@ -4606,24 +2842,9 @@
         }
       ],
       "stays": [
-        {
-          "name": "Tiwari Hotel",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hotel Devlok",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hotel yog tapovan",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Tiwari Hotel",
+        "Hotel Devlok",
+        "Hotel yog tapovan"
       ],
       "highlights": [
         {
@@ -4711,58 +2932,16 @@
       "visited": false,
       "placesVisited": [],
       "placesToVisit": [
-        {
-          "name": "Tiger Hill",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Sundarbans Mangrove forest",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Ghoom Monastery",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Batasia Loop",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Japanese Peace Pagoda",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
+        "Tiger Hill",
+        "Sundarbans Mangrove forest",
+        "Ghoom Monastery",
+        "Batasia Loop",
+        "Japanese Peace Pagoda"
       ],
       "restaurants": [],
       "food": [],
       "treks": [],
       "stays": []
-    },
-    "Gujarat": {
-      "food": [
-        {
-          "name": "Dhokla",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Kachori",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        }
-      ],
-      "visited": false
     }
   },
   "bucketList": [

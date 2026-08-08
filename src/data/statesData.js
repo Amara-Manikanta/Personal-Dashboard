@@ -4,7 +4,7 @@ const STATES_LIST = [
     "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
     "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
     "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
-    "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
     "Uttar Pradesh", "Uttarakhand", "West Bengal",
     "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
     "Lakshadweep", "New Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
@@ -132,7 +132,50 @@ const saveBucketList = (items) => {
     return true;
 };
 
+/**
+ * Everything the raw states object holds, split by what it actually is.
+ * states.json keys India states and world countries into one map, so any
+ * screen counting Object.keys() gets a meaningless total — it mixes the two
+ * and picks up stray keys that belong to neither list.
+ */
+const getTravelTotals = () => {
+    const { states } = getRawData();
+    const entries = Object.entries(states || {});
+
+    const isVisited = (v) => !!(v && (v.visited || (v.placesVisited && v.placesVisited.length)));
+    const countIn = (list) => entries.filter(([name, v]) => list.includes(name) && isVisited(v)).length;
+
+    const sum = (field) => entries.reduce((acc, [, v]) => acc + (((v && v[field]) || []).length), 0);
+
+    // Keys in neither list are invisible in the UI — surface them so typos
+    // like "Gujrat" vs "Gujarat" do not silently hide their data.
+    const orphans = entries
+        .filter(([name]) => !STATES_LIST.includes(name) && !COUNTRIES_LIST.includes(name))
+        .map(([name, v]) => ({
+            name,
+            items: ['placesVisited', 'placesToVisit', 'restaurants', 'food', 'treks', 'stays', 'highlights']
+                .reduce((acc, f) => acc + (((v && v[f]) || []).length), 0)
+        }))
+        .filter(o => o.items > 0);
+
+    return {
+        statesVisited: countIn(STATES_LIST),
+        statesTotal: STATES_LIST.length,
+        countriesVisited: countIn(COUNTRIES_LIST),
+        placesVisited: sum('placesVisited'),
+        placesToVisit: sum('placesToVisit'),
+        restaurants: sum('restaurants'),
+        food: sum('food'),
+        treks: sum('treks'),
+        stays: sum('stays'),
+        highlights: sum('highlights'),
+        orphans
+    };
+};
+
 window.TravelData = {
+    STATES_LIST,
+    COUNTRIES_LIST,
     getStatesData,
     saveStateData,
     getStateStats,
@@ -140,5 +183,6 @@ window.TravelData = {
     saveCountryData,
     getCountryStats,
     getBucketList,
-    saveBucketList
+    saveBucketList,
+    getTravelTotals
 };

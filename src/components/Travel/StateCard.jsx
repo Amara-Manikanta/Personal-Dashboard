@@ -19,29 +19,23 @@ window.StateCard = ({ state, onClick }) => {
                     {isVisited && <i className="ph-fill ph-check-circle badge-visited"></i>}
                 </div>
 
+                {/* A fixed set of counters in a fixed order, so every card is
+                    the same shape and the numbers line up down the grid.
+                    Zeroes are dimmed rather than dropped — a missing chip
+                    reads as "unknown", a dimmed 0 reads as "none yet". */}
                 <div className="state-stats">
-                    <div className="stat">
-                        <i className="ph-fill ph-map-pin"></i>
-                        <span>{placesVisitedCount} visited</span>
-                    </div>
-                    {placesToVisitCount > 0 && (
-                        <div className="stat">
-                            <i className="ph-fill ph-binoculars"></i>
-                            <span>{placesToVisitCount} to see</span>
+                    {[
+                        ['ph-map-pin', placesVisitedCount, 'visited'],
+                        ['ph-binoculars', placesToVisitCount, 'to see'],
+                        ['ph-fork-knife', restaurantsCount, 'eats'],
+                        ['ph-mountains', (state.treks || []).length, 'treks'],
+                        ['ph-bed', (state.stays || []).length, 'stays']
+                    ].map(([icon, count, label]) => (
+                        <div key={label} className={`stat ${count ? '' : 'is-zero'}`}>
+                            <i className={`ph-fill ${icon}`}></i>
+                            <span>{count} {label}</span>
                         </div>
-                    )}
-                    {restaurantsCount > 0 && (
-                        <div className="stat">
-                            <i className="ph-fill ph-fork-knife"></i>
-                            <span>{restaurantsCount} eats</span>
-                        </div>
-                    )}
-                    {state.treks && state.treks.length > 0 && (
-                        <div className="stat">
-                            <i className="ph-fill ph-mountains"></i>
-                            <span>{state.treks.length} treks</span>
-                        </div>
-                    )}
+                    ))}
                 </div>
 
                 <div className="card-overlay">
@@ -58,6 +52,7 @@ window.StateCard = ({ state, onClick }) => {
                     cursor: pointer;
                     transition: all 0.3s ease;
                     min-height: 180px;
+                    height: 100%;
                     display: flex;
                     flex-direction: column;
                     position: relative;
@@ -111,12 +106,16 @@ window.StateCard = ({ state, onClick }) => {
                     display: flex;
                     align-items: center;
                     gap: 0.4rem;
-                    font-size: 0.85rem;
-                    color: var(--text-muted);
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
                     background: var(--bg-app);
                     padding: 0.3rem 0.6rem;
                     border-radius: var(--radius-sm);
+                    font-variant-numeric: tabular-nums;
                 }
+
+                .stat.is-zero { opacity: 0.35; }
+                .stat i { font-size: 0.85rem; }
                 
                 .card-overlay {
                     position: absolute;

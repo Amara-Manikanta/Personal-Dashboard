@@ -93,6 +93,7 @@
         const [newTerrain, setNewTerrain] = useState('');
         const [newSafetyAlerts, setNewSafetyAlerts] = useState(false);
         const [newIsVisited, setNewIsVisited] = useState(false);
+        const [newVisitedDate, setNewVisitedDate] = useState('');
         const [newStayType, setNewStayType] = useState('Hotel');
         const [newCheckIn, setNewCheckIn] = useState('');
         const [newCheckOut, setNewCheckOut] = useState('');
@@ -108,6 +109,7 @@
         useEffect(() => {
             setNewItem('');
             setNewCity('');
+            setNewVisitedDate('');
             setNewRemarks('');
             setNewCategory('');
             setSelectedCategoryFilter('all');
@@ -222,6 +224,7 @@
                 city: newCity.trim() || '-',
                 remarks: newRemarks.trim() || '-',
                 category: newCategory || undefined,
+                visitedDate: activeTab === 'placesVisited' ? (newVisitedDate || undefined) : undefined,
                 image: isGridView ? uploadedImagePath : undefined,
                 mapLink: (activeTab === 'restaurants' || activeTab === 'treks') ? newMapLink.trim() : undefined,
                 dishes: activeTab === 'restaurants' ? [...newDishes] : undefined,
@@ -252,6 +255,7 @@
             // Reset fields
             setNewItem('');
             setNewCity('');
+            setNewVisitedDate('');
             setNewRemarks('');
             setNewCategory('');
             setNewDishes([]);
@@ -395,6 +399,7 @@
                 city: editItem.city.trim() || '-',
                 remarks: editItem.remarks.trim() || '-',
                 category: editItem.category || undefined,
+                visitedDate: editItem.visitedDate || undefined,
                 image: editItem.image
             };
             
@@ -678,6 +683,15 @@
                                             placeholder="City..."
                                             className="sub-input"
                                         />
+                                        {activeTab === 'placesVisited' && (
+                                            <input
+                                                type="date"
+                                                value={newVisitedDate}
+                                                onChange={(e) => setNewVisitedDate(e.target.value)}
+                                                className="sub-input date-input"
+                                                title="When did you visit? (optional)"
+                                            />
+                                        )}
                                         {activeTab === 'restaurants' && (
                                             <input
                                                 type="text"
@@ -1200,6 +1214,15 @@
                                                                     <option key={cat.id} value={cat.id}>{cat.label}</option>
                                                                 ))}
                                                             </select>
+                                                            {activeTab === 'placesVisited' && (
+                                                                <input
+                                                                    type="date"
+                                                                    className="edit-input date-input mb-2"
+                                                                    value={editItem.visitedDate || ''}
+                                                                    onChange={(e) => setEditItem({ ...editItem, visitedDate: e.target.value })}
+                                                                    title="Visit date (optional)"
+                                                                />
+                                                            )}
                                                             {(activeTab === 'restaurants' || activeTab === 'treks') && (
                                                                 <input
                                                                     type="text"
@@ -1412,6 +1435,12 @@
                                                     <td className="col-name">
                                                         <div className="name-cell">
                                                             <span className="name-cell-title">{name}</span>
+                                                            {isObj && item.visitedDate && (
+                                                                <span className="visit-date" title={`Visited ${item.visitedDate}`}>
+                                                                    <i className="ph-bold ph-calendar-blank"></i>
+                                                                    {new Date(item.visitedDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}
+                                                                </span>
+                                                            )}
                                                             {isObj && item.category && renderCategoryBadge(item.category)}
                                                             {isObj && item.mapLink && (
                                                                 <a href={item.mapLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors flex items-center justify-center p-1 rounded-full hover:bg-blue-500/10" title="View on Google Maps">
@@ -2012,6 +2041,26 @@
                         font-size: 1.05rem;
                         font-weight: 500;
                         color: var(--text-primary);
+                    }
+
+                    .visit-date {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.3rem;
+                        padding: 0.15rem 0.5rem;
+                        border-radius: 99px;
+                        background: rgba(255,255,255,0.05);
+                        color: var(--text-muted);
+                        font-size: 0.7rem;
+                        font-variant-numeric: tabular-nums;
+                        white-space: nowrap;
+                    }
+
+                    .visit-date i { font-size: 0.72rem; }
+
+                    #root .date-input {
+                        color-scheme: dark;
+                        min-width: 140px;
                     }
 
                     /* Treks summary bar */
