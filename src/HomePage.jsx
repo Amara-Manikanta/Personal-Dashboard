@@ -125,7 +125,11 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                         </div>
                         <h2>Travel Tracker</h2>
                         <p className="card-description">Map your visited states, treks, and restaurant adventures</p>
-                        {cardStat(stats && `${stats.travel.states} of ${stats.travel.totalStates} states · ${stats.travel.bucketList} on the bucket list`)}
+                        {cardStat(stats && [
+                            `${stats.travel.states} of ${stats.travel.totalStates} states`,
+                            stats.travel.countries ? `${stats.travel.countries} countries` : null,
+                            `${stats.travel.places} places logged`
+                        ].filter(Boolean).join(' · '))}
                         <div className="card-action">
                             <span>Open Dashboard</span>
                             <i className="ph-bold ph-arrow-right"></i>

@@ -129,8 +129,16 @@ const App = () => {
         const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
         const readingHistory = years.map(y => ({ year: y, count: yearCounts[y] }));
 
-        const visitedStates = Object.values(states).filter(s => s && s.visited).length;
-        const placesLogged = Object.values(states).reduce(
+        // states.json keys India states and world countries into one map, so
+        // counting it directly conflates the two. TravelData owns the split.
+        const totals = (window.TravelData && window.TravelData.getTravelTotals)
+            ? window.TravelData.getTravelTotals()
+            : null;
+
+        const visitedStates = totals ? totals.statesVisited : Object.values(states).filter(s => s && s.visited).length;
+        const totalStates = totals ? totals.statesTotal : Object.keys(states).length;
+        const visitedCountries = totals ? totals.countriesVisited : 0;
+        const placesLogged = totals ? totals.placesVisited : Object.values(states).reduce(
             (sum, s) => sum + ((s && s.placesVisited) || []).length, 0
         );
 
@@ -158,7 +166,13 @@ const App = () => {
                     percent: Math.max(0, Math.min(100, percent))
                 };
             }),
-            travel: { states: visitedStates, totalStates: Object.keys(states).length, places: placesLogged, bucketList: bucketList.length },
+            travel: {
+                states: visitedStates,
+                totalStates,
+                countries: visitedCountries,
+                places: placesLogged,
+                bucketList: bucketList.length
+            },
             writing: { entries: writing.length, stories: stories.length },
             clothes: { items: clothes.length }
         };
