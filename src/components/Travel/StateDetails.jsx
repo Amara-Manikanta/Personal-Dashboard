@@ -99,6 +99,19 @@
         const [newCheckOut, setNewCheckOut] = useState('');
         const [newAmenities, setNewAmenities] = useState([]);
 
+        // Feature 14: Place Ratings & Reviews
+        const [newRating, setNewRating] = useState(0);
+        const [newReview, setNewReview] = useState('');
+
+        // Feature 3: Photo Gallery
+        const [newPhotos, setNewPhotos] = useState([]);
+        const [photoUploading, setPhotoUploading] = useState(false);
+
+        // Lightbox state
+        const [lightboxPhotos, setLightboxPhotos] = useState([]);
+        const [lightboxIndex, setLightboxIndex] = useState(0);
+        const [lightboxOpen, setLightboxOpen] = useState(false);
+
         useEffect(() => {
             if (stateName) {
                 loadData();
@@ -135,6 +148,9 @@
             setNewSeason('All Year');
             setNewTravelDuration('');
             setNewPriority('Medium');
+            setNewRating(0);
+            setNewReview('');
+            setNewPhotos([]);
             cancelEdit();
         }, [activeTab]);
 
@@ -246,7 +262,10 @@
                 stayType: activeTab === 'stays' ? newStayType : undefined,
                 checkIn: activeTab === 'stays' ? newCheckIn : undefined,
                 checkOut: activeTab === 'stays' ? newCheckOut : undefined,
-                amenities: activeTab === 'stays' ? [...newAmenities] : undefined
+                amenities: activeTab === 'stays' ? [...newAmenities] : undefined,
+                rating: (activeTab === 'placesVisited' || activeTab === 'restaurants') ? newRating : undefined,
+                review: (activeTab === 'placesVisited' || activeTab === 'restaurants') ? newReview.trim() : undefined,
+                photos: (activeTab === 'placesVisited' || activeTab === 'bucketList') ? (newPhotos.length > 0 ? [...newPhotos] : undefined) : undefined
             };
 
             const updatedList = [...list, itemToAdd];
@@ -281,6 +300,9 @@
             setNewCheckIn('');
             setNewCheckOut('');
             setNewAmenities([]);
+            setNewRating(0);
+            setNewReview('');
+            setNewPhotos([]);
 
             if (isGridView) {
                 setUploadedImagePath('');
@@ -769,6 +791,94 @@
                                     })}
                                 </div>
                             </div>
+
+                            {/* Feature 14: Rating & Review (placesVisited & restaurants) */}
+                            {(activeTab === 'placesVisited' || activeTab === 'restaurants') && (
+                                <div className="rating-review-section">
+                                    <div className="rating-input-row">
+                                        <span className="rating-label">Rating</span>
+                                        <div className="star-selector">
+                                            {[1, 2, 3, 4, 5].map(star => (
+                                                <button
+                                                    key={star}
+                                                    type="button"
+                                                    className={`star-btn ${star <= newRating ? 'active' : ''}`}
+                                                    onClick={(e) => { e.preventDefault(); setNewRating(prev => prev === star ? 0 : star); }}
+                                                    title={`${star} star${star > 1 ? 's' : ''}`}
+                                                >
+                                                    <i className={`ph-fill ph-star`}></i>
+                                                </button>
+                                            ))}
+                                            {newRating > 0 && <span className="rating-value">{newRating}/5</span>}
+                                        </div>
+                                    </div>
+                                    <textarea
+                                        className="review-input"
+                                        placeholder="Write a short review (optional)..."
+                                        value={newReview}
+                                        onChange={(e) => setNewReview(e.target.value)}
+                                        rows={2}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Feature 3: Photo Upload (placesVisited & bucketList) */}
+                            {(activeTab === 'placesVisited' || activeTab === 'bucketList') && isLocalhost && (
+                                <div className="photos-upload-section">
+                                    <div className="photos-header">
+                                        <span className="photos-label"><i className="ph-bold ph-camera"></i> Photos</span>
+                                        <label className={`photo-upload-btn ${photoUploading ? 'uploading' : ''}`}>
+                                            <i className={`ph-bold ${photoUploading ? 'ph-spinner ph-spin' : 'ph-plus'}`}></i>
+                                            Add Photo
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                style={{ display: 'none' }}
+                                                onChange={async (e) => {
+                                                    const file = e.target.files[0];
+                                                    if (!file) return;
+                                                    setPhotoUploading(true);
+                                                    try {
+                                                        const reader = new FileReader();
+                                                        reader.onload = async () => {
+                                                            try {
+                                                                const result = await window.api.uploadImage(reader.result);
+                                                                if (result && result.path) {
+                                                                    setNewPhotos(prev => [...prev, result.path]);
+                                                                }
+                                                            } catch (err) {
+                                                                console.error('Photo upload failed:', err);
+                                                            }
+                                                            setPhotoUploading(false);
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    } catch (err) {
+                                                        console.error('Photo read failed:', err);
+                                                        setPhotoUploading(false);
+                                                    }
+                                                    e.target.value = '';
+                                                }}
+                                            />
+                                        </label>
+                                    </div>
+                                    {newPhotos.length > 0 && (
+                                        <div className="photos-preview-grid">
+                                            {newPhotos.map((photo, idx) => (
+                                                <div key={idx} className="photo-preview-thumb">
+                                                    <img src={photo} alt={`Photo ${idx + 1}`} />
+                                                    <button
+                                                        type="button"
+                                                        className="photo-remove-btn"
+                                                        onClick={(e) => { e.preventDefault(); setNewPhotos(prev => prev.filter((_, i) => i !== idx)); }}
+                                                    >
+                                                        <i className="ph-bold ph-x"></i>
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
 
                             {/* Dish Manager inside Add Form */}
                             {activeTab === 'restaurants' && (
@@ -1463,6 +1573,36 @@
                                                                        title={isVisited ? "Mark as Not Visited" : "Mark as Visited"}></i>
                                                                 </div>
                                                             )}
+                                                            {/* Feature 14: Star Rating Display */}
+                                                            {isObj && item.rating > 0 && (
+                                                                <div className="star-display">
+                                                                    {[1, 2, 3, 4, 5].map(s => (
+                                                                        <i key={s} className={`ph-fill ph-star ${s <= item.rating ? 'star-filled' : 'star-empty'}`}></i>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                            {/* Feature 14: Review indicator */}
+                                                            {isObj && item.review && item.review.trim() && (
+                                                                <span className="review-indicator" title={item.review}>
+                                                                    <i className="ph-fill ph-chat-dots"></i>
+                                                                </span>
+                                                            )}
+                                                            {/* Feature 3: Photo count badge */}
+                                                            {isObj && item.photos && item.photos.length > 0 && (
+                                                                <button
+                                                                    type="button"
+                                                                    className="photo-count-badge"
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        setLightboxPhotos(item.photos);
+                                                                        setLightboxIndex(0);
+                                                                        setLightboxOpen(true);
+                                                                    }}
+                                                                    title={`View ${item.photos.length} photo${item.photos.length > 1 ? 's' : ''}`}
+                                                                >
+                                                                    <i className="ph-fill ph-camera"></i> {item.photos.length}
+                                                                </button>
+                                                            )}
                                                         </div>
                                                     </td>
                                                     <td className="col-city">
@@ -1653,6 +1793,37 @@
                         </div>
                     )}
                 </div>
+
+                {/* Feature 3: Photo Lightbox Modal */}
+                {lightboxOpen && lightboxPhotos.length > 0 && (
+                    <div className="lightbox-overlay" onClick={() => setLightboxOpen(false)}>
+                        <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+                            <button className="lightbox-close" onClick={() => setLightboxOpen(false)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                            <div className="lightbox-image-wrapper">
+                                <img src={lightboxPhotos[lightboxIndex]} alt={`Photo ${lightboxIndex + 1}`} className="lightbox-image" />
+                            </div>
+                            <div className="lightbox-controls">
+                                <button
+                                    className="lightbox-nav"
+                                    disabled={lightboxIndex === 0}
+                                    onClick={() => setLightboxIndex(prev => Math.max(0, prev - 1))}
+                                >
+                                    <i className="ph-bold ph-caret-left"></i>
+                                </button>
+                                <span className="lightbox-counter">{lightboxIndex + 1} of {lightboxPhotos.length}</span>
+                                <button
+                                    className="lightbox-nav"
+                                    disabled={lightboxIndex === lightboxPhotos.length - 1}
+                                    onClick={() => setLightboxIndex(prev => Math.min(lightboxPhotos.length - 1, prev + 1))}
+                                >
+                                    <i className="ph-bold ph-caret-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <style>{`
                     .state-details-container {
@@ -2088,6 +2259,255 @@
                         .table-card { overflow-x: auto; }
                         .cat-picker { flex-direction: column; gap: 0.5rem; }
                         .cat-picker-options { max-height: 5.5rem; overflow-y: auto; }
+                    }
+
+                    /* Feature 14: Rating & Review Styles */
+                    .rating-review-section {
+                        background: var(--bg-app);
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-md);
+                        padding: 0.75rem 1rem;
+                        margin-top: 0.75rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                    }
+                    .rating-input-row {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+                    .rating-label {
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                        color: var(--text-secondary);
+                    }
+                    .star-selector {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.25rem;
+                    }
+                    .star-btn {
+                        background: none;
+                        border: none;
+                        font-size: 1.25rem;
+                        color: var(--text-muted);
+                        cursor: pointer;
+                        padding: 0.1rem;
+                        transition: transform 0.15s, color 0.15s;
+                    }
+                    .star-btn:hover {
+                        transform: scale(1.2);
+                        color: #f59e0b;
+                    }
+                    .star-btn.active {
+                        color: #f59e0b;
+                    }
+                    .rating-value {
+                        font-size: 0.85rem;
+                        font-weight: 700;
+                        color: #f59e0b;
+                        margin-left: 0.5rem;
+                    }
+                    .review-input {
+                        width: 100%;
+                        background: var(--bg-surface);
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-sm);
+                        color: var(--text-primary);
+                        padding: 0.5rem 0.75rem;
+                        font-size: 0.85rem;
+                        resize: vertical;
+                        outline: none;
+                    }
+                    .review-input:focus {
+                        border-color: var(--primary);
+                    }
+                    .star-display {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.1rem;
+                        font-size: 0.85rem;
+                        margin-left: 0.4rem;
+                    }
+                    .star-filled { color: #f59e0b; }
+                    .star-empty { color: rgba(255,255,255,0.15); }
+                    .review-indicator {
+                        color: var(--primary);
+                        font-size: 1rem;
+                        margin-left: 0.4rem;
+                        cursor: help;
+                    }
+
+                    /* Feature 3: Photo Gallery Styles */
+                    .photos-upload-section {
+                        background: var(--bg-app);
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-md);
+                        padding: 0.75rem 1rem;
+                        margin-top: 0.75rem;
+                    }
+                    .photos-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    .photos-label {
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                        color: var(--text-secondary);
+                        display: flex;
+                        align-items: center;
+                        gap: 0.4rem;
+                    }
+                    .photo-upload-btn {
+                        background: rgba(99,102,241,0.15);
+                        color: var(--primary);
+                        border: 1px solid rgba(99,102,241,0.3);
+                        padding: 0.3rem 0.75rem;
+                        border-radius: var(--radius-sm);
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.3rem;
+                        transition: all 0.2s;
+                    }
+                    .photo-upload-btn:hover {
+                        background: var(--primary);
+                        color: white;
+                    }
+                    .photos-preview-grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.5rem;
+                        margin-top: 0.75rem;
+                    }
+                    .photo-preview-thumb {
+                        position: relative;
+                        width: 54px;
+                        height: 54px;
+                        border-radius: var(--radius-sm);
+                        overflow: hidden;
+                        border: 1px solid var(--border);
+                    }
+                    .photo-preview-thumb img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    .photo-remove-btn {
+                        position: absolute;
+                        top: 2px;
+                        right: 2px;
+                        background: rgba(0,0,0,0.7);
+                        color: white;
+                        border: none;
+                        border-radius: 50%;
+                        width: 18px;
+                        height: 18px;
+                        font-size: 0.65rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                    }
+                    .photo-count-badge {
+                        background: rgba(168,85,247,0.15);
+                        color: #a855f7;
+                        border: 1px solid rgba(168,85,247,0.3);
+                        padding: 0.15rem 0.5rem;
+                        border-radius: 1rem;
+                        font-size: 0.75rem;
+                        font-weight: 700;
+                        cursor: pointer;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.3rem;
+                        margin-left: 0.4rem;
+                        transition: all 0.2s;
+                    }
+                    .photo-count-badge:hover {
+                        background: #a855f7;
+                        color: white;
+                    }
+
+                    /* Lightbox Modal */
+                    .lightbox-overlay {
+                        position: fixed;
+                        top: 0; left: 0; right: 0; bottom: 0;
+                        background: rgba(0, 0, 0, 0.9);
+                        backdrop-filter: blur(8px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 9999;
+                        padding: 2rem;
+                    }
+                    .lightbox-content {
+                        position: relative;
+                        max-width: 90vw;
+                        max-height: 90vh;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .lightbox-close {
+                        position: absolute;
+                        top: -2.5rem;
+                        right: 0;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 1.75rem;
+                        cursor: pointer;
+                    }
+                    .lightbox-image-wrapper {
+                        max-width: 80vw;
+                        max-height: 75vh;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
+                        border-radius: var(--radius-md);
+                    }
+                    .lightbox-image {
+                        max-width: 100%;
+                        max-height: 75vh;
+                        object-fit: contain;
+                    }
+                    .lightbox-controls {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.5rem;
+                        margin-top: 1rem;
+                        color: white;
+                    }
+                    .lightbox-nav {
+                        background: rgba(255,255,255,0.15);
+                        border: none;
+                        color: white;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        font-size: 1.25rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: background 0.2s;
+                    }
+                    .lightbox-nav:hover:not(:disabled) {
+                        background: rgba(255,255,255,0.3);
+                    }
+                    .lightbox-nav:disabled {
+                        opacity: 0.3;
+                        cursor: not-allowed;
+                    }
+                    .lightbox-counter {
+                        font-weight: 600;
+                        font-size: 0.95rem;
                     }
                 `}</style>
             </div>

@@ -132,6 +132,7 @@ const saveBucketList = (items) => {
     return true;
 };
 
+<<<<<<< HEAD
 /**
  * Everything the raw states object holds, split by what it actually is.
  * states.json keys India states and world countries into one map, so any
@@ -171,6 +172,20 @@ const getTravelTotals = () => {
         highlights: sum('highlights'),
         orphans
     };
+=======
+const getTrips = () => {
+    return getRawData().trips || [];
+};
+
+const saveTrips = (trips) => {
+    const raw = getRawData();
+    raw.trips = trips;
+    window.rawStatesData = raw;
+    if (window.api && window.api.saveStates) {
+        window.api.saveStates(raw);
+    }
+    return true;
+>>>>>>> 35a6eca (feat(travel): add Trip Planner, Packing Checklist, Achievement Badges, Completion %, Star Ratings & Photo Lightbox)
 };
 
 window.TravelData = {
@@ -184,5 +199,11 @@ window.TravelData = {
     getCountryStats,
     getBucketList,
     saveBucketList,
+<<<<<<< HEAD
     getTravelTotals
+=======
+    getTrips,
+    saveTrips
+>>>>>>> 35a6eca (feat(travel): add Trip Planner, Packing Checklist, Achievement Badges, Completion %, Star Ratings & Photo Lightbox)
 };
+

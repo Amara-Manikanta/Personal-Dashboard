@@ -175,13 +175,16 @@ const Timeline = ({ entries, onSelect }) => {
 window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
     const { useState, useEffect, useMemo } = React;
     const TravelData = window.TravelData || {};
-    const { getStatesData, getCountriesData, getStateStats, getCountryStats, getBucketList, saveBucketList } = TravelData;
+    const { getStatesData, getCountriesData, getStateStats, getCountryStats, getBucketList, saveBucketList, getTrips, saveTrips } = TravelData;
     const StateCard = window.StateCard;
+    const TravelBadges = window.TravelBadges;
+    const TripPlanner = window.TripPlanner;
 
-    // 'states' | 'map' | 'countries' | 'wishlist' | 'treks' | 'timeline' | 'bucket-list'
+    // 'states' | 'map' | 'countries' | 'wishlist' | 'treks' | 'timeline' | 'bucket-list' | 'trips'
     const [viewMode, setViewMode] = useState('states');
     const [items, setItems] = useState([]);
     const [bucketList, setBucketList] = useState([]);
+    const [trips, setTrips] = useState([]);
     const [newItemText, setNewItemText] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('all'); // 'all', 'visited'
@@ -195,7 +198,9 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
             return;
         }
         if (viewMode === 'bucket-list') {
-            setBucketList(getBucketList());
+            setBucketList(getBucketList ? getBucketList() : []);
+        } else if (viewMode === 'trips') {
+            setTrips(getTrips ? getTrips() : []);
         } else {
             setItems(viewMode === 'countries' ? getCountriesData() : getStatesData());
         }
@@ -205,6 +210,16 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         () => (window.TravelData && window.TravelData.getTravelTotals ? window.TravelData.getTravelTotals() : null),
         [items]
     );
+
+    const handleSaveTrips = (updatedTrips) => {
+        setTrips(updatedTrips);
+        if (saveTrips) {
+            saveTrips(updatedTrips);
+        }
+    };
+
+    const allStatesForBadges = useMemo(() => getStatesData ? getStatesData() : [], [items, viewMode]);
+    const allCountriesForBadges = useMemo(() => getCountriesData ? getCountriesData() : [], [items, viewMode]);
 
     /**
      * Every individual entry across every state, flattened once so the
@@ -290,10 +305,6 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
         if (matchesDeepSearch) return true;
 
-        // If no search matches, checks filter only if search term is present but didn't match anything above? 
-        // actually existing logic combined search AND filter. 
-        // Let's refine: item must match search AND filter.
-
         return false;
     }).filter(item => {
         // Apply visited filter
@@ -331,13 +342,20 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     <div className="stat-pill">
                         <span className="label">{viewMode === 'countries' ? 'Countries Visited' : 'States Visited'}</span>
                         <span className="value">
-                            {viewMode === 'countries'
+                            {viewMode === 'trips' ? `${trips.length} Trips` : (viewMode === 'countries'
                                 ? (totals ? totals.countriesVisited : stats.visitedCountries)
-                                : `${totals ? totals.statesVisited : stats.visitedStates} / ${totals ? totals.statesTotal : stats.totalStates}`}
+                                : `${totals ? totals.statesVisited : stats.visitedStates} / ${totals ? totals.statesTotal : stats.totalStates}`)}
                         </span>
                     </div>
                 </div>
             </header>
+
+            {/* Feature 5: Achievement Badges */}
+            {TravelBadges && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                    <TravelBadges statesData={allStatesForBadges} countriesData={allCountriesForBadges} />
+                </div>
+            )}
 
             {/* Everything logged, across every state and country */}
             {totals && (
@@ -367,7 +385,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
             {/* Data keyed under a name that matches neither list is invisible
                 everywhere else in the UI — say so rather than losing it. */}
-            {totals && totals.orphans.length > 0 && (
+            {totals && totals.orphans && totals.orphans.length > 0 && (
                 <div className="travel-orphans">
                     <i className="ph-fill ph-warning"></i>
                     <span>
@@ -387,7 +405,8 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                         ['wishlist', 'To Visit'],
                         ['treks', 'Treks'],
                         ['timeline', 'Timeline'],
-                        ['bucket-list', 'Bucket List']
+                        ['bucket-list', 'Bucket List'],
+                        ['trips', '✈️ Trips']
                     ].map(([mode, label]) => (
                         <button
                             key={mode}
@@ -410,6 +429,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                             treks: 'Search treks...',
                             timeline: 'Search visits...',
                             map: 'Find a state...',
+                            trips: 'Search trips...',
                             states: 'Search states, places, food, treks...'
                         }[viewMode] || 'Search...'}
                         value={searchTerm}
@@ -472,15 +492,15 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                 </div>
             )}
 
-            {viewMode === 'map' && (
+            {viewMode === 'trips' && TripPlanner ? (
+                <TripPlanner trips={trips} onSaveTrips={handleSaveTrips} statesData={allStatesForBadges} />
+            ) : viewMode === 'map' ? (
                 <window.IndiaTileMap
                     states={items}
                     onSelect={onNavigateToState}
                     filter={filter}
                 />
-            )}
-
-            {viewMode === 'wishlist' && (
+            ) : viewMode === 'wishlist' ? (
                 <EntryList
                     entries={allEntries.filter(e => e.field === 'placesToVisit' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
                     emptyIcon="ph-binoculars"
@@ -488,23 +508,17 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     onSelect={onNavigateToState}
                     groupByRegion
                 />
-            )}
-
-            {viewMode === 'treks' && (
+            ) : viewMode === 'treks' ? (
                 <TrekList
                     treks={allEntries.filter(e => e.field === 'treks' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
                     onSelect={onNavigateToState}
                 />
-            )}
-
-            {viewMode === 'timeline' && (
+            ) : viewMode === 'timeline' ? (
                 <Timeline
                     entries={allEntries.filter(e => e.field === 'placesVisited')}
                     onSelect={onNavigateToState}
                 />
-            )}
-
-            {viewMode === 'bucket-list' ? (
+            ) : viewMode === 'bucket-list' ? (
                 <div className="bucket-list-container">
                     <div className="add-item-form">
                         <input

@@ -7,6 +7,28 @@ window.StateCard = ({ state, onClick }) => {
     const placesVisitedCount = state.placesVisited ? state.placesVisited.length : 0;
     const placesToVisitCount = state.placesToVisit ? state.placesToVisit.length : 0;
     const restaurantsCount = state.restaurants ? state.restaurants.length : 0;
+    const treksCount = state.treks ? state.treks.length : 0;
+
+    // Completion calculation
+    const totalKnown = placesVisitedCount + placesToVisitCount;
+    const completionPct = totalKnown > 0 ? Math.round((placesVisitedCount / totalKnown) * 100) : 0;
+    const hasData = totalKnown > 0 || restaurantsCount > 0 || treksCount > 0;
+
+    // Progress ring SVG params
+    const ringSize = 52;
+    const strokeWidth = 5;
+    const radius = (ringSize - strokeWidth) / 2;
+    const circumference = 2 * Math.PI * radius;
+    const dashOffset = circumference - (completionPct / 100) * circumference;
+
+    // Color based on percentage
+    const getRingColor = (pct) => {
+        if (pct >= 80) return '#22c55e';
+        if (pct >= 50) return '#eab308';
+        if (pct >= 20) return '#f97316';
+        return '#ef4444';
+    };
+    const ringColor = getRingColor(completionPct);
 
     return (
         <div
@@ -15,8 +37,45 @@ window.StateCard = ({ state, onClick }) => {
         >
             <div className="state-card-content">
                 <div className="state-header">
-                    <h3>{state.name}</h3>
-                    {isVisited && <i className="ph-fill ph-check-circle badge-visited"></i>}
+                    <div className="state-name-group">
+                        <h3>{state.name}</h3>
+                        {isVisited && <i className="ph-fill ph-check-circle badge-visited"></i>}
+                    </div>
+
+                    {/* Progress Ring */}
+                    {hasData && (
+                        <div className="completion-ring" title={`${completionPct}% explored`}>
+                            <svg width={ringSize} height={ringSize} viewBox={`0 0 ${ringSize} ${ringSize}`}>
+                                <circle
+                                    className="ring-bg"
+                                    cx={ringSize / 2}
+                                    cy={ringSize / 2}
+                                    r={radius}
+                                    fill="none"
+                                    stroke="rgba(255,255,255,0.06)"
+                                    strokeWidth={strokeWidth}
+                                />
+                                {completionPct > 0 && (
+                                    <circle
+                                        className="ring-progress"
+                                        cx={ringSize / 2}
+                                        cy={ringSize / 2}
+                                        r={radius}
+                                        fill="none"
+                                        stroke={ringColor}
+                                        strokeWidth={strokeWidth}
+                                        strokeDasharray={circumference}
+                                        strokeDashoffset={dashOffset}
+                                        strokeLinecap="round"
+                                        transform={`rotate(-90 ${ringSize / 2} ${ringSize / 2})`}
+                                    />
+                                )}
+                            </svg>
+                            <span className="ring-text" style={{ color: totalKnown > 0 ? ringColor : 'var(--text-muted)' }}>
+                                {totalKnown > 0 ? `${completionPct}%` : '—'}
+                            </span>
+                        </div>
+                    )}
                 </div>
 
                 {/* A fixed set of counters in a fixed order, so every card is
@@ -81,6 +140,15 @@ window.StateCard = ({ state, onClick }) => {
                     justify-content: space-between;
                     align-items: flex-start;
                     margin-bottom: 1rem;
+                    gap: 0.75rem;
+                }
+
+                .state-name-group {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    flex: 1;
+                    min-width: 0;
                 }
 
                 .state-header h3 {
@@ -93,6 +161,27 @@ window.StateCard = ({ state, onClick }) => {
                 .badge-visited {
                     color: var(--success);
                     font-size: 1.25rem;
+                    flex-shrink: 0;
+                }
+
+                /* Completion Ring */
+                .completion-ring {
+                    position: relative;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .ring-progress {
+                    transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .ring-text {
+                    position: absolute;
+                    font-size: 0.7rem;
+                    font-weight: 800;
+                    letter-spacing: -0.02em;
                 }
 
                 .state-stats {
@@ -143,3 +232,4 @@ window.StateCard = ({ state, onClick }) => {
         </div>
     );
 };
+
