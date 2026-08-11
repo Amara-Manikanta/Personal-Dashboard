@@ -43,20 +43,18 @@ const App = () => {
                     window.api.getClothes()
                 ]);
 
-                // Assign to global window objects for compatibility with existing components
-                window.novelsData = novels;
-                window.writingData = writing;
-                window.storiesList = stories;
-                window.authorsData = authors;
-                window.clothesData = clothes;
+                window.novelsData = novels || [];
+                window.writingData = writing || [];
+                window.storiesList = stories || [];
+                window.authorsData = authors || [];
+                window.clothesData = clothes || [];
+                window.rawStatesData = statesData || { states: {}, bucketList: [] };
 
-                // For states, we need to handle the structure { states: {}, bucketList: [] }
-                // We'll expose this raw data to be used by statesData.js logic
-                window.rawStatesData = statesData;
-
-                console.log("Data loaded successfully");
+                console.log("Data loaded successfully. States loaded:", Object.keys((window.rawStatesData && window.rawStatesData.states) || {}).length);
+                window.dispatchEvent(new Event('app-data-loaded'));
             } catch (err) {
                 console.error("Failed to load data:", err);
+                window.rawStatesData = window.rawStatesData || { states: {}, bucketList: [] };
             } finally {
                 setLoading(false);
             }

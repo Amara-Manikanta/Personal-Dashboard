@@ -192,11 +192,8 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
     const REGION_VIEWS = ['states', 'map', 'countries'];
 
-    useEffect(() => {
-        if (!getStatesData || !getCountriesData) {
-            console.error("TravelData methods missing");
-            return;
-        }
+    const refreshCurrentViewData = () => {
+        if (!getStatesData || !getCountriesData) return;
         if (viewMode === 'bucket-list') {
             setBucketList(getBucketList ? getBucketList() : []);
         } else if (viewMode === 'trips') {
@@ -204,6 +201,12 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         } else {
             setItems(viewMode === 'countries' ? getCountriesData() : getStatesData());
         }
+    };
+
+    useEffect(() => {
+        refreshCurrentViewData();
+        window.addEventListener('app-data-loaded', refreshCurrentViewData);
+        return () => window.removeEventListener('app-data-loaded', refreshCurrentViewData);
     }, [viewMode]);
 
     const totals = useMemo(

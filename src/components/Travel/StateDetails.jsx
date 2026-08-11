@@ -116,6 +116,9 @@
             if (stateName) {
                 loadData();
             }
+            const onDataLoaded = () => { if (stateName) loadData(); };
+            window.addEventListener('app-data-loaded', onDataLoaded);
+            return () => window.removeEventListener('app-data-loaded', onDataLoaded);
         }, [stateName]);
 
         // Clear inputs when tab changes

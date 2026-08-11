@@ -20,13 +20,26 @@ class GitHubStorage {
         localStorage.setItem('GITHUB_TOKEN', token);
     }
 
+    async fetchStaticFile(path) {
+        try {
+            const cacheBuster = `?t=${Date.now()}`;
+            let res = await fetch(`data/${path}${cacheBuster}`);
+            if (!res.ok) {
+                res = await fetch(`./data/${path}${cacheBuster}`);
+            }
+            if (res.ok) {
+                return await res.json();
+            }
+        } catch (err) {
+            console.error(`Failed to fetch static file data/${path}:`, err);
+        }
+        return null;
+    }
+
     async getFile(path) {
-        // First try to load from the static URL (CDN) for speed, but fallback to API for freshness if needed
-        // Ideally, we always want fresh data if we are going to edit it.
         if (!this.token) {
             // Read-only mode without token
-            const res = await fetch(`data/${path}`);
-            return res.ok ? await res.json() : null;
+            return await this.fetchStaticFile(path);
         }
 
         try {
@@ -39,8 +52,10 @@ class GitHubStorage {
             });
             if (!res.ok) throw new Error(`GitHub API Error: ${res.status}`);
             const json = await res.json();
-            // Content is base64 encoded
-            const content = decodeURIComponent(escape(atob(json.content)));
+            // Content is base64 encoded with potential newlines
+            const cleanBase64 = (json.content || '').replace(/\s/g, '');
+            const bytes = Uint8Array.from(atob(cleanBase64), c => c.charCodeAt(0));
+            const content = new TextDecoder('utf-8').decode(bytes);
             return JSON.parse(content);
         } catch (e) {
             if (e.message.includes('401') || e.message.includes('Bad credentials')) {
@@ -48,11 +63,10 @@ class GitHubStorage {
                 this.token = null;
                 localStorage.removeItem('GITHUB_TOKEN');
             } else {
-                console.error("Failed to fetch from GitHub:", e);
+                console.error("Failed to fetch from GitHub API:", e);
             }
             // Fallback to static if API fails
-            const res = await fetch(`data/${path}`);
-            return res.ok ? await res.json() : null;
+            return await this.fetchStaticFile(path);
         }
     }
 
