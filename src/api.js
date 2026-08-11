@@ -72,9 +72,14 @@ class GitHubStorage {
 
     async saveFile(path, data, silent = false) {
         if (!this.token) {
-            const token = prompt("To save changes to GitHub, please enter your Personal Access Token (Repo scope):");
-            if (token) {
-                this.setToken(token);
+            const token = prompt(
+                "To save changes to GitHub, please enter your GitHub Personal Access Token.\n\n" +
+                "Required Permissions:\n" +
+                "• Fine-Grained Token: Repository permissions -> Contents -> Read and Write (for Personal-Dashboard repo)\n" +
+                "• Classic Token: Select 'repo' scope"
+            );
+            if (token && token.trim()) {
+                this.setToken(token.trim());
             } else {
                 if (!silent) alert("Cannot save without a GitHub Token. Changes will not be persisted.");
                 throw new Error("No GitHub Token provided.");
@@ -100,7 +105,12 @@ class GitHubStorage {
             // 2. Prepare content
             const contentString = JSON.stringify(data, null, 2);
             // safe base64 encoding for utf8
-            const contentBase64 = btoa(unescape(encodeURIComponent(contentString)));
+            const bytes = new TextEncoder().encode(contentString);
+            let binary = '';
+            for (let i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            const contentBase64 = btoa(binary);
 
             // 3. Commit update
             const putRes = await fetch(url, {
@@ -119,13 +129,29 @@ class GitHubStorage {
 
             if (!putRes.ok) {
                 const err = await putRes.json();
-                throw new Error(err.message);
+                throw new Error(err.message || `HTTP ${putRes.status}`);
             }
 
             if (!silent) alert("Saved successfully to GitHub!");
         } catch (e) {
             console.error("GitHub Save Error:", e);
-            if (!silent) alert(`Failed to save to GitHub: ${e.message}`);
+            const msg = e.message || '';
+            if (msg.includes('Resource not accessible') || msg.includes('401') || msg.includes('403') || msg.includes('Bad credentials')) {
+                console.warn("Clearing GitHub token due to insufficient permissions or authorization error.");
+                this.token = null;
+                localStorage.removeItem('GITHUB_TOKEN');
+                if (!silent) {
+                    alert(
+                        "GitHub Token Error: Resource not accessible by personal access token.\n\n" +
+                        "Your saved GitHub Token lacks write permission to repository 'Personal-Dashboard'. Your saved token has been cleared.\n\n" +
+                        "Next time you save, please provide a token with:\n" +
+                        "• Fine-Grained Token: Repository permissions -> Contents -> Read and write\n" +
+                        "• Classic Token: 'repo' scope checked"
+                    );
+                }
+            } else if (!silent) {
+                alert(`Failed to save to GitHub: ${msg}`);
+            }
             throw e;
         }
     }
