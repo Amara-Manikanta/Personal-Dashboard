@@ -13,7 +13,9 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
     <!-- Babel for JSX -->
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Babel 7: v6 predates optional chaining (?.) and nullish coalescing (??),
+         so any component using them failed to parse and silently vanished. -->
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
 
     <!-- Icons (Phosphor) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
