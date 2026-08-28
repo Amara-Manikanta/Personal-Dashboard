@@ -63,6 +63,71 @@
         return `${MONTHS[Number(m[2]) - 1] || m[2]} ${m[1]}`;
     };
 
+    /**
+     * Month + year as two selects.
+     *
+     * <input type="month"> renders as an empty box in this app's dark theme —
+     * the native segments give no visible affordance, so there is nothing to
+     * tell you what to type. Two dropdowns are unambiguous, match the rest of
+     * the UI, and behave the same in every browser.
+     *
+     * Emits "YYYY-MM", or "" until both halves are chosen.
+     */
+    window.MonthYearPicker = ({ value, onChange, className = '' }) => {
+        const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
+        const parse = (v) => {
+            const parts = String(v || '').trim().match(/^(\d{4})-(\d{2})/);
+            return { year: parts ? parts[1] : '', month: parts ? parts[2] : '' };
+        };
+
+        // Each half is held locally. Deriving both from the combined value
+        // loses a half-finished choice: picking a month emits '' (no year
+        // yet), which would immediately wipe the month back out of the UI.
+        const [month, setMonth] = useState(parse(value).month);
+        const [year, setYear] = useState(parse(value).year);
+
+        useEffect(() => {
+            const next = parse(value);
+            setMonth(next.month);
+            setYear(next.year);
+        }, [value]);
+
+        const thisYear = new Date().getFullYear();
+        const years = [];
+        for (let y = thisYear; y >= 1980; y--) years.push(String(y));
+
+        const emit = (nextMonth, nextYear) => {
+            setMonth(nextMonth);
+            setYear(nextYear);
+            onChange(nextMonth && nextYear ? `${nextYear}-${nextMonth}` : '');
+        };
+
+        return (
+            <span className={`month-year-picker ${className}`}>
+                <select
+                    aria-label="Month"
+                    value={month}
+                    onChange={(e) => emit(e.target.value, year)}
+                >
+                    <option value="">Month</option>
+                    {MONTHS.map((label, i) => (
+                        <option key={label} value={String(i + 1).padStart(2, '0')}>{label}</option>
+                    ))}
+                </select>
+                <select
+                    aria-label="Year"
+                    value={year}
+                    onChange={(e) => emit(month, e.target.value)}
+                >
+                    <option value="">Year</option>
+                    {years.map(y => <option key={y} value={y}>{y}</option>)}
+                </select>
+            </span>
+        );
+    };
+
     /** A stored date trimmed to what <input type="month"> expects. */
     window.toMonthInput = (value) => String(value || '').trim().slice(0, 7);
 
@@ -859,12 +924,10 @@
                                             className="sub-input"
                                         />
                                         {activeTab === 'placesVisited' && (
-                                            <input
-                                                type="month"
+                                            <window.MonthYearPicker
                                                 value={newVisitedDate}
-                                                onChange={(e) => setNewVisitedDate(e.target.value)}
-                                                className="sub-input date-input"
-                                                title="Which month did you visit? (optional)"
+                                                onChange={setNewVisitedDate}
+                                                className="in-add-form"
                                             />
                                         )}
                                         {activeTab === 'restaurants' && (
@@ -1458,12 +1521,10 @@
                                         >
                                             {selectedRows.length === filteredList.length ? 'Clear all' : `Select all ${filteredList.length}`}
                                         </button>
-                                        <input
-                                            type="month"
-                                            className="bulk-date-input"
+                                        <window.MonthYearPicker
                                             value={bulkDate}
-                                            onChange={(e) => setBulkDate(e.target.value)}
-                                            aria-label="Visit month to apply"
+                                            onChange={setBulkDate}
+                                            className="bulk-date-input"
                                         />
                                         <button
                                             className="bulk-date-apply"
@@ -1484,7 +1545,20 @@
                             <table className="details-table">
                                 <thead>
                                     <tr>
-                                        {dateMode && activeTab === 'placesVisited' && <th className="col-pick"></th>}
+                                        {dateMode && activeTab === 'placesVisited' && (
+                                            <th className="col-pick">
+                                                <input
+                                                    type="checkbox"
+                                                    title="Select all"
+                                                    aria-label="Select all places"
+                                                    checked={filteredList.length > 0 && selectedRows.length === filteredList.length}
+                                                    ref={el => { if (el) el.indeterminate = selectedRows.length > 0 && selectedRows.length < filteredList.length; }}
+                                                    onChange={() => setSelectedRows(
+                                                        selectedRows.length === filteredList.length ? [] : filteredList.map(f => f.index)
+                                                    )}
+                                                />
+                                            </th>
+                                        )}
                                         <th className="col-name">Name / Item</th>
                                         <th className="col-city">Location</th>
                                         <th className="col-remarks">Notes</th>
@@ -1532,12 +1606,10 @@
                                                                 ))}
                                                             </select>
                                                             {activeTab === 'placesVisited' && (
-                                                                <input
-                                                                    type="month"
-                                                                    className="edit-input date-input mb-2"
-                                                                    value={window.toMonthInput(editItem.visitedDate)}
-                                                                    onChange={(e) => setEditItem({ ...editItem, visitedDate: e.target.value })}
-                                                                    title="Visit month (optional)"
+                                                                <window.MonthYearPicker
+                                                                    value={editItem.visitedDate}
+                                                                    onChange={(v) => setEditItem({ ...editItem, visitedDate: v })}
+                                                                    className="in-edit-form"
                                                                 />
                                                             )}
                                                             {(activeTab === 'restaurants' || activeTab === 'treks') && (
@@ -2569,6 +2641,24 @@
 
                     .move-empty { color: var(--text-muted); font-size: 0.88rem; text-align: center; padding: 1.5rem 0; }
 
+                    /* Month + year selects, used everywhere a visit date is set */
+                    .month-year-picker { display: inline-flex; gap: 0.35rem; align-items: center; }
+
+                    #root .month-year-picker select {
+                        padding: 0.4rem 0.6rem !important;
+                        font-size: 0.85rem;
+                        cursor: pointer;
+                        min-width: 0;
+                    }
+
+                    #root .month-year-picker select:first-child { min-width: 108px; }
+                    #root .month-year-picker select:last-child { min-width: 84px; }
+
+                    .month-year-picker.in-add-form { margin-left: 0.25rem; }
+
+                    .month-year-picker.in-edit-form { display: flex; margin-bottom: 0.5rem; }
+                    #root .month-year-picker.in-edit-form select { flex: 1; }
+
                     /* Bulk visit-date tagging */
                     .bulk-date-bar {
                         display: flex;
@@ -2615,11 +2705,7 @@
 
                     .bulk-date-all:hover, .bulk-date-cancel:hover { color: var(--text-primary); }
 
-                    #root .bulk-date-input {
-                        color-scheme: dark;
-                        padding: 0.35rem 0.6rem !important;
-                        font-size: 0.85rem;
-                    }
+
 
                     .bulk-date-apply {
                         margin-left: auto;
