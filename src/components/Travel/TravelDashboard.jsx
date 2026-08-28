@@ -408,6 +408,30 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                 </div>
             )}
 
+            {/* Category counts up front — the answer to "how many temples?"
+                without needing to find the Categories tab. */}
+            {categoryTotals.rows.length > 0 && (
+                <div className="travel-cats">
+                    <span className="travel-cats-label">By category</span>
+                    {categoryTotals.rows.slice(0, 10).map(row => (
+                        <button
+                            key={row.id}
+                            className="travel-cat-chip"
+                            style={{ '--cat-color': row.color }}
+                            onClick={() => { setOpenCategory(row.id); setViewMode('categories'); }}
+                            title={`${row.count} ${row.label}`}
+                        >
+                            <i className={`ph-fill ${row.icon}`}></i>
+                            <strong>{row.count}</strong>
+                            <span>{row.label}</span>
+                        </button>
+                    ))}
+                    <button className="travel-cat-more" onClick={() => setViewMode('categories')}>
+                        All {categoryTotals.rows.length} categories <i className="ph-bold ph-arrow-right"></i>
+                    </button>
+                </div>
+            )}
+
             {/* Data keyed under a name that matches neither list is invisible
                 everywhere else in the UI — say so rather than losing it. */}
             {totals && totals.orphans && totals.orphans.length > 0 && (
@@ -1138,6 +1162,56 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
                 .trek-card-terrain { color: var(--text-muted); font-size: 0.75rem; }
                 .trek-card-alert { color: #fcd34d; font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; }
+
+                .travel-cats {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 0.45rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .travel-cats-label {
+                    font-size: 0.68rem;
+                    letter-spacing: 0.07em;
+                    text-transform: uppercase;
+                    color: var(--text-muted);
+                    margin-right: 0.35rem;
+                }
+
+                .travel-cat-chip {
+                    --cat-color: var(--primary);
+                    display: inline-flex;
+                    align-items: baseline;
+                    gap: 0.35rem;
+                    padding: 0.35rem 0.7rem;
+                    border-radius: 99px;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    color: var(--text-secondary);
+                    font-family: inherit;
+                    font-size: 0.78rem;
+                    cursor: pointer;
+                    transition: all 0.18s ease;
+                }
+
+                .travel-cat-chip i { color: var(--cat-color); font-size: 0.85rem; align-self: center; }
+                .travel-cat-chip strong { color: var(--text-primary); font-variant-numeric: tabular-nums; }
+                .travel-cat-chip:hover { border-color: var(--cat-color); transform: translateY(-1px); }
+
+                .travel-cat-more {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.35rem;
+                    background: none;
+                    border: none;
+                    color: var(--text-muted);
+                    font-family: inherit;
+                    font-size: 0.75rem;
+                    cursor: pointer;
+                }
+
+                .travel-cat-more:hover { color: var(--primary); }
 
                 /* ---- Category breakdown ---- */
                 .cat-summary {
