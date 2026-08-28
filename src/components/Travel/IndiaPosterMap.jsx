@@ -93,7 +93,7 @@ window.IndiaPosterMap = ({ states, onSelect, categories }) => {
                                         {[...new Set(pin.places.map(p => p.category).filter(Boolean))].slice(0, 6).map(id => {
                                             const cat = catById[id];
                                             return cat
-                                                ? <i key={id} className={`ph-fill ${cat.icon}`} style={{ color: cat.color }} title={cat.label}></i>
+                                                ? <window.CategoryIcon key={id} category={cat} size={13} />
                                                 : null;
                                         })}
                                     </span>

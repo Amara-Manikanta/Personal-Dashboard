@@ -24,10 +24,10 @@
     const AMENITY_OPTIONS = ['🏊 Pool', '📶 Wi-Fi', '🍳 Kitchen', '🅿️ Parking', '❄️ AC', '☕ Breakfast'];
 
     const PLACE_CATEGORIES = [
-        { id: 'Temple', label: 'Temple', icon: 'ph-buildings', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
-        { id: 'Adventure', label: 'Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)' },
-        { id: 'Waterfall', label: 'Waterfall', icon: 'ph-drop', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
-        { id: 'Viewpoint', label: 'Viewpoint', icon: 'ph-binoculars', color: '#8b5cf6', bg: 'rgba(139,92,246,0.15)' },
+        { id: 'Temple', label: 'Temple', icon: 'ph-buildings', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)', svg: 'temple' },
+        { id: 'Adventure', label: 'Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)', svg: 'adventure' },
+        { id: 'Waterfall', label: 'Waterfall', icon: 'ph-drop', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)', svg: 'waterfall' },
+        { id: 'Viewpoint', label: 'Viewpoint', icon: 'ph-binoculars', color: '#8b5cf6', bg: 'rgba(139,92,246,0.15)', svg: 'viewpoint' },
         { id: 'Beach', label: 'Beach', icon: 'ph-sun-horizon', color: '#eab308', bg: 'rgba(234,179,8,0.15)' },
         { id: 'Museum', label: 'Museum', icon: 'ph-bank', color: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
         { id: 'Nature & Park', label: 'Nature & Park', icon: 'ph-tree', color: '#10b981', bg: 'rgba(16,185,129,0.15)' },
@@ -35,6 +35,8 @@
         { id: 'Shopping', label: 'Shopping', icon: 'ph-shopping-bag', color: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
         { id: 'Amusement & Theme Park', label: 'Amusement & Theme Park', icon: 'ph-confetti', color: '#f97316', bg: 'rgba(249,115,22,0.15)' },
         { id: 'Street Food Spot', label: 'Street Food Spot', icon: 'ph-cooking-pot', color: '#fb7185', bg: 'rgba(251,113,133,0.15)' },
+        { id: 'Church', label: 'Church', icon: 'ph-church', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)', svg: 'church' },
+        { id: 'Trekking', label: 'Trekking', icon: 'ph-person-simple-hike', color: '#22c55e', bg: 'rgba(34,197,94,0.15)', svg: 'trekking' },
         { id: 'Religious & Spiritual', label: 'Religious & Spiritual', icon: 'ph-hands-praying', color: '#14b8a6', bg: 'rgba(20,184,166,0.15)' },
         { id: 'Lake & Dam', label: 'Lake & Dam', icon: 'ph-waves', color: '#0ea5e9', bg: 'rgba(14,165,233,0.15)' },
         { id: 'Hill Station', label: 'Hill Station', icon: 'ph-mountains', color: '#059669', bg: 'rgba(5,150,105,0.15)' },
@@ -630,7 +632,7 @@
             if (!cat) return null;
             return (
                 <span className="dish-badge" style={{ backgroundColor: cat.bg, color: cat.color, border: `1px solid ${cat.color}40` }} title={cat.label}>
-                    <i className={`ph-bold ${cat.icon}`}></i> {cat.label}
+                    <window.CategoryIcon category={cat} size={14} /> {cat.label}
                 </span>
             );
         };
@@ -747,7 +749,9 @@
                                         ? { background: cat.color, borderColor: cat.color, boxShadow: `0 4px 14px ${cat.bg}` }
                                         : { '--chip-accent': cat.color }}
                                 >
-                                    <i className={`ph-bold ${cat.icon}`} style={isActive ? {} : { color: cat.color }}></i>
+                                    {isActive
+                                        ? <i className={`ph-bold ${cat.icon}`}></i>
+                                        : <window.CategoryIcon category={cat} size={15} />}
                                     <span>{cat.label}</span>
                                     <span className="cat-chip-count">{count}</span>
                                 </button>
@@ -883,7 +887,9 @@
                                                     ? { background: cat.color, borderColor: cat.color }
                                                     : { '--chip-accent': cat.color }}
                                             >
-                                                <i className={`ph-bold ${cat.icon}`} style={isPicked ? {} : { color: cat.color }}></i>
+                                                {isPicked
+                                                    ? <i className={`ph-bold ${cat.icon}`}></i>
+                                                    : <window.CategoryIcon category={cat} size={14} />}
                                                 <span>{cat.label}</span>
                                             </button>
                                         );

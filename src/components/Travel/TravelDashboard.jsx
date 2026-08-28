@@ -421,7 +421,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                             onClick={() => { setOpenCategory(row.id); setViewMode('categories'); }}
                             title={`${row.count} ${row.label}`}
                         >
-                            <i className={`ph-fill ${row.icon}`}></i>
+                            <window.CategoryIcon category={row} size={16} />
                             <strong>{row.count}</strong>
                             <span>{row.label}</span>
                         </button>
@@ -606,7 +606,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                                     style={{ '--cat-color': row.color }}
                                     onClick={() => setOpenCategory(isOpen ? null : row.id)}
                                 >
-                                    <i className={`ph-fill ${row.icon}`}></i>
+                                    <window.CategoryIcon category={row} size={20} />
                                     <span className="cat-count">{row.count}</span>
                                     <span className="cat-label">{row.label}</span>
                                     <span className="cat-bar"><span style={{ width: `${share}%` }}></span></span>
@@ -627,7 +627,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                             <section className="cat-drill">
                                 <header className="cat-drill-head">
                                     <h2>
-                                        {cat && <i className={`ph-fill ${cat.icon}`} style={{ color: cat.color }}></i>}
+                                        {cat && <window.CategoryIcon category={cat} size={22} />}
                                         {label}
                                         <span className="cat-drill-count">{matching.length}</span>
                                     </h2>
@@ -1275,7 +1275,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     transform: translateY(-2px);
                 }
 
-                .cat-card i { grid-area: icon; font-size: 1.15rem; color: var(--cat-color); }
+                .cat-card i, .cat-card .category-icon { grid-area: icon; font-size: 1.15rem; color: var(--cat-color); }
                 .cat-count {
                     grid-area: count;
                     justify-self: end;

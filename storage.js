@@ -62,6 +62,21 @@ class Storage {
         return crypto.createHash('sha256').update(text).digest('hex').slice(0, 16);
     }
 
+    /**
+     * Content hash of a file as it stands on disk. Clients send the version
+     * they read back with their write, so a save built on stale data can be
+     * rejected instead of silently overwriting newer changes.
+     */
+    version(filename) {
+        const filePath = this.filePath(filename);
+        if (!fs.existsSync(filePath)) return 'absent';
+        try {
+            return Storage.checksum(fs.readFileSync(filePath, 'utf8'));
+        } catch (err) {
+            return 'unreadable';
+        }
+    }
+
     // ---------------------------------------------------------------- reads
 
     /**
@@ -135,16 +150,32 @@ class Storage {
     /**
      * Serialise writes per file so two in-flight saves cannot interleave.
      */
-    write(filename, data, { force = false } = {}) {
+    write(filename, data, { force = false, expectedVersion = null } = {}) {
         const previous = this.writeQueues.get(filename) || Promise.resolve();
         const next = previous
             .catch(() => {})
-            .then(() => this.writeNow(filename, data, { force }));
+            .then(() => this.writeNow(filename, data, { force, expectedVersion }));
         this.writeQueues.set(filename, next);
         return next;
     }
 
-    writeNow(filename, data, { force = false } = {}) {
+    writeNow(filename, data, { force = false, expectedVersion = null } = {}) {
+        // Optimistic concurrency: refuse a write whose author had not seen the
+        // current contents. Without this, two tabs each hold the whole dataset
+        // in memory and the last one to save silently deletes the other's work.
+        if (expectedVersion) {
+            const current = this.version(filename);
+            if (current !== expectedVersion) {
+                return {
+                    ok: false,
+                    code: 'VERSION_CONFLICT',
+                    message: 'The stored data changed since this was loaded.',
+                    currentVersion: current,
+                    expectedVersion
+                };
+            }
+        }
+
         if (data === null || data === undefined) {
             return { ok: false, code: 'EMPTY_PAYLOAD', message: 'Refusing to write null/undefined' };
         }
@@ -185,6 +216,7 @@ class Storage {
             after,
             snapshot,
             pruned,
+            version: Storage.checksum(text),
             checksum: Storage.checksum(text)
         };
     }
