@@ -190,6 +190,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
     const [filter, setFilter] = useState('all'); // 'all', 'visited'
     const [sortBy, setSortBy] = useState('places'); // 'places' | 'name' | 'wishlist'
     const [mapStyle, setMapStyle] = useState('poster'); // 'poster' | 'tiles'
+    const [openCategory, setOpenCategory] = useState(null);
     const PLACE_CATEGORIES = window.PLACE_CATEGORIES || [];
 
     const REGION_VIEWS = ['states', 'map', 'countries'];
@@ -265,6 +266,25 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         });
         return out;
     }, [items]);
+
+    /** How many visited places carry each category, plus the uncategorised rest. */
+    const categoryTotals = useMemo(() => {
+        const places = allEntries.filter(e => e.field === 'placesVisited');
+        const counts = {};
+        let uncategorised = 0;
+
+        places.forEach(p => {
+            if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
+            else uncategorised++;
+        });
+
+        const rows = (window.PLACE_CATEGORIES || [])
+            .map(cat => ({ ...cat, count: counts[cat.id] || 0 }))
+            .filter(row => row.count > 0)
+            .sort((a, b) => b.count - a.count);
+
+        return { rows, uncategorised, categorised: places.length - uncategorised, total: places.length };
+    }, [allEntries]);
 
     const searchLower = searchTerm.trim().toLowerCase();
 
@@ -409,6 +429,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                         ['countries', 'World'],
                         ['wishlist', 'To Visit'],
                         ['treks', 'Treks'],
+                        ['categories', 'Categories'],
                         ['timeline', 'Timeline'],
                         ['bucket-list', 'Bucket List'],
                         ['trips', '✈️ Trips']
@@ -537,6 +558,70 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     treks={allEntries.filter(e => e.field === 'treks' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
                     onSelect={onNavigateToState}
                 />
+            ) : viewMode === 'categories' ? (
+                <div className="cat-view">
+                    <div className="cat-summary">
+                        <span><strong>{categoryTotals.categorised}</strong> of {categoryTotals.total} places categorised</span>
+                        {categoryTotals.uncategorised > 0 && (
+                            <button className="cat-uncat" onClick={() => setOpenCategory('__none')}>
+                                {categoryTotals.uncategorised} still uncategorised
+                            </button>
+                        )}
+                    </div>
+
+                    <div className="cat-grid">
+                        {categoryTotals.rows.map(row => {
+                            const share = categoryTotals.categorised
+                                ? Math.round((row.count / categoryTotals.categorised) * 100)
+                                : 0;
+                            const isOpen = openCategory === row.id;
+                            return (
+                                <button
+                                    key={row.id}
+                                    className={`cat-card ${isOpen ? 'is-open' : ''}`}
+                                    style={{ '--cat-color': row.color }}
+                                    onClick={() => setOpenCategory(isOpen ? null : row.id)}
+                                >
+                                    <i className={`ph-fill ${row.icon}`}></i>
+                                    <span className="cat-count">{row.count}</span>
+                                    <span className="cat-label">{row.label}</span>
+                                    <span className="cat-bar"><span style={{ width: `${share}%` }}></span></span>
+                                    <span className="cat-share">{share}%</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {openCategory && (() => {
+                        const cat = categoryTotals.rows.find(r => r.id === openCategory);
+                        const label = openCategory === '__none' ? 'Uncategorised' : (cat ? cat.label : openCategory);
+                        const matching = allEntries.filter(e =>
+                            e.field === 'placesVisited' &&
+                            (openCategory === '__none' ? !e.category : e.category === openCategory));
+
+                        return (
+                            <section className="cat-drill">
+                                <header className="cat-drill-head">
+                                    <h2>
+                                        {cat && <i className={`ph-fill ${cat.icon}`} style={{ color: cat.color }}></i>}
+                                        {label}
+                                        <span className="cat-drill-count">{matching.length}</span>
+                                    </h2>
+                                    <button onClick={() => setOpenCategory(null)}>
+                                        <i className="ph-bold ph-x"></i> Close
+                                    </button>
+                                </header>
+                                <EntryList
+                                    entries={matching}
+                                    emptyIcon="ph-map-pin"
+                                    emptyText="Nothing here yet."
+                                    onSelect={onNavigateToState}
+                                    groupByRegion
+                                />
+                            </section>
+                        );
+                    })()}
+                </div>
             ) : viewMode === 'timeline' ? (
                 <Timeline
                     entries={allEntries.filter(e => e.field === 'placesVisited')}
@@ -1053,6 +1138,141 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
                 .trek-card-terrain { color: var(--text-muted); font-size: 0.75rem; }
                 .trek-card-alert { color: #fcd34d; font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; }
+
+                /* ---- Category breakdown ---- */
+                .cat-summary {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    flex-wrap: wrap;
+                    padding: 0.85rem 1.1rem;
+                    margin-bottom: 1.25rem;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    border-radius: var(--radius-lg);
+                    color: var(--text-muted);
+                    font-size: 0.85rem;
+                }
+
+                .cat-summary strong { color: var(--text-primary); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+
+                .cat-uncat {
+                    margin-left: auto;
+                    background: none;
+                    border: 1px solid rgba(251,191,36,0.35);
+                    color: #fcd34d;
+                    border-radius: 99px;
+                    padding: 0.25rem 0.75rem;
+                    font-family: inherit;
+                    font-size: 0.78rem;
+                    cursor: pointer;
+                }
+
+                .cat-uncat:hover { background: rgba(251,191,36,0.12); }
+
+                .cat-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    gap: 0.85rem;
+                }
+
+                .cat-card {
+                    --cat-color: var(--primary);
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    grid-template-areas:
+                        "icon count"
+                        "label label"
+                        "bar share";
+                    align-items: center;
+                    gap: 0.25rem 0.6rem;
+                    padding: 0.9rem 1rem;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    border-radius: var(--radius-lg);
+                    font-family: inherit;
+                    text-align: left;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .cat-card:hover, .cat-card.is-open {
+                    border-color: var(--cat-color);
+                    transform: translateY(-2px);
+                }
+
+                .cat-card i { grid-area: icon; font-size: 1.15rem; color: var(--cat-color); }
+                .cat-count {
+                    grid-area: count;
+                    justify-self: end;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                    line-height: 1;
+                    font-variant-numeric: tabular-nums;
+                }
+                .cat-label { grid-area: label; color: var(--text-secondary); font-size: 0.8rem; }
+                .cat-bar {
+                    grid-area: bar;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: rgba(255,255,255,0.08);
+                    overflow: hidden;
+                    margin-top: 0.35rem;
+                }
+                .cat-bar span { display: block; height: 100%; background: var(--cat-color); border-radius: 2px; }
+                .cat-share {
+                    grid-area: share;
+                    justify-self: end;
+                    color: var(--text-muted);
+                    font-size: 0.68rem;
+                    font-variant-numeric: tabular-nums;
+                    margin-top: 0.35rem;
+                }
+
+                .cat-drill { margin-top: 1.75rem; }
+
+                .cat-drill-head {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                    padding-bottom: 0.6rem;
+                    border-bottom: 1px solid var(--border);
+                }
+
+                .cat-drill-head h2 {
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.55rem;
+                    font-size: 1.15rem;
+                    color: var(--text-primary);
+                }
+
+                .cat-drill-count {
+                    background: rgba(255,255,255,0.08);
+                    border-radius: 99px;
+                    padding: 0.1rem 0.6rem;
+                    font-size: 0.75rem;
+                    color: var(--text-muted);
+                    font-variant-numeric: tabular-nums;
+                }
+
+                .cat-drill-head button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.35rem;
+                    background: none;
+                    border: none;
+                    color: var(--text-muted);
+                    font-family: inherit;
+                    font-size: 0.82rem;
+                    cursor: pointer;
+                }
+
+                .cat-drill-head button:hover { color: var(--text-primary); }
 
                 /* ---- Timeline ---- */
                 .timeline-view { display: flex; flex-direction: column; gap: 2rem; }
