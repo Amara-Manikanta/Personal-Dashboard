@@ -66,11 +66,12 @@
     ];
 
     const ADVENTURE_CATEGORIES = [
-        { id: 'Parasailing', label: 'Parasailing', icon: 'ph-parachute', color: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
-        { id: 'River Rafting', label: 'River Rafting', icon: 'ph-boat', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
-        { id: 'Bungee Jumping', label: 'Bungee Jumping', icon: 'ph-arrow-line-down', color: '#f97316', bg: 'rgba(249,115,22,0.15)' },
+        { id: 'Parasailing', label: 'Parasailing', icon: 'ph-parachute', color: '#ec4899', bg: 'rgba(236,72,153,0.15)', svg: 'parasailing' },
+        { id: 'River Rafting', label: 'River Rafting', icon: 'ph-boat', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)', svg: 'rafting' },
+        { id: 'Bungee Jumping', label: 'Bungee Jumping', icon: 'ph-arrow-line-down', color: '#f97316', bg: 'rgba(249,115,22,0.15)', svg: 'bungee' },
         { id: 'Skiing', label: 'Skiing', icon: 'ph-snowflake', color: '#38bdf8', bg: 'rgba(56,189,248,0.15)' },
-        { id: 'Paragliding', label: 'Paragliding', icon: 'ph-wind', color: '#a855f7', bg: 'rgba(168,85,247,0.15)' },
+        { id: 'Paragliding', label: 'Paragliding', icon: 'ph-wind', color: '#a855f7', bg: 'rgba(168,85,247,0.15)', svg: 'paragliding' },
+        { id: 'Cliff Jumping', label: 'Cliff Jumping', icon: 'ph-person-simple-swim', color: '#0ea5e9', bg: 'rgba(14,165,233,0.15)', svg: 'cliffjump' },
         // Catch-all so an activity not listed above can still be tagged.
         { id: 'Adventure', label: 'Other Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)', svg: 'adventure' }
     ];

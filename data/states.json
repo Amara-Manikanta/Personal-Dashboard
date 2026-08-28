@@ -8,7 +8,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Andhra Pradesh": {
       "visited": true,
@@ -528,7 +529,8 @@
           "image": "",
           "category": "Adventure"
         }
-      ]
+      ],
+      "adventures": []
     },
     "Assam": {
       "visited": true,
@@ -581,7 +583,8 @@
           "remarks": "-",
           "image": ""
         }
-      ]
+      ],
+      "adventures": []
     },
     "Indonesia": {
       "visited": false,
@@ -590,7 +593,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Bihar": {
       "visited": false,
@@ -599,7 +603,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Goa": {
       "visited": false,
@@ -608,7 +613,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Himachal Pradesh": {
       "visited": true,
@@ -639,13 +645,6 @@
           "city": "-",
           "remarks": "-",
           "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "River Rafting",
-          "city": "-",
-          "remarks": "-",
-          "category": "Adventure",
           "image": ""
         },
         {
@@ -757,13 +756,6 @@
           "city": "-",
           "remarks": "-",
           "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "Paragliding",
-          "city": "-",
-          "remarks": "-",
-          "category": "Adventure",
           "image": ""
         },
         {
@@ -938,6 +930,22 @@
           "mapLink": "https://maps.app.goo.gl/XkYVrbRFiuGhbKY87"
         }
       ],
+      "adventures": [
+        {
+          "name": "River Rafting",
+          "city": "-",
+          "remarks": "-",
+          "category": "River Rafting",
+          "image": ""
+        },
+        {
+          "name": "Paragliding",
+          "city": "-",
+          "remarks": "-",
+          "category": "Paragliding",
+          "image": ""
+        }
+      ],
       "stays": [
         {
           "name": "Kunzom spiti inn",
@@ -1021,7 +1029,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Karnataka": {
       "visited": false,
@@ -1267,13 +1276,6 @@
           "city": "Hampi",
           "remarks": "-",
           "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "Coracle ride",
-          "city": "Hampi / Sanapur Lake",
-          "remarks": "-",
-          "category": "Adventure",
           "image": ""
         },
         {
@@ -2071,7 +2073,16 @@
           "image": ""
         }
       ],
-      "highlights": []
+      "highlights": [],
+      "adventures": [
+        {
+          "name": "Coracle ride",
+          "city": "Hampi / Sanapur Lake",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
+        }
+      ]
     },
     "Kerala": {
       "visited": true,
@@ -2286,7 +2297,8 @@
           "category": "Temple",
           "image": ""
         }
-      ]
+      ],
+      "adventures": []
     },
     "Madhya Pradesh": {
       "visited": true,
@@ -2304,7 +2316,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Maharashtra": {
       "visited": true,
@@ -2497,17 +2510,6 @@
           "city": "Churchgate",
           "remarks": "-",
           "category": "Cultural & Events",
-          "visitDates": [
-            "2018-02"
-          ],
-          "rating": 0,
-          "review": ""
-        },
-        {
-          "name": "Parasailing",
-          "city": "Alibug",
-          "remarks": "-",
-          "category": "Adventure",
           "visitDates": [
             "2018-02"
           ],
@@ -2778,6 +2780,19 @@
           ],
           "image": ""
         }
+      ],
+      "adventures": [
+        {
+          "name": "Parasailing",
+          "city": "Alibug",
+          "remarks": "-",
+          "category": "Parasailing",
+          "visitDates": [
+            "2018-02"
+          ],
+          "rating": 0,
+          "review": ""
+        }
       ]
     },
     "Manipur": {
@@ -2787,7 +2802,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Meghalaya": {
       "visited": true,
@@ -2891,13 +2907,6 @@
           "image": ""
         },
         {
-          "name": "Cliff Jumping",
-          "city": "-",
-          "remarks": "-",
-          "category": "Adventure",
-          "image": ""
-        },
-        {
           "name": "Mawphlang Sacred Forest",
           "city": "-",
           "remarks": "-",
@@ -2994,6 +3003,15 @@
           "category": "Adventure",
           "image": ""
         }
+      ],
+      "adventures": [
+        {
+          "name": "Cliff Jumping",
+          "city": "-",
+          "remarks": "-",
+          "category": "Cliff Jumping",
+          "image": ""
+        }
       ]
     },
     "Nagaland": {
@@ -3003,7 +3021,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Nepal": {
       "visited": false,
@@ -3055,7 +3074,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "New Delhi": {
       "visited": true,
@@ -3176,7 +3196,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Odisha": {
       "visited": true,
@@ -3279,7 +3300,8 @@
           "image": ""
         }
       ],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Puducherry": {
       "visited": true,
@@ -3579,7 +3601,8 @@
           "category": "Religious & Spiritual",
           "image": ""
         }
-      ]
+      ],
+      "adventures": []
     },
     "Punjab": {
       "visited": true,
@@ -3645,7 +3668,8 @@
           "remarks": "-",
           "image": ""
         }
-      ]
+      ],
+      "adventures": []
     },
     "Rajasthan": {
       "visited": false,
@@ -3842,7 +3866,8 @@
           "city": "Jaipur",
           "remarks": "-"
         }
-      ]
+      ],
+      "adventures": []
     },
     "Sikkim": {
       "visited": true,
@@ -3902,17 +3927,6 @@
           "category": "Viewpoint",
           "image": "",
           "visitedDate": "2019-11"
-        },
-        {
-          "name": "River Rafting",
-          "city": "Gangtok",
-          "remarks": "-",
-          "category": "Adventure",
-          "visitDates": [
-            "2019-11"
-          ],
-          "rating": 0,
-          "review": ""
         },
         {
           "name": "Seven Sisters",
@@ -3980,7 +3994,20 @@
       ],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": [
+        {
+          "name": "River Rafting",
+          "city": "Gangtok",
+          "remarks": "-",
+          "category": "River Rafting",
+          "visitDates": [
+            "2019-11"
+          ],
+          "rating": 0,
+          "review": ""
+        }
+      ]
     },
     "Singapore": {
       "visited": true,
@@ -4244,7 +4271,8 @@
         {
           "name": "Super tree gove"
         }
-      ]
+      ],
+      "adventures": []
     },
     "Srinagar": {
       "visited": false,
@@ -4253,7 +4281,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Tamil Nadu": {
       "visited": true,
@@ -4477,7 +4506,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Uttar Pradesh": {
       "visited": true,
@@ -4516,7 +4546,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Uttarakhand": {
       "visited": true,
@@ -4540,13 +4571,6 @@
           "city": "-",
           "remarks": "-",
           "category": "Nature & Park",
-          "image": ""
-        },
-        {
-          "name": "Bungee Jumping",
-          "city": "-",
-          "remarks": "-",
-          "category": "Adventure",
           "image": ""
         },
         {
@@ -4734,7 +4758,15 @@
           "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
         }
       ],
-      "adventures": [],
+      "adventures": [
+        {
+          "name": "Bungee Jumping",
+          "city": "-",
+          "remarks": "-",
+          "category": "Bungee Jumping",
+          "image": ""
+        }
+      ],
       "stays": [
         {
           "name": "Tiwari Hotel",
@@ -4787,7 +4819,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "United States of America": {
       "visited": false,
@@ -4796,7 +4829,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "France": {
       "visited": false,
@@ -4805,7 +4839,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "United Arab Emirates": {
       "visited": false,
@@ -4821,7 +4856,8 @@
       ],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [],
+      "adventures": []
     },
     "Japan": {
       "visited": false,
@@ -4830,7 +4866,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Thailand": {
       "visited": false,
@@ -4839,7 +4876,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "West Bengal": {
       "visited": false,
@@ -4879,7 +4917,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "adventures": []
     },
     "Gujarat": {
       "food": [
@@ -4897,7 +4936,9 @@
         }
       ],
       "visited": false,
-      "restaurants": []
+      "restaurants": [],
+      "adventures": [],
+      "placesVisited": []
     },
     "Telangana": {
       "visited": true,
@@ -5440,7 +5481,8 @@
           "category": "Temple",
           "image": ""
         }
-      ]
+      ],
+      "adventures": []
     }
   },
   "bucketList": [
