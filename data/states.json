@@ -439,6 +439,15 @@
           "remarks": "-",
           "category": "Temple",
           "image": ""
+        },
+        {
+          "name": "Draksharamam Temple",
+          "city": "Draksharamam",
+          "remarks": "-",
+          "category": "Temple",
+          "visitedDate": "2026-08-26",
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [
