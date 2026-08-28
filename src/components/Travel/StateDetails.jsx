@@ -24,10 +24,10 @@
     const AMENITY_OPTIONS = ['🏊 Pool', '📶 Wi-Fi', '🍳 Kitchen', '🅿️ Parking', '❄️ AC', '☕ Breakfast'];
 
     const PLACE_CATEGORIES = [
-        { id: 'Temple', label: 'Temple', icon: 'ph-buildings', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
-        { id: 'Adventure', label: 'Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)' },
-        { id: 'Waterfall', label: 'Waterfall', icon: 'ph-drop', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
-        { id: 'Viewpoint', label: 'Viewpoint', icon: 'ph-binoculars', color: '#8b5cf6', bg: 'rgba(139,92,246,0.15)' },
+        { id: 'Temple', label: 'Temple', icon: 'ph-buildings', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)', svg: 'temple' },
+        { id: 'Adventure', label: 'Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)', svg: 'adventure' },
+        { id: 'Waterfall', label: 'Waterfall', icon: 'ph-drop', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)', svg: 'waterfall' },
+        { id: 'Viewpoint', label: 'Viewpoint', icon: 'ph-binoculars', color: '#8b5cf6', bg: 'rgba(139,92,246,0.15)', svg: 'viewpoint' },
         { id: 'Beach', label: 'Beach', icon: 'ph-sun-horizon', color: '#eab308', bg: 'rgba(234,179,8,0.15)' },
         { id: 'Museum', label: 'Museum', icon: 'ph-bank', color: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
         { id: 'Nature & Park', label: 'Nature & Park', icon: 'ph-tree', color: '#10b981', bg: 'rgba(16,185,129,0.15)' },
@@ -35,6 +35,8 @@
         { id: 'Shopping', label: 'Shopping', icon: 'ph-shopping-bag', color: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
         { id: 'Amusement & Theme Park', label: 'Amusement & Theme Park', icon: 'ph-confetti', color: '#f97316', bg: 'rgba(249,115,22,0.15)' },
         { id: 'Street Food Spot', label: 'Street Food Spot', icon: 'ph-cooking-pot', color: '#fb7185', bg: 'rgba(251,113,133,0.15)' },
+        { id: 'Church', label: 'Church', icon: 'ph-church', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)', svg: 'church' },
+        { id: 'Trekking', label: 'Trekking', icon: 'ph-person-simple-hike', color: '#22c55e', bg: 'rgba(34,197,94,0.15)', svg: 'trekking' },
         { id: 'Religious & Spiritual', label: 'Religious & Spiritual', icon: 'ph-hands-praying', color: '#14b8a6', bg: 'rgba(20,184,166,0.15)' },
         { id: 'Lake & Dam', label: 'Lake & Dam', icon: 'ph-waves', color: '#0ea5e9', bg: 'rgba(14,165,233,0.15)' },
         { id: 'Hill Station', label: 'Hill Station', icon: 'ph-mountains', color: '#059669', bg: 'rgba(5,150,105,0.15)' },
@@ -46,6 +48,80 @@
 
     // Shared with the travel dashboard's poster map legend.
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;
+
+    /**
+     * Destination chooser, rendered as a centred dialog.
+     *
+     * It deliberately does NOT live inside the row's action group: that group
+     * is opacity:0 until `tr:hover`, so a popover anchored there vanished the
+     * moment the pointer left the row to reach it. A dialog also copes better
+     * with ~230 destinations than a native select.
+     */
+    const MovePicker = ({ itemName, currentRegion, onPick, onCancel }) => {
+        const [query, setQuery] = useState('');
+        const inputRef = useRef(null);
+
+        useEffect(() => {
+            const onKey = (e) => { if (e.key === 'Escape') onCancel(); };
+            window.addEventListener('keydown', onKey);
+            requestAnimationFrame(() => inputRef.current && inputRef.current.focus());
+            return () => window.removeEventListener('keydown', onKey);
+        }, [onCancel]);
+
+        const TD = window.TravelData || {};
+        const q = query.trim().toLowerCase();
+        const match = (list) => (list || [])
+            .filter(n => n !== currentRegion && (!q || n.toLowerCase().includes(q)));
+
+        const states = match(TD.STATES_LIST);
+        const countries = match(TD.COUNTRIES_LIST);
+
+        const group = (label, names) => names.length > 0 && (
+            <div className="move-group" key={label}>
+                <div className="move-group-label">{label}</div>
+                <div className="move-options">
+                    {names.map(n => (
+                        <button key={n} type="button" className="move-option" onClick={() => onPick(n)}>{n}</button>
+                    ))}
+                </div>
+            </div>
+        );
+
+        return (
+            <div className="move-backdrop" onClick={onCancel}>
+                <div className="move-dialog" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+                    <header className="move-dialog-head">
+                        <div>
+                            <span className="move-dialog-kicker">Move to another state</span>
+                            <h3>{itemName}</h3>
+                        </div>
+                        <button type="button" className="move-close" onClick={onCancel} aria-label="Cancel">
+                            <i className="ph-bold ph-x"></i>
+                        </button>
+                    </header>
+
+                    <div className="move-search">
+                        <i className="ph-bold ph-magnifying-glass"></i>
+                        <input
+                            ref={inputRef}
+                            autoFocus
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder="Filter destinations…"
+                        />
+                    </div>
+
+                    <div className="move-body">
+                        {states.length === 0 && countries.length === 0 && (
+                            <p className="move-empty">No destination matches “{query}”.</p>
+                        )}
+                        {group('States & union territories', states)}
+                        {group('Countries', countries)}
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     // Check for localhost
     const isLocalhost = window.location.hostname === 'localhost' ||
@@ -97,6 +173,7 @@
         const [newSafetyAlerts, setNewSafetyAlerts] = useState(false);
         const [newIsVisited, setNewIsVisited] = useState(false);
         const [newVisitedDate, setNewVisitedDate] = useState('');
+        const [movingIndex, setMovingIndex] = useState(null);
         const [newStayType, setNewStayType] = useState('Hotel');
         const [newCheckIn, setNewCheckIn] = useState('');
         const [newCheckOut, setNewCheckOut] = useState('');
@@ -332,6 +409,24 @@
             }
         };
 
+        /**
+         * Move this entry into the same list on another state/country.
+         * Both sides are written in one save by the data layer.
+         */
+        const moveItemTo = (index, destination) => {
+            setMovingIndex(null);
+            if (!destination || !data) return;
+
+            const result = window.TravelData.moveItemBetweenRegions(stateName, destination, activeTab, index);
+            if (!result.ok) {
+                alert(result.message);
+                return;
+            }
+
+            if (editingIndex === index) cancelEdit();
+            loadData(); // both regions changed, so re-read rather than patching state
+        };
+
         const toggleHighlight = (e, item) => {
             if (e && e.stopPropagation) e.stopPropagation();
             if (!data) return;
@@ -537,7 +632,7 @@
             if (!cat) return null;
             return (
                 <span className="dish-badge" style={{ backgroundColor: cat.bg, color: cat.color, border: `1px solid ${cat.color}40` }} title={cat.label}>
-                    <i className={`ph-bold ${cat.icon}`}></i> {cat.label}
+                    <window.CategoryIcon category={cat} size={14} /> {cat.label}
                 </span>
             );
         };
@@ -654,7 +749,9 @@
                                         ? { background: cat.color, borderColor: cat.color, boxShadow: `0 4px 14px ${cat.bg}` }
                                         : { '--chip-accent': cat.color }}
                                 >
-                                    <i className={`ph-bold ${cat.icon}`} style={isActive ? {} : { color: cat.color }}></i>
+                                    {isActive
+                                        ? <i className={`ph-bold ${cat.icon}`}></i>
+                                        : <window.CategoryIcon category={cat} size={15} />}
                                     <span>{cat.label}</span>
                                     <span className="cat-chip-count">{count}</span>
                                 </button>
@@ -790,7 +887,9 @@
                                                     ? { background: cat.color, borderColor: cat.color }
                                                     : { '--chip-accent': cat.color }}
                                             >
-                                                <i className={`ph-bold ${cat.icon}`} style={isPicked ? {} : { color: cat.color }}></i>
+                                                {isPicked
+                                                    ? <i className={`ph-bold ${cat.icon}`}></i>
+                                                    : <window.CategoryIcon category={cat} size={14} />}
                                                 <span>{cat.label}</span>
                                             </button>
                                         );
@@ -1254,6 +1353,13 @@
                                                     <div className="card-overlay">
                                                         <button onClick={() => startEdit(index, item)} className="icon-btn-overlay" title="Edit">
                                                             <i className="ph-bold ph-pencil-simple"></i>
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => { e.stopPropagation(); setMovingIndex(movingIndex === index ? null : index); }}
+                                                            className="icon-btn-overlay"
+                                                            title="Move to another state"
+                                                        >
+                                                            <i className="ph-bold ph-arrows-left-right"></i>
                                                         </button>
                                                         <button onClick={(e) => removeItem(e, index)} className="icon-btn-overlay delete" title="Remove">
                                                             <i className="ph-bold ph-trash"></i>
@@ -1782,6 +1888,13 @@
                                                                 <i className="ph-bold ph-pencil-simple"></i>
                                                             </button>
                                                             <button
+                                                                onClick={(e) => { e.stopPropagation(); setMovingIndex(movingIndex === index ? null : index); }}
+                                                                className={`action-btn move ${movingIndex === index ? 'is-open' : ''}`}
+                                                                title="Move to another state"
+                                                            >
+                                                                <i className="ph-bold ph-arrows-left-right"></i>
+                                                            </button>
+                                                            <button
                                                                 onClick={(e) => removeItem(e, index)}
                                                                 className="action-btn delete"
                                                                 title="Delete Item"
@@ -1830,6 +1943,21 @@
                         </div>
                     </div>
                 )}
+
+                {movingIndex !== null && (() => {
+                    const list = (data && data[activeTab]) || [];
+                    const target = list[movingIndex];
+                    if (!target) return null;
+                    const label = (typeof target === 'object' && target ? target.name : target) || 'this item';
+                    return (
+                        <MovePicker
+                            itemName={label}
+                            currentRegion={stateName}
+                            onPick={(dest) => moveItemTo(movingIndex, dest)}
+                            onCancel={() => setMovingIndex(null)}
+                        />
+                    );
+                })()}
 
                 <style>{`
                     .state-details-container {
@@ -2219,6 +2347,121 @@
                         font-weight: 500;
                         color: var(--text-primary);
                     }
+
+                    /* Move-to-another-state dialog */
+                    .action-btn.move.is-open { color: var(--primary); }
+
+                    .move-backdrop {
+                        position: fixed;
+                        inset: 0;
+                        z-index: 9998;
+                        background: rgba(5, 7, 12, 0.65);
+                        backdrop-filter: blur(3px);
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: center;
+                        padding: 10vh 1rem 1rem;
+                    }
+
+                    .move-dialog {
+                        width: min(560px, 100%);
+                        max-height: 70vh;
+                        display: flex;
+                        flex-direction: column;
+                        background: rgba(17, 20, 28, 0.98);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: var(--radius-lg);
+                        box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+                        overflow: hidden;
+                    }
+
+                    .move-dialog-head {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        gap: 1rem;
+                        padding: 1.1rem 1.25rem 0.85rem;
+                        border-bottom: 1px solid rgba(255,255,255,0.07);
+                    }
+
+                    .move-dialog-kicker {
+                        display: block;
+                        font-size: 0.68rem;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        color: var(--text-muted);
+                    }
+
+                    .move-dialog-head h3 {
+                        margin: 0.2rem 0 0;
+                        font-size: 1.05rem;
+                        color: var(--text-primary);
+                    }
+
+                    .move-close {
+                        background: none;
+                        border: none;
+                        color: var(--text-muted);
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                        padding: 0.2rem;
+                    }
+
+                    .move-close:hover { color: var(--text-primary); }
+
+                    .move-search {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        padding: 0.75rem 1.25rem;
+                        border-bottom: 1px solid rgba(255,255,255,0.07);
+                    }
+
+                    .move-search i { color: var(--text-muted); }
+
+                    #root .move-search input {
+                        flex: 1;
+                        background: transparent !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        padding: 0.2rem 0 !important;
+                        color: var(--text-primary);
+                        font-size: 0.95rem;
+                    }
+
+                    .move-body { overflow-y: auto; padding: 0.75rem 1rem 1rem; }
+
+                    .move-group + .move-group { margin-top: 1rem; }
+
+                    .move-group-label {
+                        font-size: 0.68rem;
+                        letter-spacing: 0.07em;
+                        text-transform: uppercase;
+                        color: var(--text-muted);
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .move-options { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+                    .move-option {
+                        padding: 0.4rem 0.8rem;
+                        border-radius: 99px;
+                        border: 1px solid var(--border);
+                        background: rgba(255,255,255,0.03);
+                        color: var(--text-secondary);
+                        font-family: inherit;
+                        font-size: 0.82rem;
+                        cursor: pointer;
+                        transition: all 0.15s ease;
+                    }
+
+                    .move-option:hover {
+                        border-color: var(--primary);
+                        background: rgba(99,102,241,0.16);
+                        color: #fff;
+                    }
+
+                    .move-empty { color: var(--text-muted); font-size: 0.88rem; text-align: center; padding: 1.5rem 0; }
 
                     .visit-date {
                         display: inline-flex;

@@ -159,13 +159,76 @@ class GitHubStorage {
 
 const ghStorage = new GitHubStorage();
 
+
+/**
+ * Version tracking for the local API.
+ *
+ * The whole dataset is held in memory and written back wholesale on every
+ * save, so a tab that loaded hours ago will happily overwrite newer changes
+ * made elsewhere. The server stamps each GET with a content version; we send
+ * it back on save, and the server refuses the write if the file has moved on.
+ */
+const dataVersions = {};
+
+const localGet = async (type) => {
+    const res = await fetch(`${API_BASE}/${type}`);
+    if (!res.ok) throw new Error(`Failed to fetch ${type}`);
+    const version = res.headers.get('X-Data-Version');
+    if (version) dataVersions[type] = version;
+    return await res.json();
+};
+
+const localSave = async (type, data) => {
+    const headers = { 'Content-Type': 'application/json' };
+    if (dataVersions[type]) headers['X-Data-Version'] = dataVersions[type];
+
+    const res = await fetch(`${API_BASE}/${type}`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(data)
+    });
+
+    if (res.status === 409) {
+        const body = await res.json().catch(() => ({}));
+        if (body.code === 'VERSION_CONFLICT') {
+            // Do NOT retry: this page's copy is stale and saving it would
+            // delete whatever changed underneath. Reloading is the safe path.
+            const reload = window.confirm(
+                `${body.message}\n\nYour unsaved change was not applied. Reload now to get the latest data?`
+            );
+            if (reload) window.location.reload();
+            throw new Error('VERSION_CONFLICT');
+        }
+        alert(body.message || 'Save refused by the server.');
+        throw new Error(body.code || 'SAVE_REFUSED');
+    }
+
+    if (!res.ok) throw new Error(`Failed to save ${type}`);
+
+    const version = res.headers.get('X-Data-Version');
+    if (version) dataVersions[type] = version;
+    return await res.json().catch(() => ({}));
+};
+
+/** Re-read everything the app holds — used when a stale tab regains focus. */
+const refreshVersions = async () => {
+    if (!IS_LOCALHOST) return null;
+    const stale = [];
+    for (const type of ['novels', 'states', 'writing', 'stories', 'authors', 'clothes']) {
+        try {
+            const res = await fetch(`${API_BASE}/${type}`, { method: 'HEAD' }).catch(() => null);
+            const version = res && res.headers.get('X-Data-Version');
+            if (version && dataVersions[type] && version !== dataVersions[type]) stale.push(type);
+        } catch (e) { /* offline is fine */ }
+    }
+    return stale;
+};
+
 const api = {
     getNovels: async () => {
         if (IS_LOCALHOST) {
             try {
-                const res = await fetch(`${API_BASE}/novels`);
-                if (!res.ok) throw new Error('Failed to fetch novels');
-                return await res.json();
+                return await localGet('novels');
             } catch (e) {
                 console.error(e);
                 return [];
@@ -177,11 +240,7 @@ const api = {
     saveNovels: async (data) => {
         if (IS_LOCALHOST) {
             try {
-                await fetch(`${API_BASE}/novels`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                await localSave('novels', data);
             } catch (e) {
                 console.error("Error saving novels:", e);
             }
@@ -193,9 +252,7 @@ const api = {
     getStates: async () => {
         if (IS_LOCALHOST) {
             try {
-                const res = await fetch(`${API_BASE}/states`);
-                if (!res.ok) throw new Error('Failed to fetch states');
-                return await res.json();
+                return await localGet('states');
             } catch (e) {
                 console.error(e);
                 return { states: {}, bucketList: [] };
@@ -207,11 +264,7 @@ const api = {
     saveStates: async (data) => {
         if (IS_LOCALHOST) {
             try {
-                await fetch(`${API_BASE}/states`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                await localSave('states', data);
             } catch (e) {
                 console.error("Error saving states:", e);
             }
@@ -223,9 +276,7 @@ const api = {
     getWriting: async () => {
         if (IS_LOCALHOST) {
             try {
-                const res = await fetch(`${API_BASE}/writing`);
-                if (!res.ok) throw new Error('Failed to fetch writing data');
-                return await res.json();
+                return await localGet('writing');
             } catch (e) {
                 console.error(e);
                 return [];
@@ -237,11 +288,7 @@ const api = {
     saveWriting: async (data) => {
         if (IS_LOCALHOST) {
             try {
-                await fetch(`${API_BASE}/writing`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                await localSave('writing', data);
             } catch (e) {
                 console.error("Error saving writing data:", e);
             }
@@ -253,9 +300,7 @@ const api = {
     getStories: async () => {
         if (IS_LOCALHOST) {
             try {
-                const res = await fetch(`${API_BASE}/stories`);
-                if (!res.ok) throw new Error('Failed to fetch stories');
-                return await res.json();
+                return await localGet('stories');
             } catch (e) {
                 console.error(e);
                 return [];
@@ -267,11 +312,7 @@ const api = {
     saveStories: async (data) => {
         if (IS_LOCALHOST) {
             try {
-                await fetch(`${API_BASE}/stories`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                await localSave('stories', data);
             } catch (e) {
                 console.error("Error saving stories:", e);
             }
@@ -283,9 +324,7 @@ const api = {
     getAuthors: async () => {
         if (IS_LOCALHOST) {
             try {
-                const res = await fetch(`${API_BASE}/authors`);
-                if (!res.ok) throw new Error('Failed to fetch authors');
-                return await res.json();
+                return await localGet('authors');
             } catch (e) {
                 console.warn("API fetch failed for authors, trying static file...");
                 try {
@@ -303,11 +342,7 @@ const api = {
     saveAuthors: async (data) => {
         if (IS_LOCALHOST) {
             try {
-                await fetch(`${API_BASE}/authors`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                await localSave('authors', data);
             } catch (e) {
                 console.error("Error saving authors:", e);
             }
@@ -319,9 +354,7 @@ const api = {
     getClothes: async () => {
         if (IS_LOCALHOST) {
             try {
-                const res = await fetch(`${API_BASE}/clothes`);
-                if (!res.ok) throw new Error('Failed to fetch clothes');
-                return await res.json();
+                return await localGet('clothes');
             } catch (e) {
                 console.error(e);
                 return [];
@@ -333,11 +366,7 @@ const api = {
     saveClothes: async (data) => {
         if (IS_LOCALHOST) {
             try {
-                await fetch(`${API_BASE}/clothes`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                await localSave('clothes', data);
             } catch (e) {
                 console.error("Error saving clothes:", e);
             }
@@ -427,6 +456,7 @@ window.api = api;
 // to endpoints outside the api object (e.g. backup status) should use this
 // rather than hardcoding the port again.
 window.API_BASE = API_BASE;
+window.refreshVersions = refreshVersions;
 window.IS_LOCALHOST = IS_LOCALHOST;
 
 // Global Constants

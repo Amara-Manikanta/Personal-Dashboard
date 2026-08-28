@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3010;
 const DATA_DIR = path.join(__dirname, 'data');
 
-app.use(cors());
+app.use(cors({ exposedHeaders: ['X-Data-Version'] }));
 app.use(bodyParser.json({ limit: '50mb' })); // Increased limit just in case
 // Serve static files from root. HTML/JSX/CSS are revalidated on every request:
 // they are compiled in the browser, so a cached copy means edits appear not to
@@ -57,6 +57,17 @@ const DATA_FILES = ['novels.json', 'states.json', 'writing.json', 'stories.json'
 const readData = (filename) => storage.read(filename).data;
 
 /**
+ * Shared GET: returns the data and stamps the content version on the response.
+ * Clients hand that version back when saving so a write built on stale data
+ * can be rejected rather than silently overwriting newer changes.
+ */
+const handleRead = (filename, fallback) => (req, res) => {
+    const data = readData(filename);
+    res.setHeader('X-Data-Version', storage.version(filename));
+    res.json(data || fallback);
+};
+
+/**
  * Shared handler: snapshot, validate, atomically write.
  *
  * A write that would drop most of the records is refused with 409 rather than
@@ -68,10 +79,21 @@ const handleWrite = (filename, label) => async (req, res) => {
     }
 
     const force = req.query.force === '1' || req.query.force === 'true';
-    const result = await storage.write(filename, req.body, { force });
+    const expectedVersion = req.get('X-Data-Version') || null;
+    const result = await storage.write(filename, req.body, { force, expectedVersion });
 
     if (result.ok) {
-        return res.json({ success: true, records: result.after, snapshot: result.snapshot });
+        res.setHeader('X-Data-Version', result.version);
+        return res.json({ success: true, records: result.after, snapshot: result.snapshot, version: result.version });
+    }
+
+    if (result.code === 'VERSION_CONFLICT') {
+        return res.status(409).json({
+            success: false,
+            code: result.code,
+            message: `${label} changed elsewhere since this page loaded. Reload before saving, or the other change would be lost.`,
+            currentVersion: result.currentVersion
+        });
     }
 
     if (result.code === 'DESTRUCTIVE_WRITE') {
@@ -88,51 +110,33 @@ const handleWrite = (filename, label) => async (req, res) => {
 };
 
 // --- Novels ---
-app.get('/api/novels', (req, res) => {
-    const data = readData('novels.json');
-    res.json(data || []);
-});
+app.get('/api/novels', handleRead('novels.json', []));
 
 app.post('/api/novels', handleWrite('novels.json', 'novels'));
 
 // --- States ---
-app.get('/api/states', (req, res) => {
-    const data = readData('states.json');
-    res.json(data || {});
-});
+app.get('/api/states', handleRead('states.json', {}));
 
 app.post('/api/states', handleWrite('states.json', 'states'));
 
 // --- Writing ---
-app.get('/api/writing', (req, res) => {
-    const data = readData('writing.json');
-    res.json(data || []);
-});
+app.get('/api/writing', handleRead('writing.json', []));
 
 app.post('/api/writing', handleWrite('writing.json', 'writing entries'));
 
 // --- Stories ---
 // Assuming one file for all stories metadata/list
-app.get('/api/stories', (req, res) => {
-    const data = readData('stories.json');
-    res.json(data || []);
-});
+app.get('/api/stories', handleRead('stories.json', []));
 
 app.post('/api/stories', handleWrite('stories.json', 'stories'));
 
 // --- Authors ---
-app.get('/api/authors', (req, res) => {
-    const data = readData('authors.json');
-    res.json(data || []);
-});
+app.get('/api/authors', handleRead('authors.json', []));
 
 app.post('/api/authors', handleWrite('authors.json', 'authors'));
 
 // --- Clothes ---
-app.get('/api/clothes', (req, res) => {
-    const data = readData('clothes.json');
-    res.json(data || []);
-});
+app.get('/api/clothes', handleRead('clothes.json', []));
 
 app.post('/api/clothes', handleWrite('clothes.json', 'clothes'));
 
