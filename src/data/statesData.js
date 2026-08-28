@@ -44,6 +44,7 @@ const INITIAL_STATE_DATA = {
     restaurants: [],
     food: [],
     treks: [],
+    adventures: [],
     stays: [],
     highlights: []
 };
@@ -153,7 +154,7 @@ const getTravelTotals = () => {
         .filter(([name]) => !STATES_LIST.includes(name) && !COUNTRIES_LIST.includes(name))
         .map(([name, v]) => ({
             name,
-            items: ['placesVisited', 'placesToVisit', 'restaurants', 'food', 'treks', 'stays', 'highlights']
+            items: ['placesVisited', 'placesToVisit', 'restaurants', 'food', 'treks', 'adventures', 'stays', 'highlights']
                 .reduce((acc, f) => acc + (((v && v[f]) || []).length), 0)
         }))
         .filter(o => o.items > 0);
@@ -167,6 +168,7 @@ const getTravelTotals = () => {
         restaurants: sum('restaurants'),
         food: sum('food'),
         treks: sum('treks'),
+        adventures: sum('adventures'),
         stays: sum('stays'),
         highlights: sum('highlights'),
         orphans

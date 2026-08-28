@@ -10,6 +10,7 @@
         { id: 'restaurants', label: 'Restaurants', icon: 'ph-fork-knife' },
         { id: 'food', label: 'Food to Try', icon: 'ph-pizza' },
         { id: 'treks', label: 'Treks', icon: 'ph-mountains' },
+        { id: 'adventures', label: 'Adventure', icon: 'ph-person-simple-hike' },
         { id: 'stays', label: 'Stays', icon: 'ph-bed' }
     ];
 
@@ -19,7 +20,7 @@
      * those are plans, and a date there would mean something different and
      * would pollute the timeline of real visits.
      */
-    const DATEABLE_TABS = ['placesVisited', 'restaurants', 'food', 'treks', 'stays', 'highlights'];
+    const DATEABLE_TABS = ['placesVisited', 'restaurants', 'food', 'treks', 'adventures', 'stays', 'highlights'];
 
     const CUISINE_OPTIONS = ['Snacks', 'Local Meals', 'Curries', 'Western', 'Mixed', 'Asian', 'Pizza & Pasta', 'Coffee & Tea', 'Sweets', 'Chats'];
     const AMBIENCE_OPTIONS = ['Casual', 'Posh', 'Grab & Go', 'Family', 'Romantic', 'Rooftop', 'Bar', 'Late Night'];
@@ -64,6 +65,21 @@
         { id: 'Restaurant', label: 'Restaurant', icon: 'ph-fork-knife', color: '#f97316', bg: 'rgba(249,115,22,0.15)' }
     ];
 
+    const ADVENTURE_CATEGORIES = [
+        { id: 'Parasailing', label: 'Parasailing', icon: 'ph-parachute', color: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
+        { id: 'River Rafting', label: 'River Rafting', icon: 'ph-boat', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
+        { id: 'Bungee Jumping', label: 'Bungee Jumping', icon: 'ph-arrow-line-down', color: '#f97316', bg: 'rgba(249,115,22,0.15)' },
+        { id: 'Skiing', label: 'Skiing', icon: 'ph-snowflake', color: '#38bdf8', bg: 'rgba(56,189,248,0.15)' },
+        { id: 'Paragliding', label: 'Paragliding', icon: 'ph-wind', color: '#a855f7', bg: 'rgba(168,85,247,0.15)' },
+        // Catch-all so an activity not listed above can still be tagged.
+        { id: 'Adventure', label: 'Other Adventure', icon: 'ph-person-simple-hike', color: '#ef4444', bg: 'rgba(239,68,68,0.15)', svg: 'adventure' }
+    ];
+
+    /** Treks are their own thing, distinct from adventure activities. */
+    const TREK_CATEGORIES = [
+        { id: 'Trek', label: 'Trek', icon: 'ph-person-simple-hike', color: '#22c55e', bg: 'rgba(34,197,94,0.15)', svg: 'trekking' }
+    ];
+
     const STAY_CATEGORIES = [
         { id: 'Hotel', label: 'Hotel', icon: 'ph-buildings', color: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
         { id: 'Resort', label: 'Resort', icon: 'ph-umbrella', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
@@ -74,12 +90,17 @@
     const categoriesFor = (tab) => {
         if (tab === 'restaurants' || tab === 'food') return FOOD_CATEGORIES;
         if (tab === 'stays') return STAY_CATEGORIES;
+        if (tab === 'adventures') return ADVENTURE_CATEGORIES;
+        if (tab === 'treks') return TREK_CATEGORIES;
         return PLACE_CATEGORIES;
     };
 
     // Lookup across every set, so a badge still renders if an entry was tagged
     // before its section had its own list.
-    const ALL_CATEGORIES = [...PLACE_CATEGORIES, ...FOOD_CATEGORIES, ...STAY_CATEGORIES];
+    const ALL_CATEGORIES = [
+        ...PLACE_CATEGORIES, ...FOOD_CATEGORIES, ...STAY_CATEGORIES,
+        ...ADVENTURE_CATEGORIES, ...TREK_CATEGORIES
+    ];
 
     // Shared with the travel dashboard's poster map legend.
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;
@@ -834,6 +855,7 @@
             // e.g. "Add place name...", "Add restaurant name..."
             const base = activeSection.label;
             // simple heuristic: remove 's' or specific tweaks
+            if (activeTab === 'adventures') return 'Adventure...';
             if (activeTab === 'placesVisited') return 'Place Name...';
             if (activeTab === 'food') return 'Dish Name...';
             if (activeTab === 'restaurants') return 'Restaurant Name...';

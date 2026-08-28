@@ -30,7 +30,7 @@ const DATA_FILE = path.join(__dirname, '..', 'data', 'states.json');
 const REMOTE_REF = process.env.REMOTE_REF || 'origin/main:data/states.json';
 const APPLY = process.argv.includes('--apply');
 
-const FIELDS = ['placesVisited', 'placesToVisit', 'restaurants', 'food', 'treks', 'stays', 'highlights'];
+const FIELDS = ['placesVisited', 'placesToVisit', 'restaurants', 'food', 'treks', 'adventures', 'stays', 'highlights'];
 
 const local = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 const remote = JSON.parse(execSync(`git show ${REMOTE_REF}`).toString());

@@ -119,6 +119,73 @@ const TrekList = ({ treks, onSelect }) => {
     );
 };
 
+/** Adventures across every state, grouped by the activity type. */
+const AdventureList = ({ adventures, onSelect }) => {
+    if (!adventures.length) {
+        return (
+            <div className="empty-state">
+                <i className="ph-duotone ph-person-simple-hike"></i>
+                <p>No adventures logged yet.</p>
+                <p className="empty-hint">
+                    Open any state, switch to the Adventure tab, and add what you did —
+                    parasailing, rafting, bungee, skiing, paragliding.
+                </p>
+            </div>
+        );
+    }
+
+    const byType = adventures.reduce((acc, a) => {
+        const key = a.category || 'Untyped';
+        (acc[key] = acc[key] || []).push(a);
+        return acc;
+    }, {});
+    const types = Object.keys(byType).sort((a, b) => byType[b].length - byType[a].length);
+    const catOf = (id) => (window.ALL_CATEGORIES || []).find(c => c.id === id);
+
+    return (
+        <div className="adventure-view">
+            <div className="trek-summary">
+                <div><span className="trek-summary-value">{adventures.length}</span> logged</div>
+                <div><span className="trek-summary-value">{types.length}</span> {types.length === 1 ? 'type' : 'types'}</div>
+                <div><span className="trek-summary-value">{new Set(adventures.map(a => a.region)).size}</span> states</div>
+            </div>
+
+            {types.map(type => {
+                const cat = catOf(type);
+                return (
+                    <section key={type} className="adventure-group">
+                        <header className="adventure-group-head">
+                            <h2>
+                                {cat && <window.CategoryIcon category={cat} size={18} />}
+                                {cat ? cat.label : type}
+                            </h2>
+                            <span className="entry-group-count">{byType[type].length}</span>
+                        </header>
+                        <div className="adventure-grid">
+                            {byType[type].map((a, i) => {
+                                const dates = a.visitDates && a.visitDates.length ? a.visitDates : (a.visitedDate ? [a.visitedDate] : []);
+                                return (
+                                    <button key={`${a.region}-${a.name}-${i}`} className="adventure-card" onClick={() => onSelect(a.region)}>
+                                        <span className="adventure-name">{a.name}</span>
+                                        <span className="adventure-where">{[a.city, a.region].filter(v => v && v !== '-').join(' · ')}</span>
+                                        {dates.length > 0 && (
+                                            <span className="adventure-dates">
+                                                <i className="ph-bold ph-calendar-blank"></i>
+                                                {dates.map(d => (window.formatVisitDate ? window.formatVisitDate(d) : d)).join(', ')}
+                                            </span>
+                                        )}
+                                        {a.remarks && a.remarks !== '-' && <span className="adventure-note">{a.remarks}</span>}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </section>
+                );
+            })}
+        </div>
+    );
+};
+
 /** Visits grouped by year, for entries that carry a visitedDate. */
 const Timeline = ({ entries, onSelect }) => {
     // A place visited twice belongs in both years, so expand each entry into
@@ -251,6 +318,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
             ['restaurants', 'Restaurant', 'ph-fork-knife'],
             ['food', 'Food', 'ph-bowl-food'],
             ['treks', 'Trek', 'ph-mountains'],
+            ['adventures', 'Adventure', 'ph-person-simple-hike'],
             ['stays', 'Stay', 'ph-bed']
         ];
 
@@ -282,7 +350,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
     // Everything that can carry a tag. Places to visit are excluded: they are
     // plans, not things you have been to, and would inflate every count.
-    const TAGGABLE_FIELDS = ['placesVisited', 'restaurants', 'food', 'treks', 'stays'];
+    const TAGGABLE_FIELDS = ['placesVisited', 'restaurants', 'food', 'treks', 'adventures', 'stays'];
 
     /** How many tagged entries carry each category, plus the uncategorised rest. */
     const categoryTotals = useMemo(() => {
@@ -473,6 +541,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                         ['countries', 'World'],
                         ['wishlist', 'To Visit'],
                         ['treks', 'Treks'],
+                        ['adventures', 'Adventure'],
                         ['categories', 'Categories'],
                         ['timeline', 'Timeline'],
                         ['bucket-list', 'Bucket List'],
@@ -602,6 +671,11 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     treks={allEntries.filter(e => e.field === 'treks' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
                     onSelect={onNavigateToState}
                 />
+            ) : viewMode === 'adventures' ? (
+                <AdventureList
+                    adventures={allEntries.filter(e => e.field === 'adventures' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
+                    onSelect={onNavigateToState}
+                />
             ) : viewMode === 'categories' ? (
                 <div className="cat-view">
                     <div className="cat-summary">
@@ -629,8 +703,9 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                                     <window.CategoryIcon category={row} size={20} />
                                     <span className="cat-count">{row.count}</span>
                                     <span className="cat-label">{row.label}</span>
-                                    <span className="cat-bar"><span style={{ width: `${share}%` }}></span></span>
-                                    <span className="cat-share">{share}%</span>
+                                    <span className="cat-bar"><span style={{ width: `${Math.max(share, 1)}%` }}></span></span>
+                                    {/* a single entry in 300 rounds to 0%, which reads as broken */}
+                                    <span className="cat-share">{share < 1 ? '<1%' : `${share}%`}</span>
                                 </button>
                             );
                         })}
@@ -1367,6 +1442,58 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                 }
 
                 .cat-drill-head button:hover { color: var(--text-primary); }
+
+                /* ---- Adventures ---- */
+                .adventure-group { margin-top: 1.5rem; }
+
+                .adventure-group-head {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.6rem;
+                    margin-bottom: 0.75rem;
+                }
+
+                .adventure-group-head h2 {
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 1.05rem;
+                    color: var(--text-primary);
+                }
+
+                .adventure-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+                    gap: 0.85rem;
+                }
+
+                .adventure-card {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.25rem;
+                    padding: 0.9rem 1rem;
+                    border: 1px solid var(--border);
+                    background: rgba(255,255,255,0.03);
+                    border-radius: var(--radius-lg);
+                    text-align: left;
+                    font-family: inherit;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .adventure-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+                .adventure-name { color: var(--text-primary); font-weight: 600; font-size: 0.9rem; }
+                .adventure-where { color: var(--text-muted); font-size: 0.75rem; }
+                .adventure-dates {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.3rem;
+                    color: var(--text-secondary);
+                    font-size: 0.72rem;
+                    font-variant-numeric: tabular-nums;
+                }
+                .adventure-note { color: var(--text-muted); font-size: 0.72rem; font-style: italic; }
 
                 /* ---- Timeline ---- */
                 .timeline-view { display: flex; flex-direction: column; gap: 2rem; }
