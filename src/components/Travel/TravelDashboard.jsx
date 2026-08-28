@@ -121,7 +121,14 @@ const TrekList = ({ treks, onSelect }) => {
 
 /** Visits grouped by year, for entries that carry a visitedDate. */
 const Timeline = ({ entries, onSelect }) => {
-    const dated = entries.filter(e => e.visitedDate);
+    // A place visited twice belongs in both years, so expand each entry into
+    // one row per recorded visit rather than one row per place.
+    const dated = entries.flatMap(e => {
+        const dates = (e.visitDates && e.visitDates.length)
+            ? e.visitDates
+            : (e.visitedDate ? [e.visitedDate] : []);
+        return dates.map(d => ({ ...e, visitedDate: d }));
+    });
 
     if (!dated.length) {
         return (
@@ -163,7 +170,10 @@ const Timeline = ({ entries, onSelect }) => {
                             .map((e, i) => (
                                 <button key={`${e.name}-${i}`} className="timeline-item" onClick={() => onSelect(e.region)}>
                                     <span className="timeline-date">{monthName(e.visitedDate)}</span>
-                                    <span className="timeline-name">{e.name}</span>
+                                    <span className="timeline-name">
+                                        <i className={`ph-fill ${e.icon}`}></i>
+                                        {e.name}
+                                    </span>
                                     <span className="timeline-region">{[e.city, e.region].filter(v => v && v !== '-').join(' · ')}</span>
                                 </button>
                             ))}
@@ -261,6 +271,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                         remarks: isObj ? (entry.remarks || '') : '',
                         category: isObj ? (entry.category || '') : '',
                         visitedDate: isObj ? (entry.visitedDate || '') : '',
+                        visitDates: (isObj && window.getVisitDates) ? window.getVisitDates(entry) : [],
                         raw: entry
                     });
                 });
@@ -650,7 +661,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                 </div>
             ) : viewMode === 'timeline' ? (
                 <Timeline
-                    entries={allEntries.filter(e => e.field === 'placesVisited')}
+                    entries={allEntries.filter(e => e.field !== 'placesToVisit')}
                     onSelect={onNavigateToState}
                 />
             ) : viewMode === 'bucket-list' ? (
@@ -1384,7 +1395,8 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
 
                 .timeline-item:hover { background: rgba(99,102,241,0.1); }
                 .timeline-date { color: var(--text-muted); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
-                .timeline-name { color: var(--text-primary); font-weight: 500; }
+                .timeline-name { color: var(--text-primary); font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+                .timeline-name i { color: var(--primary); font-size: 0.9rem; opacity: 0.8; }
                 .timeline-region { color: var(--text-muted); font-size: 0.78rem; }
 
                 .empty-hint { font-size: 0.85rem; opacity: 0.75; max-width: 420px; margin: 0.5rem auto 0; }

@@ -2480,6 +2480,7 @@
           "name": "Irshalgad Fort",
           "city": "Irshalwadi",
           "remarks": "-",
+          "category": "Adventure",
           "image": "",
           "distance": "6.5",
           "altitude": "3,700",
@@ -3574,7 +3575,7 @@
           "remarks": "-",
           "category": "Viewpoint",
           "image": "",
-          "visitedDate": "2019-11-18"
+          "visitedDate": "2019-11"
         },
         {
           "name": "Kanchanjanga",
@@ -3582,42 +3583,47 @@
           "remarks": "-",
           "category": "Viewpoint",
           "image": "",
-          "visitedDate": "2019-11-18"
+          "visitedDate": "2019-11"
         },
         {
           "name": "Zero Point",
           "city": "-",
           "remarks": "-",
           "category": "Adventure",
-          "image": ""
+          "image": "",
+          "visitedDate": "2019-11"
         },
         {
           "name": "Bakthang Falls",
           "city": "-",
           "remarks": "-",
           "category": "Waterfall",
-          "image": ""
+          "image": "",
+          "visitedDate": "2019-11"
         },
         {
           "name": "Scintillating Sister Waterfall",
           "city": "-",
           "remarks": "-",
           "category": "Waterfall",
-          "image": ""
+          "image": "",
+          "visitedDate": "2019-11"
         },
         {
           "name": "Sikkim Himalyan Zoological park",
           "city": "-",
           "remarks": "-",
           "category": "Nature & Park",
-          "image": ""
+          "image": "",
+          "visitedDate": "2019-11"
         },
         {
           "name": "Cornation Bridge",
           "city": "-",
           "remarks": "-",
           "category": "Viewpoint",
-          "image": ""
+          "image": "",
+          "visitedDate": "2019-11"
         }
       ],
       "placesToVisit": [

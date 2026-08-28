@@ -13,6 +13,14 @@
         { id: 'stays', label: 'Stays', icon: 'ph-bed' }
     ];
 
+    /**
+     * Sections whose entries record something you actually did, so a visit
+     * date makes sense. Bucket list / places to visit are deliberately absent:
+     * those are plans, and a date there would mean something different and
+     * would pollute the timeline of real visits.
+     */
+    const DATEABLE_TABS = ['placesVisited', 'restaurants', 'food', 'treks', 'stays', 'highlights'];
+
     const CUISINE_OPTIONS = ['Snacks', 'Local Meals', 'Curries', 'Western', 'Mixed', 'Asian', 'Pizza & Pasta', 'Coffee & Tea', 'Sweets', 'Chats'];
     const AMBIENCE_OPTIONS = ['Casual', 'Posh', 'Grab & Go', 'Family', 'Romantic', 'Rooftop', 'Bar', 'Late Night'];
     
@@ -61,6 +69,45 @@
         if (!m) return raw;
         const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return `${MONTHS[Number(m[2]) - 1] || m[2]} ${m[1]}`;
+    };
+
+    /**
+     * A place can be visited more than once, so dates are stored as a list
+     * under `visitDates`. Older entries hold a single `visitedDate` string;
+     * these helpers read both so nothing needs migrating.
+     */
+    window.getVisitDates = (entry) => {
+        if (!entry || typeof entry !== 'object') return [];
+        const list = Array.isArray(entry.visitDates) ? entry.visitDates.slice() : [];
+        if (entry.visitedDate && !list.includes(entry.visitedDate)) list.push(entry.visitedDate);
+        // Newest first, and compare as strings since all are YYYY-MM[-DD]
+        return list.filter(Boolean).sort((a, b) => String(b).localeCompare(String(a)));
+    };
+
+    /** Entry with one more visit date, de-duplicated by month. */
+    window.withVisitDate = (entry, date) => {
+        if (!date) return entry;
+        const obj = (entry && typeof entry === 'object')
+            ? { ...entry }
+            : { name: String(entry || ''), city: '-', remarks: '-', image: '' };
+
+        const existing = window.getVisitDates(obj);
+        // A full legacy date and a month value for the same month are one visit
+        const sameMonth = existing.some(d => String(d).slice(0, 7) === String(date).slice(0, 7));
+        const next = sameMonth ? existing : [...existing, date];
+
+        delete obj.visitedDate; // folded into the list
+        obj.visitDates = next.sort((a, b) => String(b).localeCompare(String(a)));
+        return obj;
+    };
+
+    /** Entry with one visit date removed. */
+    window.withoutVisitDate = (entry, date) => {
+        const obj = { ...(entry || {}) };
+        const next = window.getVisitDates(obj).filter(d => d !== date);
+        delete obj.visitedDate;
+        if (next.length) obj.visitDates = next; else delete obj.visitDates;
+        return obj;
     };
 
     /**
@@ -411,7 +458,7 @@
                 city: newCity.trim() || '-',
                 remarks: newRemarks.trim() || '-',
                 category: newCategory || undefined,
-                visitedDate: activeTab === 'placesVisited' ? (newVisitedDate || undefined) : undefined,
+                visitDates: (DATEABLE_TABS.includes(activeTab) && newVisitedDate) ? [newVisitedDate] : undefined,
                 image: isGridView ? uploadedImagePath : undefined,
                 mapLink: (activeTab === 'restaurants' || activeTab === 'treks') ? newMapLink.trim() : undefined,
                 dishes: activeTab === 'restaurants' ? [...newDishes] : undefined,
@@ -530,10 +577,8 @@
             const updated = list.map((item, i) => {
                 if (!chosen.has(i)) return item;
                 // Legacy entries are plain strings; give them a shape first.
-                const obj = (item && typeof item === 'object')
-                    ? item
-                    : { name: String(item || ''), city: '-', remarks: '-', image: '' };
-                return { ...obj, visitedDate: bulkDate };
+                // Append: applying a date must not erase an earlier visit.
+                return window.withVisitDate(item, bulkDate);
             });
 
             handleSave({ [activeTab]: updated });
@@ -637,7 +682,8 @@
                 city: editItem.city.trim() || '-',
                 remarks: editItem.remarks.trim() || '-',
                 category: editItem.category || undefined,
-                visitedDate: editItem.visitedDate || undefined,
+                visitDates: (editItem.visitDates && editItem.visitDates.length) ? editItem.visitDates : undefined,
+                visitedDate: undefined,
                 image: editItem.image
             };
             
@@ -923,7 +969,7 @@
                                             placeholder="City..."
                                             className="sub-input"
                                         />
-                                        {activeTab === 'placesVisited' && (
+                                        {DATEABLE_TABS.includes(activeTab) && (
                                             <window.MonthYearPicker
                                                 value={newVisitedDate}
                                                 onChange={setNewVisitedDate}
@@ -1500,7 +1546,7 @@
                     ) : (
                         /* Table View (Default) */
                         <React.Fragment>
-                        {activeTab === 'placesVisited' && (
+                        {DATEABLE_TABS.includes(activeTab) && (
                             <div className={`bulk-date-bar ${dateMode ? 'is-open' : ''}`}>
                                 {!dateMode ? (
                                     <button className="bulk-date-start" onClick={() => setDateMode(true)}>
@@ -1545,7 +1591,7 @@
                             <table className="details-table">
                                 <thead>
                                     <tr>
-                                        {dateMode && activeTab === 'placesVisited' && (
+                                        {dateMode && DATEABLE_TABS.includes(activeTab) && (
                                             <th className="col-pick">
                                                 <input
                                                     type="checkbox"
@@ -1605,12 +1651,32 @@
                                                                     <option key={cat.id} value={cat.id}>{cat.label}</option>
                                                                 ))}
                                                             </select>
-                                                            {activeTab === 'placesVisited' && (
-                                                                <window.MonthYearPicker
-                                                                    value={editItem.visitedDate}
-                                                                    onChange={(v) => setEditItem({ ...editItem, visitedDate: v })}
-                                                                    className="in-edit-form"
-                                                                />
+                                                            {DATEABLE_TABS.includes(activeTab) && (
+                                                                <div className="visit-editor">
+                                                                    <div className="visit-editor-label">Visits</div>
+                                                                    <div className="visit-chip-row">
+                                                                        {window.getVisitDates(editItem).map(d => (
+                                                                            <span key={d} className="visit-chip">
+                                                                                {window.formatVisitDate(d)}
+                                                                                <button
+                                                                                    type="button"
+                                                                                    title="Remove this visit"
+                                                                                    onClick={() => setEditItem(window.withoutVisitDate(editItem, d))}
+                                                                                >
+                                                                                    <i className="ph-bold ph-x"></i>
+                                                                                </button>
+                                                                            </span>
+                                                                        ))}
+                                                                        {window.getVisitDates(editItem).length === 0 && (
+                                                                            <span className="visit-none">None recorded</span>
+                                                                        )}
+                                                                    </div>
+                                                                    <window.MonthYearPicker
+                                                                        value=""
+                                                                        onChange={(v) => v && setEditItem(window.withVisitDate(editItem, v))}
+                                                                        className="in-edit-form"
+                                                                    />
+                                                                </div>
                                                             )}
                                                             {(activeTab === 'restaurants' || activeTab === 'treks') && (
                                                                 <input
@@ -1821,7 +1887,7 @@
 
                                             return (
                                                 <tr key={index} className={`fade-in-up ${dateMode && selectedRows.includes(index) ? 'is-picked' : ''}`}>
-                                                    {dateMode && activeTab === 'placesVisited' && (
+                                                    {dateMode && DATEABLE_TABS.includes(activeTab) && (
                                                         <td className="col-pick">
                                                             <input
                                                                 type="checkbox"
@@ -1834,12 +1900,19 @@
                                                     <td className="col-name">
                                                         <div className="name-cell">
                                                             <span className="name-cell-title">{name}</span>
-                                                            {isObj && item.visitedDate && (
-                                                                <span className="visit-date" title={`Visited ${item.visitedDate}`}>
-                                                                    <i className="ph-bold ph-calendar-blank"></i>
-                                                                    {window.formatVisitDate(item.visitedDate)}
-                                                                </span>
-                                                            )}
+                                                            {isObj && window.getVisitDates(item).length > 0 && (() => {
+                                                                const visits = window.getVisitDates(item);
+                                                                return (
+                                                                    <span
+                                                                        className="visit-date"
+                                                                        title={`Visited ${visits.map(window.formatVisitDate).join(', ')}`}
+                                                                    >
+                                                                        <i className="ph-bold ph-calendar-blank"></i>
+                                                                        {window.formatVisitDate(visits[0])}
+                                                                        {visits.length > 1 && <em className="visit-count">×{visits.length}</em>}
+                                                                    </span>
+                                                                );
+                                                            })()}
                                                             {isObj && item.category && renderCategoryBadge(item.category)}
                                                             {isObj && item.mapLink && (
                                                                 <a href={item.mapLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors flex items-center justify-center p-1 rounded-full hover:bg-blue-500/10" title="View on Google Maps">
@@ -2658,6 +2731,54 @@
 
                     .month-year-picker.in-edit-form { display: flex; margin-bottom: 0.5rem; }
                     #root .month-year-picker.in-edit-form select { flex: 1; }
+
+                    .visit-count {
+                        font-style: normal;
+                        margin-left: 0.3rem;
+                        padding: 0 0.28rem;
+                        border-radius: 99px;
+                        background: rgba(99,102,241,0.35);
+                        color: #fff;
+                        font-size: 0.62rem;
+                    }
+
+                    .visit-editor { margin-bottom: 0.6rem; }
+
+                    .visit-editor-label {
+                        font-size: 0.66rem;
+                        letter-spacing: 0.06em;
+                        text-transform: uppercase;
+                        color: var(--text-muted);
+                        margin-bottom: 0.3rem;
+                    }
+
+                    .visit-chip-row { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.4rem; }
+
+                    .visit-chip {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.25rem;
+                        padding: 0.15rem 0.3rem 0.15rem 0.55rem;
+                        border-radius: 99px;
+                        background: rgba(99,102,241,0.16);
+                        border: 1px solid rgba(99,102,241,0.3);
+                        color: var(--text-primary);
+                        font-size: 0.72rem;
+                        white-space: nowrap;
+                    }
+
+                    .visit-chip button {
+                        background: none;
+                        border: none;
+                        color: var(--text-muted);
+                        cursor: pointer;
+                        padding: 0 0.1rem;
+                        font-size: 0.68rem;
+                        display: inline-flex;
+                    }
+
+                    .visit-chip button:hover { color: #ef4444; }
+                    .visit-none { color: var(--text-muted); font-size: 0.72rem; }
 
                     /* Bulk visit-date tagging */
                     .bulk-date-bar {
