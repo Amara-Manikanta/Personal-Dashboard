@@ -351,25 +351,29 @@
           "name": "Rubix Cube",
           "city": "Kakinada",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Casa de reo",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Foddie Train",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Hotel Shadab",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "United Telugu Kitchen",
@@ -382,7 +386,8 @@
           ],
           "ambiences": [
             "Posh"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Gufha Restaurant",
@@ -392,7 +397,8 @@
           "mapLink": "https://maps.app.goo.gl/2BVDGAzhURrCYBsZA",
           "ambiences": [
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Amma Dosa",
@@ -410,7 +416,8 @@
           ],
           "ambiences": [
             "Grab & Go"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Subbaya Gari Hotel",
@@ -437,7 +444,8 @@
           ],
           "ambiences": [
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "World of Tortillas",
@@ -459,7 +467,8 @@
           ],
           "ambiences": [
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         }
       ],
       "food": [
@@ -1705,12 +1714,14 @@
           "name": "Plan B",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
           "image": ""
         },
         {
           "name": "Barbeque",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
           "image": ""
         },
         {
@@ -1726,37 +1737,43 @@
             "Family",
             "Posh"
           ],
-          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59"
+          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59",
+          "category": "Restaurant"
         },
         {
           "name": "Dhaba Stories",
           "city": "HSR Layout",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Chai Galli",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Reddy's Resturant",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Thindi Bandi",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Torq03",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Fiesta by Barbeque Nation",
@@ -1792,31 +1809,36 @@
           "ambiences": [
             "Posh",
             "Family"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "The Dhaba Strories",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "HAMPI PARADISE RESTAURANT",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "1947",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Hoy Punjabi Banaswadi",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         },
         {
           "name": "Palleturi Dosa",
@@ -1828,7 +1850,8 @@
           ],
           "ambiences": [
             "Grab & Go"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Neemsi Restaurant",
@@ -1861,7 +1884,8 @@
           "ambiences": [
             "Family",
             "Posh"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Haldigrams",
@@ -1873,7 +1897,8 @@
           ],
           "ambiences": [
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Babai Tiffins",
@@ -1893,7 +1918,8 @@
           "ambiences": [
             "Grab & Go",
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         }
       ],
       "food": [
@@ -3143,7 +3169,8 @@
           "name": "Bagundi Andhra Kitchen",
           "city": "Delhi",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Restaurant"
         }
       ],
       "food": [],
@@ -3963,24 +3990,39 @@
           "city": "-",
           "remarks": "-",
           "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2025-04"
+          ],
           "image": ""
         },
         {
           "name": "Vivo city mall",
           "city": "-",
           "remarks": "-",
+          "category": "Shopping",
+          "visitDates": [
+            "2025-04"
+          ],
           "image": ""
         },
         {
           "name": "Singapore flyer",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
+          "visitDates": [
+            "2025-04"
+          ],
           "image": ""
         },
         {
           "name": "Flower Dome",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
+          "visitDates": [
+            "2025-04"
+          ],
           "image": ""
         },
         {
@@ -3988,68 +4030,101 @@
           "city": "-",
           "remarks": "-",
           "category": "Amusement & Theme Park",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Silosa point",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Buddha tooth relic temple",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Orchard road",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Skyline Luge Singapore",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Little india",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Merlion park",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Marina bay sands",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Super tree gove",
           "city": "-",
           "remarks": "-",
           "category": "Nature & Park",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Cloud forest",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
           "name": "Gradens of the bay",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         }
       ],
       "placesToVisit": [
@@ -4820,7 +4895,8 @@
           "image": ""
         }
       ],
-      "visited": false
+      "visited": false,
+      "restaurants": []
     },
     "Telangana": {
       "visited": true,
@@ -5025,14 +5101,16 @@
           "image": "",
           "ambiences": [
             "Posh"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Maryada Ramana",
           "city": "Kondapur",
           "remarks": "-",
           "image": "",
-          "mapLink": "https://maps.app.goo.gl/zoVGXfT1V49UvXvC9"
+          "mapLink": "https://maps.app.goo.gl/zoVGXfT1V49UvXvC9",
+          "category": "Restaurant"
         },
         {
           "name": "Chaitanya Foods",
@@ -5045,7 +5123,8 @@
               "name": "Boneless Chicken Biryani",
               "rating": "good"
             }
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Varalakshmi Tiffens",
@@ -5057,7 +5136,8 @@
           ],
           "ambiences": [
             "Grab & Go"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Shah Ghouse",
@@ -5072,7 +5152,8 @@
           ],
           "ambiences": [
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "The Moonshine Project",
@@ -5081,7 +5162,8 @@
           "image": "",
           "ambiences": [
             "Bar"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Yum Yum Tree Arabian Hyderabad",
@@ -5098,7 +5180,8 @@
               "name": "Chicken BBQ Mandi",
               "rating": "avg"
             }
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Padmavathi tiffens",
@@ -5111,7 +5194,8 @@
               "name": "Egg Dosa",
               "rating": "good"
             }
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Gamyam Telugu Kitchen",
@@ -5150,7 +5234,8 @@
           ],
           "ambiences": [
             "Posh"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "ANTERVEDI",
@@ -5181,7 +5266,8 @@
           ],
           "ambiences": [
             "Posh"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Kritaa Nagar",
@@ -5219,7 +5305,8 @@
           ],
           "ambiences": [
             "Posh"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "New Peacock Resturant",
@@ -5243,7 +5330,8 @@
           "cuisines": [],
           "ambiences": [
             "Casual"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "TARO - Pan Asian Resturant & Bar",
@@ -5259,7 +5347,8 @@
           ],
           "ambiences": [
             "Romantic"
-          ]
+          ],
+          "category": "Restaurant"
         },
         {
           "name": "Echoes Living Room",
@@ -5293,7 +5382,8 @@
           ],
           "ambiences": [
             "Romantic"
-          ]
+          ],
+          "category": "Restaurant"
         }
       ],
       "food": [
