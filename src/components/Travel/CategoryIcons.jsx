@@ -125,9 +125,104 @@
         </g>
     );
 
+
+    /** Beach: parasol over sand and sea, with a sun. */
+    const Beach = ({ c }) => (
+        <g>
+            {/* sun */}
+            <circle cx="19.4" cy="4.2" r="2.1" fill="#fbbf24" />
+            <path
+                d="M19.4 0.6v1.1M19.4 6.7v1.1M15.8 4.2h1.1M21.9 4.2h1.1M16.85 1.65l0.78 0.78M21.17 5.97l0.78 0.78M21.95 1.65l-0.78 0.78M17.63 5.97l-0.78 0.78"
+                stroke="#fbbf24" strokeWidth="1.1" {...S}
+            />
+
+            {/* sea then sand, so the shoreline reads correctly */}
+            <path d="M1.4 14.6h21.2v6.6a1 1 0 0 1-1 1H2.4a1 1 0 0 1-1-1z" fill="#38bdf8" opacity="0.85" />
+            <path d="M14.6 17.1h6.2M16.9 19.2h3.9" stroke="#fff" strokeWidth="1.1" opacity="0.75" {...S} />
+            <path d="M1.4 18.4c3.4-2.6 6.5-2.6 9.2 0 2.1 2 4.3 2.5 6.6 1.4v1.4a1 1 0 0 1-1 1H2.4a1 1 0 0 1-1-1z" fill="#fcd34d" />
+
+            {/* parasol: alternating panels, scalloped hem */}
+            <path d="M2.2 12.2a9.4 9.4 0 0 1 18.8 0z" fill={c} opacity="0.9" />
+            <path d="M11.6 2.8a9.4 9.4 0 0 0-4.7 9.4h4.7z" fill="#e0f2fe" />
+            <path d="M11.6 2.8a9.4 9.4 0 0 1 4.7 9.4h-4.7z" fill={c} opacity="0.55" />
+            <path
+                d="M2.2 12.2c1.2-1.5 2.7-1.5 3.9 0 1.2-1.5 2.7-1.5 3.9 0 1.2-1.5 2.7-1.5 3.9 0 1.2-1.5 2.7-1.5 3.9 0 0.6-0.8 1.4-1.2 2.1-1.2"
+                fill="none" stroke={c} strokeWidth="1.3" {...S}
+            />
+
+            {/* pole */}
+            <path d="M11.9 12.2 12.9 19" stroke="#78350f" strokeWidth="1.2" {...S} />
+        </g>
+    );
+
+
+    /** Amusement park: Ferris wheel on an A-frame. */
+    const Amusement = ({ c }) => (
+        <g>
+            {/* legs and base */}
+            <path d="M12 10.4 7.9 20.4M12 10.4l4.1 10" stroke="#f97316" strokeWidth="1.6" {...S} />
+            <rect x="4.4" y="20.2" width="15.2" height="2.4" rx="0.6" fill="#fb7185" opacity="0.85" />
+            <path d="M9.4 21.4h0.9M11.6 21.4h0.9M13.8 21.4h0.9" stroke="#fff" strokeWidth="0.9" {...S} />
+
+            {/* rim and spokes */}
+            <circle cx="12.0" cy="10.4" r="7.4" fill="none" stroke={c} strokeWidth="1.3" />
+            <path d="M12.0 10.4L12.0 3.0M12.0 10.4L17.2 5.2M12.0 10.4L19.4 10.4M12.0 10.4L17.2 15.6M12.0 10.4L12.0 17.8M12.0 10.4L6.8 15.6M12.0 10.4L4.6 10.4M12.0 10.4L6.8 5.2" stroke={c} strokeWidth="1" opacity="0.75" />
+
+            {/* cabins */}
+            <circle cx="12.0" cy="3.0" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M10.2 3.0h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="17.2" cy="5.2" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M15.4 5.2h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="19.4" cy="10.4" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M17.6 10.4h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="17.2" cy="15.6" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M15.4 15.6h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="12.0" cy="17.8" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M10.2 17.8h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="6.8" cy="15.6" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M5.0 15.6h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="4.6" cy="10.4" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M2.8 10.4h3.5" stroke={c} strokeWidth="0.9" />
+            <circle cx="6.8" cy="5.2" r="1.75" fill="#7dd3fc" stroke={c} strokeWidth="0.9" />
+            <path d="M5.0 5.2h3.5" stroke={c} strokeWidth="0.9" />
+        </g>
+    );
+
+
+    /** Lake & dam: still water with reeds, a lily pad and a rock. */
+    const Lake = ({ c }) => (
+        <g>
+            {/* reeds behind the water line */}
+            <path d="M8.4 9.6c-0.5-2.6-0.2-4.6 1.1-6.4 0.5 2.5 0.3 4.5-1.1 6.4z" fill="#4ade80" />
+            <path d="M6.9 9.9C5.8 8.2 5.4 6.8 5.6 5.2c1.1 1.3 1.6 2.8 1.3 4.7z" fill="#22c55e" />
+            <path d="M10.2 9.8c0.6-1.7 1.4-2.8 2.6-3.5-0.2 1.7-0.9 2.9-2.6 3.5z" fill="#22c55e" />
+
+            {/* the water body: wider right, notched left bank */}
+            <path
+                d="M4.2 12.4c1.9-2 5.4-3 9-3 5.4 0 9.4 2.2 9.4 5.3s-4.4 5.6-10.2 5.6C6.9 20.3 1.4 18 1.4 15c0-1 0.7-1.7 1.9-2-0.9-0.2-0.6-0.4 0.9-0.6z"
+                fill={c}
+            />
+            <path
+                d="M13.2 9.4c5.4 0 9.4 2.2 9.4 5.3s-4.4 5.6-10.2 5.6c4-1.1 6.3-3 6.3-5.4 0-2.3-2-4.1-5.5-5.5z"
+                fill={c} opacity="0.45"
+            />
+
+            {/* ripples */}
+            <path d="M8.6 13.2h1.9M13.2 12.6h1.9M10.6 15.2h1.9M15.2 14.6h1.9" stroke="#0ea5e9" strokeWidth="1" opacity="0.8" {...S} />
+
+            {/* lily pad */}
+            <ellipse cx="9.3" cy="16.6" rx="3.1" ry="1.5" fill="#86efac" />
+
+            {/* rock at the near shore */}
+            <path d="M17.4 19.6c0-1.5 1.2-2.7 2.7-2.7s2.7 1.2 2.7 2.7z" fill="#4b5563" />
+            <path d="M15.4 19.7c0-1.1 0.9-2 2-2s2 0.9 2 2z" fill="#6b7280" />
+        </g>
+    );
+
     const CUSTOM = {
         temple: Temple, church: Church, waterfall: Waterfall,
-        trekking: Trekking, adventure: Adventure, viewpoint: Viewpoint
+        trekking: Trekking, adventure: Adventure, viewpoint: Viewpoint,
+        beach: Beach, amusement: Amusement, lake: Lake
     };
 
     /**
