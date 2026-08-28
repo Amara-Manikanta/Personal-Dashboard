@@ -280,23 +280,30 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
         return out;
     }, [items]);
 
-    /** How many visited places carry each category, plus the uncategorised rest. */
+    // Everything that can carry a tag. Places to visit are excluded: they are
+    // plans, not things you have been to, and would inflate every count.
+    const TAGGABLE_FIELDS = ['placesVisited', 'restaurants', 'food', 'treks', 'stays'];
+
+    /** How many tagged entries carry each category, plus the uncategorised rest. */
     const categoryTotals = useMemo(() => {
-        const places = allEntries.filter(e => e.field === 'placesVisited');
+        const tagged = allEntries.filter(e => TAGGABLE_FIELDS.includes(e.field));
         const counts = {};
         let uncategorised = 0;
 
-        places.forEach(p => {
+        tagged.forEach(p => {
             if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
             else uncategorised++;
         });
 
-        const rows = (window.PLACE_CATEGORIES || [])
+        // Restaurants and stays have their own tag sets, so count against all
+        // of them rather than the place types alone.
+        const known = window.ALL_CATEGORIES || window.PLACE_CATEGORIES || [];
+        const rows = known
             .map(cat => ({ ...cat, count: counts[cat.id] || 0 }))
             .filter(row => row.count > 0)
             .sort((a, b) => b.count - a.count);
 
-        return { rows, uncategorised, categorised: places.length - uncategorised, total: places.length };
+        return { rows, uncategorised, categorised: tagged.length - uncategorised, total: tagged.length };
     }, [allEntries]);
 
     const searchLower = searchTerm.trim().toLowerCase();
@@ -598,7 +605,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
             ) : viewMode === 'categories' ? (
                 <div className="cat-view">
                     <div className="cat-summary">
-                        <span><strong>{categoryTotals.categorised}</strong> of {categoryTotals.total} places categorised</span>
+                        <span><strong>{categoryTotals.categorised}</strong> of {categoryTotals.total} entries categorised</span>
                         {categoryTotals.uncategorised > 0 && (
                             <button className="cat-uncat" onClick={() => setOpenCategory('__none')}>
                                 {categoryTotals.uncategorised} still uncategorised
@@ -633,7 +640,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                         const cat = categoryTotals.rows.find(r => r.id === openCategory);
                         const label = openCategory === '__none' ? 'Uncategorised' : (cat ? cat.label : openCategory);
                         const matching = allEntries.filter(e =>
-                            e.field === 'placesVisited' &&
+                            TAGGABLE_FIELDS.includes(e.field) &&
                             (openCategory === '__none' ? !e.category : e.category === openCategory));
 
                         return (

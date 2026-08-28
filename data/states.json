@@ -172,6 +172,9 @@
           "city": "Kakinada",
           "remarks": "-",
           "category": "Nature & Park",
+          "visitDates": [
+            "2021-01"
+          ],
           "image": ""
         },
         {
@@ -1040,6 +1043,9 @@
           "city": "Chikmagalur",
           "remarks": "-",
           "category": "Waterfall",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": ""
         },
         {
@@ -1061,6 +1067,9 @@
           "city": "Chikmagalur",
           "remarks": "-",
           "category": "Adventure",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": ""
         },
         {
@@ -1096,6 +1105,9 @@
           "city": "Udupi",
           "remarks": "-",
           "category": "Beach",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": ""
         },
         {
@@ -1138,6 +1150,9 @@
           "city": "Chikmagalur",
           "remarks": "-",
           "category": "Waterfall",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": ""
         },
         {
@@ -1327,6 +1342,9 @@
           "city": "Sagara",
           "remarks": "-",
           "category": "Waterfall",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": ""
         },
         {
@@ -1404,6 +1422,9 @@
           "city": "Chikmagalur",
           "remarks": "-",
           "category": "Waterfall",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": ""
         },
         {
@@ -1922,9 +1943,12 @@
       "treks": [
         {
           "name": "zpoint trek",
-          "city": "-",
+          "city": "Chickmanglore",
           "remarks": "-",
           "category": "Adventure",
+          "visitDates": [
+            "2019-09"
+          ],
           "image": "",
           "distance": "6 Km",
           "altitude": "4,921 feet",
@@ -2296,6 +2320,9 @@
           "city": "Airoli",
           "remarks": "-",
           "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2018-03"
+          ],
           "image": ""
         },
         {
@@ -2351,6 +2378,9 @@
           "city": "-",
           "remarks": "-",
           "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2018-05"
+          ],
           "image": ""
         },
         {
@@ -2358,6 +2388,9 @@
           "city": "Vasai",
           "remarks": "-",
           "category": "Viewpoint",
+          "visitDates": [
+            "2018-06"
+          ],
           "image": ""
         },
         {
@@ -2379,9 +2412,12 @@
         },
         {
           "name": "Shiridi Temple",
-          "city": "-",
+          "city": "Shiridi",
           "remarks": "-",
           "category": "Temple",
+          "visitDates": [
+            "2019-04"
+          ],
           "image": ""
         },
         {
@@ -2657,15 +2693,34 @@
       "stays": [
         {
           "name": "Sai Inn Resort",
-          "city": "-",
+          "city": "Alibag",
           "remarks": "-",
-          "image": ""
+          "category": "Resort",
+          "visitDates": [
+            "2018-05"
+          ],
+          "image": "",
+          "amenities": [
+            "🏊 Pool",
+            "🍳 Kitchen",
+            "❄️ AC",
+            "☕ Breakfast"
+          ]
         },
         {
           "name": "Rivergate Resort",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Resort",
+          "visitDates": [
+            "2018-06"
+          ],
+          "image": "",
+          "amenities": [
+            "🏊 Pool",
+            "🅿️ Parking",
+            "☕ Breakfast"
+          ]
         }
       ],
       "highlights": [
@@ -2686,6 +2741,16 @@
           "ambiences": [
             "Casual Dining"
           ]
+        },
+        {
+          "name": "Imagica",
+          "city": "-",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2018-05"
+          ],
+          "image": ""
         }
       ]
     },
@@ -3197,14 +3262,20 @@
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Watch Tower",
           "city": "Rock Beach",
           "remarks": "-",
           "category": "Fort & Heritage",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Paradise Beach",
@@ -3218,84 +3289,120 @@
           "city": "-",
           "remarks": "-",
           "category": "Nature & Park",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "French War memorial",
           "city": "-",
           "remarks": "-",
           "category": "Museum",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Rock Beach",
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Arovile Mytri Mandir",
           "city": "-",
           "remarks": "-",
           "category": "Religious & Spiritual",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Shanti Park",
           "city": "-",
           "remarks": "-",
           "category": "Nature & Park",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Pondichery Museum",
           "city": "-",
           "remarks": "-",
           "category": "Museum",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "New Light House",
           "city": "-",
           "remarks": "-",
           "category": "Fort & Heritage",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Edsen Beach",
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Promenade Beach",
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Craft Bazar",
           "city": "-",
           "remarks": "-",
           "category": "Shopping",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Old Light House",
           "city": "-",
           "remarks": "-",
           "category": "Fort & Heritage",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Arulmigu Manakula Vinayagar Temple",
           "city": "-",
           "remarks": "-",
           "category": "Temple",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         }
       ],
       "placesToVisit": [],
@@ -3304,6 +3411,10 @@
           "name": "Cormandal Cafe",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
+          "visitDates": [
+            "2021-04"
+          ],
           "image": "",
           "dishes": [
             {
@@ -3320,6 +3431,7 @@
           "name": "Cafe Qualita",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
           "image": "",
           "dishes": [
             {
@@ -3332,6 +3444,7 @@
           "name": "Crepe in touch",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
           "image": "",
           "dishes": [
             {
@@ -3339,6 +3452,37 @@
               "rating": "good"
             }
           ]
+        },
+        {
+          "name": "Coffee ideas",
+          "city": "-",
+          "remarks": "-",
+          "category": "Restaurant",
+          "image": ""
+        },
+        {
+          "name": "Hope Cafe",
+          "city": "-",
+          "remarks": "-",
+          "category": "Restaurant",
+          "mapLink": "",
+          "dishes": [],
+          "cuisines": [],
+          "ambiences": [],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Italian Quality Relish",
+          "city": "-",
+          "remarks": "-",
+          "category": "Restaurant",
+          "mapLink": "",
+          "dishes": [],
+          "cuisines": [],
+          "ambiences": [],
+          "rating": 0,
+          "review": ""
         }
       ],
       "food": [
@@ -3370,39 +3514,10 @@
       "treks": [],
       "stays": [
         {
-          "name": "Coffee ideas",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Hope Cafe",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Crepe in touch",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Cormandal Cafe",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
           "name": "Fizi Villa",
           "city": "-",
           "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "Italian Quality Relish",
-          "city": "-",
-          "remarks": "-",
+          "category": "Stay",
           "image": ""
         }
       ],
@@ -3760,6 +3875,39 @@
           "category": "Viewpoint",
           "image": "",
           "visitedDate": "2019-11"
+        },
+        {
+          "name": "River Rafting",
+          "city": "Gangtok",
+          "remarks": "-",
+          "category": "Adventure",
+          "visitDates": [
+            "2019-11"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Seven Sisters",
+          "city": "-",
+          "remarks": "-",
+          "category": "Waterfall",
+          "visitDates": [
+            "2019-11"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Naga Waterfalls",
+          "city": "-",
+          "remarks": "-",
+          "category": "Waterfall",
+          "visitDates": [
+            "2019-11"
+          ],
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [
@@ -4689,6 +4837,9 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Nature & Park",
+          "visitDates": [
+            "2020-01"
+          ],
           "image": ""
         },
         {
@@ -4710,6 +4861,9 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Fort & Heritage",
+          "visitDates": [
+            "2020-02"
+          ],
           "image": ""
         },
         {
@@ -4801,13 +4955,19 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2020-03"
+          ],
           "image": ""
         },
         {
           "name": "Shri Jagannath temple",
-          "city": "Hyderabad",
+          "city": "Banjara Hills",
           "remarks": "-",
           "category": "Temple",
+          "visitDates": [
+            "2020-02"
+          ],
           "image": ""
         },
         {
@@ -4843,6 +5003,9 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Fort & Heritage",
+          "visitDates": [
+            "2020-02"
+          ],
           "image": ""
         },
         {
