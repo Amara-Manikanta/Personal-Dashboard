@@ -50,6 +50,23 @@
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;
 
     /**
+     * Visit dates are stored at month precision ("2026-08") because that is
+     * what people actually remember about a trip. Older entries hold a full
+     * "2026-08-26"; both render the same way, and neither is parsed through
+     * Date() with a bare string, which would shift across timezones.
+     */
+    window.formatVisitDate = (value) => {
+        const raw = String(value || '').trim();
+        const m = raw.match(/^(\d{4})-(\d{2})/);
+        if (!m) return raw;
+        const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${MONTHS[Number(m[2]) - 1] || m[2]} ${m[1]}`;
+    };
+
+    /** A stored date trimmed to what <input type="month"> expects. */
+    window.toMonthInput = (value) => String(value || '').trim().slice(0, 7);
+
+    /**
      * Destination chooser, rendered as a centred dialog.
      *
      * It deliberately does NOT live inside the row's action group: that group
@@ -174,6 +191,9 @@
         const [newIsVisited, setNewIsVisited] = useState(false);
         const [newVisitedDate, setNewVisitedDate] = useState('');
         const [movingIndex, setMovingIndex] = useState(null);
+        const [dateMode, setDateMode] = useState(false);
+        const [selectedRows, setSelectedRows] = useState([]);
+        const [bulkDate, setBulkDate] = useState('');
         const [newStayType, setNewStayType] = useState('Hotel');
         const [newCheckIn, setNewCheckIn] = useState('');
         const [newCheckOut, setNewCheckOut] = useState('');
@@ -235,6 +255,9 @@
             setNewReview('');
             setNewPhotos([]);
             cancelEdit();
+            setDateMode(false);
+            setSelectedRows([]);
+            setBulkDate('');
         }, [activeTab]);
 
         const loadData = () => {
@@ -425,6 +448,33 @@
 
             if (editingIndex === index) cancelEdit();
             loadData(); // both regions changed, so re-read rather than patching state
+        };
+
+        const toggleRowSelected = (index) => {
+            setSelectedRows(prev => prev.includes(index)
+                ? prev.filter(i => i !== index)
+                : [...prev, index]);
+        };
+
+        /** Stamp one month onto every selected place, in a single save. */
+        const applyBulkDate = () => {
+            if (!data || !bulkDate || selectedRows.length === 0) return;
+
+            const list = data[activeTab] || [];
+            const chosen = new Set(selectedRows);
+            const updated = list.map((item, i) => {
+                if (!chosen.has(i)) return item;
+                // Legacy entries are plain strings; give them a shape first.
+                const obj = (item && typeof item === 'object')
+                    ? item
+                    : { name: String(item || ''), city: '-', remarks: '-', image: '' };
+                return { ...obj, visitedDate: bulkDate };
+            });
+
+            handleSave({ [activeTab]: updated });
+            setSelectedRows([]);
+            setBulkDate('');
+            setDateMode(false);
         };
 
         const toggleHighlight = (e, item) => {
@@ -810,11 +860,11 @@
                                         />
                                         {activeTab === 'placesVisited' && (
                                             <input
-                                                type="date"
+                                                type="month"
                                                 value={newVisitedDate}
                                                 onChange={(e) => setNewVisitedDate(e.target.value)}
                                                 className="sub-input date-input"
-                                                title="When did you visit? (optional)"
+                                                title="Which month did you visit? (optional)"
                                             />
                                         )}
                                         {activeTab === 'restaurants' && (
@@ -1386,10 +1436,55 @@
                         </div>
                     ) : (
                         /* Table View (Default) */
+                        <React.Fragment>
+                        {activeTab === 'placesVisited' && (
+                            <div className={`bulk-date-bar ${dateMode ? 'is-open' : ''}`}>
+                                {!dateMode ? (
+                                    <button className="bulk-date-start" onClick={() => setDateMode(true)}>
+                                        <i className="ph-bold ph-calendar-plus"></i> Set visit dates for several places
+                                    </button>
+                                ) : (
+                                    <React.Fragment>
+                                        <span className="bulk-date-count">
+                                            {selectedRows.length} selected
+                                        </span>
+                                        <button
+                                            className="bulk-date-all"
+                                            onClick={() => setSelectedRows(
+                                                selectedRows.length === filteredList.length
+                                                    ? []
+                                                    : filteredList.map(f => f.index)
+                                            )}
+                                        >
+                                            {selectedRows.length === filteredList.length ? 'Clear all' : `Select all ${filteredList.length}`}
+                                        </button>
+                                        <input
+                                            type="month"
+                                            className="bulk-date-input"
+                                            value={bulkDate}
+                                            onChange={(e) => setBulkDate(e.target.value)}
+                                            aria-label="Visit month to apply"
+                                        />
+                                        <button
+                                            className="bulk-date-apply"
+                                            disabled={!bulkDate || selectedRows.length === 0}
+                                            onClick={applyBulkDate}
+                                        >
+                                            Apply to {selectedRows.length || 'selected'}
+                                        </button>
+                                        <button className="bulk-date-cancel" onClick={() => { setDateMode(false); setSelectedRows([]); setBulkDate(''); }}>
+                                            Cancel
+                                        </button>
+                                    </React.Fragment>
+                                )}
+                            </div>
+                        )}
+
                         <div className="table-card">
                             <table className="details-table">
                                 <thead>
                                     <tr>
+                                        {dateMode && activeTab === 'placesVisited' && <th className="col-pick"></th>}
                                         <th className="col-name">Name / Item</th>
                                         <th className="col-city">Location</th>
                                         <th className="col-remarks">Notes</th>
@@ -1438,11 +1533,11 @@
                                                             </select>
                                                             {activeTab === 'placesVisited' && (
                                                                 <input
-                                                                    type="date"
+                                                                    type="month"
                                                                     className="edit-input date-input mb-2"
-                                                                    value={editItem.visitedDate || ''}
+                                                                    value={window.toMonthInput(editItem.visitedDate)}
                                                                     onChange={(e) => setEditItem({ ...editItem, visitedDate: e.target.value })}
-                                                                    title="Visit date (optional)"
+                                                                    title="Visit month (optional)"
                                                                 />
                                                             )}
                                                             {(activeTab === 'restaurants' || activeTab === 'treks') && (
@@ -1653,14 +1748,24 @@
                                             const isVisited = isObj ? item.isVisited : false;
 
                                             return (
-                                                <tr key={index} className="fade-in-up">
+                                                <tr key={index} className={`fade-in-up ${dateMode && selectedRows.includes(index) ? 'is-picked' : ''}`}>
+                                                    {dateMode && activeTab === 'placesVisited' && (
+                                                        <td className="col-pick">
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={selectedRows.includes(index)}
+                                                                onChange={() => toggleRowSelected(index)}
+                                                                aria-label={`Select ${name}`}
+                                                            />
+                                                        </td>
+                                                    )}
                                                     <td className="col-name">
                                                         <div className="name-cell">
                                                             <span className="name-cell-title">{name}</span>
                                                             {isObj && item.visitedDate && (
                                                                 <span className="visit-date" title={`Visited ${item.visitedDate}`}>
                                                                     <i className="ph-bold ph-calendar-blank"></i>
-                                                                    {new Date(item.visitedDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}
+                                                                    {window.formatVisitDate(item.visitedDate)}
                                                                 </span>
                                                             )}
                                                             {isObj && item.category && renderCategoryBadge(item.category)}
@@ -1910,6 +2015,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        </React.Fragment>
                     )}
                 </div>
 
@@ -2462,6 +2568,77 @@
                     }
 
                     .move-empty { color: var(--text-muted); font-size: 0.88rem; text-align: center; padding: 1.5rem 0; }
+
+                    /* Bulk visit-date tagging */
+                    .bulk-date-bar {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        flex-wrap: wrap;
+                        margin-bottom: 0.9rem;
+                    }
+
+                    .bulk-date-bar.is-open {
+                        padding: 0.7rem 0.9rem;
+                        border: 1px solid rgba(99,102,241,0.35);
+                        background: rgba(99,102,241,0.08);
+                        border-radius: var(--radius-md);
+                    }
+
+                    .bulk-date-start {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.45rem;
+                        padding: 0.4rem 0.85rem;
+                        border-radius: 99px;
+                        border: 1px solid var(--border);
+                        background: rgba(255,255,255,0.03);
+                        color: var(--text-secondary);
+                        font-family: inherit;
+                        font-size: 0.8rem;
+                        cursor: pointer;
+                    }
+
+                    .bulk-date-start:hover { border-color: var(--primary); color: var(--text-primary); }
+
+                    .bulk-date-count { color: var(--text-primary); font-size: 0.85rem; font-weight: 600; }
+
+                    .bulk-date-all, .bulk-date-cancel {
+                        background: none;
+                        border: none;
+                        color: var(--text-muted);
+                        font-family: inherit;
+                        font-size: 0.78rem;
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+
+                    .bulk-date-all:hover, .bulk-date-cancel:hover { color: var(--text-primary); }
+
+                    #root .bulk-date-input {
+                        color-scheme: dark;
+                        padding: 0.35rem 0.6rem !important;
+                        font-size: 0.85rem;
+                    }
+
+                    .bulk-date-apply {
+                        margin-left: auto;
+                        padding: 0.4rem 0.9rem;
+                        border-radius: var(--radius-sm);
+                        border: none;
+                        background: var(--primary);
+                        color: #fff;
+                        font-family: inherit;
+                        font-size: 0.82rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+
+                    .bulk-date-apply:disabled { opacity: 0.4; cursor: not-allowed; }
+
+                    .col-pick { width: 38px; text-align: center; }
+                    .col-pick input { width: 16px; height: 16px; cursor: pointer; accent-color: var(--primary); }
+                    .details-table tr.is-picked td { background: rgba(99,102,241,0.12); }
 
                     .visit-date {
                         display: inline-flex;

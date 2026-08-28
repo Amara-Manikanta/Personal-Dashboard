@@ -142,9 +142,11 @@ const Timeline = ({ entries, onSelect }) => {
     }, {});
 
     const years = Object.keys(byYear).sort((a, b) => b.localeCompare(a));
+    // Dates are month-precision, so show the month alone rather than
+    // inventing a day for entries that never recorded one.
     const monthName = (iso) => {
-        const d = new Date(iso);
-        return isNaN(d) ? '' : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        const formatted = window.formatVisitDate ? window.formatVisitDate(iso) : String(iso || '');
+        return formatted.replace(/\s+\d{4}$/, '');
     };
 
     return (
