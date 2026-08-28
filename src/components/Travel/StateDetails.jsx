@@ -47,6 +47,27 @@
     // Shared with the travel dashboard's poster map legend.
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;
 
+    /** Destination chooser for moving an entry to another state/country. */
+    const MovePicker = ({ itemName, currentRegion, onPick, onCancel }) => (
+        <div className="move-picker" onClick={(e) => e.stopPropagation()}>
+            <label>Move “{itemName}” to</label>
+            <select autoFocus defaultValue="" onChange={(e) => onPick(e.target.value)}>
+                <option value="" disabled>Choose a destination…</option>
+                <optgroup label="States & UTs">
+                    {((window.TravelData && window.TravelData.STATES_LIST) || [])
+                        .filter(n => n !== currentRegion)
+                        .map(n => <option key={n} value={n}>{n}</option>)}
+                </optgroup>
+                <optgroup label="Countries">
+                    {((window.TravelData && window.TravelData.COUNTRIES_LIST) || [])
+                        .filter(n => n !== currentRegion)
+                        .map(n => <option key={n} value={n}>{n}</option>)}
+                </optgroup>
+            </select>
+            <button type="button" className="move-cancel" onClick={onCancel}>Cancel</button>
+        </div>
+    );
+
     // Check for localhost
     const isLocalhost = window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1' ||
@@ -97,6 +118,7 @@
         const [newSafetyAlerts, setNewSafetyAlerts] = useState(false);
         const [newIsVisited, setNewIsVisited] = useState(false);
         const [newVisitedDate, setNewVisitedDate] = useState('');
+        const [movingIndex, setMovingIndex] = useState(null);
         const [newStayType, setNewStayType] = useState('Hotel');
         const [newCheckIn, setNewCheckIn] = useState('');
         const [newCheckOut, setNewCheckOut] = useState('');
@@ -330,6 +352,24 @@
             if (editingIndex === index) {
                 cancelEdit();
             }
+        };
+
+        /**
+         * Move this entry into the same list on another state/country.
+         * Both sides are written in one save by the data layer.
+         */
+        const moveItemTo = (index, destination) => {
+            setMovingIndex(null);
+            if (!destination || !data) return;
+
+            const result = window.TravelData.moveItemBetweenRegions(stateName, destination, activeTab, index);
+            if (!result.ok) {
+                alert(result.message);
+                return;
+            }
+
+            if (editingIndex === index) cancelEdit();
+            loadData(); // both regions changed, so re-read rather than patching state
         };
 
         const toggleHighlight = (e, item) => {
@@ -1255,9 +1295,24 @@
                                                         <button onClick={() => startEdit(index, item)} className="icon-btn-overlay" title="Edit">
                                                             <i className="ph-bold ph-pencil-simple"></i>
                                                         </button>
+                                                        <button
+                                                            onClick={(e) => { e.stopPropagation(); setMovingIndex(movingIndex === index ? null : index); }}
+                                                            className="icon-btn-overlay"
+                                                            title="Move to another state"
+                                                        >
+                                                            <i className="ph-bold ph-arrows-left-right"></i>
+                                                        </button>
                                                         <button onClick={(e) => removeItem(e, index)} className="icon-btn-overlay delete" title="Remove">
                                                             <i className="ph-bold ph-trash"></i>
                                                         </button>
+                                                        {movingIndex === index && (
+                                                            <MovePicker
+                                                                itemName={name}
+                                                                currentRegion={stateName}
+                                                                onPick={(dest) => moveItemTo(index, dest)}
+                                                                onCancel={() => setMovingIndex(null)}
+                                                            />
+                                                        )}
                                                     </div>
                                                 </div>
                                                 <div className="card-info">
@@ -1782,12 +1837,27 @@
                                                                 <i className="ph-bold ph-pencil-simple"></i>
                                                             </button>
                                                             <button
+                                                                onClick={(e) => { e.stopPropagation(); setMovingIndex(movingIndex === index ? null : index); }}
+                                                                className={`action-btn move ${movingIndex === index ? 'is-open' : ''}`}
+                                                                title="Move to another state"
+                                                            >
+                                                                <i className="ph-bold ph-arrows-left-right"></i>
+                                                            </button>
+                                                            <button
                                                                 onClick={(e) => removeItem(e, index)}
                                                                 className="action-btn delete"
                                                                 title="Delete Item"
                                                             >
                                                                 <i className="ph-bold ph-trash"></i>
                                                             </button>
+                                                            {movingIndex === index && (
+                                                                <MovePicker
+                                                                    itemName={name}
+                                                                    currentRegion={stateName}
+                                                                    onPick={(dest) => moveItemTo(index, dest)}
+                                                                    onCancel={() => setMovingIndex(null)}
+                                                                />
+                                                            )}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -2219,6 +2289,54 @@
                         font-weight: 500;
                         color: var(--text-primary);
                     }
+
+                    /* Move-to-another-state picker */
+                    .action-btn.move.is-open { color: var(--primary); }
+
+                    .move-picker {
+                        position: absolute;
+                        right: 0;
+                        top: 100%;
+                        z-index: 40;
+                        margin-top: 0.35rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.45rem;
+                        padding: 0.75rem;
+                        min-width: 240px;
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-md);
+                        background: rgba(17, 20, 28, 0.98);
+                        box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+                        text-align: left;
+                    }
+
+                    .move-picker label {
+                        color: var(--text-muted);
+                        font-size: 0.72rem;
+                    }
+
+                    #root .move-picker select {
+                        width: 100%;
+                        padding: 0.45rem 0.6rem !important;
+                        font-size: 0.85rem;
+                    }
+
+                    .move-cancel {
+                        align-self: flex-end;
+                        background: none;
+                        border: none;
+                        color: var(--text-muted);
+                        font-family: inherit;
+                        font-size: 0.72rem;
+                        cursor: pointer;
+                        padding: 0;
+                    }
+
+                    .move-cancel:hover { color: var(--text-primary); }
+
+                    /* the picker anchors to the actions cell */
+                    td.col-actions, .action-buttons, .card-overlay { position: relative; }
 
                     .visit-date {
                         display: inline-flex;

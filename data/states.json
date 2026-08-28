@@ -14,13 +14,6 @@
       "visited": true,
       "placesVisited": [
         {
-          "name": "Golconda Fort",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
           "name": "Salar jang Museum",
           "city": "Hyderabad",
           "remarks": "-",
@@ -437,6 +430,13 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Golconda Fort",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         }
       ],
@@ -972,30 +972,35 @@
           "name": "Chakreshwar Temple",
           "city": "Guwahati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kaziranga National Park",
           "city": "Kaziranga",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Kamakhya Temple",
           "city": "Guwahati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kaziranga National Orchid And Biodiversity Park",
           "city": "Kaziranga",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Maa Dhumawati Mandir",
           "city": "Guwahati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -1003,7 +1008,15 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Kaziranga National Park",
+          "city": "Kaziranga",
+          "remarks": "-",
+          "image": ""
+        }
+      ]
     },
     "Indonesia": {
       "visited": false,
@@ -2444,8 +2457,9 @@
       "placesVisited": [
         {
           "name": "Sabarmallai",
-          "city": "-",
+          "city": "Sabarmallai",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -2645,6 +2659,7 @@
           "name": "Stupa of Sanchi",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         }
       ],
@@ -2652,7 +2667,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Maharashtra": {
       "visited": true,
@@ -3299,32 +3315,37 @@
       "placesVisited": [
         {
           "name": "Konark/Chandrabhaga Beach",
-          "city": "-",
+          "city": "Konark",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Chilika Lake",
-          "city": "-",
+          "city": "Odisha",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
           "name": "Puri Beach",
-          "city": "-",
+          "city": "Puri",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Puri Jagannath temple",
-          "city": "-",
+          "city": "Puri",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Sun Temple",
           "city": "Konark",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -3603,24 +3624,28 @@
           "name": "Brahma Sarovar Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Golden Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Wagah Border",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Vaishno Devi Mandir",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -3641,7 +3666,22 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Golden Temple",
+          "city": "-",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Wagah Border",
+          "city": "-",
+          "remarks": "-",
+          "image": ""
+        }
+      ]
     },
     "Rajasthan": {
       "visited": false,
@@ -4367,24 +4407,28 @@
           "name": "Pontoon bridge",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Anand Bhawan Museum",
           "city": "-",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Kashi vishwanath temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Ganga Harathi",
           "city": "-",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         }
       ],
@@ -4392,7 +4436,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Uttarakhand": {
       "visited": true,
@@ -4401,30 +4446,35 @@
           "name": "Treveni Ghat",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Jwala Devi Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Robber's Cave",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Bungee Jumping",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
           "name": "Kempty Falls",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         }
       ],
@@ -4627,22 +4677,18 @@
       ],
       "highlights": [
         {
-          "name": "Bungee Jumping"
+          "name": "Bungee Jumping",
+          "city": "-",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Kedarnath",
           "city": "-",
           "remarks": "-",
-          "image": "",
-          "distance": "36",
-          "altitude": "11,755",
-          "difficulty": "Hard",
-          "bestTime": "May to June",
-          "permit": "No",
-          "terrain": "Steep Climbs",
-          "safetyAlerts": false,
-          "isVisited": true,
-          "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
+          "category": "Adventure",
+          "image": ""
         }
       ]
     },
@@ -4763,6 +4809,16 @@
         }
       ],
       "visited": false
+    },
+    "Telangana": {
+      "visited": true,
+      "placesVisited": [],
+      "placesToVisit": [],
+      "restaurants": [],
+      "food": [],
+      "treks": [],
+      "stays": [],
+      "highlights": []
     }
   },
   "bucketList": [
