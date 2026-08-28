@@ -189,6 +189,8 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('all'); // 'all', 'visited'
     const [sortBy, setSortBy] = useState('places'); // 'places' | 'name' | 'wishlist'
+    const [mapStyle, setMapStyle] = useState('poster'); // 'poster' | 'tiles'
+    const PLACE_CATEGORIES = window.PLACE_CATEGORIES || [];
 
     const REGION_VIEWS = ['states', 'map', 'countries'];
 
@@ -498,11 +500,30 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
             {viewMode === 'trips' && TripPlanner ? (
                 <TripPlanner trips={trips} onSaveTrips={handleSaveTrips} statesData={allStatesForBadges} />
             ) : viewMode === 'map' ? (
-                <window.IndiaTileMap
-                    states={items}
-                    onSelect={onNavigateToState}
-                    filter={filter}
-                />
+                <React.Fragment>
+                    <div className="map-style-toggle">
+                        <button className={mapStyle === 'poster' ? 'active' : ''} onClick={() => setMapStyle('poster')}>
+                            <i className="ph-bold ph-map-pin-line"></i> Poster
+                        </button>
+                        <button className={mapStyle === 'tiles' ? 'active' : ''} onClick={() => setMapStyle('tiles')}>
+                            <i className="ph-bold ph-squares-four"></i> Density
+                        </button>
+                    </div>
+
+                    {mapStyle === 'poster' && window.IndiaPosterMap ? (
+                        <window.IndiaPosterMap
+                            states={items}
+                            onSelect={onNavigateToState}
+                            categories={PLACE_CATEGORIES}
+                        />
+                    ) : (
+                        <window.IndiaTileMap
+                            states={items}
+                            onSelect={onNavigateToState}
+                            filter={filter}
+                        />
+                    )}
+                </React.Fragment>
             ) : viewMode === 'wishlist' ? (
                 <EntryList
                     entries={allEntries.filter(e => e.field === 'placesToVisit' && (!searchLower || e.name.toLowerCase().includes(searchLower)))}
@@ -740,6 +761,32 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     gap: 1.5rem;
                     align-items: stretch;
                 }
+
+                .map-style-toggle {
+                    display: inline-flex;
+                    gap: 0.25rem;
+                    padding: 0.25rem;
+                    margin-bottom: 1rem;
+                    background: var(--bg-surface);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-md);
+                }
+
+                .map-style-toggle button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    padding: 0.4rem 0.85rem;
+                    background: transparent;
+                    border: none;
+                    border-radius: var(--radius-sm);
+                    color: var(--text-muted);
+                    font-family: inherit;
+                    font-size: 0.82rem;
+                    cursor: pointer;
+                }
+
+                .map-style-toggle button.active { background: var(--primary); color: #fff; }
 
                 /* ---- Totals strip ---- */
                 .travel-totals {

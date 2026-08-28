@@ -44,6 +44,9 @@
         { id: 'Other', label: 'Other', icon: 'ph-map-pin', color: '#64748b', bg: 'rgba(100,116,139,0.15)' }
     ];
 
+    // Shared with the travel dashboard's poster map legend.
+    window.PLACE_CATEGORIES = PLACE_CATEGORIES;
+
     // Check for localhost
     const isLocalhost = window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1' ||
