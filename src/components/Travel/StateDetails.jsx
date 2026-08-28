@@ -98,10 +98,13 @@
 
     // Lookup across every set, so a badge still renders if an entry was tagged
     // before its section had its own list.
+    // De-duplicated by id: the place list and the adventure list both define
+    // an 'Adventure' entry (labelled "Adventure" and "Other Adventure"), and
+    // leaving both in produced two cards counting the same records twice.
     const ALL_CATEGORIES = [
         ...PLACE_CATEGORIES, ...FOOD_CATEGORIES, ...STAY_CATEGORIES,
         ...ADVENTURE_CATEGORIES, ...TREK_CATEGORIES
-    ];
+    ].filter((cat, i, list) => list.findIndex(c => c.id === cat.id) === i);
 
     // Shared with the travel dashboard's poster map legend.
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;

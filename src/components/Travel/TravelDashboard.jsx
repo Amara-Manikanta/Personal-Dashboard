@@ -238,7 +238,15 @@ const Timeline = ({ entries, onSelect }) => {
                                 <button key={`${e.name}-${i}`} className="timeline-item" onClick={() => onSelect(e.region)}>
                                     <span className="timeline-date">{monthName(e.visitedDate)}</span>
                                     <span className="timeline-name">
-                                        <i className={`ph-fill ${e.icon}`}></i>
+                                        {/* The entry's own category icon where it has one — a temple
+                                            reads better than a generic pin. Falls back to the section
+                                            icon for anything untagged. */}
+                                        {(() => {
+                                            const cat = (window.ALL_CATEGORIES || []).find(c => c.id === e.category);
+                                            return cat
+                                                ? <window.CategoryIcon category={cat} size={17} />
+                                                : <i className={`ph-fill ${e.icon}`}></i>;
+                                        })()}
                                         {e.name}
                                     </span>
                                     <span className="timeline-region">{[e.city, e.region].filter(v => v && v !== '-').join(' · ')}</span>
@@ -1531,6 +1539,7 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                 .timeline-date { color: var(--text-muted); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
                 .timeline-name { color: var(--text-primary); font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
                 .timeline-name i { color: var(--primary); font-size: 0.9rem; opacity: 0.8; }
+                .timeline-name .category-icon { flex-shrink: 0; }
                 .timeline-region { color: var(--text-muted); font-size: 0.78rem; }
 
                 .empty-hint { font-size: 0.85rem; opacity: 0.75; max-width: 420px; margin: 0.5rem auto 0; }
