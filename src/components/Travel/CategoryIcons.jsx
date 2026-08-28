@@ -219,10 +219,135 @@
         </g>
     );
 
+
+    /** Bungee jumping: jumper on a cord below a platform on a cliff edge. */
+    const Bungee = ({ c }) => (
+        <g>
+            {/* cliff face, right side */}
+            <path d="M12.4 9.6h10.2v12.8h-4.1l-0.6-4.4-2.6-4.6-2.6-1.1z" fill={c} opacity="0.45" />
+            <path d="M12.4 9.6h10.2v1.9H13z" fill={c} opacity="0.7" />
+
+            {/* jump platform frame */}
+            <path d="M14.9 9.4 15.6 2.6M22.1 9.4 21.4 2.6" stroke={c} strokeWidth="1.3" {...S} />
+            <path d="M15.4 3.2h6.2M15.9 8.4h5.2M16.1 3.4l4.8 4.8M20.9 3.4l-4.8 4.8" stroke={c} strokeWidth="1.1" fill="none" {...S} />
+
+            {/* the cord, slack and coiling */}
+            <path
+                d="M14.6 10.2c-1.6 1.1-1.1 2.2 0 3-1.2 0.9-1.5 2 0.1 2.9-1.4 0.9-2.2 1.9-3.4 2.4"
+                fill="none" stroke={c} strokeWidth="1.2" {...S}
+            />
+
+            {/* jumper, upside down with arms out */}
+            <g fill={c}>
+                <path d="M11.3 18.5c-1.1 0.6-2.1 1.1-3.2 1.3l-0.8-1.6c1-0.3 1.9-0.8 2.9-1.4z" />
+                <path d="M8.1 19.8c-1 0.2-1.9 0-2.7-0.6l0.9-1.5c0.5 0.4 1.1 0.5 1.8 0.4z" opacity="0.85" />
+                <path d="M6.4 17.6c-0.8-0.7-1.2-1.6-1.2-2.6h1.7c0 0.6 0.2 1.1 0.6 1.5z" opacity="0.7" />
+                <circle cx="4.1" cy="20.7" r="1.9" />
+            </g>
+        </g>
+    );
+
+
+    /** Parasailing: canopy and jumper towed behind a boat. */
+    const Parasailing = ({ c }) => (
+        <g>
+            {/* canopy */}
+            <path d="M11.4 8.2a6.6 6.6 0 0 1 11.2 0z" fill="#eab308" />
+            <path d="M17 1.6a6.6 6.6 0 0 1 5.6 6.6h-5.6z" fill="#eab308" opacity="0.75" />
+            {/* rigging down to the jumper */}
+            <path d="M11.6 8 16 12.4M14.6 8.2 16 12.4M19.2 8.2 16.6 12.4M22.4 8 16.8 12.4" stroke="#334155" strokeWidth="1" {...S} />
+
+            {/* jumper */}
+            <circle cx="16.2" cy="11" r="1.5" fill="#f8c471" />
+            <path d="M14.2 13.1c1.3-0.9 2.7-0.9 4 0l-0.5 2.6-1.5 0.6-1.5-0.6z" fill={c} />
+            <path d="M14.6 16.2 13.4 18.6M17.6 16.2 18.8 18.6" stroke={c} strokeWidth="1.3" {...S} />
+
+            {/* tow line to the boat */}
+            <path d="M15 15.4c-2.3 1.6-4.2 2.6-6.1 3.1" fill="none" stroke="#334155" strokeWidth="1.1" {...S} />
+
+            {/* boat */}
+            <path d="M4.4 18.1h9.2l-1.6 2.8H6z" fill="#93c5fd" />
+            <path d="M4.4 15.6h9.2v2.5H4.4z" fill="#7dd3fc" />
+            <circle cx="7.4" cy="14.2" r="1.2" fill="#f8c471" />
+            <path d="M6 17.5c0-0.9 0.6-1.6 1.4-1.6s1.4 0.7 1.4 1.6z" fill={c} />
+
+            {/* water */}
+            <path d="M1.4 20.4c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0M1.4 22.4c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"
+                fill="none" stroke="#0284c7" strokeWidth="1.2" {...S} />
+        </g>
+    );
+
+
+    /** Paragliding: multi-cell wing seen head-on, pilot below. */
+    const Paragliding = ({ c }) => (
+        <g>
+            {/* wing: a tall centre cell flanked by swept side cells */}
+            <path d="M12 1.6c2.2 0 3.8 1.6 3.8 3.9l-0.7 6.4h-6.2l-0.7-6.4c0-2.3 1.6-3.9 3.8-3.9z" fill={c} />
+            <path d="M16.1 2.6c2 -0.6 3.9 0.5 4.4 2.5 0.4 1.6-0.2 3-1.5 3.9l-4.1 3.1 0.9-5.9z" fill={c} opacity="0.85" />
+            <path d="M7.9 2.6c-2-0.6-3.9 0.5-4.4 2.5-0.4 1.6 0.2 3 1.5 3.9l4.1 3.1-0.9-5.9z" fill={c} opacity="0.85" />
+            <path d="M21.2 5.6c1.4 0.2 2.3 1.4 2.1 2.8-0.1 1-0.7 1.7-1.6 2.1l-3.3 1.5 2.1-3.1z" fill={c} opacity="0.7" />
+            <path d="M2.8 5.6c-1.4 0.2-2.3 1.4-2.1 2.8 0.1 1 0.7 1.7 1.6 2.1l3.3 1.5-2.1-3.1z" fill={c} opacity="0.7" />
+
+            {/* risers converging on the harness */}
+            <path d="M8.9 11.9 11 15.1M15.1 11.9 13 15.1M5.6 11.6 10.6 15.2M18.4 11.6 13.4 15.2" stroke={c} strokeWidth="1.1" {...S} />
+
+            {/* pilot in the harness */}
+            <path d="M9.6 13.4h4.8l-0.6 3.2a1.6 1.6 0 0 1-1.6 1.3h-0.4a1.6 1.6 0 0 1-1.6-1.3z" fill={c} />
+            <circle cx="12" cy="14.4" r="1.5" fill="#0f172a" opacity="0.55" />
+            <rect x="10.2" y="18" width="3.6" height="2.6" rx="0.5" fill={c} />
+            {/* trailing legs */}
+            <path d="M13.6 19.4 16.4 20.4 17.6 19M12.6 20.6 14.2 22.4 15.6 21.7" stroke={c} strokeWidth="1.5" fill="none" {...S} />
+        </g>
+    );
+
+
+    /** Cliff jumping: jumper leaping from a cliff into water below. */
+    const CliffJump = ({ c }) => (
+        <g>
+            {/* cliff on the right, ragged edge */}
+            <path d="M18.4 2.4h4.2v18.2h-5.3l0.6-3.4-1.3-3.1 1.1-2.6-1-2.3 1.2-2.5-0.9-2.2z" fill={c} opacity="0.6" />
+
+            {/* jumper, mid-leap */}
+            <g fill={c}>
+                <circle cx="12.4" cy="3.1" r="1.3" />
+                <path d="M13.6 4.6l2.4 1.2-0.5 1.5-1.9-0.9-1.1 1.5-1.5-0.9z" />
+                <path d="M11 6.9l1.6 0.9-0.4 2.2-1.7-0.5z" opacity="0.9" />
+                <path d="M14.1 7.6l1.9 1.5-1 1.3-2.1-1.5z" opacity="0.85" />
+            </g>
+
+            {/* far shore */}
+            <path d="M2.4 14.6c1.1-1.9 1.9-2.9 2.6-2.9 0.8 0 1.5 1 2.4 2.2 0.5-0.8 0.9-1.2 1.3-1.2 0.5 0 1 0.6 1.7 1.9z" fill={c} opacity="0.45" />
+
+            {/* water with ripple lines */}
+            <path d="M1.4 15h13.2v6.6a1 1 0 0 1-1 1H2.4a1 1 0 0 1-1-1z" fill={c} opacity="0.25" />
+            <path d="M2.6 16.8h2M6 16.8h3.4M11 16.8h2.4M3.6 18.8h3.2M8.6 18.8h2.6M2.4 20.7h4.2M8.4 20.7h4.6"
+                stroke={c} strokeWidth="1" opacity="0.85" {...S} />
+        </g>
+    );
+
+
+    /** River rafting: inflatable raft from above, paddles out both sides. */
+    const Rafting = ({ c }) => (
+        <g fill="none" stroke={c} strokeWidth="1.5" {...S}>
+            {/* outer tube and inner floor */}
+            <rect x="6.3" y="1.9" width="11.4" height="20.2" rx="5.7" />
+            <rect x="8.6" y="4.2" width="6.8" height="15.6" rx="3.4" />
+            {/* thwarts */}
+            <path d="M6.4 8.3h11.2M6.4 12.4h11.2M8.7 16.1h6.6" />
+            {/* paddles: shafts crossing the tube, blades outboard */}
+            <path d="M9.4 6.6 3.6 9.6M14.6 6.6l5.8 3M9.4 13.9l-5.8 3M14.6 13.9l5.8 3" />
+            <path d="M3.6 8.2 1.6 9.4l1.5 2.4 2.2-1.1zM20.4 8.2l2 1.2-1.5 2.4-2.2-1.1zM3.6 15.5l-2 1.2 1.5 2.4 2.2-1.1zM20.4 15.5l2 1.2-1.5 2.4-2.2-1.1z" />
+            {/* spray */}
+            <path d="M2.9 3.2v2.4M5.2 1.9v2.4M18.9 18.6V21M21.2 19.9v2.4" strokeWidth="1.4" />
+        </g>
+    );
+
     const CUSTOM = {
         temple: Temple, church: Church, waterfall: Waterfall,
         trekking: Trekking, adventure: Adventure, viewpoint: Viewpoint,
-        beach: Beach, amusement: Amusement, lake: Lake
+        beach: Beach, amusement: Amusement, lake: Lake,
+        bungee: Bungee, parasailing: Parasailing, paragliding: Paragliding,
+        cliffjump: CliffJump, rafting: Rafting
     };
 
     /**
