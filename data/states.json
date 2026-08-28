@@ -2365,6 +2365,9 @@
           "city": "Bhyander",
           "remarks": "-",
           "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2018-05"
+          ],
           "image": ""
         },
         {
@@ -2498,7 +2501,8 @@
           "name": "Pride Kitchen",
           "city": "Airoli",
           "remarks": "-",
-          "mapLink": "",
+          "category": "Restaurant",
+          "image": "",
           "dishes": [
             {
               "name": "Chicken Biryani",
@@ -2516,37 +2520,46 @@
           "name": "TAP Resto Bar",
           "city": "Andheri",
           "remarks": "-",
+          "category": "Restaurant",
           "visitDates": [
             "2018-01"
           ],
-          "mapLink": "",
-          "dishes": [],
+          "image": "",
           "cuisines": [
             "Pizza & Pasta"
           ],
           "ambiences": [
             "Bar"
-          ],
-          "rating": 0,
-          "review": ""
+          ]
         },
         {
           "name": "Chenab Resturant",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
           "visitDates": [
             "2018-02"
           ],
-          "mapLink": "",
-          "dishes": [],
+          "image": "",
           "cuisines": [
             "Mixed"
           ],
           "ambiences": [
             "Rooftop"
+          ]
+        },
+        {
+          "name": "BFF",
+          "city": "Airoli",
+          "remarks": "-",
+          "category": "Restaurant",
+          "visitDates": [
+            "2018-03"
           ],
-          "rating": 0,
-          "review": ""
+          "image": "",
+          "cuisines": [
+            "Pizza & Pasta"
+          ]
         }
       ],
       "food": [

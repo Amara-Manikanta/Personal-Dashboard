@@ -66,6 +66,7 @@
 
     const STAY_CATEGORIES = [
         { id: 'Hotel', label: 'Hotel', icon: 'ph-buildings', color: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
+        { id: 'Resort', label: 'Resort', icon: 'ph-umbrella', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
         { id: 'Stay', label: 'Stay', icon: 'ph-bed', color: '#22c55e', bg: 'rgba(34,197,94,0.15)' }
     ];
 
