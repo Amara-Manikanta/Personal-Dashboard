@@ -14,20 +14,6 @@
       "visited": true,
       "placesVisited": [
         {
-          "name": "Golconda Fort",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "Salar jang Museum",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Museum",
-          "image": ""
-        },
-        {
           "name": "uppada beach",
           "city": "Kakinada",
           "remarks": "-",
@@ -60,27 +46,6 @@
           "city": "Tirumala",
           "remarks": "-",
           "category": "Temple",
-          "image": ""
-        },
-        {
-          "name": "Sudha Car Museum",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Museum",
-          "image": ""
-        },
-        {
-          "name": "Charminar",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "Lumbini Park",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Nature & Park",
           "image": ""
         },
         {
@@ -126,59 +91,10 @@
           "image": ""
         },
         {
-          "name": "Eat Sreet",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Street Food Spot",
-          "image": ""
-        },
-        {
-          "name": "Shilparamam",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
           "name": "coffee museum",
           "city": "Araku",
           "remarks": "-",
           "category": "Museum",
-          "image": ""
-        },
-        {
-          "name": "Qutab Shahi Tombs",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "Sripada srivallabha swami temple",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
-          "name": "Biodiversity Complex",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Nature & Park",
-          "image": ""
-        },
-        {
-          "name": "Laknavaram Cheruvu",
-          "city": "Warangal",
-          "remarks": "-",
-          "category": "Lake & Dam",
-          "image": ""
-        },
-        {
-          "name": "Hussain Sagar",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Lake & Dam",
           "image": ""
         },
         {
@@ -217,13 +133,6 @@
           "image": ""
         },
         {
-          "name": "Ananthagiri Hills",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Viewpoint",
-          "image": ""
-        },
-        {
           "name": "Silathoranam",
           "city": "Tirumala",
           "remarks": "-",
@@ -238,24 +147,10 @@
           "image": ""
         },
         {
-          "name": "Sri Bhadrakalli Temple",
-          "city": "Warangal",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
           "name": "Kukkuteswara Temple",
           "city": "Pithapuram",
           "remarks": "-",
           "category": "Temple",
-          "image": ""
-        },
-        {
-          "name": "Step Well",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -266,32 +161,11 @@
           "image": ""
         },
         {
-          "name": "Nehru Zooligical Park",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Nature & Park",
-          "image": ""
-        },
-        {
           "name": "Watch  Tower",
-          "city": "Vizanagaram",
+          "city": "-",
           "remarks": "-",
-          "category": "Fort & Heritage",
-          "image": ""
-        },
-        {
-          "name": "Birla mandir",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
-          "name": "Birla science museum",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Museum",
-          "image": ""
+          "image": "",
+          "category": "Fort & Heritage"
         },
         {
           "name": "Coringa Wild Life Sanctury",
@@ -336,31 +210,10 @@
           "image": ""
         },
         {
-          "name": "1000 Pillar Temple",
-          "city": "Warangal",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
           "name": "Indira Gandhi Zoological Park",
           "city": "VSKP",
           "remarks": "-",
           "category": "Nature & Park",
-          "image": ""
-        },
-        {
-          "name": "Ramoji Film City",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Amusement & Theme Park",
-          "image": ""
-        },
-        {
-          "name": "Shri Jagannath temple",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Temple",
           "image": ""
         },
         {
@@ -371,31 +224,10 @@
           "image": ""
         },
         {
-          "name": "Vemulawada Temple",
-          "city": "Karimnagar",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
-          "name": "Shri Jagannath Temple",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
           "name": "The Grand Canyon of India",
           "city": "Kadapa",
           "remarks": "-",
           "category": "Viewpoint",
-          "image": ""
-        },
-        {
-          "name": "Ramappa Temple",
-          "city": "Warangal",
-          "remarks": "-",
-          "category": "Temple",
           "image": ""
         },
         {
@@ -429,13 +261,6 @@
         {
           "name": "Sri Venkateswara Swamy Temple",
           "city": "Vadapalli",
-          "remarks": "-",
-          "category": "Temple",
-          "image": ""
-        },
-        {
-          "name": "Swarnagiri Temple",
-          "city": "Hyderabad",
           "remarks": "-",
           "category": "Temple",
           "image": ""
@@ -532,15 +357,6 @@
           "image": ""
         },
         {
-          "name": "Krishnapatnam",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "image": "",
-          "ambiences": [
-            "Posh"
-          ]
-        },
-        {
           "name": "Foddie Train",
           "city": "-",
           "remarks": "-",
@@ -551,53 +367,6 @@
           "city": "-",
           "remarks": "-",
           "image": ""
-        },
-        {
-          "name": "Maryada Ramana",
-          "city": "Kondapur",
-          "remarks": "-",
-          "image": "",
-          "mapLink": "https://maps.app.goo.gl/zoVGXfT1V49UvXvC9"
-        },
-        {
-          "name": "Chaitanya Foods",
-          "city": "Hitech City",
-          "remarks": "-",
-          "image": "",
-          "mapLink": "https://maps.app.goo.gl/Kb6fR94hTgSoSy7X9",
-          "dishes": [
-            {
-              "name": "Boneless Chicken Biryani",
-              "rating": "good"
-            }
-          ]
-        },
-        {
-          "name": "Varalakshmi Tiffens",
-          "city": "Gachibowli",
-          "remarks": "-",
-          "image": "",
-          "cuisines": [
-            "Local Meals"
-          ],
-          "ambiences": [
-            "Grab & Go"
-          ]
-        },
-        {
-          "name": "Shah Ghouse",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "image": "",
-          "dishes": [
-            {
-              "name": "Mutton Biryani",
-              "rating": "good"
-            }
-          ],
-          "ambiences": [
-            "Casual"
-          ]
         },
         {
           "name": "United Telugu Kitchen",
@@ -620,84 +389,6 @@
           "mapLink": "https://maps.app.goo.gl/2BVDGAzhURrCYBsZA",
           "ambiences": [
             "Casual"
-          ]
-        },
-        {
-          "name": "The Moonshine Project",
-          "city": "Jubliee Hills",
-          "remarks": "-",
-          "image": "",
-          "ambiences": [
-            "Bar"
-          ]
-        },
-        {
-          "name": "Yum Yum Tree Arabian Hyderabad",
-          "city": "Madhapur",
-          "remarks": "Average Restaurant food quality Decreased",
-          "image": "",
-          "mapLink": "https://maps.app.goo.gl/Zd7Ay4VK8S5hUa3n8",
-          "dishes": [
-            {
-              "name": "chicken chef's spl Mandi",
-              "rating": "bad"
-            },
-            {
-              "name": "Chicken BBQ Mandi",
-              "rating": "avg"
-            }
-          ]
-        },
-        {
-          "name": "Padmavathi tiffens",
-          "city": "Madhapur",
-          "remarks": "-",
-          "image": "",
-          "mapLink": "https://maps.app.goo.gl/cCX4wggUTyWEtFck7",
-          "dishes": [
-            {
-              "name": "Egg Dosa",
-              "rating": "good"
-            }
-          ]
-        },
-        {
-          "name": "Gamyam Telugu Kitchen",
-          "city": "Jubilee Hills",
-          "remarks": "Average Restaurant",
-          "image": "",
-          "mapLink": "https://maps.app.goo.gl/GNMoYUbmZMA91psWA",
-          "dishes": [
-            {
-              "name": "Kodi Guddu Miryala Fry",
-              "rating": "avg"
-            },
-            {
-              "name": "Chicken Ghee Roast",
-              "rating": "avg"
-            },
-            {
-              "name": "Rayalaseema Karam Wings",
-              "rating": "avg"
-            },
-            {
-              "name": "Bommarillu Blast",
-              "rating": "good"
-            },
-            {
-              "name": "Kobbari Kick",
-              "rating": "bad"
-            },
-            {
-              "name": "Nalli Ghost Biryani",
-              "rating": "avg"
-            }
-          ],
-          "cuisines": [
-            "Asian"
-          ],
-          "ambiences": [
-            "Posh"
           ]
         },
         {
@@ -746,37 +437,6 @@
           ]
         },
         {
-          "name": "ANTERVEDI",
-          "city": "Kondapur",
-          "remarks": "-",
-          "image": "",
-          "mapLink": "https://share.google/jP3ldtetvsjHd8YhP",
-          "dishes": [
-            {
-              "name": "Crispy corn",
-              "rating": "avg"
-            },
-            {
-              "name": "Manchuria",
-              "rating": "avg"
-            },
-            {
-              "name": "Panner tikka Curry",
-              "rating": "bad"
-            },
-            {
-              "name": "Garlic Nons",
-              "rating": "bad"
-            }
-          ],
-          "cuisines": [
-            "Curries"
-          ],
-          "ambiences": [
-            "Posh"
-          ]
-        },
-        {
           "name": "World of Tortillas",
           "city": "Kakinada",
           "remarks": "-",
@@ -796,118 +456,6 @@
           ],
           "ambiences": [
             "Casual"
-          ]
-        },
-        {
-          "name": "Kritaa Nagar",
-          "city": "Financial District",
-          "remarks": "-",
-          "mapLink": "https://maps.app.goo.gl/aHPPJ3PihNX2xYxk7",
-          "dishes": [
-            {
-              "name": "Japan Chicken",
-              "rating": "good"
-            },
-            {
-              "name": "Chicken RRR",
-              "rating": "avg"
-            },
-            {
-              "name": "Mushroom Peshwari",
-              "rating": "bad"
-            },
-            {
-              "name": "Special Chicken Biryani Boneless",
-              "rating": "avg"
-            },
-            {
-              "name": "Kaju Panner Cury",
-              "rating": "good"
-            },
-            {
-              "name": "Filter Coffee Tiramisu",
-              "rating": "bad"
-            }
-          ],
-          "cuisines": [
-            "Western"
-          ],
-          "ambiences": [
-            "Posh"
-          ]
-        },
-        {
-          "name": "New Peacock Resturant",
-          "city": "Karimnagar",
-          "remarks": "-",
-          "mapLink": "",
-          "dishes": [
-            {
-              "name": "Mancho Soup",
-              "rating": "avg"
-            },
-            {
-              "name": "Veg Manchuria",
-              "rating": "avg"
-            },
-            {
-              "name": "Veg Fried Rice",
-              "rating": "avg"
-            }
-          ],
-          "cuisines": [],
-          "ambiences": [
-            "Casual"
-          ]
-        },
-        {
-          "name": "TARO - Pan Asian Resturant & Bar",
-          "city": "Jubliee Hills",
-          "remarks": "-",
-          "image": "",
-          "mapLink": "https://maps.app.goo.gl/HQL4g9t3eBK8nd5o8",
-          "dishes": [
-            {
-              "name": "Osakana Sushi Boat",
-              "rating": "good"
-            }
-          ],
-          "ambiences": [
-            "Romantic"
-          ]
-        },
-        {
-          "name": "Echoes Living Room",
-          "city": "Madhapur",
-          "remarks": "-",
-          "mapLink": "https://maps.app.goo.gl/YL7q2WhhwdkZLYzX7",
-          "dishes": [
-            {
-              "name": "Delicate Corn Cream Cheese Chili oil Suchi",
-              "rating": "good"
-            },
-            {
-              "name": "Sunday Garden",
-              "rating": "good"
-            },
-            {
-              "name": "Southern Calfornia",
-              "rating": "good"
-            },
-            {
-              "name": "Kiwi & Pineapple Rush Drink",
-              "rating": "good"
-            },
-            {
-              "name": "Lotus Biscoff Crunchy Bliss Shake",
-              "rating": "avg"
-            }
-          ],
-          "cuisines": [
-            "Pizza & Pasta"
-          ],
-          "ambiences": [
-            "Romantic"
           ]
         }
       ],
@@ -941,12 +489,6 @@
           "city": "Annavaram",
           "remarks": "-",
           "image": ""
-        },
-        {
-          "name": "Amma Dosa",
-          "image": "uploads/1770014441198_img_1155.jpeg",
-          "city": "Ramagundam",
-          "remarks": "-"
         }
       ],
       "treks": [
@@ -971,8 +513,8 @@
           "name": "Vanajangi",
           "city": "Vanajangi",
           "remarks": "-",
-          "category": "Adventure",
-          "image": ""
+          "image": "",
+          "category": "Adventure"
         }
       ]
     },
@@ -983,30 +525,35 @@
           "name": "Chakreshwar Temple",
           "city": "Guwahati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kaziranga National Park",
           "city": "Kaziranga",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Kamakhya Temple",
           "city": "Guwahati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kaziranga National Orchid And Biodiversity Park",
           "city": "Kaziranga",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Maa Dhumawati Mandir",
           "city": "Guwahati",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -1014,7 +561,15 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Kaziranga National Park",
+          "city": "Kaziranga",
+          "remarks": "-",
+          "image": ""
+        }
+      ]
     },
     "Indonesia": {
       "visited": false,
@@ -1071,6 +626,7 @@
           "name": "Dhankar Monestry",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -1084,6 +640,7 @@
           "name": "Langza",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -1104,12 +661,14 @@
           "name": "Rothang Pass",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Hikkim",
           "city": "-",
           "remarks": "-",
+          "category": "Hill Station",
           "image": ""
         },
         {
@@ -1123,6 +682,7 @@
           "name": "Sissu",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
@@ -1136,18 +696,21 @@
           "name": "Van husan",
           "city": "-",
           "remarks": "-",
+          "category": "Other",
           "image": ""
         },
         {
           "name": "Atul Tunnel",
           "city": "-",
           "remarks": "-",
+          "category": "Other",
           "image": ""
         },
         {
           "name": "Kunzum Pass",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
@@ -1181,6 +744,7 @@
           "name": "Manestory",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -1194,6 +758,7 @@
           "name": "Solang Valley",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
@@ -1815,7 +1380,10 @@
         },
         {
           "name": "Zanana Enclosure",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Other",
+          "image": ""
         },
         {
           "name": "Birds of paradise",
@@ -1847,7 +1415,10 @@
         },
         {
           "name": "Hampi",
-          "city": "Bellary Region"
+          "city": "Bellary Region",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
         },
         {
           "name": "Mysore Palace",
@@ -2132,7 +1703,8 @@
           "ambiences": [
             "Family",
             "Posh"
-          ]
+          ],
+          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59"
         },
         {
           "name": "Dhaba Stories",
@@ -2455,8 +2027,16 @@
       "placesVisited": [
         {
           "name": "Sabarmallai",
-          "city": "-",
+          "city": "Sabarmallai",
           "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Guruvayur Shri Krishna Temple",
+          "city": "Guruvayur",
+          "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -2647,7 +2227,15 @@
       ],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [
+        {
+          "name": "Sabarmallai",
+          "city": "Sabarmallai",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        }
+      ]
     },
     "Madhya Pradesh": {
       "visited": true,
@@ -2656,6 +2244,7 @@
           "name": "Stupa of Sanchi",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         }
       ],
@@ -2663,7 +2252,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Maharashtra": {
       "visited": true,
@@ -2672,108 +2262,126 @@
           "name": "Alibug fort/Kolaba",
           "city": "Alibug",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Golden Pakkode",
           "city": "Bhyandar",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         },
         {
           "name": "Gateway of India",
           "city": "Churchgate",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "7 Wonders",
           "city": "Airoli",
           "remarks": "-",
+          "category": "Amusement & Theme Park",
           "image": ""
         },
         {
           "name": "Marine Drive",
           "city": "Churchgate",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Khandala Ghat view Point",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Narayani Dham Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Jehangir art gallery",
           "city": "Churchgate",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Mahankalli Caves",
           "city": "Borivalli",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Karla Bhuda Caves",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
           "name": "Imagica",
           "city": "-",
           "remarks": "-",
+          "category": "Amusement & Theme Park",
           "image": ""
         },
         {
           "name": "Vasai Creek",
           "city": "Vasai",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Essel World",
           "city": "Bhyander",
           "remarks": "-",
+          "category": "Amusement & Theme Park",
           "image": ""
         },
         {
           "name": "Uttan Beach",
           "city": "-",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Shiridi Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Loins Point",
           "city": "Lonavala",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Veermata Jijabai Bhosale Udyan And Zoo",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Alibug Beach",
           "city": "Alibug",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         }
       ],
@@ -2960,102 +2568,119 @@
           "name": "Kakyaki",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
-          "name": "Dawki river",
+          "name": "Dawki River",
           "city": "-",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
-          "name": "Ploice bazar",
+          "name": "Ploice Bazar",
           "city": "-",
           "remarks": "-",
+          "category": "Shopping",
           "image": ""
         },
         {
-          "name": "Ward's lake",
+          "name": "Ward's Lake",
           "city": "-",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
           "name": "Camping",
           "city": "-",
           "remarks": "-",
+          "category": "Camping",
           "image": ""
         },
         {
-          "name": "Garden of caves",
+          "name": "Garden Of Caves",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
-          "name": "Nohkalikai waterfalls",
+          "name": "Nohkalikai Waterfalls",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
-          "name": "Single root bridge",
+          "name": "Single Root Bridge",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
           "name": "Blue lagoom",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "Mawlynnong village",
           "city": "-",
           "remarks": "-",
+          "category": "Other",
           "image": ""
         },
         {
           "name": "Mawsmai caves",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
-          "name": "Cherry blossoms",
+          "name": "Cherry Blossoms",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
-          "name": "krang suri falls",
+          "name": "Krang Suri Falls",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "India - Bangladesh border",
           "city": "-",
           "remarks": "-",
+          "category": "Other",
           "image": ""
         },
         {
-          "name": "Cliff jumping",
+          "name": "Cliff Jumping",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
-          "name": "Mawphlang sacred forest",
+          "name": "Mawphlang Sacred Forest",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
-          "name": "Double decker root bridge",
+          "name": "Double Decker Root Bridge",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         }
       ],
@@ -3133,6 +2758,13 @@
         },
         {
           "name": "Cliff jumping"
+        },
+        {
+          "name": "Cliff Jumping",
+          "city": "-",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         }
       ]
     },
@@ -3204,66 +2836,77 @@
           "name": "India Gate",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Akshardham Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Jantar mantar",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Lotus Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         },
         {
           "name": "Rashtrapati Bhavan",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Train Museum",
           "city": "-",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Redfort",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Jahangir Palace",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Raj Ghat",
           "city": "-",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         },
         {
           "name": "Taj Mahal",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Khas Mahal",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         }
       ],
@@ -3296,46 +2939,52 @@
       "restaurants": [
         {
           "name": "Bagundi Andhra Kitchen",
-          "city": "-",
+          "city": "Delhi",
           "remarks": "-",
           "image": ""
         }
       ],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Odisha": {
       "visited": true,
       "placesVisited": [
         {
           "name": "Konark/Chandrabhaga Beach",
-          "city": "-",
+          "city": "Konark",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Chilika Lake",
-          "city": "-",
+          "city": "Odisha",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
           "name": "Puri Beach",
-          "city": "-",
+          "city": "Puri",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Puri Jagannath temple",
-          "city": "-",
+          "city": "Puri",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Sun Temple",
           "city": "Konark",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -3410,90 +3059,105 @@
           "name": "Sernity Beach",
           "city": "-",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Watch Tower",
-          "city": "Vizianagaram",
+          "city": "Rock Beach",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Paradise Beach",
           "city": "-",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Mangrove Forest",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "French War memorial",
           "city": "-",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Rock Beach",
           "city": "-",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Arovile Mytri Mandir",
           "city": "-",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         },
         {
           "name": "Shanti Park",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Pondichery Museum",
           "city": "-",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "New Light House",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Edsen Beach",
           "city": "-",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Promenade Beach",
           "city": "-",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Craft Bazar",
           "city": "-",
           "remarks": "-",
+          "category": "Shopping",
           "image": ""
         },
         {
           "name": "Old Light House",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Arulmigu Manakula Vinayagar Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -3605,7 +3269,38 @@
           "image": ""
         }
       ],
-      "highlights": []
+      "highlights": [
+        {
+          "name": "Cormandal Cafe",
+          "city": "-",
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Burnt American cheese cake",
+              "rating": "good"
+            },
+            {
+              "name": "Mango pad thai salad",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Sernity Beach",
+          "city": "-",
+          "remarks": "-",
+          "category": "Beach",
+          "image": ""
+        },
+        {
+          "name": "Arovile Mytri Mandir",
+          "city": "-",
+          "remarks": "-",
+          "category": "Religious & Spiritual",
+          "image": ""
+        }
+      ]
     },
     "Punjab": {
       "visited": true,
@@ -3614,24 +3309,28 @@
           "name": "Brahma Sarovar Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Golden Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Wagah Border",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Vaishno Devi Mandir",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         }
       ],
@@ -3652,7 +3351,22 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Golden Temple",
+          "city": "-",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Wagah Border",
+          "city": "-",
+          "remarks": "-",
+          "image": ""
+        }
+      ]
     },
     "Rajasthan": {
       "visited": false,
@@ -3858,42 +3572,49 @@
           "name": "Tashi View Point, Bojoghari",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Kanchanjanga",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Zero Point",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
-          "name": "Bakthangfalls",
+          "name": "Bakthang Falls",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "Scintillating Sister Waterfall",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "Sikkim Himalyan Zoological park",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
-          "name": "Cornationbridge",
+          "name": "Cornation Bridge",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         }
       ],
@@ -4174,66 +3895,77 @@
           "name": "Nilligiri Mountain Rail",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Hill Station",
           "image": ""
         },
         {
           "name": "Sri Lakshmi Narayani Golden Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Light house",
           "city": "Mahabalipuram",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
           "name": "Panch Rath",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Dolphin Nose view point",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Pine Forest",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Marina beach",
           "city": "Chennai",
           "remarks": "-",
+          "category": "Beach",
           "image": ""
         },
         {
           "name": "Private tea estate",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Ooty lake",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Lake & Dam",
           "image": ""
         },
         {
           "name": "Pykara Lake/ Paykara Waterfalls",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         },
         {
           "name": "The Madras Regimental museum",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
@@ -4252,36 +3984,42 @@
           "name": "Seashore Temple",
           "city": "Mahabalipuram",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Ekambaranathar Temple West Gopuram",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Kodaikanal",
           "city": "-",
           "remarks": "-",
+          "category": "Hill Station",
           "image": ""
         },
         {
           "name": "Adiyogi",
           "city": "-",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         },
         {
           "name": "Arunachalam Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Chocolate factory",
           "city": "Ooty",
           "remarks": "-",
+          "category": "Shopping",
           "image": ""
         }
       ],
@@ -4378,24 +4116,28 @@
           "name": "Pontoon bridge",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Anand Bhawan Museum",
           "city": "-",
           "remarks": "-",
+          "category": "Museum",
           "image": ""
         },
         {
           "name": "Kashi vishwanath temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Ganga Harathi",
           "city": "-",
           "remarks": "-",
+          "category": "Religious & Spiritual",
           "image": ""
         }
       ],
@@ -4403,7 +4145,8 @@
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": []
+      "stays": [],
+      "highlights": []
     },
     "Uttarakhand": {
       "visited": true,
@@ -4412,30 +4155,35 @@
           "name": "Treveni Ghat",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Jwala Devi Temple",
           "city": "-",
           "remarks": "-",
+          "category": "Temple",
           "image": ""
         },
         {
           "name": "Robber's Cave",
           "city": "-",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         },
         {
           "name": "Bungee Jumping",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": ""
         },
         {
           "name": "Kempty Falls",
           "city": "-",
           "remarks": "-",
+          "category": "Waterfall",
           "image": ""
         }
       ],
@@ -4638,12 +4386,17 @@
       ],
       "highlights": [
         {
-          "name": "Bungee Jumping"
+          "name": "Bungee Jumping",
+          "city": "-",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         },
         {
           "name": "Kedarnath",
           "city": "-",
           "remarks": "-",
+          "category": "Adventure",
           "image": "",
           "distance": "36",
           "altitude": "11,755",
@@ -4651,7 +4404,6 @@
           "bestTime": "May to June",
           "permit": "No",
           "terrain": "Steep Climbs",
-          "safetyAlerts": false,
           "isVisited": true,
           "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
         }
@@ -4774,6 +4526,520 @@
         }
       ],
       "visited": false
+    },
+    "Telangana": {
+      "visited": true,
+      "placesVisited": [
+        {
+          "name": "Sudha Car Museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
+        },
+        {
+          "name": "Lumbini Park",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
+        },
+        {
+          "name": "Charminar",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Eat Sreet",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Street Food Spot",
+          "image": ""
+        },
+        {
+          "name": "Shilparamam",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Qutab Shahi Tombs",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Sripada srivallabha swami temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Laknavaram Cheruvu",
+          "city": "Warangal",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
+        },
+        {
+          "name": "Biodiversity Complex",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
+        },
+        {
+          "name": "Hussain Sagar",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
+        },
+        {
+          "name": "Ananthagiri Hills",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Viewpoint",
+          "image": ""
+        },
+        {
+          "name": "Sri Bhadrakalli Temple",
+          "city": "Warangal",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Step Well",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Nehru Zooligical Park",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": ""
+        },
+        {
+          "name": "Birla mandir",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Birla science museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
+        },
+        {
+          "name": "1000 Pillar Temple",
+          "city": "Warangal",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Ramoji Film City",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Amusement & Theme Park",
+          "image": ""
+        },
+        {
+          "name": "Shri Jagannath temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Vemulawada Temple",
+          "city": "Karimnagar",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Shri Jagannath Temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Ramappa Temple",
+          "city": "Warangal",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Swarnagiri Temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "Golconda Fort",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Salar jang Museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Museum",
+          "image": ""
+        }
+      ],
+      "placesToVisit": [],
+      "restaurants": [
+        {
+          "name": "Krishnapatnam",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": "",
+          "ambiences": [
+            "Posh"
+          ]
+        },
+        {
+          "name": "Maryada Ramana",
+          "city": "Kondapur",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/zoVGXfT1V49UvXvC9"
+        },
+        {
+          "name": "Chaitanya Foods",
+          "city": "Hitech City",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/Kb6fR94hTgSoSy7X9",
+          "dishes": [
+            {
+              "name": "Boneless Chicken Biryani",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Varalakshmi Tiffens",
+          "city": "Gachibowli",
+          "remarks": "-",
+          "image": "",
+          "cuisines": [
+            "Local Meals"
+          ],
+          "ambiences": [
+            "Grab & Go"
+          ]
+        },
+        {
+          "name": "Shah Ghouse",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "image": "",
+          "dishes": [
+            {
+              "name": "Mutton Biryani",
+              "rating": "good"
+            }
+          ],
+          "ambiences": [
+            "Casual"
+          ]
+        },
+        {
+          "name": "The Moonshine Project",
+          "city": "Jubliee Hills",
+          "remarks": "-",
+          "image": "",
+          "ambiences": [
+            "Bar"
+          ]
+        },
+        {
+          "name": "Yum Yum Tree Arabian Hyderabad",
+          "city": "Madhapur",
+          "remarks": "Average Restaurant food quality Decreased",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/Zd7Ay4VK8S5hUa3n8",
+          "dishes": [
+            {
+              "name": "chicken chef's spl Mandi",
+              "rating": "bad"
+            },
+            {
+              "name": "Chicken BBQ Mandi",
+              "rating": "avg"
+            }
+          ]
+        },
+        {
+          "name": "Padmavathi tiffens",
+          "city": "Madhapur",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/cCX4wggUTyWEtFck7",
+          "dishes": [
+            {
+              "name": "Egg Dosa",
+              "rating": "good"
+            }
+          ]
+        },
+        {
+          "name": "Gamyam Telugu Kitchen",
+          "city": "Jubilee Hills",
+          "remarks": "Average Restaurant",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/GNMoYUbmZMA91psWA",
+          "dishes": [
+            {
+              "name": "Kodi Guddu Miryala Fry",
+              "rating": "avg"
+            },
+            {
+              "name": "Chicken Ghee Roast",
+              "rating": "avg"
+            },
+            {
+              "name": "Rayalaseema Karam Wings",
+              "rating": "avg"
+            },
+            {
+              "name": "Bommarillu Blast",
+              "rating": "good"
+            },
+            {
+              "name": "Kobbari Kick",
+              "rating": "bad"
+            },
+            {
+              "name": "Nalli Ghost Biryani",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [
+            "Asian"
+          ],
+          "ambiences": [
+            "Posh"
+          ]
+        },
+        {
+          "name": "ANTERVEDI",
+          "city": "Kondapur",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://share.google/jP3ldtetvsjHd8YhP",
+          "dishes": [
+            {
+              "name": "Crispy corn",
+              "rating": "avg"
+            },
+            {
+              "name": "Manchuria",
+              "rating": "avg"
+            },
+            {
+              "name": "Panner tikka Curry",
+              "rating": "bad"
+            },
+            {
+              "name": "Garlic Nons",
+              "rating": "bad"
+            }
+          ],
+          "cuisines": [
+            "Curries"
+          ],
+          "ambiences": [
+            "Posh"
+          ]
+        },
+        {
+          "name": "Kritaa Nagar",
+          "city": "Financial District",
+          "remarks": "-",
+          "mapLink": "https://maps.app.goo.gl/aHPPJ3PihNX2xYxk7",
+          "dishes": [
+            {
+              "name": "Japan Chicken",
+              "rating": "good"
+            },
+            {
+              "name": "Chicken RRR",
+              "rating": "avg"
+            },
+            {
+              "name": "Mushroom Peshwari",
+              "rating": "bad"
+            },
+            {
+              "name": "Special Chicken Biryani Boneless",
+              "rating": "avg"
+            },
+            {
+              "name": "Kaju Panner Cury",
+              "rating": "good"
+            },
+            {
+              "name": "Filter Coffee Tiramisu",
+              "rating": "bad"
+            }
+          ],
+          "cuisines": [
+            "Western"
+          ],
+          "ambiences": [
+            "Posh"
+          ]
+        },
+        {
+          "name": "New Peacock Resturant",
+          "city": "Karimnagar",
+          "remarks": "-",
+          "mapLink": "",
+          "dishes": [
+            {
+              "name": "Mancho Soup",
+              "rating": "avg"
+            },
+            {
+              "name": "Veg Manchuria",
+              "rating": "avg"
+            },
+            {
+              "name": "Veg Fried Rice",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [],
+          "ambiences": [
+            "Casual"
+          ]
+        },
+        {
+          "name": "TARO - Pan Asian Resturant & Bar",
+          "city": "Jubliee Hills",
+          "remarks": "-",
+          "image": "",
+          "mapLink": "https://maps.app.goo.gl/HQL4g9t3eBK8nd5o8",
+          "dishes": [
+            {
+              "name": "Osakana Sushi Boat",
+              "rating": "good"
+            }
+          ],
+          "ambiences": [
+            "Romantic"
+          ]
+        },
+        {
+          "name": "Echoes Living Room",
+          "city": "Madhapur",
+          "remarks": "-",
+          "mapLink": "https://maps.app.goo.gl/YL7q2WhhwdkZLYzX7",
+          "dishes": [
+            {
+              "name": "Delicate Corn Cream Cheese Chili oil Suchi",
+              "rating": "good"
+            },
+            {
+              "name": "Sunday Garden",
+              "rating": "good"
+            },
+            {
+              "name": "Southern Calfornia",
+              "rating": "good"
+            },
+            {
+              "name": "Kiwi & Pineapple Rush Drink",
+              "rating": "good"
+            },
+            {
+              "name": "Lotus Biscoff Crunchy Bliss Shake",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [
+            "Pizza & Pasta"
+          ],
+          "ambiences": [
+            "Romantic"
+          ]
+        }
+      ],
+      "food": [
+        {
+          "name": "Amma Dosa",
+          "image": "uploads/1770014441198_img_1155.jpeg",
+          "city": "Ramagundam",
+          "remarks": "-"
+        }
+      ],
+      "treks": [],
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Charminar",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Qutab Shahi Tombs",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Laknavaram Cheruvu",
+          "city": "Warangal",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
+        },
+        {
+          "name": "Hussain Sagar",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "image": ""
+        },
+        {
+          "name": "Birla mandir",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        },
+        {
+          "name": "1000 Pillar Temple",
+          "city": "Warangal",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        }
+      ]
     }
   },
   "bucketList": [
