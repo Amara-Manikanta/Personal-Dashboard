@@ -164,7 +164,8 @@
           "name": "Watch  Tower",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Fort & Heritage"
         },
         {
           "name": "Coringa Wild Life Sanctury",
@@ -263,6 +264,15 @@
           "remarks": "-",
           "category": "Temple",
           "image": ""
+        },
+        {
+          "name": "Draksharamam Temple",
+          "city": "Draksharamam",
+          "remarks": "-",
+          "category": "Temple",
+          "visitedDate": "2026-08-26",
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [
@@ -503,7 +513,8 @@
           "name": "Vanajangi",
           "city": "Vanajangi",
           "remarks": "-",
-          "image": ""
+          "image": "",
+          "category": "Adventure"
         }
       ]
     },
@@ -615,6 +626,7 @@
           "name": "Dhankar Monestry",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -628,6 +640,7 @@
           "name": "Langza",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -648,12 +661,14 @@
           "name": "Rothang Pass",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
           "name": "Hikkim",
           "city": "-",
           "remarks": "-",
+          "category": "Hill Station",
           "image": ""
         },
         {
@@ -667,6 +682,7 @@
           "name": "Sissu",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
@@ -680,18 +696,21 @@
           "name": "Van husan",
           "city": "-",
           "remarks": "-",
+          "category": "Other",
           "image": ""
         },
         {
           "name": "Atul Tunnel",
           "city": "-",
           "remarks": "-",
+          "category": "Other",
           "image": ""
         },
         {
           "name": "Kunzum Pass",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
@@ -725,6 +744,7 @@
           "name": "Manestory",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         },
         {
@@ -738,6 +758,7 @@
           "name": "Solang Valley",
           "city": "-",
           "remarks": "-",
+          "category": "Viewpoint",
           "image": ""
         },
         {
@@ -1359,7 +1380,10 @@
         },
         {
           "name": "Zanana Enclosure",
-          "city": "Hampi"
+          "city": "Hampi",
+          "remarks": "-",
+          "category": "Other",
+          "image": ""
         },
         {
           "name": "Birds of paradise",
@@ -1679,7 +1703,8 @@
           "ambiences": [
             "Family",
             "Posh"
-          ]
+          ],
+          "mapLink": "https://maps.app.goo.gl/dfp1W1qurgfboqP59"
         },
         {
           "name": "Dhaba Stories",
@@ -2006,6 +2031,13 @@
           "remarks": "-",
           "category": "Temple",
           "image": ""
+        },
+        {
+          "name": "Guruvayur Shri Krishna Temple",
+          "city": "Guruvayur",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
         }
       ],
       "placesToVisit": [
@@ -2195,7 +2227,15 @@
       ],
       "treks": [],
       "stays": [],
-      "highlights": []
+      "highlights": [
+        {
+          "name": "Sabarmallai",
+          "city": "Sabarmallai",
+          "remarks": "-",
+          "category": "Temple",
+          "image": ""
+        }
+      ]
     },
     "Madhya Pradesh": {
       "visited": true,
@@ -4357,7 +4397,15 @@
           "city": "-",
           "remarks": "-",
           "category": "Adventure",
-          "image": ""
+          "image": "",
+          "distance": "36",
+          "altitude": "11,755",
+          "difficulty": "Hard",
+          "bestTime": "May to June",
+          "permit": "No",
+          "terrain": "Steep Climbs",
+          "isVisited": true,
+          "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
         }
       ]
     },
