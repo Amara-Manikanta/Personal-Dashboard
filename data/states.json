@@ -14,13 +14,6 @@
       "visited": true,
       "placesVisited": [
         {
-          "name": "Salar jang Museum",
-          "city": "Hyderabad",
-          "remarks": "-",
-          "category": "Museum",
-          "image": ""
-        },
-        {
           "name": "uppada beach",
           "city": "Kakinada",
           "remarks": "-",
@@ -437,6 +430,13 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Fort & Heritage",
+          "image": ""
+        },
+        {
+          "name": "Salar jang Museum",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Museum",
           "image": ""
         }
       ],

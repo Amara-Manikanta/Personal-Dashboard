@@ -47,26 +47,79 @@
     // Shared with the travel dashboard's poster map legend.
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;
 
-    /** Destination chooser for moving an entry to another state/country. */
-    const MovePicker = ({ itemName, currentRegion, onPick, onCancel }) => (
-        <div className="move-picker" onClick={(e) => e.stopPropagation()}>
-            <label>Move “{itemName}” to</label>
-            <select autoFocus defaultValue="" onChange={(e) => onPick(e.target.value)}>
-                <option value="" disabled>Choose a destination…</option>
-                <optgroup label="States & UTs">
-                    {((window.TravelData && window.TravelData.STATES_LIST) || [])
-                        .filter(n => n !== currentRegion)
-                        .map(n => <option key={n} value={n}>{n}</option>)}
-                </optgroup>
-                <optgroup label="Countries">
-                    {((window.TravelData && window.TravelData.COUNTRIES_LIST) || [])
-                        .filter(n => n !== currentRegion)
-                        .map(n => <option key={n} value={n}>{n}</option>)}
-                </optgroup>
-            </select>
-            <button type="button" className="move-cancel" onClick={onCancel}>Cancel</button>
-        </div>
-    );
+    /**
+     * Destination chooser, rendered as a centred dialog.
+     *
+     * It deliberately does NOT live inside the row's action group: that group
+     * is opacity:0 until `tr:hover`, so a popover anchored there vanished the
+     * moment the pointer left the row to reach it. A dialog also copes better
+     * with ~230 destinations than a native select.
+     */
+    const MovePicker = ({ itemName, currentRegion, onPick, onCancel }) => {
+        const [query, setQuery] = useState('');
+        const inputRef = useRef(null);
+
+        useEffect(() => {
+            const onKey = (e) => { if (e.key === 'Escape') onCancel(); };
+            window.addEventListener('keydown', onKey);
+            requestAnimationFrame(() => inputRef.current && inputRef.current.focus());
+            return () => window.removeEventListener('keydown', onKey);
+        }, [onCancel]);
+
+        const TD = window.TravelData || {};
+        const q = query.trim().toLowerCase();
+        const match = (list) => (list || [])
+            .filter(n => n !== currentRegion && (!q || n.toLowerCase().includes(q)));
+
+        const states = match(TD.STATES_LIST);
+        const countries = match(TD.COUNTRIES_LIST);
+
+        const group = (label, names) => names.length > 0 && (
+            <div className="move-group" key={label}>
+                <div className="move-group-label">{label}</div>
+                <div className="move-options">
+                    {names.map(n => (
+                        <button key={n} type="button" className="move-option" onClick={() => onPick(n)}>{n}</button>
+                    ))}
+                </div>
+            </div>
+        );
+
+        return (
+            <div className="move-backdrop" onClick={onCancel}>
+                <div className="move-dialog" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+                    <header className="move-dialog-head">
+                        <div>
+                            <span className="move-dialog-kicker">Move to another state</span>
+                            <h3>{itemName}</h3>
+                        </div>
+                        <button type="button" className="move-close" onClick={onCancel} aria-label="Cancel">
+                            <i className="ph-bold ph-x"></i>
+                        </button>
+                    </header>
+
+                    <div className="move-search">
+                        <i className="ph-bold ph-magnifying-glass"></i>
+                        <input
+                            ref={inputRef}
+                            autoFocus
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder="Filter destinations…"
+                        />
+                    </div>
+
+                    <div className="move-body">
+                        {states.length === 0 && countries.length === 0 && (
+                            <p className="move-empty">No destination matches “{query}”.</p>
+                        )}
+                        {group('States & union territories', states)}
+                        {group('Countries', countries)}
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     // Check for localhost
     const isLocalhost = window.location.hostname === 'localhost' ||
@@ -1305,14 +1358,6 @@
                                                         <button onClick={(e) => removeItem(e, index)} className="icon-btn-overlay delete" title="Remove">
                                                             <i className="ph-bold ph-trash"></i>
                                                         </button>
-                                                        {movingIndex === index && (
-                                                            <MovePicker
-                                                                itemName={name}
-                                                                currentRegion={stateName}
-                                                                onPick={(dest) => moveItemTo(index, dest)}
-                                                                onCancel={() => setMovingIndex(null)}
-                                                            />
-                                                        )}
                                                     </div>
                                                 </div>
                                                 <div className="card-info">
@@ -1850,14 +1895,6 @@
                                                             >
                                                                 <i className="ph-bold ph-trash"></i>
                                                             </button>
-                                                            {movingIndex === index && (
-                                                                <MovePicker
-                                                                    itemName={name}
-                                                                    currentRegion={stateName}
-                                                                    onPick={(dest) => moveItemTo(index, dest)}
-                                                                    onCancel={() => setMovingIndex(null)}
-                                                                />
-                                                            )}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1900,6 +1937,21 @@
                         </div>
                     </div>
                 )}
+
+                {movingIndex !== null && (() => {
+                    const list = (data && data[activeTab]) || [];
+                    const target = list[movingIndex];
+                    if (!target) return null;
+                    const label = (typeof target === 'object' && target ? target.name : target) || 'this item';
+                    return (
+                        <MovePicker
+                            itemName={label}
+                            currentRegion={stateName}
+                            onPick={(dest) => moveItemTo(movingIndex, dest)}
+                            onCancel={() => setMovingIndex(null)}
+                        />
+                    );
+                })()}
 
                 <style>{`
                     .state-details-container {
@@ -2290,53 +2342,120 @@
                         color: var(--text-primary);
                     }
 
-                    /* Move-to-another-state picker */
+                    /* Move-to-another-state dialog */
                     .action-btn.move.is-open { color: var(--primary); }
 
-                    .move-picker {
-                        position: absolute;
-                        right: 0;
-                        top: 100%;
-                        z-index: 40;
-                        margin-top: 0.35rem;
+                    .move-backdrop {
+                        position: fixed;
+                        inset: 0;
+                        z-index: 9998;
+                        background: rgba(5, 7, 12, 0.65);
+                        backdrop-filter: blur(3px);
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: center;
+                        padding: 10vh 1rem 1rem;
+                    }
+
+                    .move-dialog {
+                        width: min(560px, 100%);
+                        max-height: 70vh;
                         display: flex;
                         flex-direction: column;
-                        gap: 0.45rem;
-                        padding: 0.75rem;
-                        min-width: 240px;
-                        border: 1px solid var(--border);
-                        border-radius: var(--radius-md);
                         background: rgba(17, 20, 28, 0.98);
-                        box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-                        text-align: left;
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: var(--radius-lg);
+                        box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+                        overflow: hidden;
                     }
 
-                    .move-picker label {
+                    .move-dialog-head {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        gap: 1rem;
+                        padding: 1.1rem 1.25rem 0.85rem;
+                        border-bottom: 1px solid rgba(255,255,255,0.07);
+                    }
+
+                    .move-dialog-kicker {
+                        display: block;
+                        font-size: 0.68rem;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
                         color: var(--text-muted);
-                        font-size: 0.72rem;
                     }
 
-                    #root .move-picker select {
-                        width: 100%;
-                        padding: 0.45rem 0.6rem !important;
-                        font-size: 0.85rem;
+                    .move-dialog-head h3 {
+                        margin: 0.2rem 0 0;
+                        font-size: 1.05rem;
+                        color: var(--text-primary);
                     }
 
-                    .move-cancel {
-                        align-self: flex-end;
+                    .move-close {
                         background: none;
                         border: none;
                         color: var(--text-muted);
-                        font-family: inherit;
-                        font-size: 0.72rem;
+                        font-size: 1.1rem;
                         cursor: pointer;
-                        padding: 0;
+                        padding: 0.2rem;
                     }
 
-                    .move-cancel:hover { color: var(--text-primary); }
+                    .move-close:hover { color: var(--text-primary); }
 
-                    /* the picker anchors to the actions cell */
-                    td.col-actions, .action-buttons, .card-overlay { position: relative; }
+                    .move-search {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        padding: 0.75rem 1.25rem;
+                        border-bottom: 1px solid rgba(255,255,255,0.07);
+                    }
+
+                    .move-search i { color: var(--text-muted); }
+
+                    #root .move-search input {
+                        flex: 1;
+                        background: transparent !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        padding: 0.2rem 0 !important;
+                        color: var(--text-primary);
+                        font-size: 0.95rem;
+                    }
+
+                    .move-body { overflow-y: auto; padding: 0.75rem 1rem 1rem; }
+
+                    .move-group + .move-group { margin-top: 1rem; }
+
+                    .move-group-label {
+                        font-size: 0.68rem;
+                        letter-spacing: 0.07em;
+                        text-transform: uppercase;
+                        color: var(--text-muted);
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .move-options { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+                    .move-option {
+                        padding: 0.4rem 0.8rem;
+                        border-radius: 99px;
+                        border: 1px solid var(--border);
+                        background: rgba(255,255,255,0.03);
+                        color: var(--text-secondary);
+                        font-family: inherit;
+                        font-size: 0.82rem;
+                        cursor: pointer;
+                        transition: all 0.15s ease;
+                    }
+
+                    .move-option:hover {
+                        border-color: var(--primary);
+                        background: rgba(99,102,241,0.16);
+                        color: #fff;
+                    }
+
+                    .move-empty { color: var(--text-muted); font-size: 0.88rem; text-align: center; padding: 1.5rem 0; }
 
                     .visit-date {
                         display: inline-flex;
