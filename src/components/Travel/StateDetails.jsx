@@ -54,8 +54,36 @@
         { id: 'Other', label: 'Other', icon: 'ph-map-pin', color: '#64748b', bg: 'rgba(100,116,139,0.15)' }
     ];
 
+
+    /**
+     * Restaurants and stays get one simple tag each rather than a taxonomy —
+     * enough for the entry to carry an icon and be counted, without asking
+     * you to classify every meal.
+     */
+    const FOOD_CATEGORIES = [
+        { id: 'Restaurant', label: 'Restaurant', icon: 'ph-fork-knife', color: '#f97316', bg: 'rgba(249,115,22,0.15)' }
+    ];
+
+    const STAY_CATEGORIES = [
+        { id: 'Hotel', label: 'Hotel', icon: 'ph-buildings', color: '#6366f1', bg: 'rgba(99,102,241,0.15)' },
+        { id: 'Stay', label: 'Stay', icon: 'ph-bed', color: '#22c55e', bg: 'rgba(34,197,94,0.15)' }
+    ];
+
+    /** Which set of tags a section offers. */
+    const categoriesFor = (tab) => {
+        if (tab === 'restaurants' || tab === 'food') return FOOD_CATEGORIES;
+        if (tab === 'stays') return STAY_CATEGORIES;
+        return PLACE_CATEGORIES;
+    };
+
+    // Lookup across every set, so a badge still renders if an entry was tagged
+    // before its section had its own list.
+    const ALL_CATEGORIES = [...PLACE_CATEGORIES, ...FOOD_CATEGORIES, ...STAY_CATEGORIES];
+
     // Shared with the travel dashboard's poster map legend.
     window.PLACE_CATEGORIES = PLACE_CATEGORIES;
+    window.ALL_CATEGORIES = ALL_CATEGORIES;
+    window.categoriesFor = categoriesFor;
 
     /**
      * Visit dates are stored at month precision ("2026-08") because that is
@@ -789,7 +817,7 @@
 
         const renderCategoryBadge = (catId) => {
             if (!catId) return null;
-            const cat = PLACE_CATEGORIES.find(c => c.id === catId);
+            const cat = ALL_CATEGORIES.find(c => c.id === catId);
             if (!cat) return null;
             return (
                 <span className="dish-badge" style={{ backgroundColor: cat.bg, color: cat.color, border: `1px solid ${cat.color}40` }} title={cat.label}>
@@ -896,7 +924,7 @@
                             <span className="cat-chip-count">{currentList.length}</span>
                         </button>
 
-                        {PLACE_CATEGORIES.map(cat => {
+                        {categoriesFor(activeTab).map(cat => {
                             const count = categoryCounts[cat.id] || 0;
                             if (!count) return null;
 
@@ -1033,7 +1061,7 @@
                                     )}
                                 </span>
                                 <div className="cat-picker-options">
-                                    {PLACE_CATEGORIES.map(cat => {
+                                    {categoriesFor(activeTab).map(cat => {
                                         const isPicked = newCategory === cat.id;
                                         return (
                                             <button
@@ -1647,7 +1675,7 @@
                                                                 className="edit-input text-xs mb-2 bg-background"
                                                             >
                                                                 <option value="">Category (None)</option>
-                                                                {PLACE_CATEGORIES.map(cat => (
+                                                                {categoriesFor(activeTab).map(cat => (
                                                                     <option key={cat.id} value={cat.id}>{cat.label}</option>
                                                                 ))}
                                                             </select>

@@ -1012,7 +1012,7 @@
       "stays": []
     },
     "Karnataka": {
-      "visited": true,
+      "visited": false,
       "placesVisited": [
         {
           "name": "Chamundeshwari Temple",
@@ -1677,6 +1677,7 @@
           "name": "The Big Barbeque Buffet",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
           "image": ""
         },
         {
@@ -2263,6 +2264,10 @@
           "city": "Alibug",
           "remarks": "-",
           "category": "Fort & Heritage",
+          "visitDates": [
+            "2018-05",
+            "2018-02"
+          ],
           "image": ""
         },
         {
@@ -2270,6 +2275,9 @@
           "city": "Bhyandar",
           "remarks": "-",
           "category": "Religious & Spiritual",
+          "visitDates": [
+            "2017-10"
+          ],
           "image": ""
         },
         {
@@ -2277,6 +2285,10 @@
           "city": "Churchgate",
           "remarks": "-",
           "category": "Fort & Heritage",
+          "visitDates": [
+            "2018-03",
+            "2018-02"
+          ],
           "image": ""
         },
         {
@@ -2319,6 +2331,9 @@
           "city": "Borivalli",
           "remarks": "-",
           "category": "Viewpoint",
+          "visitDates": [
+            "2017-09"
+          ],
           "image": ""
         },
         {
@@ -2326,6 +2341,9 @@
           "city": "-",
           "remarks": "-",
           "category": "Adventure",
+          "visitDates": [
+            "2018-12"
+          ],
           "image": ""
         },
         {
@@ -2368,6 +2386,9 @@
           "city": "Lonavala",
           "remarks": "-",
           "category": "Viewpoint",
+          "visitDates": [
+            "2017-07"
+          ],
           "image": ""
         },
         {
@@ -2383,6 +2404,61 @@
           "remarks": "-",
           "category": "Beach",
           "image": ""
+        },
+        {
+          "name": "Hiranandani Gardens",
+          "city": "Powai",
+          "remarks": "-",
+          "category": "Adventure",
+          "visitDates": [
+            "2017-11"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Juhu Chaupati Beach",
+          "city": "Chaupati",
+          "remarks": "-",
+          "category": "Beach",
+          "visitDates": [
+            "2017-12"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Kalagoda Festival",
+          "city": "Churchgate",
+          "remarks": "-",
+          "category": "Cultural & Events",
+          "visitDates": [
+            "2018-02"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Parasailing",
+          "city": "Alibug",
+          "remarks": "-",
+          "category": "Adventure",
+          "visitDates": [
+            "2018-02"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Alibag Beach",
+          "city": "Alibag",
+          "remarks": "-",
+          "category": "Beach",
+          "visitDates": [
+            "2018-02"
+          ],
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [
@@ -2435,6 +2511,42 @@
           "ambiences": [
             "Casual"
           ]
+        },
+        {
+          "name": "TAP Resto Bar",
+          "city": "Andheri",
+          "remarks": "-",
+          "visitDates": [
+            "2018-01"
+          ],
+          "mapLink": "",
+          "dishes": [],
+          "cuisines": [
+            "Pizza & Pasta"
+          ],
+          "ambiences": [
+            "Bar"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Chenab Resturant",
+          "city": "-",
+          "remarks": "-",
+          "visitDates": [
+            "2018-02"
+          ],
+          "mapLink": "",
+          "dishes": [],
+          "cuisines": [
+            "Mixed"
+          ],
+          "ambiences": [
+            "Rooftop"
+          ],
+          "rating": 0,
+          "review": ""
         }
       ],
       "food": [
@@ -2481,6 +2593,9 @@
           "city": "Irshalwadi",
           "remarks": "-",
           "category": "Adventure",
+          "visitDates": [
+            "2019-08"
+          ],
           "image": "",
           "distance": "6.5",
           "altitude": "3,700",
@@ -2495,6 +2610,10 @@
           "name": "Kothaligad",
           "city": "Karjat",
           "remarks": "-",
+          "category": "Adventure",
+          "visitDates": [
+            "2018-08"
+          ],
           "image": "",
           "distance": "7",
           "altitude": "3100",
@@ -2508,6 +2627,10 @@
           "name": "Karnala Fort",
           "city": "Panvel Taluka",
           "remarks": "-",
+          "category": "Adventure",
+          "visitDates": [
+            "2018-01"
+          ],
           "image": "",
           "distance": "6",
           "altitude": "1,440",
@@ -3993,6 +4116,9 @@
           "city": "Mahabalipuram",
           "remarks": "-",
           "category": "Temple",
+          "visitDates": [
+            "2017-12"
+          ],
           "image": ""
         },
         {
