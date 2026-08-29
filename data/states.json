@@ -4942,7 +4942,11 @@
           "city": "-",
           "remarks": "-",
           "category": "Bungee Jumping",
-          "image": ""
+          "image": "",
+          "height": "83 m",
+          "timeTaken": "15 min",
+          "difficulty": "Hard",
+          "operator": "Jumpin Heights"
         }
       ],
       "stays": [
@@ -4971,7 +4975,11 @@
           "city": "-",
           "remarks": "-",
           "category": "Bungee Jumping",
-          "image": ""
+          "image": "",
+          "height": "83 m",
+          "timeTaken": "15 min",
+          "difficulty": "Hard",
+          "operator": "Jumpin Heights"
         },
         {
           "name": "Kedarnath",

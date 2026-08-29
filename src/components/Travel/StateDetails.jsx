@@ -385,6 +385,9 @@
         const [newBestTime, setNewBestTime] = useState('');
         const [newPermit, setNewPermit] = useState('No');
         const [newTimeTaken, setNewTimeTaken] = useState('');
+        const [newHeight, setNewHeight] = useState('');
+        const [newOperator, setNewOperator] = useState('');
+        const [newCost, setNewCost] = useState('');
         const [newTerrain, setNewTerrain] = useState('');
         const [newSafetyAlerts, setNewSafetyAlerts] = useState(false);
         const [newIsVisited, setNewIsVisited] = useState(false);
@@ -425,6 +428,7 @@
             setNewItem('');
             setNewCity('');
             setNewVisitedDate('');
+            setNewHeight(''); setNewOperator(''); setNewCost('');
             setNewRemarks('');
             setNewCategory('');
             setSelectedCategoryFilter('all');
@@ -583,7 +587,7 @@
                 category: newCategory || undefined,
                 visitDates: (DATEABLE_TABS.includes(activeTab) && newVisitedDate) ? [newVisitedDate] : undefined,
                 image: isGridView ? uploadedImagePath : undefined,
-                mapLink: (activeTab === 'restaurants' || activeTab === 'treks') ? newMapLink.trim() : undefined,
+                mapLink: (activeTab === 'restaurants' || activeTab === 'treks' || activeTab === 'adventures') ? newMapLink.trim() : undefined,
                 dishes: activeTab === 'restaurants' ? [...newDishes] : undefined,
                 cuisines: activeTab === 'restaurants' ? [...newCuisines] : undefined,
                 ambiences: activeTab === 'restaurants' ? [...newAmbiences] : undefined,
@@ -593,10 +597,13 @@
                 priority: activeTab === 'bucketList' ? newPriority : undefined,
                 distance: activeTab === 'treks' ? newDistance.trim() : undefined,
                 altitude: activeTab === 'treks' ? newAltitude.trim() : undefined,
-                difficulty: activeTab === 'treks' ? newDifficulty : undefined,
+                difficulty: (activeTab === 'treks' || activeTab === 'adventures') ? newDifficulty : undefined,
                 bestTime: activeTab === 'treks' ? newBestTime.trim() : undefined,
                 permit: activeTab === 'treks' ? newPermit : undefined,
-                timeTaken: activeTab === 'treks' ? newTimeTaken.trim() : undefined,
+                timeTaken: (activeTab === 'treks' || activeTab === 'adventures') ? newTimeTaken.trim() : undefined,
+                height: activeTab === 'adventures' ? newHeight.trim() : undefined,
+                operator: activeTab === 'adventures' ? newOperator.trim() : undefined,
+                cost: activeTab === 'adventures' ? newCost.trim() : undefined,
                 terrain: activeTab === 'treks' ? newTerrain.trim() : undefined,
                 safetyAlerts: activeTab === 'treks' ? newSafetyAlerts : undefined,
                 isVisited: activeTab === 'treks' ? newIsVisited : undefined,
@@ -854,6 +861,14 @@
                 if (editItem.terrain) updatedItem.terrain = editItem.terrain.trim();
                 updatedItem.safetyAlerts = editItem.safetyAlerts;
                 updatedItem.isVisited = editItem.isVisited;
+                if (editItem.mapLink) updatedItem.mapLink = editItem.mapLink.trim();
+            }
+            if (activeTab === 'adventures') {
+                if (editItem.height) updatedItem.height = editItem.height.trim();
+                if (editItem.timeTaken) updatedItem.timeTaken = editItem.timeTaken.trim();
+                if (editItem.difficulty) updatedItem.difficulty = editItem.difficulty;
+                if (editItem.operator) updatedItem.operator = editItem.operator.trim();
+                if (editItem.cost) updatedItem.cost = String(editItem.cost).trim();
                 if (editItem.mapLink) updatedItem.mapLink = editItem.mapLink.trim();
             }
             if (activeTab === 'stays') {
@@ -1389,6 +1404,58 @@
                             )}
 
                             {/* Trek Extra Details inside Add Form */}
+                            {activeTab === 'adventures' && (
+                                <div className="spec-panel">
+                                    <div className="spec-panel-label">Adventure details</div>
+                                    <div className="trek-specs-grid">
+                                        <input
+                                            type="text"
+                                            value={newHeight}
+                                            onChange={(e) => setNewHeight(e.target.value)}
+                                            placeholder="Height (e.g. 83 m)"
+                                            className="edit-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newTimeTaken}
+                                            onChange={(e) => setNewTimeTaken(e.target.value)}
+                                            placeholder="Duration (e.g. 15 min)"
+                                            className="edit-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newOperator}
+                                            onChange={(e) => setNewOperator(e.target.value)}
+                                            placeholder="Operator"
+                                            className="edit-input"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={newCost}
+                                            onChange={(e) => setNewCost(e.target.value)}
+                                            placeholder="Cost"
+                                            className="edit-input"
+                                        />
+                                        <select
+                                            value={newDifficulty}
+                                            onChange={(e) => setNewDifficulty(e.target.value)}
+                                            className="edit-input"
+                                        >
+                                            <option value="Beginner">Beginner</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Hard">Hard</option>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            value={newMapLink}
+                                            onChange={(e) => setNewMapLink(e.target.value)}
+                                            placeholder="Maps link (URL)"
+                                            className="edit-input"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
                             {activeTab === 'treks' && (
                                 <div className="dish-manager-container mt-3 p-4 bg-background-alt rounded-lg border border-border/50">
                                     <div className="dish-manager-label text-sm font-semibold mb-3 flex justify-between items-center">
@@ -1783,6 +1850,7 @@
                                         <th className="col-remarks">Notes</th>
                                         {activeTab === 'restaurants' && <th className="col-dishes">Dishes</th>}
                                         {activeTab === 'treks' && <th className="col-trek-details">Trek Details</th>}
+                                        {activeTab === 'adventures' && <th className="col-adventure-details">Details</th>}
                                         {activeTab === 'bucketList' && <th className="col-bucket-details">Bucket Details</th>}
                                         {activeTab === 'stays' && <th className="col-stay-details">Stay Details</th>}
                                         <th className="col-actions text-right">Actions</th>
@@ -1879,6 +1947,22 @@
                                                                 placeholder="Notes/Remarks"
                                                             />
                                                         </td>
+                                                        {activeTab === 'adventures' && (
+                                                            <td className="col-adventure-details">
+                                                                <div className="detail-grid">
+                                                                    <input className="edit-input detail-input" placeholder="Height" value={editItem.height || ''} onChange={(e) => setEditItem({ ...editItem, height: e.target.value })} />
+                                                                    <input className="edit-input detail-input" placeholder="Duration" value={editItem.timeTaken || ''} onChange={(e) => setEditItem({ ...editItem, timeTaken: e.target.value })} />
+                                                                    <select className="edit-input detail-input" value={editItem.difficulty || 'Beginner'} onChange={(e) => setEditItem({ ...editItem, difficulty: e.target.value })}>
+                                                                        <option value="Beginner">Beginner</option>
+                                                                        <option value="Medium">Medium</option>
+                                                                        <option value="Hard">Hard</option>
+                                                                    </select>
+                                                                    <input className="edit-input detail-input" placeholder="Operator" value={editItem.operator || ''} onChange={(e) => setEditItem({ ...editItem, operator: e.target.value })} />
+                                                                    <input className="edit-input detail-input" placeholder="Cost" value={editItem.cost || ''} onChange={(e) => setEditItem({ ...editItem, cost: e.target.value })} />
+                                                                    <input className="edit-input detail-input" placeholder="Maps link" value={editItem.mapLink || ''} onChange={(e) => setEditItem({ ...editItem, mapLink: e.target.value })} />
+                                                                </div>
+                                                            </td>
+                                                        )}
                                                         {activeTab === 'treks' && (
                                                             <td className="col-trek-details">
                                                                 <div className="detail-grid">
@@ -2169,6 +2253,22 @@
                                                                         <i className="ph-bold ph-sparkle"></i> {a}
                                                                     </span>
                                                                 ))}
+                                                            </div>
+                                                        </td>
+                                                    )}
+                                                    {activeTab === 'adventures' && (
+                                                        <td className="col-adventure-details">
+                                                            <div className="detail-chips">
+                                                                {isObj && item.height && <span className="fact-badge"><i className="ph-bold ph-arrows-vertical"></i>{item.height}</span>}
+                                                                {isObj && item.timeTaken && <span className="fact-badge"><i className="ph-bold ph-clock"></i>{item.timeTaken}</span>}
+                                                                {isObj && item.difficulty && <span className="fact-badge"><i className="ph-bold ph-gauge"></i>{item.difficulty}</span>}
+                                                                {isObj && item.cost && <span className="fact-badge"><i className="ph-bold ph-currency-inr"></i>{item.cost}</span>}
+                                                                {isObj && item.operator && <span className="fact-badge"><i className="ph-bold ph-storefront"></i>{item.operator}</span>}
+                                                                {isObj && item.mapLink && (
+                                                                    <a href={item.mapLink} target="_blank" rel="noopener noreferrer" className="fact-badge is-link" title="Open in Maps">
+                                                                        <i className="ph-fill ph-map-pin"></i> Map
+                                                                    </a>
+                                                                )}
                                                             </div>
                                                         </td>
                                                     )}
@@ -3028,6 +3128,39 @@
 
                     .card-visits { display: flex; flex-direction: column; gap: 0.35rem; }
                     #root .card-info.edit-form select.edit-field { cursor: pointer; }
+
+                    .fact-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.3rem;
+                        padding: 0.15rem 0.55rem;
+                        border-radius: 99px;
+                        background: rgba(255,255,255,0.06);
+                        color: var(--text-secondary);
+                        font-size: 0.7rem;
+                        white-space: nowrap;
+                    }
+
+                    .fact-badge.is-link { color: var(--primary); text-decoration: none; }
+                    .fact-badge.is-link:hover { background: rgba(99,102,241,0.18); }
+
+                    .col-adventure-details { width: 26%; min-width: 220px; }
+
+                    .spec-panel {
+                        margin-top: 0.75rem;
+                        padding: 0.9rem 1rem;
+                        background: rgba(255,255,255,0.03);
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-md);
+                    }
+
+                    .spec-panel-label {
+                        font-size: 0.7rem;
+                        letter-spacing: 0.06em;
+                        text-transform: uppercase;
+                        color: var(--text-muted);
+                        margin-bottom: 0.6rem;
+                    }
 
                     /* Bulk visit-date tagging */
                     .bulk-date-bar {

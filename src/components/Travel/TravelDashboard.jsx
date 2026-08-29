@@ -168,6 +168,26 @@ const AdventureList = ({ adventures, onSelect }) => {
                                     <button key={`${a.region}-${a.name}-${i}`} className="adventure-card" onClick={() => onSelect(a.region)}>
                                         <span className="adventure-name">{a.name}</span>
                                         <span className="adventure-where">{[a.city, a.region].filter(v => v && v !== '-').join(' · ')}</span>
+                                        {(() => {
+                                            const d = (a.raw && typeof a.raw === 'object') ? a.raw : {};
+                                            const facts = [
+                                                d.height && ['ph-arrows-vertical', d.height],
+                                                d.timeTaken && ['ph-clock', d.timeTaken],
+                                                d.difficulty && ['ph-gauge', d.difficulty],
+                                                d.cost && ['ph-currency-inr', d.cost]
+                                            ].filter(Boolean);
+                                            if (!facts.length) return null;
+                                            return (
+                                                <span className="adventure-facts">
+                                                    {facts.map(([icon, val], n) => (
+                                                        <span key={n}><i className={`ph-bold ${icon}`}></i>{val}</span>
+                                                    ))}
+                                                </span>
+                                            );
+                                        })()}
+                                        {a.raw && a.raw.operator && (
+                                            <span className="adventure-operator"><i className="ph-bold ph-storefront"></i> {a.raw.operator}</span>
+                                        )}
                                         {dates.length > 0 && (
                                             <span className="adventure-dates">
                                                 <i className="ph-bold ph-calendar-blank"></i>
@@ -1502,6 +1522,20 @@ window.TravelDashboard = ({ onBackToHome, onNavigateToState }) => {
                     font-variant-numeric: tabular-nums;
                 }
                 .adventure-note { color: var(--text-muted); font-size: 0.72rem; font-style: italic; }
+
+                .adventure-facts { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.15rem; }
+                .adventure-facts span {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.25rem;
+                    padding: 0.12rem 0.5rem;
+                    border-radius: 99px;
+                    background: rgba(255,255,255,0.06);
+                    color: var(--text-secondary);
+                    font-size: 0.68rem;
+                    font-variant-numeric: tabular-nums;
+                }
+                .adventure-operator { color: var(--text-muted); font-size: 0.7rem; display: inline-flex; align-items: center; gap: 0.3rem; }
 
                 /* ---- Timeline ---- */
                 .timeline-view { display: flex; flex-direction: column; gap: 2rem; }
