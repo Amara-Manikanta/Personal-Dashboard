@@ -2107,43 +2107,64 @@
           "name": "Mattupetti Indo Swiss Farm",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Nature & Park",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Kundala Lake",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Lake & Dam",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Rose Garden",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Nature & Park",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Nyayamakad Waterfall",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Lakkom Water Falls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Pothamedu View Point",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Viewpoint",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Carmelagiri Elephant park",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Nature & Park",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Meesapulimala",
@@ -2161,19 +2182,28 @@
           "name": "Top Station",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Hill Station",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Tata Tea Museum",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Museum",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Attukal Waterfalls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Lockhart Gap",
@@ -2197,31 +2227,46 @@
           "name": "Chinnar Wildlife Sanctuary",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Nature & Park",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Echo point",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Viewpoint",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Chokramudi Peak",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Hill Station",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Jatayu earth centre",
-          "city": "-",
+          "city": "Waynad",
           "remarks": "-",
-          "image": ""
+          "category": "Viewpoint",
+          "image": "",
+          "season": "All Year",
+          "priority": "High"
         },
         {
           "name": "Chinnakanal Waterfalls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Athirapilly Treehouse",
@@ -2233,7 +2278,10 @@
           "name": "Wonder Valley Adventure nd Amusement Park",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Amusement & Theme Park",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Kolukkumalai Tea Estate",
@@ -2245,19 +2293,28 @@
           "name": "Kuthumkal Waterfalls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Photo Point",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Viewpoint",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Eravikulam National Park",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Nature & Park",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Devikulam",
@@ -2269,13 +2326,19 @@
           "name": "Mattupetty Dam",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Lake & Dam",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Cheeyappara Waterfalls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         }
       ],
       "restaurants": [],
@@ -2284,6 +2347,7 @@
           "name": "Aravana Payasam",
           "city": "Sabarimala",
           "remarks": "-",
+          "category": "Sweet",
           "image": ""
         }
       ],
