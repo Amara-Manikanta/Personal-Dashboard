@@ -6,7 +6,8 @@
     const SECTIONS = [
         { id: 'highlights', label: 'Highlights', icon: 'ph-star' },
         { id: 'placesVisited', label: 'Places Visited', icon: 'ph-map-pin' },
-        { id: 'bucketList', label: 'Bucket List', icon: 'ph-binoculars' },
+        // Tab id and storage key differ here: the entries live in placesToVisit.
+        { id: 'bucketList', label: 'Bucket List', icon: 'ph-binoculars', field: 'placesToVisit' },
         { id: 'restaurants', label: 'Restaurants', icon: 'ph-fork-knife' },
         { id: 'food', label: 'Food to Try', icon: 'ph-pizza' },
         { id: 'treks', label: 'Treks', icon: 'ph-mountains' },
@@ -496,7 +497,7 @@
             e.preventDefault();
             if (!newItem.trim() || !data) return;
 
-            const list = data[activeTab] || [];
+            const list = data[dataField] || [];
 
             // Should current view support full objects?
             // Yes, user wants City/Notes for all.
@@ -541,7 +542,7 @@
             };
 
             const updatedList = [...list, itemToAdd];
-            handleSave({ [activeTab]: updatedList });
+            handleSave({ [dataField]: updatedList });
 
             // Reset fields
             setNewItem('');
@@ -589,9 +590,9 @@
             if (!window.confirm("Are you sure you want to delete this item?")) return;
 
             if (!data) return;
-            const list = data[activeTab] || [];
+            const list = data[dataField] || [];
             const updatedList = list.filter((_, i) => i !== index);
-            handleSave({ [activeTab]: updatedList });
+            handleSave({ [dataField]: updatedList });
 
             if (editingIndex === index) {
                 cancelEdit();
@@ -606,7 +607,7 @@
             setMovingIndex(null);
             if (!destination || !data) return;
 
-            const result = window.TravelData.moveItemBetweenRegions(stateName, destination, activeTab, index);
+            const result = window.TravelData.moveItemBetweenRegions(stateName, destination, dataField, index);
             if (!result.ok) {
                 alert(result.message);
                 return;
@@ -626,7 +627,7 @@
         const applyBulkDate = () => {
             if (!data || !bulkDate || selectedRows.length === 0) return;
 
-            const list = data[activeTab] || [];
+            const list = data[dataField] || [];
             const chosen = new Set(selectedRows);
             const updated = list.map((item, i) => {
                 if (!chosen.has(i)) return item;
@@ -635,7 +636,7 @@
                 return window.withVisitDate(item, bulkDate);
             });
 
-            handleSave({ [activeTab]: updated });
+            handleSave({ [dataField]: updated });
             setSelectedRows([]);
             setBulkDate('');
             setDateMode(false);
@@ -729,7 +730,7 @@
         const saveEdit = (index) => {
             if (!editItem.name.trim()) return;
 
-            const list = [...(data[activeTab] || [])];
+            const list = [...(data[dataField] || [])];
 
             const updatedItem = {
                 name: editItem.name.trim(),
@@ -786,7 +787,7 @@
 
             list[index] = updatedItem;
 
-            handleSave({ [activeTab]: list });
+            handleSave({ [dataField]: list });
             cancelEdit();
         };
 
@@ -811,7 +812,12 @@
         if (!data) return <div className="p-8 text-center text-text-muted">Loading...</div>;
 
         const activeSection = SECTIONS.find(s => s.id === activeTab);
-        const currentList = data[activeTab] || [];
+        // A section's tab id is usually its storage key, but Bucket List reads
+        // placesToVisit. Everything that touches the stored list goes through
+        // this, so the two can differ without the list silently coming back
+        // empty.
+        const dataField = (SECTIONS.find(sec => sec.id === activeTab) || {}).field || activeTab;
+        const currentList = data[dataField] || [];
 
         // How many items sit in each category, so the filter bar can show counts
         // and hide chips for categories nothing uses.
@@ -908,7 +914,7 @@
                 <div className="tabs-sticky-wrapper">
                     <div className="tabs-container">
                         {SECTIONS.map(section => {
-                            const count = (data[section.id] || []).length;
+                            const count = (data[section.field || section.id] || []).length;
                             const isActive = activeTab === section.id;
                             return (
                                 <button
@@ -1978,14 +1984,14 @@
                                                                 <div className="flex items-center">
                                                                     <i className={`ph-fill ${isVisited ? 'ph-check-circle text-green-500' : 'ph-circle text-text-muted/50'} text-xl cursor-pointer hover:opacity-80 transition-opacity`} 
                                                                        onClick={() => {
-                                                                           const list = [...(data[activeTab] || [])];
+                                                                           const list = [...(data[dataField] || [])];
                                                                            const currentItem = list[index];
                                                                            if (typeof currentItem === 'string') {
                                                                                list[index] = { name: currentItem, isVisited: true };
                                                                            } else {
                                                                                list[index] = { ...currentItem, isVisited: !currentItem.isVisited };
                                                                            }
-                                                                           handleSave({ [activeTab]: list });
+                                                                           handleSave({ [dataField]: list });
                                                                        }} 
                                                                        title={isVisited ? "Mark as Not Visited" : "Mark as Visited"}></i>
                                                                 </div>
@@ -2251,7 +2257,7 @@
                 )}
 
                 {movingIndex !== null && (() => {
-                    const list = (data && data[activeTab]) || [];
+                    const list = (data && data[dataField]) || [];
                     const target = list[movingIndex];
                     if (!target) return null;
                     const label = (typeof target === 'object' && target ? target.name : target) || 'this item';
