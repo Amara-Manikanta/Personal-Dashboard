@@ -66,6 +66,15 @@
         { id: 'Restaurant', label: 'Restaurant', icon: 'ph-fork-knife', color: '#f97316', bg: 'rgba(249,115,22,0.15)' }
     ];
 
+    /** Food to Try holds dishes, so it needs dish types, not venue types. */
+    const DISH_CATEGORIES = [
+        { id: 'Sweet', label: 'Sweet', icon: 'ph-ice-cream', color: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
+        { id: 'Snack', label: 'Snack', icon: 'ph-hamburger', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
+        { id: 'Main', label: 'Main', icon: 'ph-bowl-food', color: '#22c55e', bg: 'rgba(34,197,94,0.15)' },
+        { id: 'Beverage', label: 'Beverage', icon: 'ph-coffee', color: '#b45309', bg: 'rgba(180,83,9,0.15)' },
+        { id: 'Street Food', label: 'Street Food', icon: 'ph-cooking-pot', color: '#ef4444', bg: 'rgba(239,68,68,0.15)' }
+    ];
+
     const ADVENTURE_CATEGORIES = [
         { id: 'Parasailing', label: 'Parasailing', icon: 'ph-parachute', color: '#ec4899', bg: 'rgba(236,72,153,0.15)', svg: 'parasailing' },
         { id: 'River Rafting', label: 'River Rafting', icon: 'ph-boat', color: '#06b6d4', bg: 'rgba(6,182,212,0.15)', svg: 'rafting' },
@@ -90,7 +99,8 @@
 
     /** Which set of tags a section offers. */
     const categoriesFor = (tab) => {
-        if (tab === 'restaurants' || tab === 'food') return FOOD_CATEGORIES;
+        if (tab === 'food') return DISH_CATEGORIES;
+        if (tab === 'restaurants') return FOOD_CATEGORIES;
         if (tab === 'stays') return STAY_CATEGORIES;
         if (tab === 'adventures') return ADVENTURE_CATEGORIES;
         if (tab === 'treks') return TREK_CATEGORIES;
@@ -103,7 +113,7 @@
     // an 'Adventure' entry (labelled "Adventure" and "Other Adventure"), and
     // leaving both in produced two cards counting the same records twice.
     const ALL_CATEGORIES = [
-        ...PLACE_CATEGORIES, ...FOOD_CATEGORIES, ...STAY_CATEGORIES,
+        ...PLACE_CATEGORIES, ...FOOD_CATEGORIES, ...DISH_CATEGORIES, ...STAY_CATEGORIES,
         ...ADVENTURE_CATEGORIES, ...TREK_CATEGORIES
     ].filter((cat, i, list) => list.findIndex(c => c.id === cat.id) === i);
 
@@ -1551,6 +1561,38 @@
                                                             placeholder="City"
                                                             className="edit-field"
                                                         />
+                                                        {/* The card editor had no category or date control at all,
+                                                            so a dish could never be tagged from this view. */}
+                                                        <select
+                                                            className="edit-field"
+                                                            value={editItem.category || ''}
+                                                            onChange={e => setEditItem({ ...editItem, category: e.target.value })}
+                                                        >
+                                                            <option value="">Category (None)</option>
+                                                            {categoriesFor(activeTab).map(cat => (
+                                                                <option key={cat.id} value={cat.id}>{cat.label}</option>
+                                                            ))}
+                                                        </select>
+
+                                                        {DATEABLE_TABS.includes(activeTab) && (
+                                                            <div className="card-visits">
+                                                                <div className="visit-chip-row">
+                                                                    {window.getVisitDates(editItem).map(d => (
+                                                                        <span key={d} className="visit-chip">
+                                                                            {window.formatVisitDate(d)}
+                                                                            <button type="button" title="Remove this visit" onClick={() => setEditItem(window.withoutVisitDate(editItem, d))}>
+                                                                                <i className="ph-bold ph-x"></i>
+                                                                            </button>
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                                <window.MonthYearPicker
+                                                                    value=""
+                                                                    onChange={(v) => v && setEditItem(window.withVisitDate(editItem, v))}
+                                                                />
+                                                            </div>
+                                                        )}
+
                                                         <div className="edit-actions">
                                                             <button onClick={() => saveEdit(index)} className="save-btn"><i className="ph-bold ph-check"></i> Save</button>
                                                             <button onClick={cancelEdit} className="cancel-btn"><i className="ph-bold ph-x"></i></button>
@@ -2900,6 +2942,9 @@
 
                     .detail-chip:hover { border-color: var(--primary); color: var(--text-primary); }
                     .detail-chip.is-on { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+                    .card-visits { display: flex; flex-direction: column; gap: 0.35rem; }
+                    #root .card-info.edit-form select.edit-field { cursor: pointer; }
 
                     /* Bulk visit-date tagging */
                     .bulk-date-bar {
