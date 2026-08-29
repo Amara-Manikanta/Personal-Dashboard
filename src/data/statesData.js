@@ -216,6 +216,40 @@ const moveItemBetweenRegions = (fromRegion, toRegion, field, index) => {
     return { ok: true, message: `${label} moved to ${toRegion}.` };
 };
 
+/**
+ * Move one entry between two lists on the SAME region — a place that turns
+ * out to be a trek, say. Same single-save reasoning as moving between
+ * regions: writing twice could duplicate or drop the entry.
+ */
+const moveItemBetweenFields = (region, fromField, toField, index) => {
+    if (fromField === toField) return { ok: false, message: 'Source and destination are the same.' };
+
+    const raw = getRawData();
+    if (!raw.states) raw.states = {};
+
+    const source = raw.states[region];
+    const list = (source && source[fromField]) || [];
+    if (index < 0 || index >= list.length) return { ok: false, message: 'That item no longer exists.' };
+
+    const [item] = list.splice(index, 1);
+
+    const target = {
+        ...INITIAL_STATE_DATA,
+        ...(source || {}),
+        [fromField]: list
+    };
+    target[toField] = [...(target[toField] || []), item];
+
+    raw.states[region] = target;
+    window.rawStatesData = raw;
+    if (window.api && window.api.saveStates) {
+        window.api.saveStates(raw);
+    }
+
+    const label = (item && typeof item === 'object' ? item.name : item) || 'Item';
+    return { ok: true, message: `${label} moved.` };
+};
+
 const getTrips = () => {
     return getRawData().trips || [];
 };
@@ -243,6 +277,7 @@ window.TravelData = {
     saveBucketList,
     getTravelTotals,
     moveItemBetweenRegions,
+    moveItemBetweenFields,
     getTrips,
     saveTrips
 };

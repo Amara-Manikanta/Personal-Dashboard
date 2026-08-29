@@ -251,7 +251,7 @@
      * moment the pointer left the row to reach it. A dialog also copes better
      * with ~230 destinations than a native select.
      */
-    const MovePicker = ({ itemName, currentRegion, onPick, onCancel }) => {
+    const MovePicker = ({ itemName, currentRegion, sections, onPick, onPickSection, onCancel }) => {
         const [query, setQuery] = useState('');
         const inputRef = useRef(null);
 
@@ -269,6 +269,9 @@
 
         const states = match(TD.STATES_LIST);
         const countries = match(TD.COUNTRIES_LIST);
+        // Sections of the state you are already in — a place that turns out
+        // to be a trek should not require picking the same state again.
+        const sectionHits = (sections || []).filter(sec => !q || sec.label.toLowerCase().includes(q));
 
         const group = (label, names) => names.length > 0 && (
             <div className="move-group" key={label}>
@@ -306,9 +309,28 @@
                     </div>
 
                     <div className="move-body">
-                        {states.length === 0 && countries.length === 0 && (
+                        {states.length === 0 && countries.length === 0 && sectionHits.length === 0 && (
                             <p className="move-empty">No destination matches “{query}”.</p>
                         )}
+
+                        {sectionHits.length > 0 && (
+                            <div className="move-group">
+                                <div className="move-group-label">Sections in {currentRegion}</div>
+                                <div className="move-options">
+                                    {sectionHits.map(sec => (
+                                        <button
+                                            key={sec.field}
+                                            type="button"
+                                            className="move-option is-section"
+                                            onClick={() => onPickSection(sec.field)}
+                                        >
+                                            <i className={`ph-bold ${sec.icon}`}></i> {sec.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {group('States & union territories', states)}
                         {group('Countries', countries)}
                     </div>
@@ -650,6 +672,18 @@
             setSelectedRows([]);
             setBulkDate('');
             setDateMode(false);
+        };
+
+        /** Move this entry into a different section of the same state. */
+        const moveItemToSection = (index, targetField) => {
+            setMovingIndex(null);
+            if (!targetField || !data) return;
+
+            const result = window.TravelData.moveItemBetweenFields(stateName, dataField, targetField, index);
+            if (!result.ok) { alert(result.message); return; }
+
+            if (editingIndex === index) cancelEdit();
+            loadData();
         };
 
         const toggleHighlight = (e, item) => {
@@ -2307,7 +2341,11 @@
                         <MovePicker
                             itemName={label}
                             currentRegion={stateName}
+                            sections={SECTIONS
+                                .map(sec => ({ ...sec, field: sec.field || sec.id }))
+                                .filter(sec => sec.field !== dataField)}
                             onPick={(dest) => moveItemTo(movingIndex, dest)}
+                            onPickSection={(field) => moveItemToSection(movingIndex, field)}
                             onCancel={() => setMovingIndex(null)}
                         />
                     );
@@ -2808,6 +2846,15 @@
                         font-size: 0.82rem;
                         cursor: pointer;
                         transition: all 0.15s ease;
+                    }
+
+                    .move-option.is-section {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.4rem;
+                        border-color: rgba(99,102,241,0.4);
+                        background: rgba(99,102,241,0.1);
+                        color: var(--text-primary);
                     }
 
                     .move-option:hover {
