@@ -470,9 +470,45 @@
             setData(current || null);
         };
 
+        /**
+         * Starring an item copies it into `highlights` rather than linking to
+         * it, so editing the original used to leave a stale duplicate behind —
+         * change a trek's category and the highlight still showed the old one.
+         *
+         * Any save that rewrites a list therefore refreshes the highlight
+         * copies of the items in it, matched by name.
+         */
+        const syncHighlights = (updatedData, current) => {
+            const changedField = Object.keys(updatedData).find(
+                k => k !== 'highlights' && Array.isArray(updatedData[k])
+            );
+            if (!changedField) return updatedData;
+
+            const highlights = (current && current.highlights) || [];
+            if (!highlights.length) return updatedData;
+
+            const nameOf = (x) => String(x && typeof x === 'object' ? x.name : x || '').trim().toLowerCase();
+            const byName = new Map();
+            updatedData[changedField].forEach(item => {
+                const n = nameOf(item);
+                if (n) byName.set(n, item);
+            });
+
+            let touched = false;
+            const nextHighlights = highlights.map(h => {
+                const fresh = byName.get(nameOf(h));
+                if (!fresh || typeof fresh !== 'object') return h;
+                touched = true;
+                return { ...fresh };
+            });
+
+            return touched ? { ...updatedData, highlights: nextHighlights } : updatedData;
+        };
+
         const handleSave = (updatedData) => {
-            window.TravelData.saveStateData(stateName, updatedData);
-            setData(prev => ({ ...prev, ...updatedData }));
+            const payload = syncHighlights(updatedData, data);
+            window.TravelData.saveStateData(stateName, payload);
+            setData(prev => ({ ...prev, ...payload }));
         };
 
         const toggleVisited = () => {

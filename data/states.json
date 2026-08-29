@@ -526,8 +526,8 @@
           "name": "Vanajangi",
           "city": "Vanajangi",
           "remarks": "-",
-          "image": "",
-          "category": "Adventure"
+          "category": "Adventure",
+          "image": ""
         }
       ],
       "adventures": []
@@ -581,6 +581,7 @@
           "name": "Kaziranga National Park",
           "city": "Kaziranga",
           "remarks": "-",
+          "category": "Nature & Park",
           "image": ""
         }
       ],
@@ -594,7 +595,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Bihar": {
       "visited": false,
@@ -604,7 +606,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Goa": {
       "visited": false,
@@ -614,7 +617,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Himachal Pradesh": {
       "visited": true,
@@ -889,6 +893,7 @@
           "name": "Jogini Falls",
           "city": "Vashisht",
           "remarks": "-",
+          "category": "Trek",
           "image": "",
           "distance": "6",
           "altitude": "7,850",
@@ -903,6 +908,7 @@
           "name": "Chandratal Lake",
           "city": "Spiti Valley",
           "remarks": "no trek direct road route",
+          "category": "Trek",
           "image": "",
           "distance": "2",
           "altitude": "14100",
@@ -918,6 +924,7 @@
           "name": "Dhankar Lake",
           "city": "Spiti Valley",
           "remarks": "-",
+          "category": "Trek",
           "image": "",
           "distance": "6",
           "altitude": "14,010",
@@ -928,22 +935,51 @@
           "safetyAlerts": false,
           "isVisited": true,
           "mapLink": "https://maps.app.goo.gl/XkYVrbRFiuGhbKY87"
+        },
+        {
+          "name": "Hampta Pass",
+          "city": "-",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "26",
+          "altitude": "14,100 ft",
+          "difficulty": "Beginner",
+          "bestTime": "June - September",
+          "permit": "No",
+          "timeTaken": "6 days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
         }
       ],
       "adventures": [
         {
           "name": "River Rafting",
-          "city": "-",
+          "city": "Kullu",
           "remarks": "-",
           "category": "River Rafting",
           "image": ""
         },
         {
           "name": "Paragliding",
-          "city": "-",
+          "city": "Manali",
           "remarks": "-",
           "category": "Paragliding",
           "image": ""
+        },
+        {
+          "name": "Ziplining",
+          "city": "Manali",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
+        },
+        {
+          "name": "Skiing",
+          "city": "Solang Valley",
+          "remarks": "-",
+          "category": "Skiing"
         }
       ],
       "stays": [
@@ -995,6 +1031,7 @@
           "name": "Chandratal Lake",
           "city": "Spiti Valley",
           "remarks": "no trek direct road route",
+          "category": "Trek",
           "image": "",
           "distance": "2",
           "altitude": "14100",
@@ -1010,10 +1047,11 @@
           "name": "Jogini Falls",
           "city": "Vashisht",
           "remarks": "-",
+          "category": "Trek",
           "image": "",
           "distance": "6",
           "altitude": "7,850",
-          "difficulty": "Beginner",
+          "difficulty": "Medium",
           "permit": "No",
           "terrain": "Rocky Paths & Big Stones",
           "safetyAlerts": false,
@@ -1030,7 +1068,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Karnataka": {
       "visited": false,
@@ -2244,11 +2283,11 @@
         {
           "name": "Chokramudi Peak",
           "city": "Wayanad",
-          "remarks": "-",
+          "remarks": "Trek",
           "category": "Adventure",
           "image": "",
           "season": "All Year",
-          "priority": "Medium"
+          "priority": "High"
         },
         {
           "name": "Jatayu earth centre",
@@ -2351,7 +2390,37 @@
           "image": ""
         }
       ],
-      "treks": [],
+      "treks": [
+        {
+          "name": "Edakkal Caves",
+          "city": "Wayanad",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "1.2",
+          "altitude": "",
+          "difficulty": "Beginner",
+          "bestTime": "",
+          "permit": "No",
+          "timeTaken": "",
+          "terrain": "Stone Steps",
+          "safetyAlerts": false,
+          "isVisited": false
+        },
+        {
+          "name": "Chokramudi Peak",
+          "city": "Wayanad",
+          "remarks": "-",
+          "category": "Trek",
+          "image": "",
+          "altitude": "2100",
+          "difficulty": "Beginner",
+          "permit": "No",
+          "timeTaken": "2.5",
+          "safetyAlerts": false,
+          "isVisited": false
+        }
+      ],
       "adventures": [],
       "stays": [],
       "highlights": [
@@ -2820,7 +2889,8 @@
           "name": "Pride Kitchen",
           "city": "Airoli",
           "remarks": "-",
-          "mapLink": "",
+          "category": "Restaurant",
+          "image": "",
           "dishes": [
             {
               "name": "Chicken Biryani",
@@ -2828,10 +2898,10 @@
             }
           ],
           "cuisines": [
-            "South Indian"
+            "Curries"
           ],
           "ambiences": [
-            "Casual Dining"
+            "Casual"
           ]
         },
         {
@@ -2867,7 +2937,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Meghalaya": {
       "visited": true,
@@ -3040,31 +3111,31 @@
       ],
       "highlights": [
         {
-          "name": "Double decker root bridge",
+          "name": "Double Decker Root Bridge",
           "city": "-",
           "remarks": "-",
-          "mapLink": "",
-          "distance": "",
-          "altitude": "",
-          "difficulty": "Medium",
-          "bestTime": "",
-          "permit": "No",
-          "timeTaken": "",
-          "terrain": "Stone Steps",
-          "safetyAlerts": false,
-          "isVisited": true
+          "category": "Adventure",
+          "image": ""
         },
         {
-          "name": "Blue lagoom"
-        },
-        {
-          "name": "Cliff jumping"
+          "name": "Blue lagoom",
+          "city": "-",
+          "remarks": "-",
+          "category": "Waterfall",
+          "image": ""
         },
         {
           "name": "Cliff Jumping",
           "city": "-",
           "remarks": "-",
-          "category": "Adventure",
+          "category": "Cliff Jumping",
+          "image": ""
+        },
+        {
+          "name": "Cliff Jumping",
+          "city": "-",
+          "remarks": "-",
+          "category": "Cliff Jumping",
           "image": ""
         }
       ],
@@ -3086,7 +3157,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Nepal": {
       "visited": false,
@@ -3139,7 +3211,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "New Delhi": {
       "visited": true,
@@ -3639,6 +3712,10 @@
           "name": "Cormandal Cafe",
           "city": "-",
           "remarks": "-",
+          "category": "Restaurant",
+          "visitDates": [
+            "2021-04"
+          ],
           "image": "",
           "dishes": [
             {
@@ -3656,14 +3733,20 @@
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Arovile Mytri Mandir",
           "city": "-",
           "remarks": "-",
           "category": "Religious & Spiritual",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2021-04"
+          ]
         }
       ],
       "adventures": []
@@ -3730,6 +3813,7 @@
           "name": "Wagah Border",
           "city": "-",
           "remarks": "-",
+          "category": "Fort & Heritage",
           "image": ""
         }
       ],
@@ -4323,6 +4407,9 @@
           "city": "-",
           "remarks": "-",
           "category": "Amusement & Theme Park",
+          "visitDates": [
+            "2025-04"
+          ],
           "image": ""
         },
         {
@@ -4330,10 +4417,20 @@
           "city": "-",
           "remarks": "-",
           "category": "Amusement & Theme Park",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         },
         {
-          "name": "Super tree gove"
+          "name": "Super tree gove",
+          "city": "-",
+          "remarks": "-",
+          "category": "Nature & Park",
+          "image": "",
+          "visitDates": [
+            "2025-04"
+          ]
         }
       ],
       "adventures": []
@@ -4346,7 +4443,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Tamil Nadu": {
       "visited": true,
@@ -4662,7 +4760,10 @@
           "name": "Shikhar Falls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Mussoorie Adventure Park",
@@ -4686,7 +4787,10 @@
           "name": "Jharipani Falls",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Waterfall",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Dhanaulti",
@@ -4698,7 +4802,10 @@
           "name": "Gun Hill Point",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Viewpoint",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Mindrolling Monastery",
@@ -4726,9 +4833,12 @@
         },
         {
           "name": "Mussoorie Lake",
-          "city": "-",
+          "city": "Mussoorie",
           "remarks": "-",
-          "image": ""
+          "category": "Lake & Dam",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Kasmanda Palace",
@@ -4749,10 +4859,13 @@
           "image": ""
         },
         {
-          "name": "chenab lake",
+          "name": "Chenab lake",
           "city": "-",
           "remarks": "-",
-          "image": ""
+          "category": "Lake & Dam",
+          "image": "",
+          "season": "All Year",
+          "priority": "Medium"
         },
         {
           "name": "Benog Wildlife Sanctuary",
@@ -4810,6 +4923,7 @@
           "name": "Kedarnath",
           "city": "-",
           "remarks": "-",
+          "category": "Trek",
           "image": "",
           "distance": "36",
           "altitude": "11,755",
@@ -4856,14 +4970,14 @@
           "name": "Bungee Jumping",
           "city": "-",
           "remarks": "-",
-          "category": "Adventure",
+          "category": "Bungee Jumping",
           "image": ""
         },
         {
           "name": "Kedarnath",
           "city": "-",
           "remarks": "-",
-          "category": "Adventure",
+          "category": "Trek",
           "image": "",
           "distance": "36",
           "altitude": "11,755",
@@ -4871,6 +4985,7 @@
           "bestTime": "May to June",
           "permit": "No",
           "terrain": "Steep Climbs",
+          "safetyAlerts": false,
           "isVisited": true,
           "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
         }
@@ -4884,7 +4999,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "United States of America": {
       "visited": false,
@@ -4894,7 +5010,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "France": {
       "visited": false,
@@ -4904,7 +5021,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "United Arab Emirates": {
       "visited": false,
@@ -4931,7 +5049,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Thailand": {
       "visited": false,
@@ -4941,7 +5060,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "West Bengal": {
       "visited": false,
@@ -4982,7 +5102,8 @@
       "food": [],
       "treks": [],
       "stays": [],
-      "adventures": []
+      "adventures": [],
+      "highlights": []
     },
     "Gujarat": {
       "food": [
@@ -5002,7 +5123,8 @@
       "visited": false,
       "restaurants": [],
       "adventures": [],
-      "placesVisited": []
+      "placesVisited": [],
+      "highlights": []
     },
     "Telangana": {
       "visited": true,
