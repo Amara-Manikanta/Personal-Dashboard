@@ -1769,16 +1769,16 @@
                                                         </td>
                                                         {activeTab === 'treks' && (
                                                             <td className="col-trek-details">
-                                                                <div className="grid grid-cols-2 gap-1 bg-background-alt p-2 rounded border border-border/30">
-                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.distance || ''} onChange={(e) => setEditItem({ ...editItem, distance: e.target.value })} placeholder="Dist (km)" />
-                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.altitude || ''} onChange={(e) => setEditItem({ ...editItem, altitude: e.target.value })} placeholder="Alt (ft)" />
-                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.difficulty || 'Beginner'} onChange={(e) => setEditItem({ ...editItem, difficulty: e.target.value })}>
+                                                                <div className="detail-grid">
+                                                                    <input type="text" className="edit-input detail-input" value={editItem.distance || ''} onChange={(e) => setEditItem({ ...editItem, distance: e.target.value })} placeholder="Dist (km)" />
+                                                                    <input type="text" className="edit-input detail-input" value={editItem.altitude || ''} onChange={(e) => setEditItem({ ...editItem, altitude: e.target.value })} placeholder="Alt (ft)" />
+                                                                    <select className="edit-input detail-input" value={editItem.difficulty || 'Beginner'} onChange={(e) => setEditItem({ ...editItem, difficulty: e.target.value })}>
                                                                         <option value="Beginner">Beg</option>
                                                                         <option value="Medium">Med</option>
                                                                         <option value="Hard">Hard</option>
                                                                     </select>
-                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.timeTaken || ''} onChange={(e) => setEditItem({ ...editItem, timeTaken: e.target.value })} placeholder="Time" />
-                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.terrain || ''} onChange={(e) => setEditItem({ ...editItem, terrain: e.target.value })}>
+                                                                    <input type="text" className="edit-input detail-input" value={editItem.timeTaken || ''} onChange={(e) => setEditItem({ ...editItem, timeTaken: e.target.value })} placeholder="Time" />
+                                                                    <select className="edit-input detail-input" value={editItem.terrain || ''} onChange={(e) => setEditItem({ ...editItem, terrain: e.target.value })}>
                                                                         <option value="">Select Terrain</option>
                                                                         <option value="Forest & Mud Paths">Forest & Mud Paths</option>
                                                                         <option value="Rocky Paths & Big Stones">Rocky Paths & Big Stones</option>
@@ -1786,8 +1786,8 @@
                                                                         <option value="Stone Steps">Stone Steps</option>
                                                                         <option value="Snow & Ice Trails">Snow & Ice Trails</option>
                                                                     </select>
-                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.bestTime || ''} onChange={(e) => setEditItem({ ...editItem, bestTime: e.target.value })} placeholder="Season" />
-                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.permit || 'No'} onChange={(e) => setEditItem({ ...editItem, permit: e.target.value })}>
+                                                                    <input type="text" className="edit-input detail-input" value={editItem.bestTime || ''} onChange={(e) => setEditItem({ ...editItem, bestTime: e.target.value })} placeholder="Season" />
+                                                                    <select className="edit-input detail-input" value={editItem.permit || 'No'} onChange={(e) => setEditItem({ ...editItem, permit: e.target.value })}>
                                                                         <option value="No">No Permit</option>
                                                                         <option value="Yes">Permit Reqd</option>
                                                                     </select>
@@ -1833,7 +1833,7 @@
                                                                 </div>
                                                                 <div className="border-t border-border/50 pt-2 mb-2">
                                                                     <div className="text-[10px] text-text-muted mb-1 uppercase tracking-wider">Cuisines</div>
-                                                                    <div className="flex flex-wrap gap-1">
+                                                                    <div className="detail-chips">
                                                                         {CUISINE_OPTIONS.map(c => (
                                                                             <button
                                                                                 key={c}
@@ -1848,7 +1848,7 @@
                                                                 </div>
                                                                 <div className="border-t border-border/50 pt-2">
                                                                     <div className="text-[10px] text-text-muted mb-1 uppercase tracking-wider">Ambiences</div>
-                                                                    <div className="flex flex-wrap gap-1">
+                                                                    <div className="detail-chips">
                                                                         {AMBIENCE_OPTIONS.map(a => (
                                                                             <button
                                                                                 key={a}
@@ -1865,22 +1865,22 @@
                                                         )}
                                                         {activeTab === 'bucketList' && (
                                                             <td className="col-bucket-details">
-                                                                <div className="grid grid-cols-2 gap-1 bg-background-alt p-2 rounded border border-border/30 mb-2">
-                                                                    <input type="text" className="edit-input text-xs w-full" value={editItem.travelDuration || ''} onChange={(e) => setEditItem({ ...editItem, travelDuration: e.target.value })} placeholder="Duration (e.g. 2 hrs)" />
-                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.season || 'All Year'} onChange={(e) => setEditItem({ ...editItem, season: e.target.value })}>
+                                                                <div className="detail-grid">
+                                                                    <input type="text" className="edit-input detail-input" value={editItem.travelDuration || ''} onChange={(e) => setEditItem({ ...editItem, travelDuration: e.target.value })} placeholder="Duration (e.g. 2 hrs)" />
+                                                                    <select className="edit-input detail-input" value={editItem.season || 'All Year'} onChange={(e) => setEditItem({ ...editItem, season: e.target.value })}>
                                                                         {SEASON_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
                                                                     </select>
-                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.priority || 'Medium'} onChange={(e) => setEditItem({ ...editItem, priority: e.target.value })}>
+                                                                    <select className="edit-input detail-input" value={editItem.priority || 'Medium'} onChange={(e) => setEditItem({ ...editItem, priority: e.target.value })}>
                                                                         {PRIORITY_OPTIONS.map(p => <option key={p} value={p}>{p}</option>)}
                                                                     </select>
                                                                 </div>
-                                                                <div className="flex flex-wrap gap-1">
+                                                                <div className="detail-chips">
                                                                     {TRIP_TYPE_OPTIONS.map(t => (
                                                                         <button
                                                                             key={t}
                                                                             type="button"
                                                                             onClick={(e) => { e.preventDefault(); setEditItem(prev => ({...prev, tripTypes: (prev.tripTypes || []).includes(t) ? prev.tripTypes.filter(x => x !== t) : [...(prev.tripTypes||[]), t]})) }}
-                                                                            className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.tripTypes||[]).includes(t) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary'}`}
+                                                                            className={`detail-chip ${(editItem.tripTypes||[]).includes(t) ? 'is-on' : ''}`}
                                                                         >
                                                                             {t}
                                                                         </button>
@@ -1890,26 +1890,26 @@
                                                         )}
                                                         {activeTab === 'stays' && (
                                                             <td className="col-stay-details">
-                                                                <div className="grid grid-cols-2 gap-1 bg-background-alt p-2 rounded border border-border/30 mb-2">
-                                                                    <select className="edit-input text-xs w-full bg-background" value={editItem.stayType || 'Hotel'} onChange={(e) => setEditItem({ ...editItem, stayType: e.target.value })}>
+                                                                <div className="detail-grid">
+                                                                    <select className="edit-input detail-input" value={editItem.stayType || 'Hotel'} onChange={(e) => setEditItem({ ...editItem, stayType: e.target.value })}>
                                                                         {STAY_TYPE_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
                                                                     </select>
                                                                     <div className="flex items-center gap-1">
-                                                                        <span className="text-[10px] text-text-muted">In:</span>
-                                                                        <input type="date" className="edit-input text-xs w-full" value={editItem.checkIn || ''} onChange={(e) => setEditItem({ ...editItem, checkIn: e.target.value })} />
+                                                                        <span className="detail-label">In:</span>
+                                                                        <input type="date" className="edit-input detail-input" value={editItem.checkIn || ''} onChange={(e) => setEditItem({ ...editItem, checkIn: e.target.value })} />
                                                                     </div>
                                                                     <div className="flex items-center gap-1">
-                                                                        <span className="text-[10px] text-text-muted">Out:</span>
-                                                                        <input type="date" className="edit-input text-xs w-full" value={editItem.checkOut || ''} onChange={(e) => setEditItem({ ...editItem, checkOut: e.target.value })} />
+                                                                        <span className="detail-label">Out:</span>
+                                                                        <input type="date" className="edit-input detail-input" value={editItem.checkOut || ''} onChange={(e) => setEditItem({ ...editItem, checkOut: e.target.value })} />
                                                                     </div>
                                                                 </div>
-                                                                <div className="flex flex-wrap gap-1">
+                                                                <div className="detail-chips">
                                                                     {AMENITY_OPTIONS.map(a => (
                                                                         <button
                                                                             key={a}
                                                                             type="button"
                                                                             onClick={(e) => { e.preventDefault(); setEditItem(prev => ({...prev, amenities: (prev.amenities || []).includes(a) ? prev.amenities.filter(x => x !== a) : [...(prev.amenities||[]), a]})) }}
-                                                                            className={`px-2 py-0.5 rounded-full text-[10px] font-medium border transition-colors ${(editItem.amenities||[]).includes(a) ? 'bg-primary text-white border-primary' : 'bg-background border-border text-text-secondary'}`}
+                                                                            className={`detail-chip ${(editItem.amenities||[]).includes(a) ? 'is-on' : ''}`}
                                                                         >
                                                                             {a}
                                                                         </button>
@@ -2427,7 +2427,8 @@
                     .details-table tr:hover td { background: rgba(255,255,255,0.03); }
                     .details-table input { background: var(--bg-app); border: 1px solid var(--border); color: var(--text-primary); padding: 0.4rem; border-radius: 4px; width: 100%; }
                     .text-right { text-align: right; }
-                    .col-name { width: 30%; } .col-city { width: 15%; } .col-remarks { width: 20%; } .col-dishes { width: 25%; } .col-actions { width: 10%; }
+                    .col-name { width: 26%; } .col-city { width: 12%; } .col-remarks { width: 16%; } .col-dishes { width: 24%; } .col-actions { width: 10%; }
+                    .col-bucket-details, .col-stay-details, .col-trek-details { width: 26%; min-width: 220px; }
                     .cell-wrapper { display: flex; align-items: center; gap: 0.5rem; }
                     
                     .dish-list {
@@ -2840,6 +2841,65 @@
 
                     .visit-chip button:hover { color: #ef4444; }
                     .visit-none { color: var(--text-muted); font-size: 0.72rem; }
+
+                    /* Detail panels in the bucket-list / stay / trek editors.
+                       These were Tailwind utility classes with no Tailwind
+                       loaded: the grid never gridded, so three controls
+                       stacked in a narrow column, and the toggle chips
+                       rendered as bare browser buttons. */
+                    .detail-grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                        gap: 0.4rem;
+                        padding: 0.5rem;
+                        margin-bottom: 0.5rem;
+                        background: rgba(255,255,255,0.03);
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-sm);
+                    }
+
+                    #root .detail-grid .detail-input,
+                    #root .detail-input {
+                        width: 100%;
+                        min-width: 0;
+                        padding: 0.3rem 0.5rem !important;
+                        font-size: 0.75rem;
+                    }
+
+                    .detail-label {
+                        font-size: 0.65rem;
+                        color: var(--text-muted);
+                        white-space: nowrap;
+                    }
+
+                    /* The first control is a free-text field (Duration, Stay type)
+                       and needs the whole row; the paired selects sit below it. */
+                    .detail-grid > *:first-child { grid-column: 1 / -1; }
+
+                    .detail-grid > div {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.3rem;
+                        min-width: 0;
+                    }
+
+                    .detail-chips { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+
+                    .detail-chip {
+                        padding: 0.15rem 0.55rem;
+                        border-radius: 99px;
+                        border: 1px solid var(--border);
+                        background: rgba(255,255,255,0.04);
+                        color: var(--text-secondary);
+                        font-family: inherit;
+                        font-size: 0.68rem;
+                        white-space: nowrap;
+                        cursor: pointer;
+                        transition: all 0.15s ease;
+                    }
+
+                    .detail-chip:hover { border-color: var(--primary); color: var(--text-primary); }
+                    .detail-chip.is-on { background: var(--primary); border-color: var(--primary); color: #fff; }
 
                     /* Bulk visit-date tagging */
                     .bulk-date-bar {
