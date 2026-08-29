@@ -1230,13 +1230,6 @@
           "image": ""
         },
         {
-          "name": "Makalidurga Fort Trekking",
-          "city": "Doddaballapur (near Bangalore)",
-          "remarks": "-",
-          "category": "Adventure",
-          "image": ""
-        },
-        {
           "name": "St. Philomena's Church",
           "city": "Mysore",
           "remarks": "-",
@@ -2024,6 +2017,22 @@
           "permit": "No",
           "safetyAlerts": false,
           "isVisited": true
+        },
+        {
+          "name": "Makalidurga Fort Trekking",
+          "city": "Doddaballapur (near Bangalore)",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
+        }
+      ],
+      "adventures": [
+        {
+          "name": "Coracle ride",
+          "city": "Hampi / Sanapur Lake",
+          "remarks": "-",
+          "category": "Adventure",
+          "image": ""
         }
       ],
       "stays": [
@@ -2073,16 +2082,7 @@
           "image": ""
         }
       ],
-      "highlights": [],
-      "adventures": [
-        {
-          "name": "Coracle ride",
-          "city": "Hampi / Sanapur Lake",
-          "remarks": "-",
-          "category": "Adventure",
-          "image": ""
-        }
-      ]
+      "highlights": []
     },
     "Kerala": {
       "visited": true,
@@ -2243,9 +2243,9 @@
         },
         {
           "name": "Chokramudi Peak",
-          "city": "-",
+          "city": "Wayanad",
           "remarks": "-",
-          "category": "Hill Station",
+          "category": "Adventure",
           "image": "",
           "season": "All Year",
           "priority": "Medium"
