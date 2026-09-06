@@ -13,6 +13,26 @@
  * splitting them would mean two of every filter, stat and save path.
  */
 
+/**
+ * What kind of issue a coin is. Coins only — a circulating ₹1 and a proof
+ * commemorative sit side by side in a grid looking much alike, but they are
+ * completely different things to collect, and every special edition is kept
+ * as its own record rather than folded into a date run.
+ *
+ * Stamps deliberately have no equivalent: they are left exactly as they are.
+ */
+const COIN_KINDS = {
+    circulating: { label: 'Circulating', icon: 'ph-arrows-left-right' },
+    commemorative: { label: 'Commemorative', icon: 'ph-medal' },
+    special: { label: 'Special edition', icon: 'ph-crown-simple' }
+};
+
+/** A coin's issue kind, or '' when it is unset or the item is a stamp. */
+const coinKindOf = (item) => {
+    if (!item || (item.type || 'stamp') !== 'coin') return '';
+    return COIN_KINDS[item.coinKind] ? item.coinKind : '';
+};
+
 const COLLECTION_TYPES = {
     stamp: {
         label: 'Stamp',
@@ -233,7 +253,10 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     const [query, setQuery] = useState('');
     const [countryFilter, setCountryFilter] = useState('');
     const [sortBy, setSortBy] = useState('added-newest');
-    const [groupByCountry, setGroupByCountry] = useState(false);
+    // 'none' | 'country' | 'kind' — one setting, so the two grouping controls
+    // cannot both be on and disagree about how the album is split.
+    const [groupBy, setGroupBy] = useState('none');
+    const [kindFilter, setKindFilter] = useState('');
     const [onlyIncomplete, setOnlyIncomplete] = useState(false);
 
     const [editing, setEditing] = useState(null);     // item being edited, or a {type} seed
@@ -293,9 +316,11 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
         const matches = scoped.filter(s => {
             if (countryFilter && s.country !== countryFilter) return false;
+            if (kindFilter && coinKindOf(s) !== kindFilter) return false;
             if (onlyIncomplete && !isIncomplete(s)) return false;
             if (!q) return true;
-            return [s.name, s.country, s.year, s.denomination, s.material, s.notes]
+            const kindLabel = coinKindOf(s) ? COIN_KINDS[coinKindOf(s)].label : '';
+            return [s.name, s.country, s.year, s.denomination, s.material, s.notes, kindLabel]
                 .filter(Boolean)
                 .some(v => String(v).toLowerCase().includes(q));
         });
@@ -311,22 +336,40 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         };
 
         return matches.slice().sort(sorters[sortBy] || sorters['added-newest']);
-    }, [scoped, query, countryFilter, sortBy, onlyIncomplete]);
+    }, [scoped, query, countryFilter, kindFilter, sortBy, onlyIncomplete]);
 
-    // Grid or country-grouped, in one shape so the renderer stays simple.
+    // One flat grid, or split by country or coin kind — always the same shape
+    // out, so the renderer stays simple.
     const groups = useMemo(() => {
-        if (!groupByCountry) return [{ key: '__all__', label: null, items: visible }];
+        if (groupBy === 'none') return [{ key: '__all__', label: null, items: visible }];
+
+        // Whatever has no value sorts last under a named heading rather than
+        // vanishing into an unlabelled block.
+        const spare = groupBy === 'kind' ? 'Unspecified' : 'Unattributed';
+        const labelFor = (s) => (groupBy === 'kind'
+            ? (coinKindOf(s) ? COIN_KINDS[coinKindOf(s)].label : spare)
+            : (s.country || spare));
+
+        // Kinds read best in their own order — everyday coins, then the ones
+        // struck for a reason — rather than alphabetically.
+        const kindOrder = Object.values(COIN_KINDS).map(k => k.label);
+        const rank = (label) => {
+            if (label === spare) return Infinity;
+            const at = groupBy === 'kind' ? kindOrder.indexOf(label) : -1;
+            return at === -1 ? 0 : at;
+        };
 
         const map = new Map();
         visible.forEach(s => {
-            const key = s.country || 'Unattributed';
+            const key = labelFor(s);
             if (!map.has(key)) map.set(key, []);
             map.get(key).push(s);
         });
+
         return Array.from(map.entries())
-            .sort((a, b) => (a[0] === 'Unattributed' ? 1 : b[0] === 'Unattributed' ? -1 : a[0].localeCompare(b[0])))
+            .sort((a, b) => (rank(a[0]) - rank(b[0])) || a[0].localeCompare(b[0]))
             .map(([label, list]) => ({ key: label, label, items: list }));
-    }, [visible, groupByCountry]);
+    }, [visible, groupBy]);
 
     const stats = useMemo(() => {
         const years = scoped.map(s => Number(s.year)).filter(y => y > 0);
@@ -460,6 +503,10 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     const lightboxItem = lightboxId !== null ? items.find(s => s.id === lightboxId) : null;
     const activeType = tab === 'all' ? null : COLLECTION_TYPES[tab];
 
+    // The kind controls only make sense where coins are on screen, so on the
+    // Stamps tab the toolbar is exactly what it was.
+    const showCoinControls = tab === 'coin' || (tab === 'all' && stats.coins > 0);
+
     return (
         <div className="coll-dashboard">
             <header className="coll-header">
@@ -530,7 +577,16 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                         role="tab"
                         aria-selected={tab === id}
                         className={`coll-tab ${tab === id ? 'is-active' : ''}`}
-                        onClick={() => { setTab(id); setCountryFilter(''); }}
+                        onClick={() => {
+                            setTab(id);
+                            setCountryFilter('');
+                            // Coin-only state would otherwise keep filtering a
+                            // tab whose controls are no longer shown.
+                            if (id === 'stamp') {
+                                setKindFilter('');
+                                setGroupBy(g => (g === 'kind' ? 'none' : g));
+                            }
+                        }}
                     >
                         <i className={`ph-fill ${icon}`}></i>
                         {label}
@@ -598,17 +654,36 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     <option value="name">Name A–Z</option>
                 </select>
 
+                {/* Coins only — stamps keep exactly the toolbar they had. */}
+                {showCoinControls && (
+                    <select className="coll-select" value={kindFilter} onChange={(e) => setKindFilter(e.target.value)}>
+                        <option value="">Any kind</option>
+                        {Object.entries(COIN_KINDS).map(([id, k]) => (
+                            <option key={id} value={id}>{k.label}</option>
+                        ))}
+                    </select>
+                )}
+
                 <button
-                    className={`coll-toggle ${groupByCountry ? 'is-on' : ''}`}
-                    onClick={() => setGroupByCountry(v => !v)}
+                    className={`coll-toggle ${groupBy === 'country' ? 'is-on' : ''}`}
+                    onClick={() => setGroupBy(g => (g === 'country' ? 'none' : 'country'))}
                 >
                     <i className="ph-bold ph-stack"></i> Group by country
                 </button>
 
-                {(query || countryFilter || onlyIncomplete) && (
+                {showCoinControls && (
+                    <button
+                        className={`coll-toggle ${groupBy === 'kind' ? 'is-on' : ''}`}
+                        onClick={() => setGroupBy(g => (g === 'kind' ? 'none' : 'kind'))}
+                    >
+                        <i className="ph-bold ph-medal"></i> Group by kind
+                    </button>
+                )}
+
+                {(query || countryFilter || kindFilter || onlyIncomplete) && (
                     <button
                         className="coll-clear"
-                        onClick={() => { setQuery(''); setCountryFilter(''); setOnlyIncomplete(false); }}
+                        onClick={() => { setQuery(''); setCountryFilter(''); setKindFilter(''); setOnlyIncomplete(false); }}
                     >
                         Clear filters · showing {visible.length} of {scoped.length}
                     </button>
@@ -702,6 +777,12 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                             <div className="coll-meta">
                                                 {item.country && <span><i className="ph-fill ph-map-pin"></i>{item.country}</span>}
                                                 {item.year && <span><i className="ph-fill ph-calendar-blank"></i>{item.year}</span>}
+                                                {coinKindOf(item) && (
+                                                    <span className="coll-kindtag" title="Issue kind">
+                                                        <i className={`ph-fill ${COIN_KINDS[coinKindOf(item)].icon}`}></i>
+                                                        {COIN_KINDS[coinKindOf(item)].label}
+                                                    </span>
+                                                )}
                                                 {item.material && <span><i className="ph-fill ph-circle-half"></i>{item.material}</span>}
                                                 {item.dateCollected && (
                                                     <span title="Date collected">
@@ -1632,6 +1713,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
                 .coll-field input,
                 .coll-field textarea,
+                .coll-kind-select,
                 .coll-month-picker select {
                     width: 100%;
                     background: var(--bg-app);
@@ -1646,7 +1728,13 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
                 .coll-field input:focus,
                 .coll-field textarea:focus,
+                .coll-kind-select:focus,
                 .coll-month-picker select:focus { border-color: #f59e0b; }
+
+                .coll-kind-select { cursor: pointer; }
+
+                .coll-kindtag { color: #fcd34d !important; }
+                .coll-kindtag i { color: #fcd34d !important; }
 
                 .coll-field textarea { resize: vertical; min-height: 74px; line-height: 1.5; }
 
@@ -1814,6 +1902,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
         year: item.year || '',
         denomination: item.denomination || '',
         material: item.material || '',
+        coinKind: coinKindOf(item),
         quantity: quantityOf(item),
         dateCollected: item.dateCollected || '',
         notes: item.notes || '',
@@ -1918,6 +2007,8 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
             year: String(form.year).trim(),
             denomination: form.denomination.trim(),
             material: form.material.trim(),
+            // Only coins carry a kind; a stamp must never acquire one.
+            coinKind: type === 'coin' ? form.coinKind : '',
             quantity: quantityOf({ quantity: form.quantity }),
             dateCollected: form.dateCollected,
             notes: form.notes.trim(),
@@ -2104,6 +2195,23 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                                     <p className="coll-field-hint">Copies of this same one — spares and swaps.</p>
                                 </div>
                             </div>
+
+                            {type === 'coin' && (
+                                <div className="coll-field">
+                                    <label htmlFor="coll-kind">Kind of issue</label>
+                                    <select
+                                        id="coll-kind"
+                                        className="coll-kind-select"
+                                        value={form.coinKind}
+                                        onChange={(e) => set('coinKind', e.target.value)}
+                                    >
+                                        <option value="">Not set</option>
+                                        {Object.entries(COIN_KINDS).map(([id, k]) => (
+                                            <option key={id} value={id}>{k.label}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
 
                             {type === 'coin' ? (
                                 <div className="coll-field-row">
