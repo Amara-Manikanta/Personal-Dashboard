@@ -131,6 +131,47 @@ const storeCollectionImage = async (file) => {
     return (res && res.path) ? res.path : dataUrl;
 };
 
+/**
+ * Every picture of one item, cover first, as { url, kind }.
+ *
+ * Items carry a list — a coin needs its obverse and reverse, and a stamp is
+ * often worth keeping twice: the original scan, and a cleaned-up or generated
+ * version of it. Which is which is recorded rather than inferred, so the
+ * original is never quietly replaced by a prettier copy of itself.
+ *
+ * Three shapes are read: the list of objects written now, a list of bare
+ * strings, and the single `image` field that came first. Nothing needs
+ * migrating.
+ */
+const IMAGE_KINDS = {
+    original: { label: 'Original', icon: 'ph-camera' },
+    generated: { label: 'Generated', icon: 'ph-sparkle' }
+};
+
+const imagesOf = (item) => {
+    if (!item) return [];
+
+    const raw = Array.isArray(item.images) ? item.images : (item.image ? [item.image] : []);
+    return raw
+        .map(entry => {
+            if (!entry) return null;
+            if (typeof entry === 'string') return { url: entry, kind: 'original' };
+            if (!entry.url) return null;
+            return { url: entry.url, kind: IMAGE_KINDS[entry.kind] ? entry.kind : 'original' };
+        })
+        .filter(Boolean);
+};
+
+/**
+ * The picture the card shows: simply the first one.
+ *
+ * Preferring an original here would quietly override the editor's own "make
+ * cover" control — promote a restored version to the front and the card would
+ * still show the scan. The card marks a generated cover with a badge instead,
+ * so the choice stays visible rather than being second-guessed.
+ */
+const coverOf = (item) => imagesOf(item)[0] || null;
+
 /** A filename is a reasonable first guess: "india_1975_tiger" → "India 1975 Tiger". */
 const nameFromFile = (file) => (file.name || 'Untitled')
     .replace(/\.[^.]+$/, '')
@@ -152,6 +193,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
     const [editing, setEditing] = useState(null);     // item being edited, or a {type} seed
     const [lightboxId, setLightboxId] = useState(null);
+    const [photoIndex, setPhotoIndex] = useState(0);   // which photo of that item
     const [busy, setBusy] = useState('');
     const [toast, setToast] = useState(null);
 
@@ -270,7 +312,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     type,
                     name: nameFromFile(files[i]),
                     country: '', year: '', denomination: '', material: '', dateCollected: '', notes: '',
-                    image,
+                    images: [{ url: image, kind: 'original' }],
                     addedAt: new Date().toISOString()
                 });
             } catch (err) {
@@ -309,23 +351,40 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         await persist(items.filter(s => s.id !== item.id), { successMessage: `${COLLECTION_TYPES[typeOf(item)].label} removed.` });
     };
 
-    // Arrow keys move through the album while the lightbox is open.
+    /**
+     * Lightbox keys, on two axes: left/right steps through the album, up/down
+     * through the photos of the item you are looking at. Keeping them apart
+     * means browsing the collection never lands you on the back of a coin
+     * wondering which one it belongs to.
+     */
     useEffect(() => {
         if (lightboxId === null) return;
 
         const onKey = (e) => {
             if (e.key === 'Escape') { setLightboxId(null); return; }
+
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                const pics = imagesOf(items.find(s => s.id === lightboxId));
+                if (pics.length < 2) return;
+                e.preventDefault();
+                setPhotoIndex(i => (e.key === 'ArrowDown' ? (i + 1) % pics.length : (i - 1 + pics.length) % pics.length));
+                return;
+            }
+
             if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
             const order = visible.map(s => s.id);
             const at = order.indexOf(lightboxId);
             if (at === -1) return;
             const next = e.key === 'ArrowRight' ? at + 1 : at - 1;
-            if (next >= 0 && next < order.length) setLightboxId(order[next]);
+            if (next >= 0 && next < order.length) {
+                setLightboxId(order[next]);
+                setPhotoIndex(0);
+            }
         };
 
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
-    }, [lightboxId, visible]);
+    }, [lightboxId, visible, items]);
 
     /**
      * Make sure a just-saved item is actually on screen.
@@ -542,16 +601,28 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                         <div className="coll-grid">
                             {group.items.map(item => {
                                 const kind = typeOf(item);
+                                const pics = imagesOf(item);
+                                const cover = coverOf(item);
                                 return (
                                     <article key={item.id} className={`coll-card is-${kind}`}>
                                         <button
                                             className="coll-frame"
-                                            onClick={() => setLightboxId(item.id)}
+                                            onClick={() => { setLightboxId(item.id); setPhotoIndex(0); }}
                                             aria-label={`View ${item.name || kind} full size`}
                                         >
-                                            {item.image
-                                                ? <img src={item.image} alt={item.name || COLLECTION_TYPES[kind].label} loading="lazy" />
+                                            {cover
+                                                ? <img src={cover.url} alt={item.name || COLLECTION_TYPES[kind].label} loading="lazy" />
                                                 : <span className="coll-noimage"><i className={`ph-fill ${COLLECTION_TYPES[kind].icon}`}></i></span>}
+                                            {pics.length > 1 && (
+                                                <span className="coll-count" title={`${pics.length} images`}>
+                                                    <i className="ph-fill ph-images"></i>{pics.length}
+                                                </span>
+                                            )}
+                                            {cover && cover.kind === 'generated' && (
+                                                <span className="coll-genmark" title="Generated image — no original uploaded yet">
+                                                    <i className="ph-fill ph-sparkle"></i>
+                                                </span>
+                                            )}
                                             {item.denomination && <span className="coll-denom">{item.denomination}</span>}
                                         </button>
 
@@ -612,13 +683,43 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 />
             )}
 
-            {lightboxItem && (
+            {lightboxItem && (() => {
+                const pics = imagesOf(lightboxItem);
+                const at = Math.min(photoIndex, Math.max(0, pics.length - 1));
+                const photo = pics[at];
+
+                return (
                 <div className="coll-lightbox" onClick={() => setLightboxId(null)}>
                     <button className="coll-lightbox-close" aria-label="Close"><i className="ph-bold ph-x"></i></button>
                     <figure onClick={(e) => e.stopPropagation()}>
-                        {lightboxItem.image
-                            ? <img className={`is-${typeOf(lightboxItem)}`} src={lightboxItem.image} alt={lightboxItem.name || 'Collection item'} />
-                            : <div className="coll-lightbox-noimage"><i className={`ph-fill ${COLLECTION_TYPES[typeOf(lightboxItem)].icon}`}></i></div>}
+                        <div className="coll-lightbox-stage">
+                            {photo
+                                ? <img className={`is-${typeOf(lightboxItem)}`} src={photo.url} alt={lightboxItem.name || 'Collection item'} />
+                                : <div className="coll-lightbox-noimage"><i className={`ph-fill ${COLLECTION_TYPES[typeOf(lightboxItem)].icon}`}></i></div>}
+
+                            {photo && pics.length > 1 && (
+                                <span className={`coll-photo-kind is-${photo.kind}`}>
+                                    <i className={`ph-fill ${IMAGE_KINDS[photo.kind].icon}`}></i>
+                                    {IMAGE_KINDS[photo.kind].label} · {at + 1} of {pics.length}
+                                </span>
+                            )}
+
+                            {pics.length > 1 && (
+                                <div className="coll-photo-strip">
+                                    {pics.map((p, i) => (
+                                        <button
+                                            key={`${p.url}-${i}`}
+                                            className={`coll-photo-thumb is-${p.kind} ${i === at ? 'is-active' : ''}`}
+                                            onClick={() => setPhotoIndex(i)}
+                                            title={IMAGE_KINDS[p.kind].label}
+                                            aria-label={`Show ${IMAGE_KINDS[p.kind].label.toLowerCase()} image ${i + 1}`}
+                                        >
+                                            <img src={p.url} alt="" loading="lazy" />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                         <figcaption>
                             <span className="coll-lightbox-kind">{COLLECTION_TYPES[typeOf(lightboxItem)].label}</span>
                             <h3>{lightboxItem.name || 'Untitled'}</h3>
@@ -632,11 +733,14 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                 ].filter(Boolean).join(' · ') || 'No details recorded yet'}
                             </p>
                             {lightboxItem.notes && <p className="coll-lightbox-notes">{lightboxItem.notes}</p>}
-                            <span className="coll-lightbox-hint">← → to browse · Esc to close</span>
+                            <span className="coll-lightbox-hint">
+                                ← → between items{pics.length > 1 ? ' · ↑ ↓ between images' : ''} · Esc to close
+                            </span>
                         </figcaption>
                     </figure>
                 </div>
-            )}
+                );
+            })()}
 
             {busy && (
                 <div className="coll-busy">
@@ -1060,6 +1164,27 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     backdrop-filter: blur(4px);
                 }
 
+                .coll-count, .coll-genmark {
+                    position: absolute;
+                    top: 12px;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.2rem;
+                    background: rgba(12, 10, 6, 0.82);
+                    color: #f5ecd6;
+                    font-size: 0.68rem;
+                    font-weight: 700;
+                    padding: 0.12rem 0.42rem;
+                    border-radius: 99px;
+                }
+
+                .coll-count { left: 12px; }
+                .coll-genmark { right: 12px; color: #c4b5fd; }
+
+                /* The card's own hover controls sit top-right, so shift the
+                   generated marker aside while they are showing. */
+                .coll-card:hover .coll-genmark { opacity: 0; }
+
                 .coll-actions {
                     position: absolute;
                     top: 1.35rem;
@@ -1146,6 +1271,52 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     font-size: 4rem;
                     color: #d6cdb8;
                 }
+
+                .coll-lightbox-stage { position: relative; min-width: 0; }
+
+                .coll-photo-kind {
+                    position: absolute;
+                    top: 0.75rem;
+                    left: 0.75rem;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.35rem;
+                    background: rgba(8, 9, 13, 0.82);
+                    border-radius: 99px;
+                    padding: 0.2rem 0.7rem;
+                    font-size: 0.72rem;
+                    font-weight: 600;
+                    backdrop-filter: blur(4px);
+                }
+
+                .coll-photo-kind.is-original { color: #7dd3fc; }
+                .coll-photo-kind.is-generated { color: #c4b5fd; }
+
+                .coll-photo-strip {
+                    display: flex;
+                    gap: 0.5rem;
+                    margin-top: 0.75rem;
+                    flex-wrap: wrap;
+                }
+
+                .coll-photo-thumb {
+                    width: 54px;
+                    height: 54px;
+                    padding: 0;
+                    border-radius: 6px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    background: #f3ede1;
+                    border: 2px solid transparent;
+                    opacity: 0.55;
+                    transition: opacity 0.2s ease, border-color 0.2s ease;
+                }
+
+                .coll-photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+                .coll-photo-thumb:hover { opacity: 0.85; }
+                .coll-photo-thumb.is-active { opacity: 1; }
+                .coll-photo-thumb.is-active.is-original { border-color: #7dd3fc; }
+                .coll-photo-thumb.is-active.is-generated { border-color: #c4b5fd; }
 
                 .coll-lightbox figcaption { color: var(--text-secondary); }
 
@@ -1365,6 +1536,120 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 .coll-month-picker { display: flex; gap: 0.6rem; }
                 .coll-month-picker select { cursor: pointer; }
 
+                /* Image gallery in the editor */
+                .coll-shots { display: flex; flex-direction: column; gap: 0.75rem; }
+
+                .coll-shot-list {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+                    gap: 0.5rem;
+                }
+
+                .coll-shot-pic-wrap { position: relative; }
+
+                .coll-shot {
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-sm);
+                    overflow: hidden;
+                    background: rgba(255,255,255,0.02);
+                }
+
+                .coll-shot.is-active { border-color: #f59e0b; }
+
+                .coll-shot-pic {
+                    display: block;
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    padding: 0;
+                    border: none;
+                    background: #f3ede1;
+                    cursor: pointer;
+                    position: relative;
+                }
+
+                .coll-shot-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+                .coll-shot-cover {
+                    position: absolute;
+                    inset: auto 0 0 0;
+                    background: rgba(8, 9, 13, 0.8);
+                    color: #fbbf24;
+                    font-size: 0.6rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    padding: 1px 0;
+                }
+
+                .coll-shot-tools {
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: center;
+                    gap: 0.1rem;
+                    border-top: 1px solid var(--border);
+                }
+
+                .coll-shot-tools button {
+                    flex: 1 1 0;
+                    background: none;
+                    border: none;
+                    color: var(--text-muted);
+                    cursor: pointer;
+                    padding: 0.3rem 0.2rem;
+                    font-family: inherit;
+                    font-size: 0.68rem;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .coll-shot-tools button:hover { color: var(--text-primary); }
+                .coll-shot-tools button.is-danger:hover { color: #fca5a5; }
+
+                /* Icon-only, over the image: the written label does not fit
+                   beside the other controls at thumbnail width and was
+                   clipping to "Origir". */
+                .coll-shot-kind {
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+                    width: 20px;
+                    height: 20px;
+                    padding: 0;
+                    border: none;
+                    border-radius: 50%;
+                    background: rgba(8, 9, 13, 0.85);
+                    cursor: pointer;
+                    font-size: 0.65rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .coll-shot-kind.is-original { color: #7dd3fc; }
+                .coll-shot-kind.is-generated { color: #c4b5fd; }
+                .coll-shot-kind:hover { background: rgba(8, 9, 13, 0.98); }
+
+                .coll-shot-add { display: flex; flex-direction: column; gap: 0.4rem; }
+
+                .coll-shot-add button {
+                    white-space: nowrap;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.35rem;
+                    background: var(--bg-app);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-md);
+                    color: var(--text-secondary);
+                    padding: 0.45rem 0.4rem;
+                    font-family: inherit;
+                    font-size: 0.75rem;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .coll-shot-add button:hover { border-color: #f59e0b; color: #fbbf24; }
+
                 .coll-editor-actions {
                     display: flex;
                     justify-content: flex-end;
@@ -1408,31 +1693,81 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
         material: item.material || '',
         dateCollected: item.dateCollected || '',
         notes: item.notes || '',
-        image: item.image || ''
+        images: imagesOf(item)
     });
     const [dragOver, setDragOver] = useState(false);
-    const [working, setWorking] = useState(false);
+    const [working, setWorking] = useState('');
     const [error, setError] = useState('');
+    const [activeShot, setActiveShot] = useState(0);
     const fileRef = useRef(null);
+    // Which kind the file picker is currently collecting. A ref, not state:
+    // it is set immediately before the input is clicked and read back in the
+    // change handler, which would otherwise close over a stale value.
+    // Drops and pastes do not consult it — they always file as originals, so
+    // the result never depends on which button was pressed last. Any image's
+    // badge can be flipped in one click afterwards.
+    const pendingKind = useRef('original');
 
     const set = (key, value) => setForm(f => ({ ...f, [key]: value }));
 
-    const takeFile = async (file) => {
-        if (!file || !file.type.startsWith('image/')) {
+    /** Add one or more files to the gallery under the given kind. */
+    const takeFiles = async (fileList, kind) => {
+        const files = Array.from(fileList || []).filter(f => f && f.type.startsWith('image/'));
+        if (!files.length) {
             setError('That file is not an image.');
             return;
         }
+
         setError('');
-        setWorking(true);
-        try {
-            const image = await storeCollectionImage(file);
-            setForm(f => ({ ...f, image, name: f.name || nameFromFile(file) }));
-        } catch (err) {
-            console.error(err);
-            setError('Could not read that image.');
-        } finally {
-            setWorking(false);
+        const added = [];
+        for (let i = 0; i < files.length; i++) {
+            setWorking(files.length > 1 ? `Processing ${i + 1} of ${files.length}…` : 'Processing…');
+            try {
+                added.push({ url: await storeCollectionImage(files[i]), kind });
+            } catch (err) {
+                console.error(err);
+            }
         }
+        setWorking('');
+
+        if (!added.length) {
+            setError('Could not read those images.');
+            return;
+        }
+        if (added.length < files.length) {
+            setError(`${files.length - added.length} of ${files.length} could not be read.`);
+        }
+
+        setForm(f => ({
+            ...f,
+            images: [...f.images, ...added],
+            name: f.name || nameFromFile(files[0])
+        }));
+        setActiveShot(form.images.length);
+    };
+
+    const pickFiles = (kind) => {
+        pendingKind.current = kind;
+        if (fileRef.current) fileRef.current.click();
+    };
+
+    const removeShot = (index) => {
+        setForm(f => ({ ...f, images: f.images.filter((_, i) => i !== index) }));
+        setActiveShot(i => (i >= index && i > 0 ? i - 1 : i));
+    };
+
+    const setShotKind = (index, kind) => {
+        setForm(f => ({ ...f, images: f.images.map((p, i) => (i === index ? { ...p, kind } : p)) }));
+    };
+
+    /** Promote a picture to the front, which is what the album card shows. */
+    const makeCover = (index) => {
+        setForm(f => {
+            const next = f.images.slice();
+            const [pic] = next.splice(index, 1);
+            return { ...f, images: [pic, ...next] };
+        });
+        setActiveShot(0);
     };
 
     // Pasting a screenshot straight in is the fastest route for something you
@@ -1441,7 +1776,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
         const onPaste = (e) => {
             const entry = Array.from((e.clipboardData && e.clipboardData.items) || [])
                 .find(i => i.type.startsWith('image/'));
-            if (entry) takeFile(entry.getAsFile());
+            if (entry) takeFiles([entry.getAsFile()], 'original');
         };
         window.addEventListener('paste', onPaste);
         return () => window.removeEventListener('paste', onPaste);
@@ -1461,7 +1796,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
             material: form.material.trim(),
             dateCollected: form.dateCollected,
             notes: form.notes.trim(),
-            image: form.image,
+            images: form.images,
             addedAt: item.addedAt || new Date().toISOString()
         });
     };
@@ -1481,39 +1816,100 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
 
                 <form onSubmit={submit}>
                     <div className="coll-editor-body">
-                        <div>
+                        <div className="coll-shots">
                             <button
                                 type="button"
                                 className={`coll-drop is-${type} ${dragOver ? 'is-over' : ''}`}
-                                onClick={() => fileRef.current && fileRef.current.click()}
+                                onClick={() => pickFiles('original')}
                                 onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                                 onDragLeave={() => setDragOver(false)}
                                 onDrop={(e) => {
                                     e.preventDefault();
                                     setDragOver(false);
-                                    takeFile(e.dataTransfer.files && e.dataTransfer.files[0]);
+                                    takeFiles(e.dataTransfer.files, 'original');
                                 }}
                             >
-                                {working && <><i className="ph-bold ph-circle-notch"></i><span>Processing…</span></>}
-                                {!working && form.image && (
+                                {working && <><i className="ph-bold ph-circle-notch"></i><span>{working}</span></>}
+                                {!working && form.images[activeShot] && (
                                     <>
-                                        <img src={form.image} alt="" />
-                                        <span className="coll-drop-replace">Click or drop to replace</span>
+                                        <img src={form.images[activeShot].url} alt="" />
+                                        <span className="coll-drop-replace">Click or drop to add more</span>
                                     </>
                                 )}
-                                {!working && !form.image && (
+                                {!working && !form.images.length && (
                                     <>
                                         <i className="ph-bold ph-image-square"></i>
                                         <span>{config.blurb}</span>
                                     </>
                                 )}
                             </button>
+
+                            {form.images.length > 0 && (
+                                <div className="coll-shot-list">
+                                    {form.images.map((pic, i) => (
+                                        <div
+                                            key={`${pic.url}-${i}`}
+                                            className={`coll-shot ${i === activeShot ? 'is-active' : ''}`}
+                                        >
+                                            <div className="coll-shot-pic-wrap">
+                                                <button
+                                                    type="button"
+                                                    className="coll-shot-pic"
+                                                    onClick={() => setActiveShot(i)}
+                                                    title={i === 0 ? 'Shown on the card' : 'Preview'}
+                                                >
+                                                    <img src={pic.url} alt="" />
+                                                </button>
+                                                {/* Sibling, not nested: a button inside a button is invalid
+                                                    and the inner one would not reliably receive the click. */}
+                                                <button
+                                                    type="button"
+                                                    className={`coll-shot-kind is-${pic.kind}`}
+                                                    onClick={() => setShotKind(i, pic.kind === 'original' ? 'generated' : 'original')}
+                                                    title={`${IMAGE_KINDS[pic.kind].label} — click to switch`}
+                                                    aria-label={`${IMAGE_KINDS[pic.kind].label}. Click to switch.`}
+                                                >
+                                                    <i className={`ph-fill ${IMAGE_KINDS[pic.kind].icon}`}></i>
+                                                </button>
+                                                {i === 0 && <span className="coll-shot-cover">Cover</span>}
+                                            </div>
+
+                                            <div className="coll-shot-tools">
+                                                {i !== 0 && (
+                                                    <button type="button" onClick={() => makeCover(i)} title="Use as the card image">
+                                                        <i className="ph-bold ph-arrow-up"></i>
+                                                    </button>
+                                                )}
+                                                <button
+                                                    type="button"
+                                                    className="is-danger"
+                                                    onClick={() => removeShot(i)}
+                                                    title="Remove this image"
+                                                >
+                                                    <i className="ph-bold ph-x"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            <div className="coll-shot-add">
+                                <button type="button" onClick={() => pickFiles('original')}>
+                                    <i className="ph-bold ph-camera"></i> Add original
+                                </button>
+                                <button type="button" onClick={() => pickFiles('generated')}>
+                                    <i className="ph-bold ph-sparkle"></i> Add generated
+                                </button>
+                            </div>
+
                             <input
                                 ref={fileRef}
                                 type="file"
                                 accept="image/*"
+                                multiple
                                 hidden
-                                onChange={(e) => { takeFile(e.target.files && e.target.files[0]); e.target.value = ''; }}
+                                onChange={(e) => { takeFiles(e.target.files, pendingKind.current); e.target.value = ''; }}
                             />
                             {error && <p className="coll-drop-error">{error}</p>}
                         </div>

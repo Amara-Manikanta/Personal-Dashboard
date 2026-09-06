@@ -99,6 +99,26 @@ const novels = Array.from({ length: 100 }, (_, i) => ({ title: `Book ${i}`, rati
     check('pruned old snapshots', afterCount < beforeCount, `${beforeCount} -> ${afterCount}`);
     check('kept roughly daily+weekly', afterCount >= 30 && afterCount <= 45, `kept ${afterCount}`);
 
+    console.log('\n12. small collections can still lose a record');
+    // The ratio guard alone refused ordinary deletes on a short file: one of
+    // two stamps is a 50% loss. Gross truncation must still be refused.
+    fs.writeFileSync(path.join(dataDir, 'collectibles.json'), JSON.stringify([{ n: 1 }, { n: 2 }]));
+    let sm = await s.write('collectibles.json', [{ n: 1 }]);
+    check('delete 1 of 2 allowed', sm.ok === true, sm.code);
+
+    fs.writeFileSync(path.join(dataDir, 'collectibles.json'), JSON.stringify([{ n: 1 }, { n: 2 }, { n: 3 }]));
+    sm = await s.write('collectibles.json', [{ n: 1 }, { n: 2 }]);
+    check('delete 1 of 3 allowed', sm.ok === true, sm.code);
+
+    const many = Array.from({ length: 40 }, (_, i) => ({ n: i }));
+    fs.writeFileSync(path.join(dataDir, 'collectibles.json'), JSON.stringify(many));
+    sm = await s.write('collectibles.json', many.slice(0, 4));
+    check('gross truncation still refused', sm.ok === false && sm.code === 'DESTRUCTIVE_WRITE', String(sm.code));
+
+    fs.writeFileSync(path.join(dataDir, 'collectibles.json'), JSON.stringify(many));
+    sm = await s.write('collectibles.json', []);
+    check('wiping a real file still refused', sm.ok === false && sm.code === 'DESTRUCTIVE_WRITE', String(sm.code));
+
     console.log('\n11. status report');
     const st = s.status(['novels.json', 'states.json', 'clothes.json']);
     check('healthy', st.healthy === true, JSON.stringify(st.files));

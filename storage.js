@@ -27,6 +27,12 @@ const ALWAYS_KEEP_NEWEST = 5;
 // cleared-state race rather than an intentional edit.
 const DESTRUCTIVE_LOSS_RATIO = 0.3;
 
+// ...but a fraction alone is meaningless on a small file. Deleting one of two
+// stamps loses 50% and is entirely ordinary; it was being refused outright.
+// The guard is there to catch gross truncation (600 records down to 5), so it
+// also requires the loss to be large in absolute terms.
+const MIN_ABSOLUTE_LOSS = 3;
+
 class Storage {
     constructor({ dataDir, backupDir, quarantineDir, prune = true }) {
         this.dataDir = dataDir;
@@ -195,7 +201,8 @@ class Storage {
         // Guard: refuse writes that wipe out most of an existing file.
         if (!force && before > 0) {
             const lost = before - after;
-            if (after === 0 || lost / before > DESTRUCTIVE_LOSS_RATIO) {
+            const bigEnoughToWorry = lost > MIN_ABSOLUTE_LOSS;
+            if (bigEnoughToWorry && (after === 0 || lost / before > DESTRUCTIVE_LOSS_RATIO)) {
                 return {
                     ok: false,
                     code: 'DESTRUCTIVE_WRITE',
