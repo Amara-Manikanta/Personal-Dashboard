@@ -933,5 +933,26 @@
         "modified": null
       }
     ]
+  },
+  {
+    "id": 1788469691052,
+    "genre": "Song",
+    "quotes": [
+      {
+        "original": "Ekkada unna pakane nuvvu unnattlu untundi bujji, idi em feeling-u?\nNa needa aina achcham nela kanipistundi, mari idi em bhramo?\nNenu kooda nuvve ayinaa, peru ki ayinaa nenu lena,\nDeni peru aaa naa prema, naa bujjiamma... ❤️",
+        "modified": null,
+        "finished": true
+      },
+      {
+        "original": "Bujjamma neeku anta kopama,\nEe Deepu meeda konchem jaali choopama,\nBujjamma neeku anta kopama,\nEe Deepu meeda konchem jaali choopama,\nNee prema vennalle,\nIla dooram pedite ee praanam aligipodaa....",
+        "modified": null,
+        "finished": true
+      },
+      {
+        "original": "Na bujjiamma na degara ki eppudu vastado,\nE doralu eni rojalu,\nManchu mobu pamu ki vastundooo,\nMattu mattu ga vuna ne prema enka kavlantundi,\nRanu ante etla amma ,\nNa degariki chiku buku chiku buku railu vesukuni vacheyama...",
+        "modified": "Na bujjiamma na daggara ki eppudu vastavo,\nEe doralu enni rojulu,\nManchu mabbula pamuki vastundooo,\nMattu mattuga unna nee prema inka kavalanTundi,\nRaanu ante etla amma,\nNa daggariki chiku buku chiku buku railu vesukuni vacheyama...",
+        "finished": true
+      }
+    ]
   }
 ]

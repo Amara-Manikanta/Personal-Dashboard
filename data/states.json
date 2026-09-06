@@ -4740,7 +4740,10 @@
           "city": "-",
           "remarks": "-",
           "category": "Waterfall",
-          "image": ""
+          "image": "public/images/kempty_falls_stamp.jpg",
+          "photos": [
+            "public/images/kempty_falls_stamp.jpg"
+          ]
         }
       ],
       "placesToVisit": [
