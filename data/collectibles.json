@@ -1,15 +1,1169 @@
 [
   {
+    "id": "1788721084418",
+    "type": "coin",
+    "name": "20 Rupee Coin",
+    "country": "India",
+    "year": "2020",
+    "denomination": "20 Rs",
+    "material": "",
+    "coinKind": "circulating",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:58:04.418Z"
+  },
+  {
+    "id": "1788720996833",
+    "type": "coin",
+    "name": "10 Paise",
+    "country": "India",
+    "year": "1991",
+    "denomination": "10p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:56:36.833Z"
+  },
+  {
+    "id": "1788720955436",
+    "type": "coin",
+    "name": "25 Paise",
+    "country": "India",
+    "year": "1976",
+    "denomination": "25p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:55:55.436Z"
+  },
+  {
+    "id": "1788720881664",
+    "type": "coin",
+    "name": "25 Paise",
+    "country": "India",
+    "year": "1985",
+    "denomination": "25p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:54:41.664Z"
+  },
+  {
+    "id": "1788720846422",
+    "type": "coin",
+    "name": "10 Paise",
+    "country": "India",
+    "year": "",
+    "denomination": "10p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:54:06.422Z"
+  },
+  {
+    "id": "1788720830659",
+    "type": "coin",
+    "name": "5 Paise",
+    "country": "India",
+    "year": "1978",
+    "denomination": "5p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:53:50.659Z"
+  },
+  {
+    "id": "1788720794591",
+    "type": "coin",
+    "name": "50 Paise",
+    "country": "India",
+    "year": "1988",
+    "denomination": "50p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 7,
+    "dateCollected": "",
+    "notes": "",
+    "images": [],
+    "addedAt": "2026-09-06T18:53:14.591Z"
+  },
+  {
+    "id": "1788720219056",
+    "type": "stamp",
+    "name": "Builders of Modern India \u2013 Sardar Vallabhbhai Patel Definitive Stamp (8th Definitive Series)",
+    "country": "India",
+    "year": "2000",
+    "denomination": "200p",
+    "material": "",
+    "quantity": 5,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788720197776_54_india_sardar_vallabhbhai_patel_200p_attached_original_cropped.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788720188402_54_india_sardar_vallabhbhai_patel_200p_single_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:43:39.056Z"
+  },
+  {
+    "id": "1788720097385",
+    "type": "stamp",
+    "name": "Mahatma Gandhi Definitive Stamp (10th Series - Large Portrait Variant)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "100p",
+    "material": "",
+    "quantity": 5,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788720085468_53_india_mahatma_gandhi_smiling_100p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:41:37.385Z"
+  },
+  {
+    "id": "1788719972551",
+    "type": "stamp",
+    "name": "Handloom Weaving / Textile Industry Definitive Stamp",
+    "country": "India",
+    "year": "1980",
+    "denomination": "200p",
+    "material": "",
+    "quantity": 6,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719951184_52_india_handicrafts_weaver_handloom_200p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:39:32.551Z"
+  },
+  {
+    "id": "1788719887601",
+    "type": "stamp",
+    "name": "Solar Energy Utilisation Definitive Stamp",
+    "country": "India",
+    "year": "1988",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719867811_51_india_solar_energy_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:38:07.601Z"
+  },
+  {
+    "id": "1788719782959",
+    "type": "stamp",
+    "name": "Dairy Development / Rural Prosperity Definitive Stamp",
+    "country": "India",
+    "year": "1981",
+    "denomination": "50p",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719763037_50_india_dairy_development_operation_flood_50p_single_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:36:22.959Z"
+  },
+  {
+    "id": "1788719656113",
+    "type": "stamp",
+    "name": "Village, Wheat, and Tractor Definitive Stamp",
+    "country": "India",
+    "year": "1985",
+    "denomination": "25p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719635658_49_india_agriculture_tractor_wheat_25p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:34:16.113Z"
+  },
+  {
+    "id": "1788719614546",
+    "type": "stamp",
+    "name": "Minor Irrigation Definitive Stamp",
+    "country": "India",
+    "year": "1981",
+    "denomination": "10p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719594492_48_india_agriculture_tubewell_irrigation_10p_copy2_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:33:34.546Z"
+  },
+  {
+    "id": "1788719549360",
+    "type": "stamp",
+    "name": "Mahatma Gandhi Definitive Stamp (10th Series - Large Portrait)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "100p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719534197_47_india_mahatma_gandhi_profile_100p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:32:29.360Z"
+  },
+  {
+    "id": "1788719437421",
+    "type": "stamp",
+    "name": "Nilgiri Tahr Definitive Stamp.",
+    "country": "India",
+    "year": "2000",
+    "denomination": "50p",
+    "material": "",
+    "quantity": 6,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719414053_46_india_nilgiri_tahr_50p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:30:37.421Z"
+  },
+  {
+    "id": "1788719168004",
+    "type": "stamp",
+    "name": "Builders of Modern India \u2013 Dr. B.R. Ambedkar Definitive Stamp (8th Definitive Series)",
+    "country": "India",
+    "year": "2001",
+    "denomination": "300p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788719141692_45_india_dr_br_ambedkar_green_300p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:26:08.004Z"
+  },
+  {
+    "id": "1788718735789",
+    "type": "stamp",
+    "name": "Builders of Modern India \u2013 Dr. B.R. Ambedkar Definitive Stamp",
+    "country": "India",
+    "year": "2001",
+    "denomination": "200p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788718711600_44_india_dr_br_ambedkar_200p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:18:55.789Z"
+  },
+  {
+    "id": "1788718399563",
+    "type": "stamp",
+    "name": "Builders of Modern India \u2013 E.V. Ramasami (Periyar) Definitive Stamp",
+    "country": "India",
+    "year": "2009",
+    "denomination": "50p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788718378852_43_india_periyar_ev_ramasami_50p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:13:19.564Z"
+  },
+  {
+    "id": "1788718038190",
+    "type": "stamp",
+    "name": "Makers of India \u2013 Jawaharlal Nehru Definitive Stamp",
+    "country": "India",
+    "year": "2016",
+    "denomination": "500",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788718013770_42_india_jawaharlal_nehru_5.00_single_bottom_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T18:07:18.190Z"
+  },
+  {
+    "id": "1788717560281",
+    "type": "stamp",
+    "name": "Painted Stork Definitive Stamp",
+    "country": "India",
+    "year": "2000",
+    "denomination": "400p",
+    "material": "",
+    "quantity": 8,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788717533311_41_india_painted_stork_janghil_4.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:59:20.281Z"
+  },
+  {
+    "id": "1788717287424",
+    "type": "stamp",
+    "name": "Birth Centenary of Yashpal Commemorative Stamp",
+    "country": "India",
+    "year": "2003",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788717250057_40_india_literature_yashpal_5.00_2003_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:54:47.424Z"
+  },
+  {
+    "id": "1788717062412",
+    "type": "stamp",
+    "name": "Pisciculture / Marine Life (Fishes) Definitive Stamp",
+    "country": "India",
+    "year": "1979",
+    "denomination": "5p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788717060348_39_india_fisheries_fish_prawn_5p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:51:02.412Z"
+  },
+  {
+    "id": "1788716834852",
+    "type": "stamp",
+    "name": "Saras Crane Definitive Stamp",
+    "country": "India",
+    "year": "2000",
+    "denomination": "100p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788716800516_38_india_saras_crane_10p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:47:14.852Z"
+  },
+  {
+    "id": "1788716620609",
+    "type": "stamp",
+    "name": "Leopard Cat Definitive Stamp",
+    "country": "India",
+    "year": "2000",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 4,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788716585982_37_india_leopard_cat_cheeta_billi_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:43:40.609Z"
+  },
+  {
+    "id": "1788716405178",
+    "type": "stamp",
+    "name": "Tilaiya Dam, Damodar Valley Project Definitive Stamp",
+    "country": "India",
+    "year": "1955",
+    "denomination": "1Anna",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788716376439_36_india_tilaiya_dam_damodar_1_anna_1955_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:40:05.178Z"
+  },
+  {
+    "id": "1788716235931",
+    "type": "stamp",
+    "name": "Blackbuck Definitive Stamp",
+    "country": "India",
+    "year": "2000",
+    "denomination": "25p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788716208837_35_india_blackbuck_krishnamriga_25p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:37:15.931Z"
+  },
+  {
+    "id": "1788716133281",
+    "type": "stamp",
+    "name": "Smooth Indian Otter Definitive Stamp",
+    "country": "India",
+    "year": "2002",
+    "denomination": "300p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788716069709_34_india_smooth_indian_otter_8.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:35:33.281Z"
+  },
+  {
+    "id": "1788716053036",
+    "type": "stamp",
+    "name": "Indira Gandhi Definitive Stamp",
+    "country": "India",
+    "year": "2008",
+    "denomination": "5p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715986732_33_india_indira_gandhi_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:34:13.036Z"
+  },
+  {
+    "id": "1788715946825",
+    "type": "stamp",
+    "name": "Ashoka Lion Capital Official Service Stamp",
+    "country": "India",
+    "year": "1976",
+    "denomination": "25p",
+    "material": "",
+    "quantity": 4,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715899290_32_india_ashoka_lion_capital_service_25p_single_left_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:32:26.825Z"
+  },
+  {
+    "id": "1788715826986",
+    "type": "stamp",
+    "name": "Minor Irrigation / Agriculture Definitive Stamp",
+    "country": "India",
+    "year": "1981",
+    "denomination": "10p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715798116_31_india_agriculture_tubewell_irrigation_10p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:30:26.986Z"
+  },
+  {
+    "id": "1788715760566",
+    "type": "stamp",
+    "name": "Astrological Signs \u2013 Pisces (\u092e\u0940\u0928) Commemorative Stamp",
+    "country": "India",
+    "year": "2010",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715727463_30_india_zodiac_pisces_meen_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:29:20.566Z"
+  },
+  {
+    "id": "1788715681433",
+    "type": "stamp",
+    "name": "Endangered Birds of India \u2013 Greater Adjutant Stork Commemorative Stamp",
+    "country": "India",
+    "year": "2006",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715649235_29_india_greater_adjutant_stork_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:28:01.433Z"
+  },
+  {
+    "id": "1788715608217",
+    "type": "stamp",
+    "name": "Family Planning Definitive Stamp",
+    "country": "India",
+    "year": "1982",
+    "denomination": "35p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715552167_28_india_family_planning_35p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:26:48.217Z"
+  },
+  {
+    "id": "1788715484300",
+    "type": "stamp",
+    "name": "Sundarbans Biosphere Reserve Definitive Stamp",
+    "country": "India",
+    "year": "2000",
+    "denomination": "1000p",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715456748_27_india_tiger_sundarbans_biosphere_reserve_10.00_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:24:44.300Z"
+  },
+  {
+    "id": "1788715402722",
+    "type": "stamp",
+    "name": "Sheikh Hamad bin Khalifa Al Thani Definitive Stamp",
+    "country": "Qatar",
+    "year": "1996",
+    "denomination": "75 Dirhams",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715322284_26_state_of_qatar_75_dirhams_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:23:22.722Z"
+  },
+  {
+    "id": "1788715296292",
+    "type": "stamp",
+    "name": "Sohrab Modi Commemorative Stamp",
+    "country": "India",
+    "year": "2013",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715225561_25_india_cinema_sohrab_modi_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:21:36.292Z"
+  },
+  {
+    "id": "1788715157557",
+    "type": "stamp",
+    "name": "Maharana Pratap Definitive Stamp",
+    "country": "India",
+    "year": "2016",
+    "denomination": "1000p",
+    "material": "",
+    "quantity": 10,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715113663_24_india_maharana_pratap_10.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:19:17.557Z"
+  },
+  {
+    "id": "1788715049286",
+    "type": "stamp",
+    "name": "Tapan Sinha Commemorative Stamp",
+    "country": "India",
+    "year": "2013",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788715027399_23_india_cinema_tapan_sinha_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:17:29.286Z"
+  },
+  {
+    "id": "1788714996421",
+    "type": "stamp",
+    "name": "Endemic Butterflies of Andaman & Nicobar Islands \u2013 Pachliopta Rhodifer (Female) Commemorative Stamp",
+    "country": "India",
+    "year": "2008",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714959134_22_india_butterfly_pachliopta_rhodifer_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:16:36.421Z"
+  },
+  {
+    "id": "1788714931983",
+    "type": "stamp",
+    "name": "III Commonwealth Youth Games \u2013 Wrestling Commemorative Stamp",
+    "country": "India",
+    "year": "2008",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714905775_21_india_commonwealth_youth_games_wrestling_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:15:31.983Z"
+  },
+  {
+    "id": "1788714886232",
+    "type": "stamp",
+    "name": "Jubail Commercial Port Stamp",
+    "country": "Saudi Arabia",
+    "year": "1996",
+    "denomination": "50H",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714835238_20_saudi_arabia_jubail_commercial_port_50h_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:14:46.232Z"
+  },
+  {
+    "id": "1788714767680",
+    "type": "stamp",
+    "name": "Preserve the Polar Regions and Glaciers Commemorative Stamp",
+    "country": "India",
+    "year": "2009",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714674258_19_india_preserve_polar_regions_polar_bear_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:12:47.680Z"
+  },
+  {
+    "id": "1788714650135",
+    "type": "stamp",
+    "name": "Preserve the Polar Regions and Glaciers Commemorative Stamp",
+    "country": "India",
+    "year": "2009",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714607291_18_india_preserve_polar_regions_glaciers_5.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:10:50.135Z"
+  },
+  {
+    "id": "1788714574612",
+    "type": "stamp",
+    "name": "Mahatma Gandhi Definitive Stamp",
+    "country": "India",
+    "year": "1988",
+    "denomination": "60p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714545589_17_india_mahatma_gandhi_60p_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:09:34.612Z"
+  },
+  {
+    "id": "1788714517034",
+    "type": "stamp",
+    "name": "Festivals of India \u2013 Dussehra, Mysore Commemorative Stamp",
+    "country": "India",
+    "year": "2008",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714499734_16_india_dussehra_mysore_5.00_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:08:37.034Z"
+  },
+  {
+    "id": "1788714321009",
+    "type": "stamp",
+    "name": "GAIL (India) Limited Commemorative Stamp",
+    "country": "India",
+    "year": "2008",
+    "denomination": "500p",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714283893_15_india_gail_india_limited_5.00_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:05:21.009Z"
+  },
+  {
+    "id": "1788714205833",
+    "type": "stamp",
+    "name": "Rainwater Harvesting Commemorative Stamp",
+    "country": "India",
+    "year": "2006",
+    "denomination": "500",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714165357_14_india_rainwater_harvesting_5.00_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:03:25.833Z"
+  },
+  {
+    "id": "1788714082893",
+    "type": "stamp",
+    "name": "Sukhna Shramdan Project, Chandigarh Commemorative Stamp",
+    "country": "India",
+    "year": "1990",
+    "denomination": "100P",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788714025021_13_india_sukhna_shramdan_chandigarh_100p_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T17:01:22.893Z"
+  },
+  {
+    "id": "1788713928571",
+    "type": "stamp",
+    "name": "Children's Day Commemorative Stamp",
+    "country": "India",
+    "year": "2003",
+    "denomination": "500",
+    "material": "",
+    "quantity": 4,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788713855519_12_india_childrens_day_5.00_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T16:58:48.571Z"
+  },
+  {
+    "id": "1788713736362",
+    "type": "stamp",
+    "name": "Electric Locomotive Definitive Stamp",
+    "country": "India",
+    "year": "1966",
+    "denomination": "0.10p",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788713649913_11_india_electric_locomotive_10p_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T16:55:36.362Z"
+  },
+  {
+    "id": "1788713633490",
+    "type": "stamp",
+    "name": "Ashoka Lion Capital Official Service Stamp",
+    "country": "India",
+    "year": "1971",
+    "denomination": "100 P",
+    "material": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788713445992_10_india_ashoka_lion_capital_service_100p_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T16:53:53.490Z"
+  },
+  {
+    "id": "1788713377529",
+    "type": "stamp",
+    "name": "Telecommunications/TV broadcasting definitive stamp",
+    "country": "India",
+    "year": "1980",
+    "denomination": "40P",
+    "material": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788713423951_9_india_telecommunications_40p_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T16:49:37.529Z"
+  },
+  {
+    "id": "1788712616440",
+    "type": "stamp",
+    "name": "8 India Agriculture 30p As Photographed",
+    "country": "India",
+    "year": "1979",
+    "denomination": "30P",
+    "material": "",
+    "quantity": 3,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788712544958_8_india_agriculture_30p_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T16:36:56.440Z"
+  },
+  {
+    "id": "1788705908778",
+    "type": "stamp",
+    "name": "Red Fox Definitive Stamp",
+    "country": "United States of America",
+    "year": "1998",
+    "denomination": "1$",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788705863872_7_usa_1_red_fox_1998_as_photographed.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T14:45:08.778Z"
+  },
+  {
+    "id": "1788705832177",
+    "type": "stamp",
+    "name": "India Pigeon Postage Stamp",
+    "country": "India",
+    "year": "2010",
+    "denomination": "",
+    "material": "",
+    "quantity": 4,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788705702325_6_pigeon_5.00_2010_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T14:43:52.177Z"
+  },
+  {
+    "id": "1788701002773",
+    "type": "stamp",
+    "name": "India 2009 C V Raman Mnh 10th Series Definitive Stamp",
+    "country": "India",
+    "year": "2009",
+    "denomination": "",
+    "material": "",
+    "quantity": 7,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788701814801_cv_raman_original_singlestamp.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788704694293_cv_raman_stamp_10.00.jpg",
+        "kind": "generated"
+      }
+    ],
+    "addedAt": "2026-09-06T13:23:22.773Z"
+  },
+  {
+    "id": "1788700539177",
+    "type": "stamp",
+    "name": "Cashew Fruit & Nut Definitive Stamp",
+    "country": "India",
+    "year": "1980",
+    "denomination": "225P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 2,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788717332208_2_cashew_2.25_original_cropped.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788700900650_cashew_stamp_2.25.jpg",
+        "kind": "generated"
+      }
+    ],
+    "addedAt": "2026-09-06T13:15:39.177Z"
+  },
+  {
+    "id": "1788700375666",
+    "type": "stamp",
+    "name": "India 2004 Athens Olympics",
+    "country": "India",
+    "year": "2004",
+    "denomination": "1500 P",
+    "material": "",
+    "coinKind": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788720557154_4_athens_2004_olympics_shooting_15.00_original_cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-06T13:12:55.666Z"
+  },
+  {
+    "id": "1788700258783",
+    "type": "stamp",
+    "name": "Apples Definitive Stamp (Vertical Pair)",
+    "country": "India",
+    "year": "1979",
+    "denomination": "280 P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 3,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/1788700217829_82e941a3_7981_4af3_84fa_75fbe84c27cb.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788700910461_orange_stamp_2.80.jpg",
+        "kind": "generated"
+      }
+    ],
+    "addedAt": "2026-09-06T13:10:58.783Z"
+  },
+  {
     "id": "1788699240944",
     "type": "stamp",
     "name": "Kempty Falls",
     "country": "India",
-    "year": "",
-    "denomination": "500",
+    "year": "2003",
+    "denomination": "500 P",
     "material": "",
+    "quantity": 1,
     "dateCollected": "",
     "notes": "",
-    "image": "uploads/collection/1788699190234_image.jpg",
+    "images": [
+      {
+        "url": "uploads/collection/1788717407795_1_kempty_falls_5.00_original_cropped.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788699819216_kempty_falls_stamp_fullres.jpg",
+        "kind": "original"
+      }
+    ],
     "addedAt": "2026-09-06T12:54:00.944Z"
   }
 ]

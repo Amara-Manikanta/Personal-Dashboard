@@ -4,6 +4,11 @@ node_modules/
 src/data/backup/
 data/backups/
 
+# Intermediate / scratch stamp processing folders
+raw_stamps_jpg/
+untitled folder/
+previews/
+
 # Uploads are local scratch — except the collection, where the image IS the
 # record. A stamp or coin whose only picture is on this laptop is one disk
 # failure from gone, so that folder is tracked and syncs with the rest of the
@@ -11,3 +16,4 @@ data/backups/
 # descend into an ignored directory, so the negation below would never be read.)
 uploads/*
 !uploads/collection/
+
