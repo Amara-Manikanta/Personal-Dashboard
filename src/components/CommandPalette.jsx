@@ -50,6 +50,7 @@ window.CommandPalette = ({ onNavigate, onOpenAuthor, onOpenState }) => {
             ['Travel Tracker', 'ph-airplane-tilt', 'travel'],
             ['Writing Dashboard', 'ph-pen-nib', 'writing'],
             ['Clothes Tracker', 'ph-t-shirt', 'clothes'],
+            ['Collection', 'ph-stamp', 'collection'],
             ['Sync & Backup', 'ph-arrows-clockwise', 'sync']
         ].forEach(([label, icon, view]) => push('Page', label, 'Dashboard', icon, () => onNavigate(view)));
 
@@ -80,6 +81,18 @@ window.CommandPalette = ({ onNavigate, onOpenAuthor, onOpenState }) => {
             const title = s.title || s.name;
             if (!title) return;
             push('Story', title, 'Story', 'ph-scroll', () => onNavigate('writing'));
+        });
+
+        (window.collectiblesData || []).forEach(c => {
+            if (!c.name) return;
+            const isCoin = c.type === 'coin';
+            push(
+                isCoin ? 'Coin' : 'Stamp',
+                c.name,
+                [c.country, c.year].filter(Boolean).join(' · ') || 'No details yet',
+                isCoin ? 'ph-coin' : 'ph-stamp',
+                () => onNavigate('collection')
+            );
         });
 
         return items;

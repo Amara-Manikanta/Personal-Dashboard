@@ -1,6 +1,6 @@
 // Views that are addressable by URL. Detail views (a single state, a single
 // author) carry their subject in the hash too, e.g. #/travel/Kerala.
-const ROUTABLE_VIEWS = ['home', 'novels', 'travel', 'writing', 'clothes', 'sync', 'author-page', 'state-details'];
+const ROUTABLE_VIEWS = ['home', 'novels', 'travel', 'writing', 'clothes', 'collection', 'sync', 'author-page', 'state-details'];
 
 const viewToHash = (view, subject) => {
     if (view === 'home') return '#/';
@@ -34,13 +34,14 @@ const App = () => {
         const loadData = async () => {
             try {
                 // Fetch all data in parallel
-                const [novels, statesData, writing, stories, authors, clothes] = await Promise.all([
+                const [novels, statesData, writing, stories, authors, clothes, collectibles] = await Promise.all([
                     window.api.getNovels(),
                     window.api.getStates(),
                     window.api.getWriting(),
                     window.api.getStories(),
                     window.api.getAuthors(),
-                    window.api.getClothes()
+                    window.api.getClothes(),
+                    window.api.getCollectibles()
                 ]);
 
                 window.novelsData = novels || [];
@@ -48,6 +49,7 @@ const App = () => {
                 window.storiesList = stories || [];
                 window.authorsData = authors || [];
                 window.clothesData = clothes || [];
+                window.collectiblesData = collectibles || [];
                 window.rawStatesData = statesData || { states: {}, bucketList: [] };
 
                 console.log("Data loaded successfully. States loaded:", Object.keys((window.rawStatesData && window.rawStatesData.states) || {}).length);
@@ -114,6 +116,7 @@ const App = () => {
         const stories = window.storiesList || [];
         const authors = window.authorsData || [];
         const clothes = window.clothesData || [];
+        const collectibles = window.collectiblesData || [];
 
         const isReading = (n) => n.status === 'Currently Reading';
         const isRead = (n) => n.status === 'Read';
@@ -172,7 +175,13 @@ const App = () => {
                 bucketList: bucketList.length
             },
             writing: { entries: writing.length, stories: stories.length },
-            clothes: { items: clothes.length }
+            clothes: { items: clothes.length },
+            collection: {
+                // Records predating coins carry no type and are stamps.
+                stamps: collectibles.filter(c => (c.type || 'stamp') === 'stamp').length,
+                coins: collectibles.filter(c => c.type === 'coin').length,
+                countries: new Set(collectibles.map(c => c.country).filter(Boolean)).size
+            }
         };
     }, [loading]);
 
@@ -259,6 +268,10 @@ const App = () => {
 
             {currentView === 'clothes' && !loading && (
                 <window.ClothesDashboard onBackToHome={handleBackToHome} />
+            )}
+
+            {currentView === 'collection' && !loading && (
+                <window.CollectionDashboard onBackToHome={handleBackToHome} />
             )}
         </div>
     );

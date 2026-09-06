@@ -214,7 +214,7 @@ const localSave = async (type, data) => {
 const refreshVersions = async () => {
     if (!IS_LOCALHOST) return null;
     const stale = [];
-    for (const type of ['novels', 'states', 'writing', 'stories', 'authors', 'clothes']) {
+    for (const type of ['novels', 'states', 'writing', 'stories', 'authors', 'clothes', 'collectibles']) {
         try {
             const res = await fetch(`${API_BASE}/${type}`, { method: 'HEAD' }).catch(() => null);
             const version = res && res.headers.get('X-Data-Version');
@@ -375,6 +375,32 @@ const api = {
         }
     },
 
+    // Stamps and coins live in one file, told apart by `type`.
+    getCollectibles: async () => {
+        if (IS_LOCALHOST) {
+            try {
+                return await localGet('collectibles');
+            } catch (e) {
+                console.error(e);
+                return [];
+            }
+        } else {
+            return (await ghStorage.getFile('collectibles.json')) || [];
+        }
+    },
+    saveCollectibles: async (data) => {
+        if (IS_LOCALHOST) {
+            try {
+                await localSave('collectibles', data);
+            } catch (e) {
+                console.error("Error saving collection:", e);
+                throw e;
+            }
+        } else {
+            await ghStorage.saveFile('collectibles.json', data);
+        }
+    },
+
     uploadImage: async (fileData) => {
         if (!IS_LOCALHOST) return null;
         try {
@@ -394,7 +420,7 @@ const api = {
     sync: {
         pullFromOnline: async () => {
             if (!IS_LOCALHOST) throw new Error('Can only sync when running locally.');
-            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json'];
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json'];
             const results = { success: [], failed: [] };
             
             for (const file of files) {
@@ -423,7 +449,7 @@ const api = {
             if (!ghStorage.token) {
                 throw new Error("GitHub token is required to push data. Please set it first.");
             }
-            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json'];
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json'];
             const results = { success: [], failed: [] };
             
             for (const file of files) {

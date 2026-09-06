@@ -51,7 +51,7 @@ const PRUNE_OLD_SNAPSHOTS = true;
 
 const storage = new Storage({ dataDir: DATA_DIR, backupDir: BACKUP_DIR, prune: PRUNE_OLD_SNAPSHOTS });
 
-const DATA_FILES = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json'];
+const DATA_FILES = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json'];
 
 // Read a data file, self-healing from the newest snapshot if it is corrupt.
 const readData = (filename) => storage.read(filename).data;
@@ -140,6 +140,11 @@ app.get('/api/clothes', handleRead('clothes.json', []));
 
 app.post('/api/clothes', handleWrite('clothes.json', 'clothes'));
 
+// --- Collection (stamps and coins share one file, split by `type`) ---
+app.get('/api/collectibles', handleRead('collectibles.json', []));
+
+app.post('/api/collectibles', handleWrite('collectibles.json', 'collection items'));
+
 // --- Backups ---
 // Health summary: record counts, corrupt files, snapshot coverage.
 app.get('/api/backups/status', (req, res) => {
@@ -182,21 +187,28 @@ app.post('/api/upload-image', (req, res) => {
     if (!ENABLE_WRITES) return res.status(403).json({ success: false, message: 'Read-only mode' });
 
     try {
-        const { image, name } = req.body;
+        const { image, name, folder } = req.body;
         if (!image || !name) return res.status(400).json({ success: false, message: 'Missing image data' });
 
         // Remove header if present (e.g., "data:image/jpeg;base64,")
         const base64Data = image.replace(/^data:image\/\w+;base64,/, "");
         const buffer = Buffer.from(base64Data, 'base64');
 
+        // An optional subfolder keeps collections separated on disk (stamps are
+        // tracked in git, loose uploads are not). Restricted to a single plain
+        // segment so a crafted name cannot escape the uploads directory.
+        const subfolder = /^[a-z0-9_-]{1,32}$/i.test(folder || '') ? folder : '';
+        const targetDir = subfolder ? path.join(UPLOADS_DIR, subfolder) : UPLOADS_DIR;
+        if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
+
         const timestamp = Date.now();
         const safeName = name.replace(/[^a-z0-9.]/gi, '_').toLowerCase();
         const filename = `${timestamp}_${safeName}`;
-        const filePath = path.join(UPLOADS_DIR, filename);
+        const filePath = path.join(targetDir, filename);
 
         fs.writeFileSync(filePath, buffer);
 
-        res.json({ success: true, path: `uploads/${filename}` });
+        res.json({ success: true, path: subfolder ? `uploads/${subfolder}/${filename}` : `uploads/${filename}` });
     } catch (err) {
         console.error("Upload error:", err);
         res.status(500).json({ success: false, message: 'Upload failed' });

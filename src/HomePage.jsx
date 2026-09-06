@@ -164,6 +164,28 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                         </div>
                     </div>
 
+                    <div className="dashboard-card collection-card" onClick={() => onNavigate('collection')}>
+                        <div className="card-glow"></div>
+                        <div className="card-icon">
+                            <i className="ph-fill ph-stamp"></i>
+                        </div>
+                        <h2>Collection</h2>
+                        <p className="card-description">Catalogue the stamps and coins you have collected</p>
+                        {cardStat(stats && (
+                            (stats.collection.stamps + stats.collection.coins) === 0
+                                ? 'Nothing catalogued yet'
+                                : [
+                                    `${stats.collection.stamps} ${stats.collection.stamps === 1 ? 'stamp' : 'stamps'}`,
+                                    `${stats.collection.coins} ${stats.collection.coins === 1 ? 'coin' : 'coins'}`,
+                                    stats.collection.countries ? `${stats.collection.countries} countries` : null
+                                ].filter(Boolean).join(' · ')
+                        ))}
+                        <div className="card-action">
+                            <span>Open Dashboard</span>
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
+
                     <div className="dashboard-card sync-card" onClick={() => onNavigate('sync')}>
                         <div className="card-glow"></div>
                         <div className="card-icon">
@@ -496,6 +518,7 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                 .travel-card .card-icon i { color: #22d3ee; }
                 .writing-card .card-icon i { color: #f472b6; }
                 .clothes-card .card-icon i { color: #34d399; }
+                .collection-card .card-icon i { color: #f59e0b; }
                 .sync-card .card-icon i { color: #fbbf24; }
 
                 .dashboard-card:hover .card-icon {
@@ -507,6 +530,7 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                 .travel-card:hover { border-color: rgba(34, 211, 238, 0.3); box-shadow: 0 8px 30px rgba(34, 211, 238, 0.1); }
                 .writing-card:hover { border-color: rgba(244, 114, 182, 0.3); box-shadow: 0 8px 30px rgba(244, 114, 182, 0.1); }
                 .clothes-card:hover { border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 8px 30px rgba(52, 211, 153, 0.1); }
+                .collection-card:hover { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 8px 30px rgba(245, 158, 11, 0.1); }
                 .sync-card:hover { border-color: rgba(251, 191, 36, 0.3); box-shadow: 0 8px 30px rgba(251, 191, 36, 0.1); }
 
                 .dashboard-card h2 {
