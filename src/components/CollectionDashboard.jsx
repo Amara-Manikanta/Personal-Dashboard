@@ -32,6 +32,18 @@ const COLLECTION_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June
     'July', 'August', 'September', 'October', 'November', 'December'];
 
 /** Month + year as two selects — matches the pickers used across Travel. */
+/**
+ * How many copies of one item you hold.
+ *
+ * A duplicate is the same stamp, not a second entry — spares are what you
+ * trade with. Anything missing or nonsensical counts as one, so the records
+ * added before this existed need no migrating.
+ */
+const quantityOf = (item) => {
+    const n = Math.floor(Number(item && item.quantity));
+    return isFinite(n) && n > 0 ? n : 1;
+};
+
 const CollectionMonthPicker = ({ value, onChange }) => {
     const { useState, useEffect } = React;
 
@@ -172,6 +184,39 @@ const imagesOf = (item) => {
  */
 const coverOf = (item) => imagesOf(item)[0] || null;
 
+/**
+ * Give a stamp's mount the proportions of the stamp inside it.
+ *
+ * Stamps are issued portrait, landscape and square, so one fixed box either
+ * crops the odd ones out or floats them in dead space. The natural size is
+ * only known once the image has loaded, hence doing it here rather than in
+ * CSS. Written straight to the node: React never sets an inline style on the
+ * mount, so there is nothing for this to fight with, and routing it through
+ * state would re-render the whole album once per image.
+ *
+ * The ratio is applied to the border box, which includes the mount's padding,
+ * so the picture can sit a few pixels off-centre of its margin on the most
+ * elongated stamps. Correcting that exactly needs the rendered size, which is
+ * what the ratio decides — so it is left alone: `contain` keeps the stamp
+ * undistorted either way, and the slight extra edge reads as mount margin.
+ */
+const applyMountShape = (img) => {
+    const mount = img && img.parentElement;
+    if (!mount || !img.naturalWidth || !img.naturalHeight) return;
+    mount.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+};
+
+const shapeMount = (e) => applyMountShape(e.currentTarget);
+
+/**
+ * A cached image can already be decoded before React attaches onLoad, and that
+ * load event is gone for good — the stamp would keep the placeholder square.
+ * The ref catches that case; onLoad still covers images fetched over the wire.
+ */
+const shapeMountRef = (img) => {
+    if (img && img.complete) applyMountShape(img);
+};
+
 /** A filename is a reasonable first guess: "india_1975_tiger" → "India 1975 Tiger". */
 const nameFromFile = (file) => (file.name || 'Untitled')
     .replace(/\.[^.]+$/, '')
@@ -285,8 +330,13 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
     const stats = useMemo(() => {
         const years = scoped.map(s => Number(s.year)).filter(y => y > 0);
+        // Distinct entries is the headline — "how many different stamps do I
+        // have" — with the copy count alongside only when the two differ.
+        const copies = scoped.reduce((sum, item) => sum + quantityOf(item), 0);
         return {
             total: scoped.length,
+            copies,
+            spares: copies - scoped.length,
             stamps: items.filter(i => typeOf(i) === 'stamp').length,
             coins: items.filter(i => typeOf(i) === 'coin').length,
             countries: countries.length,
@@ -497,6 +547,11 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     <div>
                         <span className="coll-stat-label">{activeType ? activeType.plural : 'Items'}</span>
                         <span className="coll-stat-value">{stats.total}</span>
+                        {stats.spares > 0 && (
+                            <span className="coll-stat-note">
+                                {stats.copies} counting {stats.spares} spare{stats.spares === 1 ? '' : 's'}
+                            </span>
+                        )}
                     </div>
                 </div>
                 <div className="coll-stat">
@@ -610,9 +665,20 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                             onClick={() => { setLightboxId(item.id); setPhotoIndex(0); }}
                                             aria-label={`View ${item.name || kind} full size`}
                                         >
-                                            {cover
-                                                ? <img src={cover.url} alt={item.name || COLLECTION_TYPES[kind].label} loading="lazy" />
-                                                : <span className="coll-noimage"><i className={`ph-fill ${COLLECTION_TYPES[kind].icon}`}></i></span>}
+                                            {/* The mount, not the cell, carries the perforated edge, so
+                                                it hugs a wide stamp and a tall one alike while every
+                                                card stays the same size. */}
+                                            <span className="coll-mount">
+                                                {cover
+                                                    ? <img
+                                                        src={cover.url}
+                                                        alt={item.name || COLLECTION_TYPES[kind].label}
+                                                        loading="lazy"
+                                                        ref={shapeMountRef}
+                                                        onLoad={shapeMount}
+                                                    />
+                                                    : <span className="coll-noimage"><i className={`ph-fill ${COLLECTION_TYPES[kind].icon}`}></i></span>}
+                                            </span>
                                             {pics.length > 1 && (
                                                 <span className="coll-count" title={`${pics.length} images`}>
                                                     <i className="ph-fill ph-images"></i>{pics.length}
@@ -621,6 +687,11 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                             {cover && cover.kind === 'generated' && (
                                                 <span className="coll-genmark" title="Generated image — no original uploaded yet">
                                                     <i className="ph-fill ph-sparkle"></i>
+                                                </span>
+                                            )}
+                                            {quantityOf(item) > 1 && (
+                                                <span className="coll-qty" title={`${quantityOf(item)} copies of this one`}>
+                                                    ×{quantityOf(item)}
                                                 </span>
                                             )}
                                             {item.denomination && <span className="coll-denom">{item.denomination}</span>}
@@ -1039,22 +1110,44 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
                 }
 
+                /* The cell is a fixed square on every card, so the grid stays
+                   even. The stamp inside keeps its own proportions — stamps
+                   are issued portrait, landscape and square, and a fixed 3:4
+                   box cropped the wide ones down the middle. */
                 .coll-frame {
-                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     width: 100%;
+                    aspect-ratio: 1 / 1;
+                    padding: 0;
                     border: none;
+                    background: transparent;
                     cursor: zoom-in;
                     position: relative;
                     overflow: hidden;
-                    padding: 9px;
-                    background-color: #fdfaf3;
                 }
 
-                /* Perforated edge — the one cue that says "stamp" without a
-                   label. The dot ring is painted on the frame and the image is
-                   inset so the teeth read against the card behind it. */
-                .coll-card.is-stamp .coll-frame {
-                    aspect-ratio: 3 / 4;
+                /* The mount is what looks like a stamp, and it takes the shape
+                   of the image it holds — so the perforations hug a long stamp
+                   just as tightly as a tall one instead of ringing the whole
+                   cell. Its aspect-ratio is set from the image's natural size
+                   on load; until then this square is a reasonable stand-in.
+                   Both maximums resolve because the cell has a definite size,
+                   which is why the ratio lives here and not on the image. */
+                .coll-mount {
+                    display: block;
+                    box-sizing: border-box;
+                    aspect-ratio: 1 / 1;
+                    max-width: 100%;
+                    max-height: 100%;
+                    padding: 9px;
+                    background-color: #fdfaf3;
+                    line-height: 0;
+                }
+
+                /* Perforated edge — the one cue that says "stamp" without a label. */
+                .coll-card.is-stamp .coll-mount {
                     border-radius: 4px;
                     background-image: radial-gradient(circle at 9px 9px, var(--bg-surface) 5px, transparent 5.5px);
                     background-size: 18px 18px;
@@ -1062,23 +1155,32 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 }
 
                 /* Coins get a milled rim instead, and are round. */
-                .coll-card.is-coin .coll-frame {
-                    aspect-ratio: 1 / 1;
+                .coll-card.is-coin .coll-mount {
                     border-radius: 50%;
                     padding: 7px;
                     background-image: repeating-conic-gradient(#d9cba8 0deg 2deg, #f5ecd6 2deg 4deg);
                     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12);
                 }
 
-                .coll-frame img {
+                /* The mount already carries the right shape, so the image just
+                   fills it — no cropping, because the box matches the picture. */
+                .coll-mount img {
+                    display: block;
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
-                    display: block;
+                    object-fit: contain;
                     border-radius: 1px;
                 }
 
-                .coll-card.is-coin .coll-frame img { border-radius: 50%; }
+                /* Coins are round whatever the photo is, so this one does crop. */
+                .coll-card.is-coin .coll-mount {
+                    aspect-ratio: 1 / 1 !important;
+                }
+
+                .coll-card.is-coin .coll-mount img {
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
 
                 .coll-noimage {
                     width: 100%;
@@ -1179,6 +1281,27 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 }
 
                 .coll-count { left: 12px; }
+
+                /* Sits under the image-count chip when both are showing, so
+                   neither covers the stamp. */
+                .coll-qty {
+                    position: absolute;
+                    left: 12px;
+                    bottom: 12px;
+                    background: rgba(12, 10, 6, 0.82);
+                    color: #fbbf24;
+                    font-size: 0.7rem;
+                    font-weight: 700;
+                    padding: 0.12rem 0.45rem;
+                    border-radius: 99px;
+                    letter-spacing: 0.02em;
+                }
+
+                /* The denomination already owns the bottom-left of a stamp, so
+                   move it clear rather than stacking the two. */
+                .coll-card.is-stamp .coll-denom ~ .coll-qty,
+                .coll-card.is-stamp .coll-qty { bottom: auto; top: 12px; left: 12px; }
+                .coll-card.is-stamp .coll-count ~ .coll-qty { left: 58px; }
                 .coll-genmark { right: 12px; color: #c4b5fd; }
 
                 /* The card's own hover controls sit top-right, so shift the
@@ -1691,6 +1814,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
         year: item.year || '',
         denomination: item.denomination || '',
         material: item.material || '',
+        quantity: quantityOf(item),
         dateCollected: item.dateCollected || '',
         notes: item.notes || '',
         images: imagesOf(item)
@@ -1794,6 +1918,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
             year: String(form.year).trim(),
             denomination: form.denomination.trim(),
             material: form.material.trim(),
+            quantity: quantityOf({ quantity: form.quantity }),
             dateCollected: form.dateCollected,
             notes: form.notes.trim(),
             images: form.images,
@@ -1965,7 +2090,23 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                                         placeholder={type === 'coin' ? 'e.g. ₹2 / 50 paise' : 'e.g. ₹5 / 20p'}
                                     />
                                 </div>
-                                {type === 'coin' ? (
+                                <div className="coll-field">
+                                    <label htmlFor="coll-qty">How many</label>
+                                    <input
+                                        id="coll-qty"
+                                        type="number"
+                                        min="1"
+                                        step="1"
+                                        value={form.quantity}
+                                        onChange={(e) => set('quantity', e.target.value)}
+                                        placeholder="1"
+                                    />
+                                    <p className="coll-field-hint">Copies of this same one — spares and swaps.</p>
+                                </div>
+                            </div>
+
+                            {type === 'coin' ? (
+                                <div className="coll-field-row">
                                     <div className="coll-field">
                                         <label htmlFor="coll-material">Metal</label>
                                         <input
@@ -1975,15 +2116,12 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                                             placeholder="e.g. Copper-nickel, Brass"
                                         />
                                     </div>
-                                ) : (
                                     <div className="coll-field">
                                         <label>Date collected</label>
                                         <CollectionMonthPicker value={form.dateCollected} onChange={(v) => set('dateCollected', v)} />
                                     </div>
-                                )}
-                            </div>
-
-                            {type === 'coin' && (
+                                </div>
+                            ) : (
                                 <div className="coll-field">
                                     <label>Date collected</label>
                                     <CollectionMonthPicker value={form.dateCollected} onChange={(v) => set('dateCollected', v)} />
