@@ -27,10 +27,33 @@ const COIN_KINDS = {
     special: { label: 'Special edition', icon: 'ph-crown-simple' }
 };
 
+/**
+ * Whether the coin is still money.
+ *
+ * A separate axis from the kind above: the kind says what a coin was struck
+ * for, this says whether you could still spend it. Withdrawn means no longer
+ * issued but not formally cancelled; demonetised means it has ceased to be
+ * legal tender, as the 25 paise did in 2011.
+ *
+ * Condition — whether your particular specimen is worn or mint — is a third
+ * axis again, and is deliberately not modelled here.
+ */
+const COIN_STATUS = {
+    current: { label: 'Current', icon: 'ph-check-circle' },
+    withdrawn: { label: 'Withdrawn', icon: 'ph-archive-box' },
+    demonetised: { label: 'Demonetised', icon: 'ph-prohibit' }
+};
+
 /** A coin's issue kind, or '' when it is unset or the item is a stamp. */
 const coinKindOf = (item) => {
     if (!item || (item.type || 'stamp') !== 'coin') return '';
     return COIN_KINDS[item.coinKind] ? item.coinKind : '';
+};
+
+/** A coin's legal-tender status, or '' when unset or the item is a stamp. */
+const coinStatusOf = (item) => {
+    if (!item || (item.type || 'stamp') !== 'coin') return '';
+    return COIN_STATUS[item.coinStatus] ? item.coinStatus : '';
 };
 
 const COLLECTION_TYPES = {
@@ -257,6 +280,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     // cannot both be on and disagree about how the album is split.
     const [groupBy, setGroupBy] = useState('none');
     const [kindFilter, setKindFilter] = useState('');
+    const [statusFilter, setStatusFilter] = useState('');
     const [onlyIncomplete, setOnlyIncomplete] = useState(false);
 
     const [editing, setEditing] = useState(null);     // item being edited, or a {type} seed
@@ -317,10 +341,12 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         const matches = scoped.filter(s => {
             if (countryFilter && s.country !== countryFilter) return false;
             if (kindFilter && coinKindOf(s) !== kindFilter) return false;
+            if (statusFilter && coinStatusOf(s) !== statusFilter) return false;
             if (onlyIncomplete && !isIncomplete(s)) return false;
             if (!q) return true;
             const kindLabel = coinKindOf(s) ? COIN_KINDS[coinKindOf(s)].label : '';
-            return [s.name, s.country, s.year, s.denomination, s.material, s.notes, kindLabel]
+            const statusLabel = coinStatusOf(s) ? COIN_STATUS[coinStatusOf(s)].label : '';
+            return [s.name, s.country, s.year, s.denomination, s.material, s.notes, kindLabel, statusLabel]
                 .filter(Boolean)
                 .some(v => String(v).toLowerCase().includes(q));
         });
@@ -336,7 +362,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         };
 
         return matches.slice().sort(sorters[sortBy] || sorters['added-newest']);
-    }, [scoped, query, countryFilter, kindFilter, sortBy, onlyIncomplete]);
+    }, [scoped, query, countryFilter, kindFilter, statusFilter, sortBy, onlyIncomplete]);
 
     // One flat grid, or split by country or coin kind — always the same shape
     // out, so the renderer stays simple.
@@ -584,6 +610,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                             // tab whose controls are no longer shown.
                             if (id === 'stamp') {
                                 setKindFilter('');
+                                setStatusFilter('');
                                 setGroupBy(g => (g === 'kind' ? 'none' : g));
                             }
                         }}
@@ -664,6 +691,15 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </select>
                 )}
 
+                {showCoinControls && (
+                    <select className="coll-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                        <option value="">Any status</option>
+                        {Object.entries(COIN_STATUS).map(([id, s]) => (
+                            <option key={id} value={id}>{s.label}</option>
+                        ))}
+                    </select>
+                )}
+
                 <button
                     className={`coll-toggle ${groupBy === 'country' ? 'is-on' : ''}`}
                     onClick={() => setGroupBy(g => (g === 'country' ? 'none' : 'country'))}
@@ -680,10 +716,13 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </button>
                 )}
 
-                {(query || countryFilter || kindFilter || onlyIncomplete) && (
+                {(query || countryFilter || kindFilter || statusFilter || onlyIncomplete) && (
                     <button
                         className="coll-clear"
-                        onClick={() => { setQuery(''); setCountryFilter(''); setKindFilter(''); setOnlyIncomplete(false); }}
+                        onClick={() => {
+                            setQuery(''); setCountryFilter(''); setKindFilter('');
+                            setStatusFilter(''); setOnlyIncomplete(false);
+                        }}
                     >
                         Clear filters · showing {visible.length} of {scoped.length}
                     </button>
@@ -781,6 +820,14 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                                     <span className="coll-kindtag" title="Issue kind">
                                                         <i className={`ph-fill ${COIN_KINDS[coinKindOf(item)].icon}`}></i>
                                                         {COIN_KINDS[coinKindOf(item)].label}
+                                                    </span>
+                                                )}
+                                                {/* Only the noteworthy states earn a badge — a coin
+                                                    still in use is the unremarkable case. */}
+                                                {coinStatusOf(item) && coinStatusOf(item) !== 'current' && (
+                                                    <span className={`coll-status is-${coinStatusOf(item)}`} title="No longer in ordinary use">
+                                                        <i className={`ph-fill ${COIN_STATUS[coinStatusOf(item)].icon}`}></i>
+                                                        {COIN_STATUS[coinStatusOf(item)].label}
                                                     </span>
                                                 )}
                                                 {item.material && <span><i className="ph-fill ph-circle-half"></i>{item.material}</span>}
@@ -1736,6 +1783,11 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 .coll-kindtag { color: #fcd34d !important; }
                 .coll-kindtag i { color: #fcd34d !important; }
 
+                /* Withdrawn is a quiet fact; demonetised is the harder stop, so
+                   it reads warmer without shouting. */
+                .coll-status.is-withdrawn, .coll-status.is-withdrawn i { color: #94a3b8 !important; }
+                .coll-status.is-demonetised, .coll-status.is-demonetised i { color: #f0abfc !important; }
+
                 .coll-field textarea { resize: vertical; min-height: 74px; line-height: 1.5; }
 
                 .coll-field-row {
@@ -1903,6 +1955,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
         denomination: item.denomination || '',
         material: item.material || '',
         coinKind: coinKindOf(item),
+        coinStatus: coinStatusOf(item),
         quantity: quantityOf(item),
         dateCollected: item.dateCollected || '',
         notes: item.notes || '',
@@ -2007,8 +2060,9 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
             year: String(form.year).trim(),
             denomination: form.denomination.trim(),
             material: form.material.trim(),
-            // Only coins carry a kind; a stamp must never acquire one.
+            // Only coins carry these; a stamp must never acquire one.
             coinKind: type === 'coin' ? form.coinKind : '',
+            coinStatus: type === 'coin' ? form.coinStatus : '',
             quantity: quantityOf({ quantity: form.quantity }),
             dateCollected: form.dateCollected,
             notes: form.notes.trim(),
@@ -2197,19 +2251,35 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                             </div>
 
                             {type === 'coin' && (
-                                <div className="coll-field">
-                                    <label htmlFor="coll-kind">Kind of issue</label>
-                                    <select
-                                        id="coll-kind"
-                                        className="coll-kind-select"
-                                        value={form.coinKind}
-                                        onChange={(e) => set('coinKind', e.target.value)}
-                                    >
-                                        <option value="">Not set</option>
-                                        {Object.entries(COIN_KINDS).map(([id, k]) => (
-                                            <option key={id} value={id}>{k.label}</option>
-                                        ))}
-                                    </select>
+                                <div className="coll-field-row">
+                                    <div className="coll-field">
+                                        <label htmlFor="coll-kind">Kind of issue</label>
+                                        <select
+                                            id="coll-kind"
+                                            className="coll-kind-select"
+                                            value={form.coinKind}
+                                            onChange={(e) => set('coinKind', e.target.value)}
+                                        >
+                                            <option value="">Not set</option>
+                                            {Object.entries(COIN_KINDS).map(([id, k]) => (
+                                                <option key={id} value={id}>{k.label}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="coll-field">
+                                        <label htmlFor="coll-status">Still legal tender?</label>
+                                        <select
+                                            id="coll-status"
+                                            className="coll-kind-select"
+                                            value={form.coinStatus}
+                                            onChange={(e) => set('coinStatus', e.target.value)}
+                                        >
+                                            <option value="">Not set</option>
+                                            {Object.entries(COIN_STATUS).map(([id, s]) => (
+                                                <option key={id} value={id}>{s.label}</option>
+                                            ))}
+                                        </select>
+                                    </div>
                                 </div>
                             )}
 
