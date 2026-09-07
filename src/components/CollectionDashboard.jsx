@@ -68,8 +68,26 @@ const COLLECTION_TYPES = {
         plural: 'Coins',
         icon: 'ph-coin',
         blurb: 'Click, drop or paste a photo of the coin'
+    },
+    banknote: {
+        label: 'Banknote',
+        plural: 'Banknotes',
+        icon: 'ph-money',
+        blurb: 'Click, drop or paste a photo of the note'
     }
 };
+
+/**
+ * The config for an item's type, never undefined.
+ *
+ * Reading `.label` off a missing entry throws, and because this component
+ * renders the whole page, one record with an unrecognised type took the
+ * entire dashboard down with it — which is how banknotes first appeared.
+ * An unknown type now degrades to a plain, correctly-labelled card instead.
+ */
+const UNKNOWN_TYPE = { label: 'Item', plural: 'Items', icon: 'ph-question', blurb: 'Click, drop or paste a photo' };
+
+const configFor = (kind) => COLLECTION_TYPES[kind] || UNKNOWN_TYPE;
 
 const COLLECTION_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -358,8 +376,12 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
     const bulkInputRef = useRef(null);
 
-    // 'album' | 'collage'
-    const [layoutMode, setLayoutMode] = useState('album');
+    // 'both' | 'collage' | 'album'. Both is the default: the collage reads the
+    // collection at a glance, the cards carry the detail, and wanting one is
+    // not a reason to lose the other.
+    const [layoutMode, setLayoutMode] = useState('both');
+    const showCollage = layoutMode !== 'album';
+    const showAlbum = layoutMode !== 'collage';
     const [ratiosReady, setRatiosReady] = useState(0);   // bumped as measurements land
     const [collageWidth, setCollageWidth] = useState(0);
     const [collageDensity, setCollageDensity] = useState(170);
@@ -486,6 +508,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
             spares: copies - scoped.length,
             stamps: items.filter(i => typeOf(i) === 'stamp').length,
             coins: items.filter(i => typeOf(i) === 'coin').length,
+            banknotes: items.filter(i => typeOf(i) === 'banknote').length,
             countries: countries.length,
             oldest: years.length ? Math.min(...years) : null,
             newest: years.length ? Math.max(...years) : null,
@@ -501,7 +524,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         const created = [];
         const failed = [];
         for (let i = 0; i < files.length; i++) {
-            setBusy(`Adding ${COLLECTION_TYPES[type].label.toLowerCase()} ${i + 1} of ${files.length}…`);
+            setBusy(`Adding ${configFor(type).label.toLowerCase()} ${i + 1} of ${files.length}…`);
             try {
                 const image = await storeCollectionImage(files[i]);
                 created.push({
@@ -527,8 +550,8 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         const saved = await persist([...created, ...items]);
         if (saved) {
             const noun = created.length === 1
-                ? COLLECTION_TYPES[type].label.toLowerCase()
-                : COLLECTION_TYPES[type].plural.toLowerCase();
+                ? configFor(type).label.toLowerCase()
+                : configFor(type).plural.toLowerCase();
             say(
                 failed.length
                     ? `Added ${created.length} ${noun}. ${failed.length} could not be read.`
@@ -540,12 +563,12 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     };
 
     const handleDelete = async (item) => {
-        const kind = COLLECTION_TYPES[typeOf(item)].label.toLowerCase();
+        const kind = configFor(typeOf(item)).label.toLowerCase();
         if (!window.confirm(`Remove “${item.name || `this ${kind}`}” from the collection?`)) return;
         // The uploaded file is left on disk on purpose: deleting a record is a
         // one-click action, and an orphaned image is far cheaper to clean up
         // later than a photo that cannot be got back.
-        await persist(items.filter(s => s.id !== item.id), { successMessage: `${COLLECTION_TYPES[typeOf(item)].label} removed.` });
+        await persist(items.filter(s => s.id !== item.id), { successMessage: `${configFor(typeOf(item)).label} removed.` });
     };
 
     /**
@@ -625,7 +648,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     // end rather than on every image — 50 images would otherwise mean 50
     // layout passes.
     useEffect(() => {
-        if (layoutMode !== 'collage') return;
+        if (!showCollage) return;
 
         const pending = visible
             .map(item => (coverOf(item) || {}).url)
@@ -638,7 +661,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
             if (!cancelled) setRatiosReady(n => n + 1);
         });
         return () => { cancelled = true; };
-    }, [layoutMode, visible]);
+    }, [showCollage, visible]);
 
     // The rows are sized in pixels, so the layout has to be told when its
     // container changes width — a CSS grid would reflow on its own, this
@@ -669,7 +692,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     }, [collageEl, collageRows.length]);
 
     const lightboxItem = lightboxId !== null ? items.find(s => s.id === lightboxId) : null;
-    const activeType = tab === 'all' ? null : COLLECTION_TYPES[tab];
+    const activeType = tab === 'all' ? null : configFor(tab);
 
     // The kind controls only make sense where coins are on screen, so on the
     // Stamps tab the toolbar is exactly what it was.
@@ -708,10 +731,13 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     {tab === 'all' ? (
                         <>
                             <button className="coll-btn-ghost" onClick={() => setEditing({ type: 'stamp' })}>
-                                <i className="ph-bold ph-stamp"></i> Add Stamp
+                                <i className="ph-bold ph-stamp"></i> Stamp
                             </button>
-                            <button className="coll-btn" onClick={() => setEditing({ type: 'coin' })}>
-                                <i className="ph-bold ph-coin"></i> Add Coin
+                            <button className="coll-btn-ghost" onClick={() => setEditing({ type: 'coin' })}>
+                                <i className="ph-bold ph-coin"></i> Coin
+                            </button>
+                            <button className="coll-btn" onClick={() => setEditing({ type: 'banknote' })}>
+                                <i className="ph-bold ph-money"></i> Banknote
                             </button>
                         </>
                     ) : (
@@ -738,6 +764,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 {[
                     ['stamp', 'ph-stamp', 'Stamps', stats.stamps],
                     ['coin', 'ph-coin', 'Coins', stats.coins],
+                    ['banknote', 'ph-money', 'Banknotes', stats.banknotes],
                     ['all', 'ph-squares-four', 'Everything', items.length]
                 ].map(([id, icon, label, count]) => (
                     <button
@@ -810,7 +837,11 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
             <div className="coll-toolbar">
                 <div className="coll-viewswitch" role="group" aria-label="Layout">
-                    {[['album', 'ph-squares-four', 'Album'], ['collage', 'ph-selection-all', 'Collage']].map(([id, icon, label]) => (
+                    {[
+                        ['both', 'ph-rows', 'Both'],
+                        ['collage', 'ph-selection-all', 'Collage'],
+                        ['album', 'ph-squares-four', 'Cards']
+                    ].map(([id, icon, label]) => (
                         <button
                             key={id}
                             className={layoutMode === id ? 'is-on' : ''}
@@ -857,7 +888,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
 
                 {/* Grouping splits the album into headed sections, which a
                     collage has no room for — it is one continuous wall. */}
-                {layoutMode === 'album' && (
+                {showAlbum && (
                     <button
                         className={`coll-toggle ${groupBy === 'country' ? 'is-on' : ''}`}
                         onClick={() => setGroupBy(g => (g === 'country' ? 'none' : 'country'))}
@@ -866,7 +897,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </button>
                 )}
 
-                {layoutMode === 'collage' && (
+                {showCollage && (
                     <label className="coll-density">
                         Size
                         <input
@@ -881,7 +912,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </label>
                 )}
 
-                {showCoinControls && layoutMode === 'album' && (
+                {showCoinControls && showAlbum && (
                     <button
                         className={`coll-toggle ${groupBy === 'kind' ? 'is-on' : ''}`}
                         onClick={() => setGroupBy(g => (g === 'kind' ? 'none' : 'kind'))}
@@ -933,8 +964,8 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </div>
                 )}
 
-                {layoutMode === 'collage' && visible.length > 0 && (
-                    <div className="coll-collage" ref={setCollageEl}>
+                {showCollage && visible.length > 0 && (
+                    <div className={`coll-collage ${showAlbum ? 'has-album-below' : ''}`} ref={setCollageEl}>
                         {collageRows.map((row, ri) => (
                             <div className="coll-collage-row" key={ri} style={{ height: `${row.height}px` }}>
                                 {row.items.map(({ item, url, width }) => (
@@ -955,16 +986,32 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                             </div>
                         ))}
 
-                        {collageEntries.length < visible.length && (
+                        {/* Compared against the items that actually have a
+                            picture, not every item: one with no image can never
+                            be measured, and counting those left the spinner
+                            running for ever. */}
+                        {collageEntries.length < visible.filter(i => coverOf(i)).length && (
                             <p className="coll-collage-note">
                                 <i className="ph-bold ph-circle-notch"></i>
-                                Measuring {visible.length - collageEntries.length} more…
+                                Measuring {visible.filter(i => coverOf(i)).length - collageEntries.length} more…
                             </p>
                         )}
+
+                        {(() => {
+                            const noPicture = visible.length - visible.filter(i => coverOf(i)).length;
+                            if (!noPicture) return null;
+                            return (
+                                <p className="coll-collage-note is-quiet">
+                                    <i className="ph-bold ph-image-square"></i>
+                                    {noPicture} {noPicture === 1 ? 'item has' : 'items have'} no picture yet,
+                                    so {noPicture === 1 ? 'it is' : 'they are'} only in the cards below.
+                                </p>
+                            );
+                        })()}
                     </div>
                 )}
 
-                {layoutMode === 'album' && groups.map(group => (
+                {showAlbum && groups.map(group => (
                     <section key={group.key} className="coll-group">
                         {group.label && (
                             <h2 className="coll-group-title">
@@ -991,12 +1038,12 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                                 {cover
                                                     ? <img
                                                         src={cover.url}
-                                                        alt={item.name || COLLECTION_TYPES[kind].label}
+                                                        alt={item.name || configFor(kind).label}
                                                         loading="lazy"
                                                         ref={shapeMountRef}
                                                         onLoad={shapeMount}
                                                     />
-                                                    : <span className="coll-noimage"><i className={`ph-fill ${COLLECTION_TYPES[kind].icon}`}></i></span>}
+                                                    : <span className="coll-noimage"><i className={`ph-fill ${configFor(kind).icon}`}></i></span>}
                                             </span>
                                             {pics.length > 1 && (
                                                 <span className="coll-count" title={`${pics.length} images`}>
@@ -1017,7 +1064,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                         </button>
 
                                         <div className="coll-body">
-                                            <h3 title={item.name}>{item.name || `Untitled ${COLLECTION_TYPES[kind].label.toLowerCase()}`}</h3>
+                                            <h3 title={item.name}>{item.name || `Untitled ${configFor(kind).label.toLowerCase()}`}</h3>
                                             <div className="coll-meta">
                                                 {item.country && <span><i className="ph-fill ph-map-pin"></i>{item.country}</span>}
                                                 {item.year && <span><i className="ph-fill ph-calendar-blank"></i>{item.year}</span>}
@@ -1046,8 +1093,8 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                         </div>
 
                                         {tab === 'all' && (
-                                            <span className="coll-kind" title={COLLECTION_TYPES[kind].label}>
-                                                <i className={`ph-fill ${COLLECTION_TYPES[kind].icon}`}></i>
+                                            <span className="coll-kind" title={configFor(kind).label}>
+                                                <i className={`ph-fill ${configFor(kind).icon}`}></i>
                                             </span>
                                         )}
 
@@ -1077,7 +1124,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                         const updated = exists
                             ? items.map(s => (s.id === next.id ? next : s))
                             : [next, ...items];
-                        const label = COLLECTION_TYPES[next.type].label;
+                        const label = configFor(next.type).label;
                         const ok = await persist(updated, { successMessage: exists ? `${label} updated.` : `${label} added.` });
                         if (ok) {
                             revealItem(next);
@@ -1099,7 +1146,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                         <div className="coll-lightbox-stage">
                             {photo
                                 ? <img className={`is-${typeOf(lightboxItem)}`} src={photo.url} alt={lightboxItem.name || 'Collection item'} />
-                                : <div className="coll-lightbox-noimage"><i className={`ph-fill ${COLLECTION_TYPES[typeOf(lightboxItem)].icon}`}></i></div>}
+                                : <div className="coll-lightbox-noimage"><i className={`ph-fill ${configFor(typeOf(lightboxItem)).icon}`}></i></div>}
 
                             {photo && pics.length > 1 && (
                                 <span className={`coll-photo-kind is-${photo.kind}`}>
@@ -1125,7 +1172,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                             )}
                         </div>
                         <figcaption>
-                            <span className="coll-lightbox-kind">{COLLECTION_TYPES[typeOf(lightboxItem)].label}</span>
+                            <span className="coll-lightbox-kind">{configFor(typeOf(lightboxItem)).label}</span>
                             <h3>{lightboxItem.name || 'Untitled'}</h3>
                             <p>
                                 {[
@@ -1438,6 +1485,14 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                    rules only handle spacing and the hover treatment. */
                 .coll-collage { display: flex; flex-direction: column; gap: 6px; }
 
+                /* Shown together, the two need a seam — otherwise the first row
+                   of cards reads as another collage row. */
+                .coll-collage.has-album-below {
+                    padding-bottom: 2rem;
+                    margin-bottom: 2.25rem;
+                    border-bottom: 1px solid var(--border);
+                }
+
                 .coll-collage-row { display: flex; gap: 6px; }
 
                 .coll-collage-cell {
@@ -1518,6 +1573,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 }
 
                 .coll-collage-note i { animation: coll-spin 1s linear infinite; color: #f59e0b; }
+                .coll-collage-note.is-quiet i { animation: none; color: var(--text-muted); }
 
                 /* Album */
                 .coll-group { margin-bottom: 2.5rem; }
@@ -1607,6 +1663,16 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     background-size: 18px 18px;
                     background-position: -9px -9px;
                 }
+
+                /* A banknote has neither perforations nor a rim — it is just
+                   paper, so the mount is a thin margin and a hairline edge. */
+                .coll-card.is-banknote .coll-mount {
+                    padding: 3px;
+                    border-radius: 2px;
+                    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 10px rgba(0, 0, 0, 0.3);
+                }
+
+                .coll-collage-cell.is-banknote { padding: 2px; }
 
                 /* Coins get a milled rim instead, and are round. */
                 .coll-card.is-coin .coll-mount {
@@ -2048,6 +2114,9 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 }
 
                 .coll-drop.is-coin { aspect-ratio: 1 / 1; border-radius: 50%; }
+                /* Notes are landscape, so a tall drop zone would preview them
+                   as a sliver. */
+                .coll-drop.is-banknote { aspect-ratio: 8 / 5; }
                 .coll-drop:hover, .coll-drop.is-over { border-color: #f59e0b; color: #fbbf24; }
                 .coll-drop i { font-size: 1.8rem; }
                 .coll-drop img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
@@ -2272,7 +2341,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
     const { useState, useEffect, useRef } = React;
     const isNew = !item.id;
     const type = item.type || 'stamp';
-    const config = COLLECTION_TYPES[type];
+    const config = configFor(type);
 
     const [form, setForm] = useState({
         name: item.name || '',
@@ -2517,7 +2586,9 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                                     id="coll-name"
                                     value={form.name}
                                     onChange={(e) => set('name', e.target.value)}
-                                    placeholder={type === 'coin' ? 'e.g. One rupee, Ashoka pillar' : 'e.g. Mahatma Gandhi centenary'}
+                                    placeholder={type === 'coin' ? 'e.g. One rupee, Ashoka pillar'
+                                        : type === 'banknote' ? 'e.g. Ten rupees, Gandhi series'
+                                        : 'e.g. Mahatma Gandhi centenary'}
                                     autoFocus
                                 />
                             </div>
@@ -2546,7 +2617,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                                         max={new Date().getFullYear()}
                                         value={form.year}
                                         onChange={(e) => set('year', e.target.value)}
-                                        placeholder={type === 'coin' ? 'e.g. 1985' : 'e.g. 1969'}
+                                        placeholder={type === 'coin' ? 'e.g. 1985' : type === 'banknote' ? 'e.g. 1996' : 'e.g. 1969'}
                                     />
                                 </div>
                             </div>
@@ -2558,7 +2629,9 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                                         id="coll-denom"
                                         value={form.denomination}
                                         onChange={(e) => set('denomination', e.target.value)}
-                                        placeholder={type === 'coin' ? 'e.g. ₹2 / 50 paise' : 'e.g. ₹5 / 20p'}
+                                        placeholder={type === 'coin' ? 'e.g. ₹2 / 50 paise'
+                                            : type === 'banknote' ? 'e.g. ₹10 / ₹100'
+                                            : 'e.g. ₹5 / 20p'}
                                     />
                                 </div>
                                 <div className="coll-field">
