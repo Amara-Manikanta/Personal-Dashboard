@@ -260,6 +260,73 @@ const shapeMountRef = (img) => {
     if (img && img.complete) applyMountShape(img);
 };
 
+/**
+ * Aspect ratios, kept across renders and across trips into the collage.
+ *
+ * Measuring costs a decode each time, and the answer never changes for a
+ * given file, so it is worth remembering. Module scope rather than component
+ * state: the cache should survive the view being closed and reopened.
+ */
+const RATIO_CACHE = new Map();
+
+const measureRatio = (url) => new Promise((resolve) => {
+    if (RATIO_CACHE.has(url)) return resolve(RATIO_CACHE.get(url));
+    const img = new Image();
+    img.onload = () => {
+        const r = img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1;
+        RATIO_CACHE.set(url, r);
+        resolve(r);
+    };
+    // A broken file still gets a ratio, so one bad image cannot stall a row.
+    img.onerror = () => { RATIO_CACHE.set(url, 1); resolve(1); };
+    img.src = url;
+});
+
+/**
+ * Pack images into rows that fill the width exactly — the layout photo sites
+ * use for mixed shapes.
+ *
+ * Each row is grown until scaling it to the full width would make it shorter
+ * than the target height, then closed. Because every picture in a row shares
+ * that height, and the widths follow from the aspect ratios, nothing is
+ * cropped and no gaps are left at the ends — which is the whole point when
+ * the stamps range from tall to long.
+ *
+ * The last row keeps the target height rather than stretching a lone stamp
+ * across the full width.
+ */
+const justifyRows = (entries, containerWidth, targetHeight, gap) => {
+    if (!containerWidth || !entries.length) return [];
+
+    const rows = [];
+    let row = [];
+    let ratioSum = 0;
+
+    const heightFor = (sum, count) => (containerWidth - gap * Math.max(0, count - 1)) / sum;
+
+    entries.forEach((entry) => {
+        row.push(entry);
+        ratioSum += entry.ratio;
+
+        if (heightFor(ratioSum, row.length) <= targetHeight) {
+            const h = heightFor(ratioSum, row.length);
+            rows.push({ height: h, items: row.map(e => ({ ...e, width: e.ratio * h })) });
+            row = [];
+            ratioSum = 0;
+        }
+    });
+
+    if (row.length) {
+        // Trailing row: never scaled up past the target, so a single leftover
+        // stamp does not become a billboard.
+        const natural = heightFor(ratioSum, row.length);
+        const h = Math.min(natural, targetHeight);
+        rows.push({ height: h, items: row.map(e => ({ ...e, width: e.ratio * h })), isLast: true });
+    }
+
+    return rows;
+};
+
 /** A filename is a reasonable first guess: "india_1975_tiger" → "India 1975 Tiger". */
 const nameFromFile = (file) => (file.name || 'Untitled')
     .replace(/\.[^.]+$/, '')
@@ -290,6 +357,17 @@ window.CollectionDashboard = ({ onBackToHome }) => {
     const [toast, setToast] = useState(null);
 
     const bulkInputRef = useRef(null);
+
+    // 'album' | 'collage'
+    const [layoutMode, setLayoutMode] = useState('album');
+    const [ratiosReady, setRatiosReady] = useState(0);   // bumped as measurements land
+    const [collageWidth, setCollageWidth] = useState(0);
+    const [collageDensity, setCollageDensity] = useState(170);
+    // A callback ref rather than useRef: it makes the node itself a dependency,
+    // so the observer is attached the moment the element exists. Keying the
+    // effect off the view mode instead left a gap where the effect could run
+    // against a node that was not mounted yet, and the width never arrived.
+    const [collageEl, setCollageEl] = useState(null);
 
     const say = (message, tone = 'info') => {
         setToast({ message, tone });
@@ -526,6 +604,70 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         }
     };
 
+    /**
+     * Collage layout, recomputed whenever the data, the filters, the width or
+     * the density changes — so it is always a picture of what is on screen now
+     * rather than a snapshot taken once.
+     */
+    const collageEntries = useMemo(() => visible
+        .map(item => {
+            const cover = coverOf(item);
+            return cover ? { item, url: cover.url, ratio: RATIO_CACHE.get(cover.url) } : null;
+        })
+        .filter(e => e && e.ratio), [visible, ratiosReady]);
+
+    const collageRows = useMemo(
+        () => justifyRows(collageEntries, collageWidth, collageDensity, 6),
+        [collageEntries, collageWidth, collageDensity]
+    );
+
+    // Measure whatever has not been measured yet, then re-render once at the
+    // end rather than on every image — 50 images would otherwise mean 50
+    // layout passes.
+    useEffect(() => {
+        if (layoutMode !== 'collage') return;
+
+        const pending = visible
+            .map(item => (coverOf(item) || {}).url)
+            .filter(url => url && !RATIO_CACHE.has(url));
+
+        if (!pending.length) return;
+
+        let cancelled = false;
+        Promise.all(pending.map(measureRatio)).then(() => {
+            if (!cancelled) setRatiosReady(n => n + 1);
+        });
+        return () => { cancelled = true; };
+    }, [layoutMode, visible]);
+
+    // The rows are sized in pixels, so the layout has to be told when its
+    // container changes width — a CSS grid would reflow on its own, this
+    // cannot.
+    useEffect(() => {
+        if (!collageEl) return;
+
+        // Only ever grows the width from a real measurement; a container that
+        // reports 0 (rendered while hidden) leaves the last good value alone
+        // rather than blanking the collage.
+        const measure = () => {
+            const w = collageEl.clientWidth;
+            if (w > 0) setCollageWidth(w);
+        };
+        measure();
+
+        if (typeof ResizeObserver === 'undefined') {
+            window.addEventListener('resize', measure);
+            return () => window.removeEventListener('resize', measure);
+        }
+        const ro = new ResizeObserver(measure);
+        ro.observe(collageEl);
+        return () => ro.disconnect();
+        // Re-measured once rows exist as well: laying them out makes the page
+        // taller, which brings in the scrollbar, which narrows this very
+        // container. Measuring only before the rows are placed leaves every
+        // row a scrollbar's width too wide.
+    }, [collageEl, collageRows.length]);
+
     const lightboxItem = lightboxId !== null ? items.find(s => s.id === lightboxId) : null;
     const activeType = tab === 'all' ? null : COLLECTION_TYPES[tab];
 
@@ -667,6 +809,19 @@ window.CollectionDashboard = ({ onBackToHome }) => {
             </div>
 
             <div className="coll-toolbar">
+                <div className="coll-viewswitch" role="group" aria-label="Layout">
+                    {[['album', 'ph-squares-four', 'Album'], ['collage', 'ph-selection-all', 'Collage']].map(([id, icon, label]) => (
+                        <button
+                            key={id}
+                            className={layoutMode === id ? 'is-on' : ''}
+                            onClick={() => setLayoutMode(id)}
+                            aria-pressed={layoutMode === id}
+                        >
+                            <i className={`ph-bold ${icon}`}></i> {label}
+                        </button>
+                    ))}
+                </div>
+
                 <select className="coll-select" value={countryFilter} onChange={(e) => setCountryFilter(e.target.value)}>
                     <option value="">All countries</option>
                     {countries.map(c => <option key={c} value={c}>{c}</option>)}
@@ -700,14 +855,33 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </select>
                 )}
 
-                <button
-                    className={`coll-toggle ${groupBy === 'country' ? 'is-on' : ''}`}
-                    onClick={() => setGroupBy(g => (g === 'country' ? 'none' : 'country'))}
-                >
-                    <i className="ph-bold ph-stack"></i> Group by country
-                </button>
+                {/* Grouping splits the album into headed sections, which a
+                    collage has no room for — it is one continuous wall. */}
+                {layoutMode === 'album' && (
+                    <button
+                        className={`coll-toggle ${groupBy === 'country' ? 'is-on' : ''}`}
+                        onClick={() => setGroupBy(g => (g === 'country' ? 'none' : 'country'))}
+                    >
+                        <i className="ph-bold ph-stack"></i> Group by country
+                    </button>
+                )}
 
-                {showCoinControls && (
+                {layoutMode === 'collage' && (
+                    <label className="coll-density">
+                        Size
+                        <input
+                            type="range"
+                            min="90"
+                            max="300"
+                            step="10"
+                            value={collageDensity}
+                            onChange={(e) => setCollageDensity(Number(e.target.value))}
+                            aria-label="Collage stamp size"
+                        />
+                    </label>
+                )}
+
+                {showCoinControls && layoutMode === 'album' && (
                     <button
                         className={`coll-toggle ${groupBy === 'kind' ? 'is-on' : ''}`}
                         onClick={() => setGroupBy(g => (g === 'kind' ? 'none' : 'kind'))}
@@ -759,7 +933,38 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     </div>
                 )}
 
-                {groups.map(group => (
+                {layoutMode === 'collage' && visible.length > 0 && (
+                    <div className="coll-collage" ref={setCollageEl}>
+                        {collageRows.map((row, ri) => (
+                            <div className="coll-collage-row" key={ri} style={{ height: `${row.height}px` }}>
+                                {row.items.map(({ item, url, width }) => (
+                                    <button
+                                        key={item.id}
+                                        className={`coll-collage-cell is-${typeOf(item)}`}
+                                        style={{ width: `${width}px` }}
+                                        onClick={() => { setLightboxId(item.id); setPhotoIndex(0); }}
+                                        title={[item.name, item.country, item.year].filter(Boolean).join(' · ')}
+                                    >
+                                        <img src={url} alt={item.name || 'Stamp'} loading="lazy" />
+                                        <span className="coll-collage-label">
+                                            <strong>{item.name}</strong>
+                                            {item.year && <em>{item.year}</em>}
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        ))}
+
+                        {collageEntries.length < visible.length && (
+                            <p className="coll-collage-note">
+                                <i className="ph-bold ph-circle-notch"></i>
+                                Measuring {visible.length - collageEntries.length} more…
+                            </p>
+                        )}
+                    </div>
+                )}
+
+                {layoutMode === 'album' && groups.map(group => (
                     <section key={group.key} className="coll-group">
                         {group.label && (
                             <h2 className="coll-group-title">
@@ -1192,6 +1397,127 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 }
 
                 .coll-clear:hover { color: var(--text-primary); }
+
+                /* Layout switch */
+                .coll-viewswitch {
+                    display: inline-flex;
+                    background: var(--bg-surface);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-md);
+                    overflow: hidden;
+                }
+
+                .coll-viewswitch button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    background: none;
+                    border: none;
+                    color: var(--text-muted);
+                    padding: 0.55rem 0.9rem;
+                    font-family: inherit;
+                    font-size: 0.88rem;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .coll-viewswitch button:hover { color: var(--text-secondary); }
+                .coll-viewswitch button.is-on { background: rgba(245, 158, 11, 0.14); color: #f59e0b; }
+
+                .coll-density {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.6rem;
+                    color: var(--text-muted);
+                    font-size: 0.85rem;
+                }
+
+                .coll-density input { width: 130px; accent-color: #f59e0b; cursor: pointer; }
+
+                /* Collage — rows are sized in px by the justify pass, so these
+                   rules only handle spacing and the hover treatment. */
+                .coll-collage { display: flex; flex-direction: column; gap: 6px; }
+
+                .coll-collage-row { display: flex; gap: 6px; }
+
+                .coll-collage-cell {
+                    position: relative;
+                    flex: 0 0 auto;
+                    height: 100%;
+                    padding: 4px;
+                    border: none;
+                    border-radius: 2px;
+                    background-color: #fdfaf3;
+                    cursor: zoom-in;
+                    overflow: hidden;
+                    transition: transform 0.18s ease, box-shadow 0.18s ease, z-index 0s;
+                }
+
+                /* The perforation is scaled down from the album card: at collage
+                   size the full-size teeth would swallow the picture. */
+                .coll-collage-cell.is-stamp {
+                    background-image: radial-gradient(circle at 4px 4px, var(--bg-app) 2.2px, transparent 2.6px);
+                    background-size: 8px 8px;
+                    background-position: -4px -4px;
+                }
+
+                .coll-collage-cell.is-coin { border-radius: 50%; }
+
+                .coll-collage-cell img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: fill;
+                    display: block;
+                }
+
+                .coll-collage-cell.is-coin img { border-radius: 50%; }
+
+                .coll-collage-cell:hover {
+                    transform: scale(1.06);
+                    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+                    z-index: 5;
+                }
+
+                .coll-collage-label {
+                    position: absolute;
+                    inset: auto 0 0 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1px;
+                    padding: 0.5rem 0.4rem 0.3rem;
+                    background: linear-gradient(transparent, rgba(6, 7, 10, 0.88));
+                    color: #f8fafc;
+                    opacity: 0;
+                    transition: opacity 0.18s ease;
+                    pointer-events: none;
+                    text-align: left;
+                }
+
+                .coll-collage-cell:hover .coll-collage-label { opacity: 1; }
+
+                .coll-collage-label strong {
+                    font-size: 0.68rem;
+                    font-weight: 600;
+                    line-height: 1.2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                }
+
+                .coll-collage-label em { font-size: 0.62rem; font-style: normal; color: #fbbf24; }
+
+                .coll-collage-note {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: var(--text-muted);
+                    font-size: 0.82rem;
+                    margin-top: 1rem;
+                }
+
+                .coll-collage-note i { animation: coll-spin 1s linear infinite; color: #f59e0b; }
 
                 /* Album */
                 .coll-group { margin-bottom: 2.5rem; }
