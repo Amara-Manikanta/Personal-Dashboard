@@ -17,3 +17,8 @@ previews/
 uploads/*
 !uploads/collection/
 
+
+# Raw phone camera input
+raw_stamps/
+raw_stamps_jpg/
+

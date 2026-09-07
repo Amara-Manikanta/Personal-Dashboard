@@ -114,12 +114,14 @@
   {
     "id": "1788720219056",
     "type": "stamp",
-    "name": "Builders of Modern India \u2013 Sardar Vallabhbhai Patel Definitive Stamp (8th Definitive Series)",
+    "name": "Builders of Modern India – Sardar Vallabhbhai Patel Definitive Stamp (8th Definitive Series)",
     "country": "India",
     "year": "2000",
     "denomination": "200p",
     "material": "",
-    "quantity": 5,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 9,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -142,7 +144,9 @@
     "year": "2009",
     "denomination": "100p",
     "material": "",
-    "quantity": 5,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 6,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -161,7 +165,9 @@
     "year": "1980",
     "denomination": "200p",
     "material": "",
-    "quantity": 6,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 5,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -256,7 +262,9 @@
     "year": "2009",
     "denomination": "100p",
     "material": "",
-    "quantity": 1,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 8,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -289,12 +297,14 @@
   {
     "id": "1788719168004",
     "type": "stamp",
-    "name": "Builders of Modern India \u2013 Dr. B.R. Ambedkar Definitive Stamp (8th Definitive Series)",
+    "name": "Builders of Modern India – Dr. B.R. Ambedkar Definitive Stamp (8th Definitive Series)",
     "country": "India",
     "year": "2001",
     "denomination": "300p",
     "material": "",
-    "quantity": 1,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 2,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -308,7 +318,7 @@
   {
     "id": "1788718735789",
     "type": "stamp",
-    "name": "Builders of Modern India \u2013 Dr. B.R. Ambedkar Definitive Stamp",
+    "name": "Builders of Modern India – Dr. B.R. Ambedkar Definitive Stamp",
     "country": "India",
     "year": "2001",
     "denomination": "200p",
@@ -327,7 +337,7 @@
   {
     "id": "1788718399563",
     "type": "stamp",
-    "name": "Builders of Modern India \u2013 E.V. Ramasami (Periyar) Definitive Stamp",
+    "name": "Builders of Modern India – E.V. Ramasami (Periyar) Definitive Stamp",
     "country": "India",
     "year": "2009",
     "denomination": "50p",
@@ -346,7 +356,7 @@
   {
     "id": "1788718038190",
     "type": "stamp",
-    "name": "Makers of India \u2013 Jawaharlal Nehru Definitive Stamp",
+    "name": "Makers of India – Jawaharlal Nehru Definitive Stamp",
     "country": "India",
     "year": "2016",
     "denomination": "500",
@@ -370,7 +380,9 @@
     "year": "2000",
     "denomination": "400p",
     "material": "",
-    "quantity": 8,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 10,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -446,7 +458,9 @@
     "year": "2000",
     "denomination": "500p",
     "material": "",
-    "quantity": 4,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 3,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -574,7 +588,7 @@
   {
     "id": "1788715760566",
     "type": "stamp",
-    "name": "Astrological Signs \u2013 Pisces (\u092e\u0940\u0928) Commemorative Stamp",
+    "name": "Astrological Signs – Pisces (मीन) Commemorative Stamp",
     "country": "India",
     "year": "2010",
     "denomination": "500p",
@@ -593,7 +607,7 @@
   {
     "id": "1788715681433",
     "type": "stamp",
-    "name": "Endangered Birds of India \u2013 Greater Adjutant Stork Commemorative Stamp",
+    "name": "Endangered Birds of India – Greater Adjutant Stork Commemorative Stamp",
     "country": "India",
     "year": "2006",
     "denomination": "500p",
@@ -726,7 +740,7 @@
   {
     "id": "1788714996421",
     "type": "stamp",
-    "name": "Endemic Butterflies of Andaman & Nicobar Islands \u2013 Pachliopta Rhodifer (Female) Commemorative Stamp",
+    "name": "Endemic Butterflies of Andaman & Nicobar Islands – Pachliopta Rhodifer (Female) Commemorative Stamp",
     "country": "India",
     "year": "2008",
     "denomination": "500p",
@@ -745,7 +759,7 @@
   {
     "id": "1788714931983",
     "type": "stamp",
-    "name": "III Commonwealth Youth Games \u2013 Wrestling Commemorative Stamp",
+    "name": "III Commonwealth Youth Games – Wrestling Commemorative Stamp",
     "country": "India",
     "year": "2008",
     "denomination": "500p",
@@ -840,7 +854,7 @@
   {
     "id": "1788714517034",
     "type": "stamp",
-    "name": "Festivals of India \u2013 Dussehra, Mysore Commemorative Stamp",
+    "name": "Festivals of India – Dussehra, Mysore Commemorative Stamp",
     "country": "India",
     "year": "2008",
     "denomination": "500p",
@@ -999,7 +1013,9 @@
     "year": "1979",
     "denomination": "30P",
     "material": "",
-    "quantity": 3,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 5,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -1058,7 +1074,9 @@
     "year": "2009",
     "denomination": "",
     "material": "",
-    "quantity": 7,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 11,
     "dateCollected": "",
     "notes": "",
     "images": [
@@ -1165,5 +1183,236 @@
       }
     ],
     "addedAt": "2026-09-06T12:54:00.944Z"
+  },
+  {
+    "id": "1788764781119_59",
+    "type": "stamp",
+    "name": "Children's Day 2013",
+    "country": "India",
+    "year": "2013",
+    "denomination": "500 P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative Children's Day 2013 with attached right selvage margin.",
+    "images": [
+      {
+        "url": "uploads/collection/59_India_Childrens_Day_Girl_Swing_5.00_2013_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:04.000Z"
+  },
+  {
+    "id": "1788764781119_60",
+    "type": "stamp",
+    "name": "Chattampiswamikal",
+    "country": "India",
+    "year": "2014",
+    "denomination": "500 P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Social reformer Chattampiswamikal (चट्टम्पीस्वामिकल).",
+    "images": [
+      {
+        "url": "uploads/collection/60_India_Chattampiswamikal_5.00_2014_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:05.000Z"
+  },
+  {
+    "id": "1788764781119_61",
+    "type": "stamp",
+    "name": "Birds of India — House Sparrow",
+    "country": "India",
+    "year": "2010",
+    "denomination": "500 P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "House Sparrow (Passer domesticus) definitive series.",
+    "images": [
+      {
+        "url": "uploads/collection/61_India_House_Sparrow_Gauraiya_5.00_2010_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:06.000Z"
+  },
+  {
+    "id": "1788764781119_62",
+    "type": "stamp",
+    "name": "Andrew Wyeth Centennial — \"Spring Fed\" (1967)",
+    "country": "United States",
+    "year": "2017",
+    "denomination": "Forever",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Andrew Wyeth centennial stamp series.",
+    "images": [
+      {
+        "url": "uploads/collection/62_USA_Andrew_Wyeth_Forever_2017_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:07.000Z"
+  },
+  {
+    "id": "1788764781119_63",
+    "type": "stamp",
+    "name": "Flags of Our Nation: Connecticut",
+    "country": "United States",
+    "year": "2008",
+    "denomination": "42¢",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Connecticut state flag with maritime navigational buoy.",
+    "images": [
+      {
+        "url": "uploads/collection/63_USA_Connecticut_Flag_42c_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:08.000Z"
+  },
+  {
+    "id": "1788764781119_64",
+    "type": "stamp",
+    "name": "India Revenue Stamp (Ashoka Chakra design)",
+    "country": "India",
+    "year": "1985",
+    "denomination": "100 P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Bharat Rajaswa Revenue stamp with intact selvage on left.",
+    "images": [
+      {
+        "url": "uploads/collection/64_India_Revenue_Bharat_Rajaswa_100p_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:09.000Z"
+  },
+  {
+    "id": "1788764781119_65",
+    "type": "stamp",
+    "name": "Makers of India (11th Definitive Series) — Srinivasa Ramanujan",
+    "country": "India",
+    "year": "2016",
+    "denomination": "400 P",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Mathematical genius Srinivasa Ramanujan commemorative.",
+    "images": [
+      {
+        "url": "uploads/collection/65_India_Srinivasa_Ramanujan_400p_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:10.000Z"
+  },
+  {
+    "id": "1788764781119_66",
+    "type": "stamp",
+    "name": "Spectrum Eagle (Red-Violet background)",
+    "country": "United States",
+    "year": "2015",
+    "denomination": "25 cents",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Presorted First-Class American Bald Eagle.",
+    "images": [
+      {
+        "url": "uploads/collection/66_USA_Presorted_First_Class_Eagle_2015_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:11.000Z"
+  },
+  {
+    "id": "1788764781119_67",
+    "type": "stamp",
+    "name": "U.S. Flag (2016)",
+    "country": "United States",
+    "year": "2016",
+    "denomination": "Forever",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "US Flag waving with postmark cancellation lines.",
+    "images": [
+      {
+        "url": "uploads/collection/67_USA_US_Flag_Forever_2016_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:12.000Z"
+  },
+  {
+    "id": "1788764781119_68",
+    "type": "stamp",
+    "name": "Global Humanitarian Leader",
+    "country": "Kuwait",
+    "year": "2014",
+    "denomination": "350 Fils",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Kuwait Emir Sabah Al-Ahmad and UN emblem Humanitarian Leader.",
+    "images": [
+      {
+        "url": "uploads/collection/68_Kuwait_Humanitarian_Leader_350F_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:13.000Z"
+  },
+  {
+    "id": "1788764781119_69",
+    "type": "stamp",
+    "name": "Kuwait 100th Anniv First Post Office (Horizontal Pair)",
+    "country": "Kuwait",
+    "year": "2015",
+    "denomination": "25 Fils",
+    "material": "",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 6,
+    "dateCollected": "",
+    "notes": "",
+    "images": [
+      {
+        "url": "uploads/collection/69A_Kuwait_First_Post_Office_25F_Single_Left_Original_Cropped.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-07T12:35:14.000Z"
   }
 ]
