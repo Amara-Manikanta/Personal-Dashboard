@@ -1,5 +1,2419 @@
 [
   {
+    "id": "1788984973082_106",
+    "type": "banknote",
+    "category": "Banknotes",
+    "name": "India 5 Rupees (2009) - Mahatma Gandhi Series (Tractor at Sunrise)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "5 Rupees",
+    "material": "Paper",
+    "coinKind": "",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 5 Rupees banknote of India issued by the Reserve Bank of India (Mahatma Gandhi Series). Reverse: Iconic agricultural vignette depicting a farmer driving a tractor tilling a field during dawn/sunrise, representing India's Green Revolution and agrarian economy, with issue year '2009' at bottom center and language panel featuring the denomination in 15 Indian regional languages. Obverse: Portrait of Mahatma Gandhi facing right, Reserve Bank seal, Ashoka Lion Capital at bottom-left, guarantee clause signed by RBI Governor Dr. D. Subbarao ('दु. सुब्बाराव'), and serial number '81A 985108'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2009_Banknote_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2009_Banknote_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ]
+  },
+  {
+    "id": "1788984545455_105",
+    "type": "coin",
+    "category": "Coins",
+    "name": "United Kingdom 5 Pence (2012) - Royal Shield of Arms (Fourth Portrait)",
+    "country": "United Kingdom",
+    "year": "2012",
+    "denomination": "5 Pence",
+    "material": "Nickel-plated steel",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 5 Pence coin of the United Kingdom struck by the Royal Mint in Llantrisant, Wales. Reverse: Matthew Dent design depicting the central section of the Royal Shield of Arms where the Scottish lion and English lions intersect, inscribed 'FIVE PENCE' horizontally. Obverse: Fourth crowned portrait of Queen Elizabeth II facing right by Ian Rank-Broadley ('IRB'), surrounded by 'ELIZABETH II · D · G · REG · F · D · 2012'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_5_Pence_2012_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_5_Pence_2012_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ]
+  },
+  {
+    "id": "1788984545455_stamp_70",
+    "type": "stamp",
+    "category": "Stamps",
+    "name": "India – Dilwara Temple, Mount Abu Definitive / Commemorative Stamp (2009)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "500p",
+    "material": "Paper",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Postage stamp of India issued in 2009 featuring the renowned Jain Dilwara Temples near Mount Abu, Rajasthan. The upper panel illustrates the breathtaking marble carved ceiling mandapa dome, while the lower panel depicts the temple sanctum architecture against the sky, with inscriptions 'दिलवाड़ा मंदिर DILWARA TEMPLE', 'भारत INDIA', and denomination '500' (₹5.00).",
+    "images": [
+      {
+        "url": "uploads/collection/India_Dilwara_Temple_500p_2009_Stamp_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ]
+  },
+  {
+    "id": "1788984147069_103",
+    "name": "United Kingdom 10 Pence (2014) - Royal Shield of Arms (Fourth Portrait)",
+    "category": "Coins",
+    "country": "United Kingdom",
+    "year": "2014",
+    "denomination": "10 Pence",
+    "material": "Nickel-plated steel",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 10 Pence coin of the United Kingdom struck by the Royal Mint in Llantrisant, Wales. Reverse: Matthew Dent design depicting the upper right quadrant of the Royal Shield of Arms, featuring parts of the first and second quarters (English lions passant guardant), with curved legend 'TEN PENCE'. Obverse: Fourth crowned portrait of Queen Elizabeth II facing right by Ian Rank-Broadley ('IRB'), surrounded by the legend 'ELIZABETH II · D · G · REG · F · D · 2014'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_10_Pence_2014_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_10_Pence_2014_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788984147069_104",
+    "name": "United Kingdom 1 Pound (2016) - Nations of the Crown (12-Sided Bimetallic)",
+    "category": "Coins",
+    "country": "United Kingdom",
+    "year": "2016",
+    "denomination": "1 Pound",
+    "material": "Bimetallic: Nickel-brass outer ring with Nickel-plated brass alloy inner centre",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Revolutionary 12-sided bimetallic 1 Pound coin produced by the Royal Mint in 2016 in preparation for national introduction. Reverse: Designed by 15-year-old student David Pearce, featuring the four national floral emblems of the United Kingdom emerging from a single stem enclosed within a royal coronet: the English Rose, Welsh Leek, Scottish Thistle, and Northern Irish Shamrock, with 'ONE POUND' below. Obverse: Fifth crowned portrait of Queen Elizabeth II facing right by Jody Clark ('JC'), with legend 'ELIZABETH II · D · G · REG · F · D · 2016', featuring a latent security hologram device at the bottom that switches between '£' and '1'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_1_Pound_2016_Nations_Crown_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_1_Pound_2016_Nations_Crown_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983543738_101",
+    "name": "United States 5 Cents (2004-D) - Westward Journey: Lewis & Clark Keelboat",
+    "category": "Coins",
+    "country": "United States",
+    "year": "2004",
+    "denomination": "5 Cents",
+    "material": "Cupronickel (75% Copper, 25% Nickel)",
+    "coinKind": "Commemorative circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Commemorative 5 Cents coin from the Westward Journey Nickel Series struck by the United States Mint at Denver ('D' mintmark). Reverse: Detailed depiction of the 55-foot keelboat built to Captain Meriwether Lewis's specifications, shown under full sail carrying Lewis, Clark, and their crew on the rivers of the Louisiana Territory, designed by Al Maletsky with legends 'UNITED STATES OF AMERICA', 'E PLURIBUS UNUM', 'LEWIS & CLARK', and 'FIVE CENTS'. Obverse: Classical profile of President Thomas Jefferson facing left designed by Felix Schlag, inscribed 'IN GOD WE TRUST', 'LIBERTY * 2004', and mintmark 'D'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_States_5_Cents_2004_D_Keelboat_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_States_5_Cents_2004_D_Keelboat_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983543738_102",
+    "name": "United Kingdom 50 Pence (2017) - Beatrix Potter: Tom Kitten (Fifth Portrait)",
+    "category": "Coins",
+    "country": "United Kingdom",
+    "year": "2017",
+    "denomination": "50 Pence",
+    "material": "Cupronickel (75% Copper, 25% Nickel)",
+    "coinKind": "Commemorative circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Commemorative heptagonal (7-sided) 50 Pence coin issued by the Royal Mint celebrating the classic children's tales of Beatrix Potter. Reverse: Front-facing depiction of mischievous Tom Kitten dressed in his best blue suit and ruffled collar, designed by Royal Mint engraver Emma Noble with text 'TOM KITTEN'. Obverse: Fifth crowned portrait of Queen Elizabeth II facing right by Jody Clark ('JC') wearing the Royal Diamond Diadem, surrounded by the inscription '50 PENCE · 2017 · ELIZABETH II · D · G · REG · F · D'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_50_Pence_2017_Tom_Kitten_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_50_Pence_2017_Tom_Kitten_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983212649_98",
+    "name": "United States 1 Dollar (2001-D) - Sacagawea Golden Dollar",
+    "category": "Coins",
+    "country": "United States",
+    "year": "2001",
+    "denomination": "1 Dollar",
+    "material": "Manganese-Brass clad Copper (88.5% Cu, 6% Zn, 3.5% Mn, 2% Ni)",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating golden 1 Dollar coin struck by the United States Mint at Denver ('D' mintmark). Reverse: Soaring American bald eagle designed and sculpted by Thomas D. Rogers Sr., encircled by 17 stars representing the states of the Union at the time of the 1804 Lewis and Clark Expedition, with legends 'UNITED STATES OF AMERICA', 'E PLURIBUS UNUM', and 'ONE DOLLAR'. Obverse: Portrait of Sacagawea carrying her infant son Jean Baptiste Charbonneau designed by Glenna Goodacre, inscribed 'LIBERTY', 'IN GOD WE TRUST', and date '2001 D'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_States_1_Dollar_2001_D_Sacagawea_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_States_1_Dollar_2001_D_Sacagawea_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983212649_99",
+    "name": "Germany 1 Euro (2002-F) - Federal Eagle (Stuttgart Mint)",
+    "category": "Coins",
+    "country": "Germany",
+    "year": "2002",
+    "denomination": "1 Euro",
+    "material": "Bimetallic: Nickel-brass ring with Cupronickel centre",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 1 Euro coin of the Federal Republic of Germany struck at the Stuttgart Mint ('F' mintmark). Reverse: Common European map designed by Luc Luycx with value '1 EURO' and 12 stars of the European Union linked by lines. Obverse: Traditional German Federal Eagle (Bundesadler), symbol of German sovereignty, designed by Heinz and Sneschana Russewa-Hoyer, surrounded by the 12 stars of Europe on the outer ring, with date '2002' and Stuttgart mintmark 'F' below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Germany_1_Euro_2002_F_Federal_Eagle_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Germany_1_Euro_2002_F_Federal_Eagle_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983212649_100",
+    "name": "Austria 2 Euro (2002) - Bertha von Suttner (Inaugural Euro Issue)",
+    "category": "Coins",
+    "country": "Austria",
+    "year": "2002",
+    "denomination": "2 Euro",
+    "material": "Bimetallic: Cupronickel ring with Nickel-brass centre",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 2 Euro coin of the Republic of Austria from the inaugural year of euro coin circulation (2002), struck by the Austrian Mint (Münze Österreich) in Vienna. Reverse: Common side of the 2 Euro coin designed by Luc Luycx depicting the geographic map of the European Union, denomination numeral '2' and word 'EURO'. Obverse: Portrait of radical Austrian pacifist and Nobel Peace Prize laureate Bertha von Suttner (1843–1914) facing forward-left, symbolizing Austria's decades-long efforts to support peace, with '2 EURO' and the Austrian national flag depicted on the left, date '2002' on the right, encircled by the twelve stars of the European Union on the outer ring.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Austria_2_Euro_2002_Bertha_von_Suttner_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Austria_2_Euro_2002_Bertha_von_Suttner_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983036781_96",
+    "name": "Nepal 2 Rupees (VS 2058 / 2001) - Bageshwori Temple (King Gyanendra)",
+    "category": "Coins",
+    "country": "Nepal",
+    "year": "2001",
+    "denomination": "2 Rupees",
+    "material": "Brass-plated steel",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 2 Rupees coin of the Kingdom of Nepal struck during the reign of King Gyanendra Bir Bikram Shah Dev. Reverse: Architectural illustration of the multi-tiered pagoda of the historic Bageshwori Temple in Nepalgunj, inscribed 'बागेश्वरी' (Bageshwori) above, 'नेपाल' (Nepal) on left, 'रुपैयाँ' (Rupees) on right, and large Devanagari numeral '२' (2) below. Obverse: Central sacred Trident (Trishula) within a circular medallion surrounded by the royal inscription 'श्री ५ ज्ञानेन्द्र वीर विक्रम शाह देव' (King Gyanendra Bir Bikram Shah Dev), four auspicious Hindu emblems (conch, discus, mace, lotus) in corner foils, crescent moon and radiant sun above, and Bikram Sambat date '२०५८' (VS 2058 = 2001 AD) at the bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Nepal_2_Rupees_2058_Bageshwori_Temple_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Nepal_2_Rupees_2058_Bageshwori_Temple_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788983036781_97",
+    "name": "United States 1 Cent (2007) - Lincoln Memorial Cent",
+    "category": "Coins",
+    "country": "United States",
+    "year": "2007",
+    "denomination": "1 Cent",
+    "material": "Copper-plated zinc (97.5% Zinc, 2.5% Copper)",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 1 Cent (Lincoln penny) struck by the United States Mint at Philadelphia (without mintmark). Reverse: Detailed front elevation view of the Lincoln Memorial in Washington, D.C. designed by Frank Gasparro with engraver initials 'FG' to the right of the base, motto 'E PLURIBUS UNUM' above the roof, surrounded by 'UNITED STATES OF AMERICA' and 'ONE CENT'. Obverse: Bust of Abraham Lincoln facing right designed by Victor David Brenner with tiny 'VDB' at the shoulder truncation, national motto 'IN GOD WE TRUST' arched above, 'LIBERTY' to the left, and date '2007' to the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_States_1_Cent_2007_Lincoln_Memorial_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_States_1_Cent_2007_Lincoln_Memorial_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788982840157_94",
+    "name": "United Kingdom One Penny (2013) - Royal Shield of Arms (Fourth Portrait)",
+    "category": "Coins",
+    "country": "United Kingdom",
+    "year": "2013",
+    "denomination": "1 Penny",
+    "material": "Copper-plated steel",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 1 Penny coin of the United Kingdom struck by the Royal Mint in Llantrisant, Wales. Reverse: Matthew Dent design depicting a section of the Royal Shield of Arms showing portions of the English lions and the Irish harp / Scottish lion, with the curved legend 'ONE PENNY'. Obverse: Fourth crowned portrait of Queen Elizabeth II facing right, wearing the Girls of Great Britain and Ireland Tiara, legend 'ELIZABETH II · D · G · REG · F · D · 2013', engraver initials 'IRB' (Ian Rank-Broadley) under the bust truncation.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_1_Penny_2013_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_1_Penny_2013_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788982840157_95",
+    "name": "Switzerland 20 Rappen (2005) - Libertas & Alpine Floral Wreath (Swissmint Bern)",
+    "category": "Coins",
+    "country": "Switzerland",
+    "year": "2005",
+    "denomination": "20 Rappen",
+    "material": "Aluminium-Bronze (92% Copper, 6% Aluminium, 2% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "notes": "Standard circulating 20 Rappen coin of the Swiss Confederation struck by Swissmint in Bern. Reverse: Large denomination numeral '20' framed by an ornate circular wreath of Alpine flora and foliage tied with a ribbon bow at the base, Bern mintmark 'B' centered directly beneath the ribbon knot. Obverse: Classical right-facing diademed profile bust of Libertas (the Roman goddess of liberty), her tiara incised with 'LIBERTAS', encircled by the Latin national legend 'CONFOEDERATIO HELVETICA' and date '2005' flanked by two five-pointed stars at the lower rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_20_Rappen_2005_Libertas_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_20_Rappen_2005_Libertas_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "type": "coin"
+  },
+  {
+    "id": "1788982619645_92",
+    "type": "coin",
+    "name": "Switzerland 5 Rappen (1981) - Libertas & Grape Vine Wreath",
+    "country": "Switzerland",
+    "year": "1981",
+    "denomination": "5 Rappen",
+    "material": "Aluminium-Bronze (92% Copper, 6% Aluminium, 2% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 5 Rappen coin of the Swiss Confederation struck by Swissmint in Bern (struck without the 'B' mintmark, standard for 1970–1985 issues). Reverse: Large denomination numeral '5' enclosed within an ornate wreath of oak leaves and clusters of grapes tied with a ribbon bow at the bottom. Obverse: Diademed head of Libertas (the Roman goddess of liberty) facing right, her tiara inscribed 'LIBERTAS', surrounded by the legend 'CONFOEDERATIO HELVETICA' and date '1981' below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_5_Rappen_1981_Libertas_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_5_Rappen_1981_Libertas_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:36:59.000Z"
+  },
+  {
+    "id": "1788982619645_93",
+    "type": "coin",
+    "name": "United States 1 Dime (2002-D) - Roosevelt Dime",
+    "country": "United States",
+    "year": "2002",
+    "denomination": "1 Dime (10 Cents)",
+    "material": "Cupro-Nickel clad Copper (91.67% Copper, 8.33% Nickel)",
+    "coinKind": "Standard circulating coinage (Roosevelt Dime Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "United States circulating One Dime (10 Cents) coin struck at the Denver Mint ('D' mintmark). Reverse: Central torch representing liberty flanked by an olive branch on the left (symbolizing peace) and an oak branch on the right (symbolizing strength and independence), with motto 'E • PLU RIB US • U NUM' across the center, 'UNITED STATES OF AMERICA' along the top rim, and denomination 'ONE DIME' along the bottom rim. Obverse: Bust of President Franklin D. Roosevelt facing left by Chief Engraver John R. Sinnock (initials 'JS' at base of neck), inscribed 'LIBERTY' to the left, national motto 'IN GOD WE TRUST' below chin, and mint year '2002' with Denver 'D' mintmark to the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_States_1_Dime_2002_D_Roosevelt_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_States_1_Dime_2002_D_Roosevelt_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:36:59.000Z"
+  },
+  {
+    "id": "1788981938179_88",
+    "type": "coin",
+    "name": "United Arab Emirates 50 Fils (2013 / 1434 AH) - Oil Derricks",
+    "country": "United Arab Emirates",
+    "year": "2013",
+    "denomination": "50 Fils",
+    "material": "Nickel-plated Steel",
+    "coinKind": "Standard circulating coinage (Heptagonal)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 50 Fils coin of the United Arab Emirates (UAE). Reverse: Iconic design of three offshore oil derricks / drilling platforms symbolizing the UAE's petroleum and energy industry, with Islamic Hijri date '١٤٣٤' (1434 AH) and Gregorian date '٢٠١٣' (2013 CE) inscribed below. Obverse: Inscribed in Arabic 'دولة الإمارات العربية المتحدة' (United Arab Emirates) across the top arc and in English 'UNITED ARAB EMIRATES' across the bottom arc, with denomination '٥٠ فلساً' (50 Fils) enclosed within a central triangle.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/UAE_50_Fils_2013_Oil_Derricks_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/UAE_50_Fils_2013_Oil_Derricks_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:25:38.000Z"
+  },
+  {
+    "id": "1788981938179_89",
+    "type": "coin",
+    "name": "United States 1 Dollar (2007) - Thomas Jefferson (Presidential Series)",
+    "country": "United States",
+    "year": "2007",
+    "denomination": "1 Dollar ()",
+    "material": "Manganese-Brass clad Copper (88.5% Cu, 6% Zn, 3.5% Mn, 2% Ni)",
+    "coinKind": "Commemorative circulating coinage (Presidential  Coin Program)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "United States Presidential  circulating coin honoring Thomas Jefferson, 3rd President of the United States (1801–1809). Reverse: Dramatic rendition of the Statue of Liberty by sculptor Don Everhart, inscribed 'UNITED STATES OF AMERICA' and denomination ''. Obverse: Portrait bust of Thomas Jefferson designed and sculpted by Joseph Menna (initials 'JFM'), inscribed 'THOMAS JEFFERSON' above and '3rd PRESIDENT 1801-1809' below. Edge: Incuse lettering with the year of minting '2007', mintmark, 'E PLURIBUS UNUM', and thirteen stars.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_States_1_Dollar_2007_Thomas_Jefferson_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_States_1_Dollar_2007_Thomas_Jefferson_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:25:38.000Z"
+  },
+  {
+    "id": "1788981938179_90",
+    "type": "coin",
+    "name": "India 1 Naya Paisa (1957) - Calcutta Mint (Decimalization Inaugural)",
+    "country": "India",
+    "year": "1957",
+    "denomination": "1 Naya Paisa",
+    "material": "Bronze (97% Copper, 2.5% Zinc, 0.5% Tin)",
+    "coinKind": "Standard circulating coinage (Naya Paisa Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Historic Republic of India 1 Naya Paisa bronze coin struck at the Calcutta Mint in 1957—the inaugural year of India's metric decimal currency system introduced on 1 April 1957 (where 1 Rupee was divided into 100 Naye Paise). Reverse: Large central numeral '1', inscribed 'एक रुपया का सौवां भाग' (One hundredth part of a rupee) along the upper arc, 'नया पैसा' (Naya Paisa) across the center, and mint year '1957' at the bottom (no mintmark, indicating Calcutta Mint). Obverse: Lion Capital of Ashoka Pillar at center flanked by 'भारत' on the left and 'INDIA' on the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Naya_Paisa_1957_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Naya_Paisa_1957_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:25:38.000Z"
+  },
+  {
+    "id": "1788981938179_91",
+    "type": "coin",
+    "name": "India 1 Naya Paisa (1962) - Calcutta Mint",
+    "country": "India",
+    "year": "1962",
+    "denomination": "1 Naya Paisa",
+    "material": "Bronze (97% Copper, 2.5% Zinc, 0.5% Tin)",
+    "coinKind": "Standard circulating coinage (Naya Paisa Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Republic of India 1 Naya Paisa bronze circulating coin struck at the Calcutta Mint in 1962. Reverse: Large central numeral '1', inscribed 'एक रुपया का सौवां भाग' (One hundredth part of a rupee) along the upper arc, 'नया पैसा' (Naya Paisa) across the center, and mint year '1962' below (no mintmark for Calcutta Mint). Obverse: Lion Capital of Ashoka Pillar at center flanked by 'भारत' on the left and 'INDIA' on the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Naya_Paisa_1962_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Naya_Paisa_1962_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:25:38.000Z"
+  },
+  {
+    "id": "1788981428152_85",
+    "type": "coin",
+    "name": "Switzerland 5 Francs (1997) - Alpine Herdsman (Swissmint Bern)",
+    "country": "Switzerland",
+    "year": "1997",
+    "denomination": "5 Francs",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating Swiss 5 Francs coin minted by Swissmint in Bern. Reverse: Denomination '5 FR.' above the federal coat of arms shield bearing the Swiss Cross, framed by sprigs of edelweiss on the left and alpine gentian on the right, with mint year '1997' and mintmark 'B' (Bern) below. Obverse: Bust of an alpine herdsman (traditionally identified with Swiss folk hero William Tell) facing right, clad in a hooded cowl, with legend 'CONFOEDERATIO HELVETICA' and designer inscription 'M. BÜRLI' (Paul Burkhard design, engraved by Max Bürli). Edge: Lettered Latin motto '★★★ DOMINUS PROVIDEBIT ★★★★★★★★★★' (The Lord Will Provide, with 22 stars).",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_5_Francs_1997_Herdsman_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_5_Francs_1997_Herdsman_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:17:08.000Z"
+  },
+  {
+    "id": "1788981428152_86",
+    "type": "coin",
+    "name": "United Kingdom 5 Pence (1998) - Crowned Thistle (Fourth Portrait)",
+    "country": "United Kingdom",
+    "year": "1998",
+    "denomination": "5 Pence",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Small Size Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Small-sized circulating British Five Pence coin. Reverse: Royally crowned thistle (the national floral badge of Scotland) designed by Christopher Ironside, with legend 'FIVE PENCE' above and denomination numeral '5' below. Obverse: Fourth crowned portrait of Queen Elizabeth II facing right by Ian Rank-Broadley (initials 'IRB' under neck truncation), wearing the Girls of Great Britain and Ireland Tiara, with legend 'ELIZABETH • II • D • G • REG • F • D • 1998'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_5_Pence_1998_Crowned_Thistle_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_5_Pence_1998_Crowned_Thistle_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:17:08.000Z"
+  },
+  {
+    "id": "1788981428152_87",
+    "type": "coin",
+    "name": "United Arab Emirates 1 Dirham (1995 / 1415 AH) - Dallah Coffee Pot",
+    "country": "United Arab Emirates",
+    "year": "1995",
+    "denomination": "1 Dirham",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 1 Dirham coin of the United Arab Emirates (UAE). Reverse: Iconic design of a traditional Arabian brass coffee pot (Dallah / دلة), an emblem of Emirati hospitality and heritage, with the Islamic Hijri year '١٤١٥' (1415 AH) and Gregorian year '١٩٩٥' (1995 CE) inscribed below. Obverse: Inscribed in Arabic at the top 'دولة الإمارات العربية المتحدة' (United Arab Emirates) and in English at the bottom 'UNITED ARAB EMIRATES', with denomination '١ درهم' (1 Dirham) inscribed across the center.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/UAE_1_Dirham_1995_Dallah_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/UAE_1_Dirham_1995_Dallah_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:17:08.000Z"
+  },
+  {
+    "id": "1788981267221_83",
+    "type": "coin",
+    "name": "Switzerland 1/2 Franc (1981) - Standing Helvetia (Swissmint Bern)",
+    "country": "Switzerland",
+    "year": "1981",
+    "denomination": "1/2 Franc",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 1/2 Franc (Half Franc) coin of the Swiss Confederation struck by Swissmint in Bern (minted without the 'B' mintmark as standard for 1970–1985 issues). Reverse: Denomination '1/2 Fr.' and mint year '1981' enclosed within an open wreath composed of oak branches on the left and alpine rhododendron on the right tied with a bow at bottom. Obverse: Full-length figure of standing Helvetia in draped toga facing left, holding a spear in right hand and resting left hand on the Swiss federal shield decorated with the Swiss Cross, surrounded by 22 five-pointed stars representing the historic cantons, with 'HELVETIA' on the pedestal base.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_Half_Franc_1981_Helvetia_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_Half_Franc_1981_Helvetia_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:14:27.000Z"
+  },
+  {
+    "id": "1788981267221_84",
+    "type": "coin",
+    "name": "United Kingdom 50 Pence (1997) - Seated Britannia (Third Portrait)",
+    "country": "United Kingdom",
+    "year": "1997",
+    "denomination": "50 Pence",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Small Size Heptagonal Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Equilateral curved 7-sided (heptagonal) British Fifty Pence coin, minted in 1997—the historic first year of the reduced-size lighter 50p coin specification (27.3 mm diameter, 8.00 g weight, replacing the earlier larger 1969–1997 coin). Reverse: Classic design of seated figure of Britannia facing right wearing a Corinthian helmet, holding a trident in left hand and resting right arm on a Union Jack shield while extending an olive branch, with British lion seated at her side. Inscribed 'FIFTY PENCE' above and large denomination numeral '50' below. Obverse: Third crowned portrait of Queen Elizabeth II facing right by Raphael Maklouf (initials 'RDM' at neck truncation), wearing the George IV State Diadem, with legend 'ELIZABETH II • D • G • REG • F • D • 1997'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_50_Pence_1997_Britannia_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_50_Pence_1997_Britannia_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:14:27.000Z"
+  },
+  {
+    "id": "1788980898330_80",
+    "type": "coin",
+    "name": "British India 1/4 Anna (1919) - King George V (Calcutta Mint)",
+    "country": "India (British)",
+    "year": "1919",
+    "denomination": "1/4 Anna",
+    "material": "Bronze (95% Copper, 4% Tin, 1% Zinc)",
+    "coinKind": "Standard circulating colonial coinage (King George V)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "British India One Quarter Anna bronze coin minted during the reign of King George V at the Calcutta Mint. Reverse: Inscribed 'ONE / QUARTER / ANNA / INDIA / 1919' within a beaded inner circle, enclosed by an ornate continuous wreath of Indian lotus and floral vines. Obverse: Crowned bust of King George V facing left, wearing the Imperial Robes of State with the collar of the Order of the Indian Empire, surrounded by the legend 'GEORGE V KING EMPEROR'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/British_India_Quarter_Anna_1919_George_V_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/British_India_Quarter_Anna_1919_George_V_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:08:18.000Z"
+  },
+  {
+    "id": "1788980898330_81",
+    "type": "coin",
+    "name": "Netherlands 2 Euro (2007) - 50th Anniversary of the Treaty of Rome",
+    "country": "Netherlands",
+    "year": "2007",
+    "denomination": "2 Euro",
+    "material": "Bi-Metallic (Nickel-brass clad nickel center in copper-nickel ring)",
+    "coinKind": "Commemorative circulating coinage (50 Years Treaty of Rome)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Eurozone commemorative 2 Euro coin issued by the Kingdom of the Netherlands celebrating the 50th anniversary of the signing of the Treaty of Rome (1957–2007). Reverse: Standard European common side showing the map of Europe with denomination '2 EURO' and 12 stars connected by fine vertical stripes. Obverse: Commemorative national design depicting the Treaty book signed by the six founding member countries, set against the star-shaped geometric paving designed by Michelangelo for the Piazza del Campidoglio in Rome. Inscribed 'VERDRAG VAN ROME / 50 JAAR' above, 'EUROPA' on the open pages, and 'KONINKRIJK DER NEDERLANDEN / 2007' below with the Mercury staff mintmark of the Royal Dutch Mint (Utrecht) and the mintmaster's sails mark. The outer ring features the 12 stars of the European Union.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Netherlands_2_Euro_2007_Treaty_of_Rome_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Netherlands_2_Euro_2007_Treaty_of_Rome_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:08:18.000Z"
+  },
+  {
+    "id": "1788980898330_82",
+    "type": "coin",
+    "name": "Switzerland 1 Franc (1995) - Standing Helvetia (Swissmint Bern)",
+    "country": "Switzerland",
+    "year": "1995",
+    "denomination": "1 Franc",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 1 Franc coin of the Swiss Confederation struck by Swissmint in Bern. Reverse: Denomination '1 Fr.' and date '1995' framed within an open wreath composed of oak foliage on the left and alpine rhododendron on the right tied with a ribbon bow, with mintmark 'B' (Bern) below. Obverse: Standing Helvetia in draped toga facing left holding a spear in her right hand and resting her left hand on the Swiss federal coat of arms shield bearing the Swiss Cross, encircled by 22 five-pointed stars symbolizing the cantons, with 'HELVETIA' on the base.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_1_Franc_1995_Helvetia_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_1_Franc_1995_Helvetia_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:08:18.000Z"
+  },
+  {
+    "id": "1788980526548_70",
+    "type": "coin",
+    "name": "United Kingdom Twenty Pence (2012) - Royal Shield of Arms (Fourth Portrait)",
+    "country": "United Kingdom",
+    "year": "2012",
+    "denomination": "20 Pence",
+    "material": "Cupro-Nickel (84% Copper, 16% Nickel)",
+    "coinKind": "Standard circulating coinage (Heptagonal Royal Shield Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Equilateral curved 7-sided (heptagonal) British Twenty Pence coin. Reverse: Base section of the Royal Shield of Arms puzzle design showing the meeting point of the English lions and Scottish lion with the Irish harp strings, inscribed 'TWENTY PENCE' above. Obverse: Fourth crowned portrait of Queen Elizabeth II facing right by Ian Rank-Broadley (initials 'IRB'), with legend 'ELIZABETH II • D • G • REG • F • D • 2012'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_20_Pence_2012_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_20_Pence_2012_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:02:06.000Z"
+  },
+  {
+    "id": "1788980526548_71",
+    "type": "coin",
+    "name": "United Kingdom Twenty Pence (2016) - Royal Shield of Arms (Fifth Portrait by Jody Clark)",
+    "country": "United Kingdom",
+    "year": "2016",
+    "denomination": "20 Pence",
+    "material": "Cupro-Nickel (84% Copper, 16% Nickel)",
+    "coinKind": "Standard circulating coinage (Heptagonal Royal Shield Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Equilateral curved 7-sided (heptagonal) British Twenty Pence coin featuring the fifth definitive effigy of Queen Elizabeth II. Reverse: Base segment of the Royal Shield of Arms with the Irish harp frame and Scottish/English royal beasts, inscribed 'TWENTY PENCE' above. Obverse: Fifth portrait of Queen Elizabeth II wearing the George IV State Diadem designed by Jody Clark ('J.C'), with circumscription '2016 • ELIZABETH II • DEI • GRA • REG • FID • DEF'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_20_Pence_2016_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_20_Pence_2016_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:02:06.000Z"
+  },
+  {
+    "id": "1788980526548_72",
+    "type": "coin",
+    "name": "Nepal 2 Rupees (VS 2059 / 2002) - Janaki Mandir / King Gyanendra",
+    "country": "Nepal",
+    "year": "2002",
+    "denomination": "2 Rupees",
+    "material": "Brass-plated Steel",
+    "coinKind": "Standard circulating coinage (Kingdom of Nepal)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Nepalese 2 Rupees coin minted during the reign of King Gyanendra Bir Bikram Shah Dev. Reverse: Frontal view of the historic Hindu temple Janaki Mandir in Janakpur, birthplace of Goddess Sita, inscribed in Devanagari above 'जानकी मन्दिर' (Janaki Mandir) and below 'दुई रुपैयाँ २' (Two Rupees 2). Obverse: Elaborate traditional Nepalese trident (Trishul) at center flanked by the sun and moon, with inscription in four quadrants reading 'श्री श्री श्री ज्ञानेन्द्र वीर विक्रम शाह देव' (Sri Sri Sri Gyanendra Bir Bikram Shah Dev) and Bikram Sambat date '२०५९' (VS 2059 = 2002 CE).",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Nepal_2_Rupees_2059_Janaki_Mandir_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Nepal_2_Rupees_2059_Janaki_Mandir_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:02:06.000Z"
+  },
+  {
+    "id": "1788980526548_73",
+    "type": "coin",
+    "name": "Switzerland 10 Rappen (1983) - Libertas & Oak Wreath",
+    "country": "Switzerland",
+    "year": "1983",
+    "denomination": "10 Rappen",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulating 10 Rappen coin of the Swiss Confederation. Reverse: Denomination numeral '10' framed within an oak leaf wreath tied with a ribbon at bottom. Obverse: Right-facing diademed profile head of Libertas with braided hair, circumscribed 'CONFOEDERATIO HELVETICA' and mint year '1983' flanked by decorative crosses.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_10_Rappen_1983_Libertas_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_10_Rappen_1983_Libertas_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T19:02:06.000Z"
+  },
+  {
+    "id": "1788980299276_60",
+    "type": "coin",
+    "name": "Switzerland 2 Francs (2004) - Standing Helvetia (Swissmint Bern)",
+    "country": "Switzerland",
+    "year": "2004",
+    "denomination": "2 Francs",
+    "material": "Cupro-Nickel (75% Copper, 25% Nickel)",
+    "coinKind": "Standard circulating coinage (Confœderatio Helvetica)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic Swiss 2 Francs coin minted by Swissmint in Bern. Reverse: Denomination '2 Fr.' and mint year '2004' enclosed within an intricate wreath composed of oak branches on left and alpine rhododendron on right tied with a ribbon at bottom, with mintmark 'B' (Bern) beneath the ribbon bow. Obverse: Full-length figure of standing Helvetia in draped gown facing left, holding a spear in right hand and resting left hand upon the Swiss federal coat of arms shield decorated with the Swiss Cross, surrounded by 22 five-pointed stars representing the 22 historic cantons of the Swiss Confederation, with legend 'HELVETIA' inscribed on the pedestal base.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/Switzerland_2_Francs_2004_Helvetia_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/Switzerland_2_Francs_2004_Helvetia_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:58:19.000Z"
+  },
+  {
+    "id": "1788980299276_61",
+    "type": "coin",
+    "name": "United Kingdom Two Pence (2009) - Royal Shield of Arms (Fourth Portrait)",
+    "country": "United Kingdom",
+    "year": "2009",
+    "denomination": "2 Pence",
+    "material": "Copper-plated Steel",
+    "coinKind": "Standard circulating coinage (Royal Shield of Arms Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "British decimal coinage Two Pence featuring Matthew Dent's innovative Royal Shield design puzzle. Reverse: Section of the Royal Shield of Arms depicting the second quarter: the Lion rampant of Scotland within a double tressure flory-counterflory, with the denomination 'TWO PENCE' inscribed arched above. Obverse: Fourth crowned definitive portrait of Queen Elizabeth II facing right wearing the Girls of Great Britain and Ireland Tiara, designed by Ian Rank-Broadley (initials 'IRB' under neck truncation), with circular legend 'ELIZABETH II • D • G • REG • F • D • 2009'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_2_Pence_2009_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_2_Pence_2009_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:58:19.000Z"
+  },
+  {
+    "id": "1788980299276_62",
+    "type": "coin",
+    "name": "United Kingdom Two Pence (2015) - Royal Shield of Arms (Fifth Portrait by Jody Clark)",
+    "country": "United Kingdom",
+    "year": "2015",
+    "denomination": "2 Pence",
+    "material": "Copper-plated Steel",
+    "coinKind": "Standard circulating coinage (Fifth Definitive Portrait)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "British decimal Two Pence coin from 2015 marking the transition to the historic Fifth Definitive Portrait of Queen Elizabeth II. Reverse: Second quarter of the Royal Shield of Arms illustrating the Scottish Lion rampant within a double tressure flory-counterflory, crowned with the denomination 'TWO PENCE'. Obverse: Fifth portrait of Queen Elizabeth II designed by Royal Mint engraver Jody Clark (initials 'J.C' below truncation), depicting Her Majesty wearing the King George IV State Diadem and diamond drop earrings, surrounded by the Latin legend '2015 • ELIZABETH II • DEI • GRA • REG • FID • DEF'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_2_Pence_2015_Royal_Shield_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/United_Kingdom_2_Pence_2015_Royal_Shield_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:58:19.000Z"
+  },
+  {
+    "id": "1788979724894_50",
+    "type": "coin",
+    "name": "5 Rupees (2004) - Lal Bahadur Shastri Birth Centenary (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2004",
+    "denomination": "5 Rs",
+    "material": "Cupro-Nickel / Ferritic Stainless Steel",
+    "coinKind": "Commemorative circulating coinage (Lal Bahadur Shastri Birth Centenary)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative 5 Rupees coin honoring the birth centenary of India's second Prime Minister, Lal Bahadur Shastri (1904–1966). Reverse: Portrait bust of Lal Bahadur Shastri facing quarter-left wearing his traditional cap. Inscribed in Hindi on the left 'लालबहादुर शास्त्री जन्मशती' and in English on the right 'LALBAHADUR SHASTRI BIRTH CENTENARY', with life years '1904-2004' and a five-pointed star (★) mintmark for the Hyderabad Mint below. Obverse: Lion Capital of Ashoka Pillar at center with motto 'सत्यमेव जयते' below, flanked by 'भारत' on left and 'INDIA' on right, with denomination numeral '5' flanked by 'रुपये' and 'RUPEES' at bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2004_Lal_Bahadur_Shastri_Centenary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2004_Lal_Bahadur_Shastri_Centenary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:48:44.000Z"
+  },
+  {
+    "id": "1788979724894_51",
+    "type": "coin",
+    "name": "2 Rupees (2009) - Louis Braille Birth Bicentenary (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "2 Rs",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Commemorative circulating coinage (Louis Braille Birth Bicentenary)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative 2 Rupees coin celebrating the 200th birth anniversary of Louis Braille (1809–1852), inventor of the tactile reading and writing system for the blind. Reverse: Front-facing portrait bust of Louis Braille, inscribed in Hindi on upper left 'लुई ब्रेल' and in English on upper right 'LOUIS BRAILLE', flanked by bicentenary years '1809' and '2009', with his name embossed in tactile Braille dots below, and a five-pointed star (★) mintmark for Hyderabad Mint at bottom rim. Obverse: Ashoka Lion Capital on the left and large numeral '2' on the right within a central band divided by parallel lines, with 'भारत INDIA' at top rim and 'रुपये RUPEES' at bottom rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2009_Louis_Braille_Bicentenary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2009_Louis_Braille_Bicentenary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:48:44.000Z"
+  },
+  {
+    "id": "1788979724894_52",
+    "type": "coin",
+    "name": "British India 1 Pice (1943) - King George VI (World War II Holed Bronze, Calcutta Mint)",
+    "country": "India",
+    "year": "1943",
+    "denomination": "1 Pice",
+    "material": "Bronze",
+    "coinKind": "Standard circulation holed coinage (World War II metal-saving issue)",
+    "coinStatus": "obsolete",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Historic World War II period 1 Pice bronze coin featuring a central circular hole introduced by the British Indian colonial government to conserve strategic copper/bronze supplies during wartime. Reverse: Beautiful ornate decorative vine and floral wreath encircling the central hole within a finely beaded outer border. Obverse: British Imperial Crown, '1 PICE', 'INDIA', and mint year '1943' (Calcutta Mint, no mintmark) encircling the central hole, accompanied by Urdu inscription 'Ek Paisa'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/British_India_1_Pice_1943_George_VI_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/British_India_1_Pice_1943_George_VI_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:48:44.000Z"
+  },
+  {
+    "id": "1788979226379_40",
+    "type": "coin",
+    "name": "10 Rupees (2012) - Shri Mata Vaishno Devi Shrine Board Silver Jubilee (Bi-Metallic)",
+    "country": "India",
+    "year": "2012",
+    "denomination": "10 Rs",
+    "material": "Bi-Metallic (Aluminium-Bronze outer ring, Cupro-Nickel center)",
+    "coinKind": "Commemorative circulating coinage (Shri Mata Vaishno Devi Shrine Board Silver Jubilee)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Bi-metallic commemorative 10 Rupees coin celebrating the Silver Jubilee (1986–2011/2012) of Shri Mata Vaishno Devi Shrine Board. Reverse: Image of Goddess Durga / Mata Vaishno Devi seated on a lion facing left with trident and divine weapons, surrounded by an inner circular ring. Perimeter inscribed in Hindi on the upper left 'श्री माता वैष्णो देवी श्राइन बोर्ड' and in English on the lower half 'SHRI MATA VAISHNO DEVI SHRINE BOARD', with 'SILVER JUBILEE' and year '2012' below the lion. Obverse: Ashoka Lion Capital at center with motto 'सत्यमेव जयते' below, flanked by 'भारत' on left and 'INDIA' on right, with Rupee symbol '₹' and large numeral '10' at bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_10_Rupees_2012_Vaishno_Devi_Shrine_Board_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_10_Rupees_2012_Vaishno_Devi_Shrine_Board_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:40:26.000Z"
+  },
+  {
+    "id": "1788979226379_41",
+    "type": "coin",
+    "name": "5 Rupees (2012) - Shri Mata Vaishno Devi Shrine Board Silver Jubilee (Nickel-Brass)",
+    "country": "India",
+    "year": "2012",
+    "denomination": "5 Rs",
+    "material": "Nickel-Brass",
+    "coinKind": "Commemorative circulating coinage (Shri Mata Vaishno Devi Shrine Board Silver Jubilee)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Nickel-brass commemorative 5 Rupees coin marking the Silver Jubilee of the Shri Mata Vaishno Devi Shrine Board. Reverse: Depicts Mata Vaishno Devi seated majestically atop a lion facing left, flanked by perimeter inscriptions in Devanagari 'श्री माता वैष्णो देवी श्राइन बोर्ड' and English 'SHRI MATA VAISHNO DEVI SHRINE BOARD', with 'SILVER JUBILEE' and date '2012' at bottom. Obverse: Lion Capital of Ashoka Pillar at center flanked by 'भारत' in Hindi and 'INDIA' in English, with the new Rupee symbol '₹' and denomination numeral '5' at bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2012_Vaishno_Devi_Shrine_Board_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2012_Vaishno_Devi_Shrine_Board_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:40:26.000Z"
+  },
+  {
+    "id": "1788979226379_42",
+    "type": "coin",
+    "name": "5 Rupees (2019) - Grain Series / New Definitive ₹ Series (Kolkata Mint)",
+    "country": "India",
+    "year": "2019",
+    "denomination": "5 Rs",
+    "material": "Nickel-Brass",
+    "coinKind": "Definitive circulating coinage (Grain Series / New ₹ Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "New definitive series 5 Rupees coin introduced in 2019 featuring grain motifs. Reverse: Large denomination numeral '5' with Rupee symbol '₹' above, stylized wheat/grain motif extending upwards on the left edge, inscribed in Hindi 'पाँच रुपये' on upper right and in English 'FIVE RUPEES' below, with mint year '2019' on the left edge (Kolkata Mint, no mintmark). Obverse: Lion Capital of Ashoka Pillar at center with national motto 'सत्यमेव जयते' below, flanked by 'भारत' on left and 'INDIA' on right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2019_Grain_Series_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2019_Grain_Series_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:40:26.000Z"
+  },
+  {
+    "id": "1788979226379_43",
+    "type": "coin",
+    "name": "5 Rupees (2014) - 125th Birth Anniversary of Jawaharlal Nehru (Nickel-Brass)",
+    "country": "India",
+    "year": "2014",
+    "denomination": "5 Rs",
+    "material": "Nickel-Brass",
+    "coinKind": "Commemorative circulating coinage (125th Birth Anniversary of Jawaharlal Nehru)",
+    "coinStatus": "circulating",
+    "notes": "Commemorative 5 Rupees coin celebrating the 125th Birth Anniversary of India's first Prime Minister, Pandit Jawaharlal Nehru (1889–1964). Reverse: Bust portrait of Jawaharlal Nehru facing right wearing his iconic Gandhi cap. Inscribed in Hindi on top/right 'जवाहरलाल नेहरू की 125 वीं जयन्ती' and in English on lower rim '125TH BIRTH ANNIVERSARY OF JAWAHARLAL NEHRU', with life dates '1889 - 2014' below the bust. Obverse: Lion Capital of Ashoka Pillar at center flanked by 'भारत' on left and 'INDIA' on right, with Rupee symbol '₹' and numeral '5' at bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2014_Nehru_125th_Birth_Anniversary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2014_Nehru_125th_Birth_Anniversary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:40:26.000Z"
+  },
+  {
+    "id": "1788979226379_44",
+    "type": "coin",
+    "name": "5 Rupees (2009) - Perarignar Anna Centenary (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "5 Rs",
+    "material": "Nickel-Brass",
+    "coinKind": "Commemorative circulating coinage (Perarignar Anna Centenary)",
+    "coinStatus": "circulating",
+    "notes": "Commemorative 5 Rupees coin honoring the birth centenary of legendary Tamil statesman, writer, and Chief Minister C. N. Annadurai (Perarignar Anna, 1909–1969). Reverse: Profile bust portrait of C. N. Annadurai facing right, with his facsimile Tamil signature below, followed by a five-pointed star (★) mintmark for the Hyderabad Mint, and life years '1909 - 1969'. Circular legend in Devanagari on upper left 'पेरारिग्नार अन्ना जन्मशती' and in English on right 'PERARIGNAR ANNA CENTENARY'. Obverse: Ashoka Lion Capital at center with motto 'सत्यमेव जयते' below, flanked by 'भारत' on left and 'INDIA' on right, with denomination 'रुपये 5 RUPEES' at bottom rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2009_Perarignar_Anna_Centenary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2009_Perarignar_Anna_Centenary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:40:26.000Z"
+  },
+  {
+    "id": "1788978155310_30",
+    "type": "coin",
+    "name": "2 Rupees (1999) - Chhatrapati Shivaji Maharaj Commemorative (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "1999",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Chhatrapati Shivaji Maharaj)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Distinctive 11-sided hendecagonal commemorative coin honoring Chhatrapati Shivaji Maharaj (1630–1680), legendary Maratha warrior-king and founder of the Maratha Empire. Reverse: Profile bust of Chhatrapati Shivaji Maharaj facing right wearing a traditional Maratha turban with feather (jirab); inscribed in Hindi on the left 'छत्रपति शिवाजी' and in English on the right 'CHHATRAPATI SHIVAJI', with mint year '1999' followed by a five-pointed star (★) mintmark for the Hyderabad Mint. Obverse: Lion Capital of Ashoka in center with motto 'सत्यमेव जयते' below, flanked by 'भारत' on left and 'INDIA' on right; lower rim features large numeral '2' flanked by 'रुपये' and 'RUPEES' within an 11-sided hendecagonal border.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1999_Chhatrapati_Shivaji_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1999_Chhatrapati_Shivaji_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:52:35.000Z"
+  },
+  {
+    "id": "1788978155310_31",
+    "type": "coin",
+    "name": "2 Rupees (2002) - National Integration (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2002",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Circulating commemorative coinage (National Integration)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Distinctive 11-sided hendecagonal coin promoting National Integration. Reverse: Map of the Republic of India with the national tricolor flag flying from the center; inscribed in Hindi above 'राष्ट्रीय एकता' and in English on the right 'NATIONAL INTEGRATION', with mint year '2002' and a five-pointed star (★) mintmark for the Hyderabad Mint at the bottom rim. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below, flanked by 'भारत' on the left and 'INDIA' on the right; large numeral '2' below flanked by 'रुपये' and 'RUPEES'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2002_National_Integration_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2002_National_Integration_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:52:35.000Z"
+  },
+  {
+    "id": "1788978017347_20",
+    "type": "coin",
+    "name": "5 Rupees (2006) - 150th Birth Anniversary of Jagath Guru Sree Narayana Gurudev",
+    "country": "India",
+    "year": "2006",
+    "denomination": "5 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (150th Birth Anniversary of Sree Narayana Guru)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Heavy cupro-nickel commemorative 5 Rupees coin celebrating the 150th Birth Anniversary (1856–2006) of Jagath Guru Sree Narayana Gurudev (1856–1928), revered spiritual philosopher, social reformer, and saint of Kerala who championed the philosophy of 'One Caste, One Religion, One God for All'. Reverse: Front-facing bust of Sree Narayana Guru wearing headcloth/shawl; inscribed in Devnagari around left rim 'जगत गुरु श्री नारायण गुरुदेव' and in English around right rim 'JAGATH GURU SREE NARAYANA GURUDEV', with a decorative beaded outer rim. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below, flanked by 'भारत' on left and 'INDIA' on right; lower periphery features large numeral '5' flanked by 'रुपये' and 'RUPEES', framed by an outer beaded border with security edge.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2006_Sree_Narayana_Guru_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2006_Sree_Narayana_Guru_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:50:17.000Z"
+  },
+  {
+    "id": "1788978017347_21",
+    "type": "coin",
+    "name": "2 Rupees (1993) - Bio Diversity / World Food Day (11-Sided Hendecagonal)",
+    "country": "India",
+    "year": "1993",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (World Food Day / Bio Diversity)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Distinctive 11-sided hendecagonal commemorative coin issued for World Food Day (16 October 1993) on the theme of Biological Diversity. Reverse: Center features a landscape of Indian agriculture and nature—hills with the sun rising, water with fish/aquatic life, crops and a tractor in fertile fields, with the official emblem of the Food and Agriculture Organization (FAO) at top center. Inscribed in Hindi around left rim 'जैव विविधता / विश्व खाद्य दिवस' and in English around right rim 'BIO DIVERSITY / WORLD FOOD DAY', with mint year '1993' at the bottom rim. Obverse: Lion Capital of Ashoka in center with motto 'सत्यमेव जयते' below, flanked by 'भारत' and 'INDIA'; lower rim features large numeral '2' flanked by 'रुपये' and 'RUPEES' within an 11-sided hendecagonal border.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1993_Bio_Diversity_World_Food_Day_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1993_Bio_Diversity_World_Food_Day_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:50:17.000Z"
+  },
+  {
+    "id": "1788977895767_10",
+    "type": "coin",
+    "name": "5 Rupees (2006) - State Bank of India Bicentenary (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2006",
+    "denomination": "5 Rs",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Commemorative circulating coinage (State Bank of India Bicentenary 1806-2006)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative circulating 5 Rupees coin in Ferritic Stainless Steel celebrating the Bicentenary (1806–2006) of the State Bank of India (established on 2 June 1806 as the Bank of Calcutta). Reverse: Official keyhole-in-a-circle emblem of the State Bank of India in the center, flanked by '1806' on the left and '2006' on the right; inscribed along upper periphery in Hindi 'भारतीय स्टेट बैंक' and along lower periphery in English 'STATE BANK OF INDIA', with a five-pointed star (★) mintmark for the Hyderabad Mint below the emblem. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; upper periphery inscribed 'भारत INDIA', and lower periphery with large numeral '5' flanked by 'रुपये' on the left and 'RUPEES' on the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2006_SBI_Bicentenary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2006_SBI_Bicentenary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:48:15.000Z"
+  },
+  {
+    "id": "1788977895767_11",
+    "type": "coin",
+    "name": "2 Rupees (2000) - Supreme Court of India Golden Jubilee (Kolkata Mint)",
+    "country": "India",
+    "year": "2000",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Supreme Court Golden Jubilee 1950-2000)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative circulating 2 Rupees 11-sided hendecagonal coin celebrating the Golden Jubilee (1950–2000) of the Supreme Court of India. Reverse: Features the insignia of the Supreme Court of India with the Lion Capital of Ashoka surmounted by the 24-spoked Dharma Chakra (Wheel of Law) atop a pedestal with the Sanskrit motto 'यतो धर्मस्ततो जयः' ('Where there is righteousness, there is victory'); inscribed in Hindi on the left 'भारत का उच्चतम न्यायालय', in English on the right 'SUPREME COURT OF INDIA', and Jubilee anniversary dates '1950-2000' at the bottom rim (Kolkata Mint, no mintmark). Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते' below, flanked by 'भारत' on the left and 'INDIA' on the right; large numeral '2' below flanked by 'रुपये' and 'RUPEES'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2000_Supreme_Court_Golden_Jubilee_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2000_Supreme_Court_Golden_Jubilee_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:48:15.000Z"
+  },
+  {
+    "id": "1788977895767_12",
+    "type": "coin",
+    "name": "2 Rupees (1998) - Sri Aurobindo / All Life is Yoga (Kolkata Mint)",
+    "country": "India",
+    "year": "1998",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Sri Aurobindo)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative circulating 2 Rupees 11-sided hendecagonal coin issued in 1998 honoring philosopher, poet, and yogi Sri Aurobindo (1872–1950). Reverse: Front-facing bust of Sri Aurobindo with flowing hair and beard, holding a quill pen in his right hand. Inscribed in Hindi around the upper and left rim 'श्री अरविन्द' and 'सम्पूर्ण जीवन योग है'; in English along the upper and right rim 'SRI AUROBINDO' and 'ALL LIFE IS YOGA'; mint year '1998' at the bottom between colons (Kolkata Mint, no mintmark). Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते' below, flanked by 'भारत' and 'INDIA', with large numeral '2' below flanked by 'रुपये' and 'RUPEES'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1998_Sri_Aurobindo_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1998_Sri_Aurobindo_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T23:48:15.000Z"
+  },
+  {
+    "id": "1788977829932_1",
+    "type": "coin",
+    "name": "5 Rupees (2009) - 125th Birth Anniversary of Dr. Rajendra Prasad (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2009",
+    "denomination": "5 Rs",
+    "material": "Nickel-Brass",
+    "coinKind": "Commemorative circulating coinage (Dr. Rajendra Prasad 125th Birth Anniversary)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative circulating coin celebrating the 125th Birth Anniversary (1884–2009) of Dr. Rajendra Prasad, independent India's first President (1950–1962). Reverse: Bust of Dr. Rajendra Prasad facing slightly left wearing a Gandhi cap; inscribed along upper perimeter in Hindi 'डॉ. राजेन्द्र प्रसाद' and in English 'DR. RAJENDRA PRASAD'; lower perimeter inscribed in Hindi '125 वीं जयन्ती' and in English '125 BIRTH ANNIVERSARY'; below the portrait are the birth and anniversary dates '1884 - 2009' separated by a five-pointed star (★) mintmark for the Hyderabad Mint. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; upper periphery inscribed 'भारत INDIA', and lower periphery with large numeral '5' flanked by 'रुपये' on the left and 'RUPEES' on the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2009_Rajendra_Prasad_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2009_Rajendra_Prasad_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:17:09.000Z"
+  },
+  {
+    "id": "1788977829932_2",
+    "type": "coin",
+    "name": "2 Rupees (2003) - 150 Glorious Years of Indian Railways / Bholu The Guard (Cupro-Nickel)",
+    "country": "India",
+    "year": "2003",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (150 Glorious Years of Indian Railways)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Distinctive 11-sided hendecagonal commemorative coin celebrating the 150th anniversary (1853–2003) of Indian Railways (first passenger train ran between Bombay and Thane on 16 April 1853). Reverse: Depicts the official mascot of Indian Railways, 'Bholu, The Guard'—a cheerful cartoon elephant dressed as a railway train guard holding a signal inspection green lantern. Inscribed along the periphery: 'Railways रेलवे', '150 Glorious Years 150 गौरवपूर्ण वर्ष', 'Bholu, The Guard', and mint year '2003' at the bottom rim (Kolkata Mint, no mintmark). Obverse: Lion Capital of Ashoka in center with 'सत्यमेव जयते' below; flanked by 'भारत' on the left and 'INDIA' on the right; lower rim features large numeral '2' flanked by 'रुपये' and 'RUPEES'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2003_Railways_Bholu_Guard_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_2003_Railways_Bholu_Guard_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:17:09.000Z"
+  },
+  {
+    "id": "1788977829932_3",
+    "type": "coin",
+    "name": "5 Rupees (1999) - Floral Wreath Definitive Series (Cupro-Nickel)",
+    "country": "India",
+    "year": "1999",
+    "denomination": "5 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Circulating definitive coinage (Heavy Cupro-Nickel series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Heavy cupro-nickel 5 Rupees definitive coin issued from 1992 to 2004 with beaded rim border and security edge. Reverse: Large central numeral '5' flanked by ornate stylized floral lotus branches; 'रुपये' inscribed in Hindi above the numeral, 'RUPEES' in English below, and mint year '1999' at the bottom rim. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; flanked by 'भारत' on the left and 'INDIA' on the right, surrounded by an outer beaded denticle rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_1999_Floral_Wreath_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_1999_Floral_Wreath_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:17:09.000Z"
+  },
+  {
+    "id": "1788977829932_4",
+    "type": "coin",
+    "name": "2 Rupees (2015) - New Rupee Symbol ₹ Series (Ferritic Stainless Steel)",
+    "country": "India",
+    "year": "2015",
+    "denomination": "2 Rs",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Circulating definitive coinage (New Rupee Symbol Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard circulation definitive coinage introduced following the adoption of the official Indian Rupee currency symbol '₹' designed by D. Udaya Kumar. Reverse: Features the new Rupee symbol '₹' above a large central numeral '2', flanked on both sides by two stylized lotus flower buds/stalks, with the mint year '2015' positioned at the bottom rim. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' beneath the base, flanked by 'भारत' on the left and 'INDIA' on the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_Rupee_Symbol_Series_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_Rupee_Symbol_Series_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T18:17:09.000Z"
+  },
+  {
+    "id": "1788967035792",
+    "type": "coin",
+    "name": "1 Rupee (1990) - Care for the Girl Child / SAARC Year (11-Sided Hendecagonal, Noida Mint)",
+    "country": "India",
+    "year": "1990",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (SAARC Year of the Girl Child)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Distinctive 11-sided hendecagonal commemorative issue struck for the SAARC Year of the Girl Child (1990). Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; flanked by 'भारत' and 'रुपया' on left, 'INDIA' and 'RUPEE' on right, large numeral '1' below within an 11-sided border. Reverse: Emblem showing stylized girl child with arms outstretched beneath a shining sun, floral sprig on left. Inscribed in Devnagari on left: 'बालिका का भविष्य देश का भविष्य', in English on right: 'CARE FOR THE GIRL CHILD', and along the bottom: 'SAARC YEAR 1990' with round dot (•) mintmark for Noida Mint.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1990_SAARC_Girl_Child_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1990_SAARC_Girl_Child_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:15:00.000Z"
+  },
+  {
+    "id": "1788967035793",
+    "type": "coin",
+    "name": "1 Rupee (2005) - Unity in Diversity / Cross Series (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2005",
+    "denomination": "1 Re",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Definitive circulating coinage (Unity in Diversity / Cross Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Definitive circulating coin from the short-lived 'Unity in Diversity' series. Obverse: Divided into three horizontal registers by two lines; top register has 'भारत INDIA', center register features the Lion Capital of Ashoka on left and large numeral '1' on right, bottom register shows year '2005' with five-pointed star (★) mintmark denoting Hyderabad Mint. Reverse: Stylized cross motif consisting of two intersecting bars with four raised dots (one in each quadrant), symbolizing national unity among diverse regions; inscribed arched along the top: 'एक रुपया ONE RUPEE'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2005_Unity_in_Diversity_Cross_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2005_Unity_in_Diversity_Cross_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:16:00.000Z"
+  },
+  {
+    "id": "1788966737806",
+    "type": "coin",
+    "name": "1 Rupee (1992) - Food and Nutrition / World Food Day (Kolkata Mint)",
+    "country": "India",
+    "year": "1992",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (World Food Day / FAO)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the FAO World Food Day with the theme 'Food and Nutrition'. Obverse: Lion Capital of Ashoka with national motto 'सत्यमेव जयते' below; flanked by 'भारत' and 'रुपया' on left, 'INDIA' and 'RUPEE' on right, large numeral '1' below the pedestal. Reverse: Stylized wheat stalks rising above a cornucopia basket of food, fruits, vegetables, and milk cup, with the FAO emblem at top. Inscribed in Devnagari on left: 'खाद्य एवं पौष्टिकता', in English on right: 'FOOD AND NUTRITION', and below: 'विश्व खाद्य दिवस / WORLD FOOD DAY / 1992' with no mintmark denoting Kolkata (Calcutta) Mint.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1992_Food_and_Nutrition_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1992_Food_and_Nutrition_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:10:00.000Z"
+  },
+  {
+    "id": "1788966737807",
+    "type": "coin",
+    "name": "1 Rupee (2010) - Mudra Series / Thumbs Up (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2010",
+    "denomination": "1 Re",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Definitive circulating coinage (Hasta Mudra Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Definitive coinage from the Hasta Mudra series depicting classical Bharatnatyam dance hand mudras. Obverse: Divided into three horizontal fields by two parallel lines; upper field inscribed 'भारत INDIA', center field contains the Ashoka Lion Capital with motto 'सत्यमेव जयते', and lower field features year '2010' with a five-pointed star (★) mintmark denoting Hyderabad Mint. Reverse: Large numeral '1' on left with 'रुपया' and 'RUPEE' below; right side depicts the classical Sikhara Hasta Mudra (hand showing raised thumb / 'Thumbs Up').",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2010_Mudra_Thumbs_Up_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2010_Mudra_Thumbs_Up_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:11:00.000Z"
+  },
+  {
+    "id": "1788966737808",
+    "type": "coin",
+    "name": "1 Rupee (1990) - Dr. B. R. Ambedkar Birth Centenary Commemorative (Noida Mint)",
+    "country": "India",
+    "year": "1990",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Dr. B. R. Ambedkar Birth Centenary)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the birth centenary of Dr. Bhimrao Ramji Ambedkar (1891–1956), chief architect of the Constitution of India and reformer. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; flanked by 'भारत' and 'रुपया' on left, 'INDIA' and 'RUPEE' on right, numeral '1' below, enclosed within a beaded circular inner rim. Reverse: Portrait bust of Dr. B. R. Ambedkar wearing coat, necktie, and spectacles. Inscribed in Devnagari on left: 'डॉ. बी. आर. अम्बेडकर', in English on right: 'DR. B.R. AMBEDKAR', and along the bottom: 'CENTENARY 1990' with a round dot (•) mintmark denoting Noida Mint, surrounded by a beaded border.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1990_Ambedkar_Centenary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1990_Ambedkar_Centenary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:12:00.000Z"
+  },
+  {
+    "id": "1788966422888",
+    "type": "coin",
+    "name": "1 Rupee (1992) - Quit India Movement Golden Jubilee Commemorative (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "1992",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Quit India Movement 1942–1992)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the Golden Jubilee (50th Anniversary) of the historic 1942 Quit India Movement (August Kranti). Obverse: Lion Capital of Ashoka with national motto 'सत्यमेव जयते' below; flanked by 'भारत' and 'रुपया' on left, 'INDIA' and 'RUPEE' on right, large numeral '1' below the pedestal, enclosed within a beaded circular rim. Reverse: Sculptural depiction of the Martyrs' Memorial (Shaheed Smarak) statue at Patna commemorating the brave student martyrs who unfurled the tricolor. Inscribed in Devnagari on left: 'भारत छोड़ो आंदोलन', in English on right: 'QUIT INDIA MOVEMENT', and along the bottom: '1942 - 1992' with a five-pointed star (★) mintmark above 'स्वर्ण जयंती GOLDEN JUBILEE' denoting Hyderabad Mint.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1992_Quit_India_Golden_Jubilee_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1992_Quit_India_Golden_Jubilee_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:05:00.000Z"
+  },
+  {
+    "id": "1788966422889",
+    "type": "coin",
+    "name": "1 Rupee (2003) - Two Wheat Stalks Definitive Series (Kolkata Mint)",
+    "country": "India",
+    "year": "2003",
+    "denomination": "1 Re",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Definitive circulating coinage (Two Wheat Stalks Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic definitive circulating 1 Rupee coin minted in ferritic stainless steel (25 mm, 4.85 g). Obverse: Lion Capital of Ashoka in center with national motto 'सत्यमेव जयते' below; flanked by 'भारत' on the left and 'INDIA' on the right, smooth rim. Reverse: Large numeral '1' in the center flanked by two stylized stalks of wheat/corn; 'रुपया' in Devnagari arched above, 'RUPEE' and year '2003' along the bottom with no mintmark denoting Kolkata (Calcutta) Mint.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2003_Wheat_Stalks_Definitive_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2003_Wheat_Stalks_Definitive_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:06:00.000Z"
+  },
+  {
+    "id": "1788966098423",
+    "type": "coin",
+    "name": "5 Rupees (2010) - Platinum Jubilee of Reserve Bank of India (Kolkata Mint)",
+    "country": "India",
+    "year": "2010",
+    "denomination": "5 Rs",
+    "material": "Nickel-Brass",
+    "coinKind": "Commemorative circulating coinage (RBI Platinum Jubilee 1935-2010)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the Platinum Jubilee (75th Anniversary) of the Reserve Bank of India (1935–2010). Features the newly introduced Rupee currency symbol '₹5'. Reverse: Seal of the Reserve Bank of India depicting a Royal Bengal Tiger in front of a palm tree, encircled above by 'भारतीय रिज़र्व बैंक ₹5 RESERVE BANK OF INDIA', and below the pedestal: 'प्लैटिनम जयंती / PLATINUM JUBILEE / • 1935-2010 •' with no mintmark denoting Kolkata (Calcutta) Mint. Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; upper periphery 'भारत INDIA', lower periphery numeral '5' flanked by 'रुपये' on left and 'RUPEES' on right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2010_RBI_Platinum_Jubilee_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_5_Rupees_2010_RBI_Platinum_Jubilee_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:00:00.000Z"
+  },
+  {
+    "id": "1788966098424",
+    "type": "coin",
+    "name": "1 Rupee (1991) - Rajiv Gandhi Commemorative (Noida Mint)",
+    "country": "India",
+    "year": "1991",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Rajiv Gandhi Memorial)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Memorial commemorative issue in honor of former Prime Minister Rajiv Gandhi (1944–1991). Obverse: Lion Capital of Ashoka with national motto 'सत्यमेव जयते' below; flanked by 'भारत' and 'रुपया' on left, 'INDIA' and 'RUPEE' on right, numeral '1' below, enclosed within an ornate circular beaded inner rim. Reverse: Left-facing portrait of Rajiv Gandhi. Inscribed in Devnagari on left: 'राजीव गांधी', in English on right: 'RAJIV GANDHI', with lifetime dates '1944 • 1991' and a round dot (•) mintmark below denoting Noida Mint, surrounded by a beaded border.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1991_Rajiv_Gandhi_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1991_Rajiv_Gandhi_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:01:00.000Z"
+  },
+  {
+    "id": "1788966098425",
+    "type": "coin",
+    "name": "1 Rupee (2002) - Lok Nayak Jaya Prakash Narayan Centenary Commemorative (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2002",
+    "denomination": "1 Re",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Commemorative circulating coinage (Jayaprakash Narayan Birth Centenary)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the birth centenary of Indian independence activist, theorist, socialist and political leader Lok Nayak Jayaprakash Narayan (1902–1979). Obverse: Lion Capital of Ashoka with motto 'सत्यमेव जयते' below; flanked by 'भारत' and 'रुपया' on left, 'INDIA' and 'RUPEE' on right, large numeral '1' below pedestal. Reverse: Front-facing bust of Jayaprakash Narayan wearing spectacles and Gandhi cap. Inscribed in Devnagari on left: 'लोक नायक जय प्रकाश नारायण', in English on right: 'LOK NAYAK JAYA PRAKASH NARAYAN', and below: 'जन्म शती 2002 CENTENARY' with five-pointed star (★) mintmark denoting Hyderabad Mint.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2002_Jaya_Prakash_Narayan_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2002_Jaya_Prakash_Narayan_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T15:02:00.000Z"
+  },
+  {
+    "id": "1788965903833",
+    "type": "coin",
+    "name": "1 Rupee (1995) - Saint Thiruvalluvar / 8th World Tamil Conference (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "1995",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (8th World Tamil Conference)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the 8th World Tamil Conference held at Thanjavur, Tamil Nadu in 1995. Obverse: Lion Capital of Ashoka with national motto \"सत्यमेव जयते\" below; flanked by \"भारत\" and \"रुपया\" on the left, \"INDIA\" and \"RUPEE\" on the right, with large numeral \"1\" below the pedestal. Reverse: Seated portrait of revered ancient Tamil poet-philosopher Saint Thiruvalluvar (author of Tirukkuṛaḷ). Inscribed in Devnagari on the left: \"8वां विश्व तमिल सम्मेलन संत तिरुवल्लुवर\", in English on the right: \"8th WORLD TAMIL CONFERENCE • SAINT THIRUVALLUVAR\", with date \"1995\" and five-pointed star (★) mintmark denoting Hyderabad Mint at the bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1995_Thiruvalluvar_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1995_Thiruvalluvar_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:55:00.000Z"
+  },
+  {
+    "id": "1788965903834",
+    "type": "coin",
+    "name": "1 Rupee (1989) - Jawaharlal Nehru Birth Centenary Commemorative (Kolkata Mint)",
+    "country": "India",
+    "year": "1989",
+    "denomination": "1 Re",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative circulating coinage (Jawaharlal Nehru Birth Centenary)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative issue celebrating the birth centenary of Pandit Jawaharlal Nehru (1889–1964), India's first Prime Minister. Obverse: Lion Capital of Ashoka with \"सत्यमेव जयते\" below; flanked by \"भारत\" and \"रुपया\" on the left, \"INDIA\" and \"RUPEE\" on the right, numeral \"1\" below, enclosed within an ornate circular beaded inner border. Reverse: Right-facing portrait of Jawaharlal Nehru wearing a traditional Gandhi cap. Inscribed in Devnagari on the left: \"जवाहरलाल नेहरू\", in English on the right: \"JAWAHARLAL NEHRU\", and along the bottom: \"जन्म शती 1989 CENTENARY\" with no mintmark denoting Kolkata (Calcutta) Mint, encircled by an ornate beaded rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1989_Nehru_Centenary_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1989_Nehru_Centenary_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:56:00.000Z"
+  },
+  {
+    "id": "1788965495157",
+    "type": "coin",
+    "name": "1 Rupee (1978) - Two Wheat Stalks / Big Rupee Series (Bombay Mint)",
+    "country": "India",
+    "year": "1978",
+    "denomination": "1 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Definitive circulating coinage (Big Rupee / Wheat Stalks Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic large-format (28 mm) cupro-nickel 1 Rupee definitive coin. Obverse: Lion Capital of Ashoka with 'भारत INDIA', enclosed by an ornate crenellated/denticled outer border. Reverse: Inscription 'रुपया' in Devnagari at the top, large numeral '1' in the center flanked by two stylized wheat stalks, 'RUPEE' and year '1978' with small dot mintmark (Bombay Mint) at the bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1978_Wheat_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1978_Wheat_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:45:00.000Z"
+  },
+  {
+    "id": "1788965495156",
+    "type": "coin",
+    "name": "1 Rupee (1942) - King George VI (British India Silver)",
+    "country": "British India",
+    "year": "1942",
+    "denomination": "1 Rupee",
+    "material": "Silver (.500 Silver)",
+    "coinKind": "Circulating coinage (British Raj / King George VI Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Historic World War II era British India 1 Rupee silver coin (0.500 fine silver). Obverse: Crowned head of King George VI facing left, inscribed 'GEORGE VI KING EMPEROR' within an ornate beaded/denticled border. Reverse: Value and date 'ONE RUPEE INDIA 1942' in center within an elaborate floral/foliage wreath of lotus, roses, thistles, and shamrocks.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/British_India_1_Rupee_1942_George_VI_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/British_India_1_Rupee_1942_George_VI_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:45:10.000Z"
+  },
+  {
+    "id": "1788965099702",
+    "type": "coin",
+    "name": "1 Rupee (1987) - Small Farmers / किसान Commemorative",
+    "country": "India",
+    "year": "1987",
+    "denomination": "1 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative coinage (Small Farmers / किसान, 11-sided Hendecagonal)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic 11-sided (hendecagonal) cupro-nickel 1 Rupee commemorative coin dedicated to Small Farmers. Obverse: Lion Capital of Ashoka with 'भारत INDIA' at the top, 'रुपये RUPEE' on the sides, and large numeral '1' at the bottom. Reverse: Two farmers working in agricultural field, tractor/sunrise emblem above, inscribed 'किसान' (left) and 'SMALL FARMERS' (right), with year '1987' at the bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1987_Small_Farmers_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1987_Small_Farmers_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:38:00.000Z"
+  },
+  {
+    "id": "1788965099701",
+    "type": "coin",
+    "name": "1 Rupee (2003) - Maharana Pratap Commemorative (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "2003",
+    "denomination": "1 Rs",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Commemorative coinage (Maharana Pratap 1540-1597)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative stainless steel 1 Rupee coin honoring Rajput warrior king Maharana Pratap. Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते', flanked by 'भारत INDIA', with 'रुपये RUPEE' and numeral '1' below. Reverse: Left-facing portrait bust of Maharana Pratap in armour and helmet, inscribed 'महाराणा प्रताप MAHARANA PRATAP 1540-1597', with year '2003' and Hyderabad Mint star (★) mintmark at the bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2003_Maharana_Pratap_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2003_Maharana_Pratap_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:38:10.000Z"
+  },
+  {
+    "id": "1788965099700",
+    "type": "coin",
+    "name": "1 Rupee (1997) - Cellular Jail Port Blair Commemorative (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "1997",
+    "denomination": "1 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative coinage (Cellular Jail, Port Blair)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative cupro-nickel 1 Rupee coin honoring the historic Cellular Jail in Port Blair, Andaman & Nicobar Islands (Kala Pani). Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते', flanked by 'भारत INDIA', with 'रुपये RUPEE' and numeral '1' below. Reverse: Three-dimensional perspective of the wings of the Cellular Jail, inscribed 'सेल्युलर जेल CELLULAR JAIL' along the upper rim and 'पोर्ट ब्लेयर 1997 PORT BLAIR' along the lower rim, with Hyderabad Mint star (★) mintmark below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1997_Cellular_Jail_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_1997_Cellular_Jail_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:38:20.000Z"
+  },
+  {
+    "id": "1788964363950",
+    "type": "coin",
+    "name": "1 Pice (1951) - Galloping Horse (Bombay Mint)",
+    "country": "India",
+    "year": "1951",
+    "denomination": "1 Pice",
+    "material": "Bronze",
+    "coinKind": "Definitive circulating coinage (Early Republic 1950-1955 Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Historic early Republic of India 1 Pice bronze coin featuring the famous galloping horse motif. Obverse: Lion Capital of Ashoka enclosed within a circular ring, inscribed 'GOVERNMENT OF INDIA' with a five-pointed star at the bottom. Reverse: Prancing horse facing left, inscribed 'एक पैसा' in Devnagari at the top, 'ONE PICE' at the bottom, and year '1951' with small dot mintmark (Bombay Mint) on the right.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Pice_1951_Horse_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Pice_1951_Horse_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:31:00.000Z"
+  },
+  {
+    "id": "1788964363949",
+    "type": "coin",
+    "name": "25 Paise (1975) - Ears of Corn / Beaded Border Series",
+    "country": "India",
+    "year": "1975",
+    "denomination": "25p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Definitive circulating coinage (Beaded Outer Border Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Definitive cupro-nickel 25 paise coin with decorative beaded/rectangular outer border. Obverse: Ashoka Lion Capital with 'भारत INDIA' framed inside the beaded rim. Reverse: Inscription 'पैसे PAISE' at top, large numeral '25' in center, flanked by stylized ears of corn/wheat, and year '1975' with small dot mintmark (Bombay Mint) at bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_1975_Beaded_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_1975_Beaded_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:31:10.000Z"
+  },
+  {
+    "id": "1788964056301",
+    "type": "coin",
+    "name": "50 Paise (1985) - Floral Border Definitive Series",
+    "country": "India",
+    "year": "1985",
+    "denomination": "50p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Definitive circulating coinage (Floral Border / Wreath Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic cupro-nickel 50 paise definitive coin featuring intricate floral wreath design. Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते', flanked by 'भारत INDIA', encircled by a circular floral wreath border. Reverse: Large denomination numeral '50' in center, flanked by 'पैसे PAISE', year '1985' below, surrounded by a decorative floral pattern rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1985_Floral_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1985_Floral_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:22:00.000Z"
+  },
+  {
+    "id": "1788964056300",
+    "type": "coin",
+    "name": "25 Paise (1987) - Ears of Corn / Beaded Border Series",
+    "country": "India",
+    "year": "1987",
+    "denomination": "25p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Definitive circulating coinage (Beaded Outer Border Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Definitive cupro-nickel 25 paise coin with decorative inner beaded rim. Obverse: Ashoka Lion Capital with 'भारत INDIA' enclosed by an ornate rectangular/beaded inner border. Reverse: Denomination 'पैसे PAiSE' at top, large numeral '25', year '1987' with small dot mintmark (Bombay Mint) at bottom, flanked by two stylized ears of corn/wheat, encircled by the beaded rim.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_1987_Beaded_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_1987_Beaded_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:22:10.000Z"
+  },
+  {
+    "id": "1788964056299",
+    "type": "coin",
+    "name": "25 Paise (1982) - IX Asian Games Delhi Commemorative",
+    "country": "India",
+    "year": "1982",
+    "denomination": "25p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative coinage (IX Asian Games, Delhi 1982)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative cupro-nickel coin issued for the IX Asian Games held in Delhi in 1982. Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते', flanked by 'भारत INDIA', with denomination '25' and 'पैसे PAISE' below. Reverse: Official emblem of the 9th Asian Games (sunburst over Jantar Mantar motif), flanked by 'नवम् एशियाई खेल' (Hindi) and 'IX ASIAN GAMES' (English), with 'DELHI 1982' and circular dot mintmark (Bombay Mint) below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_1982_Asian_Games_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_1982_Asian_Games_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:22:20.000Z"
+  },
+  {
+    "id": "1788963691006",
+    "type": "coin",
+    "name": "3 Paise (1966) - Hexagonal Aluminium Series",
+    "country": "India",
+    "year": "1966",
+    "denomination": "3p",
+    "material": "Aluminium-Magnesium alloy",
+    "coinKind": "Definitive circulating coinage (Hexagonal Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic 6-sided (hexagonal) aluminium-magnesium coin with rounded corners. Obverse: Ashoka Lion Capital with 'भारत' on the left and 'INDIA' on the right, inner beaded border. Reverse: Denomination 'तीन पैसे' at the top, large numeral '3' in the center flanked by two lotus flower stalks, and year '1966' at the bottom.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_3_Paise_1966_Hexagonal_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_3_Paise_1966_Hexagonal_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:18:00.000Z"
+  },
+  {
+    "id": "1788963691005",
+    "type": "coin",
+    "name": "1/4 Rupee (1951) - 4 Annas / Ears of Corn (Bombay Mint)",
+    "country": "India",
+    "year": "1951",
+    "denomination": "1/4 Rupee",
+    "material": "Nickel",
+    "coinKind": "Definitive circulating coinage (Early Republic of India 1950-1955 Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Early post-independence definitive 1/4 Rupee (Char Anna) pure nickel coin. Obverse: Lion Capital of Ashoka enclosed in a circle, inscribed 'GOVERNMENT OF INDIA' with a five-pointed star at the bottom. Reverse: Inscribed 'चार आना' in Devnagari at the top, large fraction '1/4', 'RUPEE', and year '1951' with small dot mintmark (Bombay Mint) at the bottom, flanked by two stylized ears of wheat/corn.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_4_Rupee_1951_Corn_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_4_Rupee_1951_Corn_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:18:10.000Z"
+  },
+  {
+    "id": "1788963691004",
+    "type": "coin",
+    "name": "1 Rupee (2016) - New Rupee Symbol ₹ Series (Noida Mint)",
+    "country": "India",
+    "year": "2015",
+    "denomination": "1 Rs",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Modern definitive Ferritic Stainless Steel (FSS) circulating 1 Rupee coin. Obverse: Lion Capital of Ashoka with national motto 'सत्यमेव जयते', flanked by 'भारत INDIA'. Reverse: New Indian Rupee currency symbol '₹', denomination numeral '1', stylized floral motifs flanking both sides, and year '2016' with a round dot mintmark below (Noida Mint).",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2016_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2016_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:18:20.000Z"
+  },
+  {
+    "id": "1788963420727",
+    "type": "coin",
+    "name": "20 Paise (1969) - Mahatma Gandhi Birth Centenary Commemorative",
+    "country": "India",
+    "year": "1969",
+    "denomination": "20p",
+    "material": "Aluminium-Bronze",
+    "coinKind": "Commemorative coinage (Mahatma Gandhi Birth Centenary 1869–1969)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative aluminium-bronze coin minted for the birth centenary of Mahatma Gandhi (1869-1969). Obverse: Ashoka Lion Capital with 'भारत INDIA' and denomination '20 PAISE'. Reverse: Left-facing portrait bust of Mahatma Gandhi with 'महात्मा गांधी • MAHATMA GANDHI' along the upper rim and dates '1869-1948' below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_20_Paise_1969_Mahatma_Gandhi_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_20_Paise_1969_Mahatma_Gandhi_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:15:00.000Z"
+  },
+  {
+    "id": "1788963420726",
+    "type": "coin",
+    "name": "10 Paise (1988) - Modern Definitive (Ottawa \"C\" Mintmark)",
+    "country": "India",
+    "year": "1988",
+    "denomination": "10p",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Definitive circulating coinage (Foreign Mint Contract - Ottawa)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Definitive stainless steel 10 paise coin minted under foreign contract by the Royal Canadian Mint in Ottawa, Ontario, Canada (bearing the distinctive small 'C' mintmark below the date '1988'). Obverse: Ashoka Lion Capital with 'सत्यमेव जयते' and flanked by 'भारत INDIA'. Reverse: Large central numeral '10', flanked by 'पैसे' (left) and 'PAISE' (right), year '1988' and 'C' mintmark below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_10_Paise_1988_Ottawa_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_10_Paise_1988_Ottawa_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:15:10.000Z"
+  },
+  {
+    "id": "1788963420725",
+    "type": "coin",
+    "name": "2 Rupees (1996) - National Integration (Hyderabad ★ Mint)",
+    "country": "India",
+    "year": "1996",
+    "denomination": "2 Rs",
+    "material": "Cupro-Nickel",
+    "coinKind": "Definitive circulating coinage (11-sided Hendecagonal, National Integration Series)",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Classic 11-sided (hendecagonal) cupro-nickel 2 Rupees coin. Obverse: Ashoka Lion Capital with 'सत्यमेव जयते', flanked by 'भारत INDIA' at the top and 'रुपये RUPEES' along the lower rim, with large numeral '2' below. Reverse: Geographic map outline of India with the flying National Flag (Tiranga), inscribed 'राष्ट्रीय एकता' (Hindi) and 'NATIONAL INTEGRATION' (English), year '1996' with Hyderabad Mint five-pointed star (★) mintmark below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1996_National_Integration_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Rupees_1996_National_Integration_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:15:20.000Z"
+  },
+  {
+    "id": "1788963075356",
+    "type": "coin",
+    "name": "50 Paise (2008) - Mudra / Clenched Fist Series",
+    "country": "India",
+    "year": "2008",
+    "denomination": "50p",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Definitive circulating coinage (Mudra / Gesture Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Modern Ferritic Stainless Steel (FSS) definitive 50 paise coin from the 'Mudra' series. Obverse: Lion Capital of Ashoka with 'सत्यमेव जयते', flanked by 'भारत INDIA', and year '2008' below. Reverse: Large numeral '50' with a stylized clenched fist / mudra hand symbol representing strength and unity, and 'पैसे PAISE' below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_2008_Mudra_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_2008_Mudra_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:11:00.000Z"
+  },
+  {
+    "id": "1788963075355",
+    "type": "coin",
+    "name": "50 Paise (1985) - Indira Gandhi Commemorative",
+    "country": "India",
+    "year": "1985",
+    "denomination": "50p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative coinage (In Memory of Indira Gandhi 1917–1984)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative cupro-nickel coin issued in memory of Prime Minister Indira Gandhi. Obverse: Lion Capital of Ashoka with 'भारत INDIA' and denomination 'पैसे 50 PAISE' within a beaded rim. Reverse: Right-facing portrait bust of Indira Gandhi with 'इन्दिरा गांधी INDIRA GANDHI' along the upper rim and years '1917 - 1984' below.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1985_Indira_Gandhi_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1985_Indira_Gandhi_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:11:10.000Z"
+  },
+  {
+    "id": "1788963075354",
+    "type": "coin",
+    "name": "50 Paise (1990) - Parliament House & Map of India",
+    "country": "India",
+    "year": "1990",
+    "denomination": "50p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Definitive circulating coinage (National Integration Series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Cupro-nickel definitive 50 paise coin featuring National Integration motifs. Obverse: Ashoka Lion Capital at the top, large central numeral '50', flanked by 'भारत INDIA' and 'पैसे PAISE'. Reverse: Geographic outline map of India with the Parliament House (Sansad Bhavan) superimposed across the center, inscribed 'भारत INDIA' and year '1990' with circular mintmark.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1990_Parliament_Map_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1990_Parliament_Map_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:11:20.000Z"
+  },
+  {
+    "id": "1788962894709",
+    "type": "coin",
+    "name": "1 Rupee (2015) - New Rupee Symbol ₹ Series",
+    "country": "India",
+    "year": "2015",
+    "denomination": "1 Rs",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Circulating definitive coinage",
+    "coinStatus": "circulating",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Standard definitive stainless steel circulating coin. Obverse: Ashoka Lion Capital with 'सत्यमेव जयते' and 'भारत INDIA'. Reverse: Rupee symbol '₹', numeral '1', floral motif design flanking both sides, and year '2015'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2015_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_1_Rupee_2015_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:08:20.000Z"
+  },
+  {
+    "id": "1788962894708",
+    "type": "coin",
+    "name": "25 Paise (2000) - Indian Rhinoceros",
+    "country": "India",
+    "year": "2000",
+    "denomination": "25p",
+    "material": "Ferritic Stainless Steel",
+    "coinKind": "Standard decimal coinage (Fauna series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Stainless steel coin featuring the Indian One-Horned Rhinoceros (Rhinoceros unicornis). Obverse: Ashoka Lion Capital at top with '25' in large font, 'भारत INDIA', and 'पैसे PAISE'. Reverse: Indian Rhinoceros facing left, year '2000' with star mintmark (Hyderabad mint).",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_2000_Rhinoceros_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_25_Paise_2000_Rhinoceros_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:08:10.000Z"
+  },
+  {
+    "id": "1788962894707",
+    "type": "coin",
+    "name": "50 Paise (1985) - RBI Golden Jubilee Commemorative",
+    "country": "India",
+    "year": "1985",
+    "denomination": "50p",
+    "material": "Cupro-Nickel",
+    "coinKind": "",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative cupro-nickel coin issued on the Golden Jubilee of the Reserve Bank of India (1935-1985). Obverse: Lion Capital of Ashoka with 'भारत INDIA' and denomination 'पैसे 50 PAISE'. Reverse: Official seal of RBI (Tiger standing in front of a palm tree) with 'भारतीय रिज़र्व बैंक RESERVE BANK OF INDIA', '1935-85', and 'स्वर्ण जयंती GOLDEN JUBILEE'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1985_RBI_Golden_Jubilee_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1985_RBI_Golden_Jubilee_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T14:08:00.000Z"
+  },
+  {
+    "id": "1788961907556",
+    "type": "coin",
+    "name": "50 Paise (1972) - 25th Independence Anniversary",
+    "country": "India",
+    "year": "1972",
+    "denomination": "50p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Commemorative coinage (25th Anniversary of Indian Independence)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Commemorative cupro-nickel coin marking the silver jubilee of Indian Independence (1947-1972). Obverse: Lion Capital of Ashoka with 'भारत INDIA' and denomination 'पैसे 50 PAISE'. Reverse: Parliament House (Sansad Bhavan) with a man and woman holding the National Flag (Tiranga), inscribed '25वीं स्वतंत्रता जयंती' and '1947-1972'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1972_Independence_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_50_Paise_1972_Independence_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:51:00.000Z"
+  },
+  {
+    "id": "1788961907557",
+    "type": "coin",
+    "name": "20 Paise (1982) - Hexagonal Floral Series",
+    "country": "India",
+    "year": "1982",
+    "denomination": "20p",
+    "material": "Aluminium-Bronze",
+    "coinKind": "Standard decimal coinage",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Hexagonal aluminum-bronze/brass coin with decorative floral side panels. Obverse: Ashoka Lion Capital with 'सत्यमेव जयते' and 'भारत INDIA'. Reverse: 'पैसे', large '20', 'PAISE', year '1982', bordered by ornate floral ornamentation on both sides.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_20_Paise_1982_Floral_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_20_Paise_1982_Floral_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:51:10.000Z"
+  },
+  {
+    "id": "1788961772978",
+    "type": "coin",
+    "name": "20 Paise (1983) - Fisheries FAO",
+    "country": "India",
+    "year": "1983",
+    "denomination": "20p",
+    "material": "Aluminium-Magnesium",
+    "coinKind": "Commemorative decimal coinage (FAO - Fisheries)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Hexagonal aluminum commemorative coin issued for the FAO World Food Day / Fisheries development. Obverse: Ashoka Lion Capital with 'भारत INDIA' and 'पैसे 20 PAISE'. Reverse: Fisherman casting a net with 'मत्स्य उद्योग 1983 FISHERIES' and 'FAO'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_20_Paise_1983_Fisheries_FAO_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_20_Paise_1983_Fisheries_FAO_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:49:32.978Z"
+  },
+  {
+    "id": "1788961742078",
+    "type": "coin",
+    "name": "2 Naye Paise (1963)",
+    "country": "India",
+    "year": "1963",
+    "denomination": "2p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Decimal coinage (First series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "8-scalloped cupro-nickel decimal coin. Obverse: Ashoka Lion Capital with 'भारत INDIA'. Reverse: 'रुपये का पचासवाँ भाग' (1/50 of a rupee) and '2 नये पैसे 1963'.",
+    "images": [
+      {
+        "url": "uploads/collection/Coins/India_2_Paise_1963_Reverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/Coins/India_2_Paise_1963_Obverse_Cropped_Enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:49:02.078Z"
+  },
+  {
+    "id": "1788961223101",
+    "type": "coin",
+    "name": "10 Paise (12-Scallop Floral Series)",
+    "country": "India",
+    "year": "1971",
+    "denomination": "10p",
+    "material": "Aluminium-Bronze",
+    "coinKind": "Standard decimal coinage",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "12-scalloped aluminum-bronze coin (26mm). Obverse: Ashoka Lion Capital with 'भारत INDIA' inside a beaded ring, framed by an ornate floral wreath. Reverse: Large numeral '10' surrounded by a beaded ring and decorative floral wreath border.",
+    "images": [
+      {
+        "url": "uploads/collection/1788961334231_india_10_paise_12_scallop_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788961336692_india_10_paise_12_scallop_obverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:40:23.101Z"
+  },
+  {
+    "id": "1788961194396",
+    "type": "coin",
+    "name": "10 Paise (1989)",
+    "country": "India",
+    "year": "1989",
+    "denomination": "10p",
+    "material": "Aluminium-Magnesium",
+    "coinKind": "Standard decimal coinage",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "8-scalloped lightweight aluminum coin. Obverse: Ashoka Lion Capital with 'भारत INDIA' and 'सत्यमेव जयते'. Reverse: 'पैसे' at top, large '10', 'PAISE' below, and year '1989'.",
+    "images": [
+      {
+        "url": "uploads/collection/1788961323136_india_10_paise_1989_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788961325484_india_10_paise_1989_obverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:39:54.396Z"
+  },
+  {
+    "id": "1788960538069",
+    "type": "coin",
+    "name": "5 Paise (1992)",
+    "country": "India",
+    "year": "1992",
+    "denomination": "5p",
+    "material": "Aluminium-Magnesium",
+    "coinKind": "Standard decimal coinage",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Square-shaped aluminum coin with rounded corners (oriented as diamond). Obverse: Ashoka Lion Capital with 'भारत INDIA'. Reverse: Large numeral '5', 'पैसे' (left), 'PAISE' (right), year '1992' with Mumbai diamond mintmark.",
+    "images": [
+      {
+        "url": "uploads/collection/1788960674798_india_5_paise_1992_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:28:58.069Z"
+  },
+  {
+    "id": "1788960467780",
+    "type": "coin",
+    "name": "5 Paise (1971) - Beaded Series",
+    "country": "India",
+    "year": "1971",
+    "denomination": "5p",
+    "material": "Aluminium-Magnesium",
+    "coinKind": "Decimal coinage (Transition series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "Square-shaped aluminum coin with rounded corners and beaded inner border. Obverse: Ashoka Lion Capital with 'भारत INDIA'. Reverse: 'रुपये का बीसवाँ भाग' (1/20 of a rupee) along top rim, center '5', 'पाँच पैसे' below, and year '1971'.",
+    "images": [
+      {
+        "url": "uploads/collection/1788960700009_india_5_paise_1971_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788960704789_india_5_paise_1971_obverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:27:47.780Z"
+  },
+  {
+    "id": "1788959316557",
+    "type": "coin",
+    "name": "2 Paise (1972)",
+    "country": "India",
+    "year": "1972",
+    "denomination": "2p",
+    "material": "Aluminium-Magnesium",
+    "coinKind": "Standard decimal coinage",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "8-scalloped aluminum coin. Obverse: Ashoka Lion Capital with 'भारत INDIA'. Reverse: Denomination '2 PAISE' / 'पैसे' with year '1972'.",
+    "images": [
+      {
+        "url": "uploads/collection/1788960400250_70a_india_2_paise_1972_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788960406072_70b_india_2_paise_1972_obverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:08:36.557Z"
+  },
+  {
+    "id": "1788959284124",
+    "type": "coin",
+    "name": "2 Naye Paise (1962)",
+    "country": "India",
+    "year": "1962",
+    "denomination": "2p",
+    "material": "Cupro-Nickel",
+    "coinKind": "Decimal coinage (First series)",
+    "coinStatus": "demonetised",
+    "quantity": 1,
+    "dateCollected": "",
+    "notes": "8-scalloped cupro-nickel decimal coin. Obverse: Ashoka Lion Capital with 'भारत INDIA'. Reverse: 'रुपये का पचासवाँ भाग' (1/50 of a rupee) and '2 नये पैसे 1962'.",
+    "images": [
+      {
+        "url": "uploads/collection/1788960423861_71a_india_2_naye_paise_1962_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788960428314_71b_india_2_naye_paise_1962_obverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
+    "addedAt": "2026-09-09T13:08:04.124Z"
+  },
+  {
     "id": "1788721084418",
     "type": "coin",
     "name": "20 Rupee Coin",
@@ -82,17 +2496,26 @@
   {
     "id": "1788720830659",
     "type": "coin",
-    "name": "5 Paise",
+    "name": "5 Paise (1973)",
     "country": "India",
-    "year": "1978",
+    "year": "1973",
     "denomination": "5p",
-    "material": "",
-    "coinKind": "",
+    "material": "Aluminium-Magnesium",
+    "coinKind": "Standard decimal coinage",
     "coinStatus": "demonetised",
     "quantity": 1,
     "dateCollected": "",
-    "notes": "",
-    "images": [],
+    "notes": "Square aluminum coin with rounded corners and beaded inner border. Obverse: Ashoka Lion Capital with 'भारत INDIA'. Reverse: Numeral '5', 'पैसे' (left), 'PAISE' (right), year '1973'.",
+    "images": [
+      {
+        "url": "uploads/collection/1788960735692_india_5_paise_1973_reverse_cropped_enhanced.jpg",
+        "kind": "original"
+      },
+      {
+        "url": "uploads/collection/1788960740759_india_5_paise_1973_obverse_cropped_enhanced.jpg",
+        "kind": "original"
+      }
+    ],
     "addedAt": "2026-09-06T18:53:50.659Z"
   },
   {
@@ -764,7 +3187,9 @@
     "year": "2008",
     "denomination": "500p",
     "material": "",
-    "quantity": 1,
+    "coinKind": "",
+    "coinStatus": "",
+    "quantity": 2,
     "dateCollected": "",
     "notes": "",
     "images": [

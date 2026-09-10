@@ -166,7 +166,10 @@
           "city": "-",
           "remarks": "-",
           "image": "",
-          "category": "Fort & Heritage"
+          "category": "Fort & Heritage",
+          "visitDates": [
+            "2021-04"
+          ]
         },
         {
           "name": "Coringa Wild Life Sanctury",
@@ -959,7 +962,10 @@
           "city": "Kullu",
           "remarks": "-",
           "category": "River Rafting",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2019-11"
+          ]
         },
         {
           "name": "Paragliding",
@@ -5297,7 +5303,10 @@
           "city": "Hyderabad",
           "remarks": "-",
           "category": "Temple",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2020-02"
+          ]
         },
         {
           "name": "Ramappa Temple",
