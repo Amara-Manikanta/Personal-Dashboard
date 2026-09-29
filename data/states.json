@@ -887,6 +887,22 @@
           "name": "Dalai Lama Temple",
           "city": "Dharamshala",
           "remarks": "-"
+        },
+        {
+          "name": "Hampta Pass",
+          "city": "-",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "26",
+          "altitude": "14,100 ft",
+          "difficulty": "Beginner",
+          "bestTime": "June - September",
+          "permit": "No",
+          "timeTaken": "6 days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
         }
       ],
       "restaurants": [],
@@ -938,22 +954,6 @@
           "safetyAlerts": false,
           "isVisited": true,
           "mapLink": "https://maps.app.goo.gl/XkYVrbRFiuGhbKY87"
-        },
-        {
-          "name": "Hampta Pass",
-          "city": "-",
-          "remarks": "-",
-          "category": "Trek",
-          "mapLink": "",
-          "distance": "26",
-          "altitude": "14,100 ft",
-          "difficulty": "Beginner",
-          "bestTime": "June - September",
-          "permit": "No",
-          "timeTaken": "6 days",
-          "terrain": "Snow & Ice Trails",
-          "safetyAlerts": false,
-          "isVisited": false
         }
       ],
       "adventures": [
@@ -1063,6 +1063,22 @@
           "safetyAlerts": false,
           "isVisited": true,
           "mapLink": "https://maps.app.goo.gl/tr585fCpcbFcPSrL7"
+        },
+        {
+          "name": "Hampta Pass",
+          "city": "-",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "26",
+          "altitude": "14,100 ft",
+          "difficulty": "Beginner",
+          "bestTime": "June - September",
+          "permit": "No",
+          "timeTaken": "6 days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
         }
       ]
     },
@@ -3211,14 +3227,79 @@
           "city": "-",
           "remarks": "-",
           "image": ""
+        },
+        {
+          "name": "Everest Base Camp",
+          "city": "Kathmandu",
+          "remarks": "-",
+          "category": "Trek",
+          "image": "",
+          "distance": "112",
+          "altitude": "18200",
+          "difficulty": "Hard",
+          "bestTime": "Mar,Apr,May,Oct,Nov",
+          "permit": "Yes",
+          "timeTaken": "13 Days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
+        },
+        {
+          "name": "Annapurna Base Camp",
+          "city": "Pokhara",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "70",
+          "altitude": "13550",
+          "difficulty": "Hard",
+          "bestTime": "Mar,Apr,May,Jun,Sep",
+          "permit": "No",
+          "timeTaken": "9 Days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
         }
       ],
       "restaurants": [],
       "food": [],
       "treks": [],
-      "stays": [],
       "adventures": [],
-      "highlights": []
+      "stays": [],
+      "highlights": [
+        {
+          "name": "Annapurna Base Camp",
+          "city": "Pokhara",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "70",
+          "altitude": "13550",
+          "difficulty": "Hard",
+          "bestTime": "Mar,Apr,May,Jun,Sep",
+          "permit": "No",
+          "timeTaken": "9 Days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
+        },
+        {
+          "name": "Everest Base Camp",
+          "city": "Kathmandu",
+          "remarks": "-",
+          "category": "Trek",
+          "image": "",
+          "distance": "112",
+          "altitude": "18200",
+          "difficulty": "Hard",
+          "bestTime": "Mar,Apr,May,Oct,Nov",
+          "permit": "Yes",
+          "timeTaken": "13 Days",
+          "terrain": "Snow & Ice Trails",
+          "safetyAlerts": false,
+          "isVisited": false
+        }
+      ]
     },
     "New Delhi": {
       "visited": true,
@@ -3454,10 +3535,11 @@
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Watch Tower",
@@ -3466,6 +3548,7 @@
           "category": "Fort & Heritage",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3474,7 +3557,10 @@
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": ""
+          "image": "",
+          "visitDates": [
+            "2025-12"
+          ]
         },
         {
           "name": "Mangrove Forest",
@@ -3483,6 +3569,7 @@
           "category": "Nature & Park",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3503,6 +3590,7 @@
           "category": "Beach",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3513,6 +3601,7 @@
           "category": "Religious & Spiritual",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3523,6 +3612,7 @@
           "category": "Nature & Park",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3533,6 +3623,7 @@
           "category": "Museum",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3563,6 +3654,7 @@
           "category": "Beach",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3573,6 +3665,7 @@
           "category": "Shopping",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3583,6 +3676,7 @@
           "category": "Fort & Heritage",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         },
@@ -3593,6 +3687,7 @@
           "category": "Temple",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         }
@@ -3704,6 +3799,7 @@
         }
       ],
       "treks": [],
+      "adventures": [],
       "stays": [
         {
           "name": "Fizi Villa",
@@ -3711,6 +3807,24 @@
           "remarks": "-",
           "category": "Stay",
           "image": ""
+        },
+        {
+          "name": "Home In Pondicherry",
+          "city": "-",
+          "remarks": "-",
+          "category": "Stay",
+          "visitDates": [
+            "2025-12"
+          ],
+          "image": "",
+          "stayType": "Homestay",
+          "checkIn": "2025-12-20",
+          "checkOut": "2025-12-22",
+          "amenities": [
+            "🍳 Kitchen",
+            "❄️ AC",
+            "📶 Wi-Fi"
+          ]
         }
       ],
       "highlights": [
@@ -3739,10 +3853,11 @@
           "city": "-",
           "remarks": "-",
           "category": "Beach",
-          "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Arovile Mytri Mandir",
@@ -3751,11 +3866,11 @@
           "category": "Religious & Spiritual",
           "image": "",
           "visitDates": [
+            "2025-12",
             "2021-04"
           ]
         }
-      ],
-      "adventures": []
+      ]
     },
     "Punjab": {
       "visited": true,
@@ -4923,6 +5038,22 @@
           "city": "-",
           "remarks": "-",
           "image": ""
+        },
+        {
+          "name": "Valley of Flowers",
+          "city": "Pipalkoti",
+          "remarks": "-",
+          "category": "Trek",
+          "mapLink": "",
+          "distance": "37",
+          "altitude": "14100",
+          "difficulty": "Medium",
+          "bestTime": "Jul,Aug,Sept",
+          "permit": "No",
+          "timeTaken": "6 Days",
+          "terrain": "Rocky Paths & Big Stones",
+          "safetyAlerts": false,
+          "isVisited": false
         }
       ],
       "restaurants": [],
@@ -4989,22 +5120,6 @@
           "timeTaken": "15 min",
           "difficulty": "Hard",
           "operator": "Jumpin Heights"
-        },
-        {
-          "name": "Kedarnath",
-          "city": "-",
-          "remarks": "-",
-          "category": "Trek",
-          "image": "",
-          "distance": "36",
-          "altitude": "11,755",
-          "difficulty": "Hard",
-          "bestTime": "May to June",
-          "permit": "No",
-          "terrain": "Steep Climbs",
-          "safetyAlerts": false,
-          "isVisited": true,
-          "mapLink": "https://maps.app.goo.gl/1rEwpL1KTysQRmyT8"
         }
       ]
     },

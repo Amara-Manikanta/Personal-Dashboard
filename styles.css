@@ -192,3 +192,26 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
+/* macOS Desktop Electron App Styling */
+body.is-electron.is-mac {
+    padding-top: 14px;
+}
+
+body.is-electron.is-mac .dashboard-header,
+body.is-electron.is-mac .travel-header,
+body.is-electron.is-mac .collection-header,
+body.is-electron.is-mac .site-header {
+    -webkit-app-region: drag;
+}
+
+.is-electron input,
+.is-electron textarea,
+.is-electron button,
+.is-electron select,
+.is-electron a,
+.is-electron [role="button"],
+.is-electron [role="tab"],
+.is-electron .no-drag {
+    -webkit-app-region: no-drag;
+}

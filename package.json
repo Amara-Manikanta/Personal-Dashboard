@@ -2,10 +2,14 @@
   "name": "novels-dashboard-server",
   "version": "1.0.0",
   "description": "File based server for Novels Dashboard",
-  "main": "server.js",
+  "main": "electron/main.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "mac": "electron .",
+    "electron:dev": "electron .",
+    "pack:mac": "electron-builder --mac dir",
+    "dist:mac": "electron-builder --mac dmg"
   },
   "dependencies": {
     "@babel/cli": "^7.28.6",
@@ -17,6 +21,32 @@
     "open-graph-scraper": "^6.11.0"
   },
   "devDependencies": {
+    "electron": "^44.3.0",
+    "electron-builder": "^26.15.3",
     "nodemon": "^3.1.0"
+  },
+  "build": {
+    "appId": "com.amara.lifestudio",
+    "productName": "LifeStudio",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.lifestyle",
+      "icon": "electron/assets/icon.icns",
+      "target": [
+        "dir"
+      ],
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
+    },
+    "files": [
+      "**/*",
+      "!raw_stamps/**/*",
+      "!raw_stamps_jpg/**/*",
+      "!previews/**/*",
+      "!untitled folder/**/*",
+      "!dist/**/*"
+    ]
   }
 }

@@ -62,8 +62,8 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
             <div className="home-container">
                 <div className="home-header">
                     <i className="ph-fill ph-compass logo-icon"></i>
-                    {PhysicsTitle ? <PhysicsTitle text="My Life Tracker" /> : <h1>My Life <span className="text-accent">Tracker</span></h1>}
-                    <p className="subtitle">Your personal space for books, travel, writing, and style</p>
+                    {PhysicsTitle ? <PhysicsTitle text="LifeStudio" /> : <h1>Life<span className="text-accent">Studio</span></h1>}
+                    <p className="subtitle">Your personal studio for books, travel, collections, writing, and style</p>
                     <button className="home-search-hint" onClick={() => window.openCommandPalette && window.openCommandPalette()}>
                         <i className="ph-bold ph-magnifying-glass"></i>
                         Search everything

@@ -7,7 +7,7 @@ const { Storage } = require('./storage');
 
 const app = express();
 const PORT = 3010;
-const DATA_DIR = path.join(__dirname, 'data');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 
 app.use(cors({ exposedHeaders: ['X-Data-Version'] }));
 app.use(bodyParser.json({ limit: '50mb' })); // Increased limit just in case
@@ -34,7 +34,7 @@ if (!fs.existsSync(BACKUP_DIR)) {
 }
 
 // Uploads Configuration
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
+const UPLOADS_DIR = process.env.UPLOADS_DIR || path.join(__dirname, 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) {
     fs.mkdirSync(UPLOADS_DIR);
 }
@@ -215,7 +215,23 @@ app.post('/api/upload-image', (req, res) => {
     }
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Start Server function for programmatic usage (Electron) or direct CLI run
+function startServer(port = PORT) {
+    return new Promise((resolve, reject) => {
+        const server = app.listen(port, () => {
+            console.log(`Server is running on http://localhost:${port}`);
+            resolve({ app, server, port });
+        });
+        server.on('error', reject);
+    });
+}
+
+if (require.main === module) {
+    startServer(PORT).catch(err => {
+        console.error('Failed to start server:', err);
+        process.exit(1);
+    });
+}
+
+module.exports = { app, startServer };
+
