@@ -4,8 +4,20 @@
     {
       "name": "novels",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["server.js"],
+      "runtimeArgs": [
+        "server.js"
+      ],
       "port": 3010
+    },
+    {
+      "name": "novels-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "3020"
+      ],
+      "port": 3020
     }
   ]
 }
