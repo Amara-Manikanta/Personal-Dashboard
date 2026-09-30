@@ -33,238 +33,6 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     const [editingNovel, setEditingNovel] = useState(null);
     const [deletingNovelId, setDeletingNovelId] = useState(null); // New state for delete confirmation
 
-    // ---- Sub-components ----
-    const StatsBoard = ({ novels, onAuthorClick }) => {
-        const [viewMode, setViewMode] = useState('authors'); // 'authors', 'genres', 'years', 'my_rating', 'goodreads_rating'
-        const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
-
-        const stats = React.useMemo(() => {
-            const counts = {};
-
-            // Helper to increment counts
-            const increment = (key, amount = 1, isRead = true, isTotal = true) => {
-                if (key !== undefined && key !== null && key !== '') {
-                    if (!counts[key]) counts[key] = { read: 0, total: 0 };
-                    if (isTotal) counts[key].total += amount;
-                    if (isRead) counts[key].read += amount;
-                }
-            };
-
-            novels.forEach(novel => {
-                const isReadStatus = novel.status === 'Read' || novel.status === 'Tried';
-                
-                if (viewMode === 'authors') {
-                    if (novel.author) {
-                        novel.author.split(',').map(a => a.trim()).filter(Boolean).forEach(a => increment(a, 1, isReadStatus, true));
-                    }
-                }
-                else if (viewMode === 'genres') {
-                    increment(novel.genre, 1, isReadStatus, true);
-                }
-                else {
-                    if (isReadStatus) {
-                        if (viewMode === 'years') {
-                            let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
-                            increment(year, 1, true, false);
-                        }
-                        else if (viewMode === 'my_rating') increment(novel.rating, 1, true, false);
-                        else if (viewMode === 'goodreads_rating') increment(novel.goodreadsRating, 1, true, false);
-                        else if (viewMode === 'pages_year') {
-                            let year = novel.completedDate ? new Date(novel.completedDate).getFullYear() : novel.readYear;
-                            let pageCount = 0;
-                            if (novel.pages) {
-                                pageCount = Number(novel.pages);
-                            } else if (novel.progressType === 'pages' && novel.progress) {
-                                pageCount = Number(novel.progress);
-                            }
-                            if (year) increment(year, pageCount, true, false);
-                        }
-                    }
-                }
-            });
-
-            const statsArray = Object.entries(counts)
-                .map(([label, countObj]) => ({
-                    label,
-                    count: countObj.read,
-                    total: countObj.total
-                }))
-                .filter(item => item.count > 0 || viewMode === 'authors' || viewMode === 'genres');
-
-            // Custom sort for ratings to handle numeric values correctly if needed
-            return statsArray.sort((a, b) => {
-                // If sorting by label (e.g. Years or Ratings), we might want numeric sort
-                // But user requested "read more books" style, so sticking to Count sort first.
-                // Secondary sort could be label.
-
-                let diff = 0;
-                if (sortOrder === 'asc') diff = a.count - b.count;
-                else diff = b.count - a.count;
-
-                // Secondary sort by label if counts are equal (optional, but good for UI)
-                if (diff === 0) {
-                    // For ratings and years, numeric sort on label makes sense
-                    if (viewMode === 'years' || viewMode === 'my_rating' || viewMode === 'goodreads_rating' || viewMode === 'pages_year') {
-                        return Number(b.label) - Number(a.label); // Descending label by default (newest/highest first)
-                    }
-                    return a.label.localeCompare(b.label);
-                }
-                return diff;
-            });
-
-        }, [novels, sortOrder, viewMode]);
-
-        const getTitle = () => {
-            switch (viewMode) {
-                case 'authors': return 'Authors Statistics';
-                case 'genres': return 'Genre Statistics';
-                case 'years': return 'Yearly Statistics';
-                case 'my_rating': return 'My Ratings Distribution';
-                case 'goodreads_rating': return 'Goodreads Ratings Distribution';
-                case 'pages_year': return 'Pages Read Per Year';
-                default: return 'Statistics';
-            }
-        };
-
-        const getColumnLabel = () => {
-            switch (viewMode) {
-                case 'authors': return 'Author';
-                case 'genres': return 'Genre';
-                case 'years': return 'Year';
-                case 'my_rating': return 'My Rating';
-                case 'goodreads_rating': return 'Goodreads Rating';
-                case 'pages_year': return 'Year';
-                default: return 'Item';
-            }
-        }
-
-        return (
-            <div className="authors-stats-container">
-                <div className="stats-header">
-                    <h2>{getTitle()} <span className="count">({stats.length})</span></h2>
-
-                    <div className="stats-controls">
-                        {/* View Mode Toggle */}
-                        <div className="view-toggle">
-                            <button
-                                className={`toggle-btn ${viewMode === 'authors' ? 'active' : ''}`}
-                                onClick={() => setViewMode('authors')}
-                            >
-                                Authors
-                            </button>
-                            <button
-                                className={`toggle-btn ${viewMode === 'genres' ? 'active' : ''}`}
-                                onClick={() => setViewMode('genres')}
-                            >
-                                Genres
-                            </button>
-                            <button
-                                className={`toggle-btn ${viewMode === 'years' ? 'active' : ''}`}
-                                onClick={() => setViewMode('years')}
-                            >
-                                Years
-                            </button>
-                            <button
-                                className={`toggle-btn ${viewMode === 'my_rating' ? 'active' : ''}`}
-                                onClick={() => setViewMode('my_rating')}
-                            >
-                                My Rating
-                            </button>
-                            <button
-                                className={`toggle-btn ${viewMode === 'goodreads_rating' ? 'active' : ''}`}
-                                onClick={() => setViewMode('goodreads_rating')}
-                            >
-                                Goodreads
-                            </button>
-                            <button
-                                className={`toggle-btn ${viewMode === 'pages_year' ? 'active' : ''}`}
-                                onClick={() => setViewMode('pages_year')}
-                            >
-                                Pages/Year
-                            </button>
-                        </div>
-
-                        <div className="sort-controls">
-                            <span>Sort:</span>
-                            <button
-                                className={`sort-btn ${sortOrder === 'asc' ? 'active' : ''}`}
-                                onClick={() => setSortOrder('asc')}
-                            >
-                                Asc <i className="ph-bold ph-arrow-up"></i>
-                            </button>
-                            <button
-                                className={`sort-btn ${sortOrder === 'desc' ? 'active' : ''}`}
-                                onClick={() => setSortOrder('desc')}
-                            >
-                                Desc <i className="ph-bold ph-arrow-down"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {stats.length > 0 ? (
-                    (viewMode === 'my_rating' || viewMode === 'goodreads_rating') ? (
-                        <div className="rating-chart-container" style={{ padding: '1rem' }}>
-                            {(() => {
-                                const maxCount = Math.max(...stats.map(s => s.count));
-                                return stats.map((item, index) => (
-                                    <div key={index} className="rating-bar-row" style={{ display: 'flex', alignItems: 'center', marginBottom: '0.75rem', gap: '1rem' }}>
-                                        <div className="rating-label" style={{ width: '40px', textAlign: 'right', fontWeight: '500', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '4px' }}>
-                                            {item.label} <i className="ph-fill ph-star text-warning" style={{fontSize: '0.8em'}}></i>
-                                        </div>
-                                        <div className="rating-bar-track" style={{ flex: 1, height: '12px', background: 'var(--bg-surface-hover)', borderRadius: '6px', overflow: 'hidden' }}>
-                                            <div className="rating-bar-fill" style={{ width: `${(item.count / maxCount) * 100}%`, height: '100%', background: 'var(--primary)', borderRadius: '6px', transition: 'width 0.5s ease' }}></div>
-                                        </div>
-                                        <div className="rating-count" style={{ width: '30px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{item.count}</div>
-                                    </div>
-                                ));
-                            })()}
-                        </div>
-                    ) : (
-                        <div className="stats-table-wrapper">
-                            <table className="stats-table">
-                                <thead>
-                                    <tr>
-                                        <th>{getColumnLabel()}</th>
-                                        <th className="text-right">{viewMode === 'pages_year' ? 'Pages Read' : (viewMode === 'authors' || viewMode === 'genres') ? 'Read / Total' : 'Books Read'}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {stats.map((item, index) => {
-                                        const isCompleteAuthor = viewMode === 'authors' && item.count === item.total && item.total > 0;
-                                        const rowProps = viewMode === 'authors' && onAuthorClick ? {
-                                            onClick: () => onAuthorClick(item.label),
-                                            style: { cursor: 'pointer' },
-                                            title: `View ${item.label}'s books`
-                                        } : {};
-
-                                        return (
-                                            <tr key={index} {...rowProps}>
-                                                <td className={isCompleteAuthor ? 'text-green-500 font-medium' : ''}>
-                                                    {item.label}
-                                                    {isCompleteAuthor && <i className="ph-bold ph-check-circle ml-2" title="Completed"></i>}
-                                                    {viewMode === 'goodreads_rating' && <i className="ph-fill ph-star text-warning" style={{ marginLeft: '4px', fontSize: '0.9em' }}></i>}
-                                                </td>
-                                                <td className="text-right">
-                                                    <span className="count-badge">{(viewMode === 'authors' || viewMode === 'genres') ? `${item.count} / ${item.total}` : item.count}</span>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                ) : (
-                    <div className="empty-state">
-                        <i className="ph ph-mask-sad"></i>
-                        <p>No read books found to calculate stats.</p>
-                    </div>
-                )}
-            </div>
-        );
-    };
-
     // ---- View State ----
     const [selectedNovel, setSelectedNovel] = useState(null);
     const [activeTab, setActiveTab] = useState('novels'); // 'novels' or 'stats'
@@ -299,12 +67,14 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     }, [novels]);
 
     // ---- Actions ----
+    // Takes one entry, or an array when several issues are added at once.
+    // Ids are offset per entry: Date.now() alone would give a whole batch the
+    // same id, and editing or deleting one would then hit all of them.
     const handleAddNovel = (newNovelData) => {
-        const newNovel = {
-            ...newNovelData,
-            id: Date.now(), // Simple ID generation
-        };
-        const updatedList = [newNovel, ...novels];
+        const batch = Array.isArray(newNovelData) ? newNovelData : [newNovelData];
+        const base = Date.now();
+        const newNovels = batch.map((data, i) => ({ ...data, id: base + i }));
+        const updatedList = [...newNovels, ...novels];
         setNovels(updatedList);
         window.api.saveNovels(updatedList); // Save to API
         setIsModalOpen(false);
@@ -523,7 +293,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                         onUpdate={handleDirectUpdate}
                     />
                 ) : activeTab === 'stats' ? (
-                    <StatsBoard novels={novels} onAuthorClick={onAuthorClick} />
+                    <window.NovelStats novels={novels} onAuthorClick={onAuthorClick} />
                 ) : (
                     <div className="content-grid" style={{ gridTemplateColumns: isFilterVisible ? '280px 1fr' : '1fr' }}>
                         {/* Pass current novels to sidebar to update author lists dynamically */}

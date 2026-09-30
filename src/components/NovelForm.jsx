@@ -27,6 +27,17 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
 
     const [formData, setFormData] = React.useState(initialData || defaultData);
 
+    // Adding several issues of one run at once — comics are read issue by
+    // issue, and typing the same author, genre and dates 25 times is the
+    // alternative. Only offered when adding: editing is always one entry.
+    const isNew = !initialData;
+    const MAX_ISSUES = 200;
+    const [multi, setMulti] = React.useState({ on: false, from: '1', to: '' });
+    const issueFrom = parseInt(multi.from, 10);
+    const issueTo = parseInt(multi.to, 10);
+    const issueCount = (issueFrom > 0 && issueTo >= issueFrom) ? issueTo - issueFrom + 1 : 0;
+    const issueTitle = (n) => `${(formData.title || 'Title').trim()} #${n}`;
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -51,6 +62,23 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
             cover: formData.cover.trim() || 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=2000'
         };
 
+        if (isNew && multi.on) {
+            if (!issueCount) {
+                alert('Enter an issue range, e.g. from 1 to 25.');
+                return;
+            }
+            if (issueCount > MAX_ISSUES) {
+                alert(`That is ${issueCount} issues — the limit is ${MAX_ISSUES} at a time.`);
+                return;
+            }
+            const entries = [];
+            for (let n = issueFrom; n <= issueTo; n++) {
+                entries.push({ ...dataToSubmit, title: issueTitle(n) });
+            }
+            onSubmit(entries);
+            return;
+        }
+
         onSubmit(dataToSubmit);
     };
 
@@ -63,9 +91,53 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-                    placeholder="Enter novel title"
+                    placeholder={multi.on ? 'Series title, e.g. Uncanny Avengers (2012)' : 'Enter novel title'}
                 />
             </div>
+
+            {isNew && (
+                <div className="form-group multi-issue">
+                    <label className="multi-issue-toggle">
+                        <input
+                            type="checkbox"
+                            checked={multi.on}
+                            onChange={(e) => setMulti(m => ({ ...m, on: e.target.checked }))}
+                        />
+                        Add several issues / parts at once
+                    </label>
+
+                    {multi.on && (
+                        <>
+                            <div className="multi-issue-range">
+                                <span>Issues</span>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    value={multi.from}
+                                    onChange={(e) => setMulti(m => ({ ...m, from: e.target.value }))}
+                                    aria-label="First issue"
+                                />
+                                <span>to</span>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    value={multi.to}
+                                    onChange={(e) => setMulti(m => ({ ...m, to: e.target.value }))}
+                                    aria-label="Last issue"
+                                    placeholder="25"
+                                />
+                            </div>
+                            <p className="multi-issue-preview">
+                                {issueCount === 0 && 'Enter the first and last issue you read.'}
+                                {issueCount === 1 && `Will add 1 entry: ${issueTitle(issueFrom)}`}
+                                {issueCount > 1 && issueCount <= MAX_ISSUES &&
+                                    `Will add ${issueCount} entries: ${issueTitle(issueFrom)} … ${issueTitle(issueTo)}, each with the details below.`}
+                                {issueCount > MAX_ISSUES && `${issueCount} is more than the ${MAX_ISSUES} allowed at once.`}
+                            </p>
+                        </>
+                    )}
+                </div>
+            )}
 
             <div className="form-group">
                 <label>Author</label>
@@ -420,10 +492,50 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
 
             <div className="form-actions">
                 <button type="button" className="btn-secondary" onClick={onCancel}>Cancel</button>
-                <button type="submit" className="btn-primary">Save Novel</button>
+                <button type="submit" className="btn-primary">
+                    {isNew && multi.on && issueCount > 1 ? `Add ${issueCount} Issues` : 'Save Novel'}
+                </button>
             </div>
 
             <style>{`
+                .multi-issue {
+                    background: rgba(99, 102, 241, 0.06);
+                    border: 1px solid rgba(99, 102, 241, 0.2);
+                    border-radius: var(--radius-md);
+                    padding: 0.75rem 0.9rem;
+                }
+
+                .multi-issue .multi-issue-toggle {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 0.55rem;
+                    margin: 0;
+                    cursor: pointer;
+                    color: var(--text-secondary);
+                    font-size: 0.9rem;
+                }
+
+                .multi-issue-toggle input { width: auto; margin: 0; cursor: pointer; }
+
+                .multi-issue-range {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.6rem;
+                    margin-top: 0.75rem;
+                    color: var(--text-muted);
+                    font-size: 0.85rem;
+                }
+
+                .multi-issue-range input { width: 90px; }
+
+                .multi-issue-preview {
+                    margin: 0.6rem 0 0;
+                    font-size: 0.8rem;
+                    color: var(--text-muted);
+                    line-height: 1.45;
+                }
+
                 .novel-form {
                     display: flex;
                     flex-direction: column;
