@@ -111,6 +111,8 @@ window.NovelStats = ({ novels, onAuthorClick }) => {
             longest,
             bestYear,
             thisYearCount: (byYear[thisYear] || { books: 0 }).books,
+            lastYearCount: (byYear[thisYear - 1] || { books: 0 }).books,
+            avgPerYear: years.length ? read.filter(n => readYearOf(n)).length / years.length : 0,
             thisYear,
             reading: novels.filter(n => n.status === 'Currently Reading').length,
             toRead: novels.filter(n => ['TBR', 'To Be Read', 'Having'].includes(n.status)).length,
@@ -155,7 +157,7 @@ window.NovelStats = ({ novels, onAuthorClick }) => {
             <div className="nst-tiles">
                 {tiles.map(t => (
                     <div key={t.label} className={`nst-tile is-${t.tone}`}>
-                        <i className={`ph-fill ${t.icon}`}></i>
+                        <i className={`ph-fill ${t.icon}`} aria-hidden="true"></i>
                         <span className="nst-tile-value">{t.value}</span>
                         <span className="nst-tile-label">{t.label}</span>
                         <span className="nst-tile-sub">{t.sub}</span>
@@ -168,8 +170,15 @@ window.NovelStats = ({ novels, onAuthorClick }) => {
                 <header className="nst-card-head">
                     <div>
                         <h3>Reading over the years</h3>
+                        {/* The written summary is the chart's text equivalent:
+                            it states what the bars show for anyone not reading them. */}
                         {data.bestYear && (
-                            <p>Best year: <strong>{data.bestYear.year}</strong> with {data.bestYear.books} books</p>
+                            <p>
+                                Best year <strong>{data.bestYear.year}</strong> with {data.bestYear.books} books ·
+                                about {data.avgPerYear.toFixed(1)} a year across {data.years.length} years ·
+                                {' '}{data.thisYearCount} so far in {data.thisYear}
+                                {data.lastYearCount ? ` (${data.lastYearCount} in ${data.thisYear - 1})` : ''}
+                            </p>
                         )}
                     </div>
                     <div className="nst-seg" role="group" aria-label="Measure">
@@ -186,23 +195,48 @@ window.NovelStats = ({ novels, onAuthorClick }) => {
                     </div>
                 </header>
 
-                <div className="nst-yearchart">
+                <div className="nst-yearchart" role="list" aria-label={`${yearMetric === 'books' ? 'Books' : 'Pages'} read per year`}>
                     {data.years.map(y => {
                         const v = y[yearMetric];
                         const isBest = data.bestYear && y.year === data.bestYear.year;
+                        const summary = `${y.year}: ${y.books} book${y.books === 1 ? '' : 's'}, ${formatNumber(y.pages)} pages${isBest ? ', best year' : ''}`;
                         return (
                             <div
                                 key={y.year}
+                                role="listitem"
+                                tabIndex={0}
+                                aria-label={summary}
                                 className={`nst-yearcol ${isBest ? 'is-best' : ''} ${v === 0 ? 'is-empty' : ''}`}
-                                title={`${y.year}: ${y.books} book${y.books === 1 ? '' : 's'} · ${formatNumber(y.pages)} pages`}
+                                title={summary}
                             >
-                                <span className="nst-yearval">{v ? (yearMetric === 'pages' && v >= 1000 ? `${(v / 1000).toFixed(1)}k` : v) : ''}</span>
+                                <span className="nst-yearval">
+                                    {isBest && <i className="ph-fill ph-crown-simple" aria-hidden="true"></i>}
+                                    {v ? (yearMetric === 'pages' && v >= 1000 ? `${(v / 1000).toFixed(1)}k` : v) : ''}
+                                </span>
                                 <div className="nst-yearbar" style={{ height: `${Math.max(v ? 3 : 0, (v / yearMax) * 100)}%` }}></div>
                                 <span className="nst-yearlabel">{String(y.year).slice(2)}</span>
                             </div>
                         );
                     })}
                 </div>
+
+                <details className="nst-table">
+                    <summary>View as a table</summary>
+                    <table>
+                        <thead>
+                            <tr><th scope="col">Year</th><th scope="col">Books</th><th scope="col">Pages</th></tr>
+                        </thead>
+                        <tbody>
+                            {data.years.slice().reverse().filter(y => y.books).map(y => (
+                                <tr key={y.year}>
+                                    <th scope="row">{y.year}{data.bestYear && y.year === data.bestYear.year ? ' (best)' : ''}</th>
+                                    <td>{y.books}</td>
+                                    <td>{formatNumber(y.pages)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </details>
             </section>
 
             <div className="nst-grid">
@@ -388,6 +422,10 @@ window.NovelStats = ({ novels, onAuthorClick }) => {
 const NovelStatsStyles = () => (
     <style>{`
         .nst {
+            /* The app-wide muted grey is 3.9:1 on these cards, under the
+               4.5:1 small text needs. Lifted here rather than globally so the
+               rest of the app is untouched; #94a3b8 measures 7.2:1. */
+            --text-muted: #94a3b8;
             max-width: 1180px;
             margin: 0 auto;
             padding: 1.5rem 1.5rem 4rem;
@@ -436,7 +474,7 @@ const NovelStatsStyles = () => (
         .nst-tile > i { font-size: 1.25rem; color: rgb(var(--tone)); margin-bottom: 0.35rem; }
         .nst-tile-value { font-size: 1.75rem; font-weight: 800; color: var(--text-primary); font-variant-numeric: tabular-nums; line-height: 1.1; }
         .nst-tile-label { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
-        .nst-tile-sub { font-size: 0.72rem; color: var(--text-muted); }
+        .nst-tile-sub { font-size: 0.75rem; color: var(--text-muted); }
 
         .nst-tile.is-indigo { --tone: 129, 140, 248; }
         .nst-tile.is-pink { --tone: 244, 114, 182; }
@@ -527,8 +565,8 @@ const NovelStatsStyles = () => (
         .nst-yearcol:hover .nst-yearbar { filter: brightness(1.25); }
         .nst-yearcol.is-best .nst-yearbar { background: linear-gradient(to top, rgba(236, 72, 153, 0.6), rgba(244, 114, 182, 1)); }
 
-        .nst-yearval { font-size: 0.68rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; min-height: 1em; }
-        .nst-yearlabel { font-size: 0.68rem; color: var(--text-muted); }
+        .nst-yearval { display: inline-flex; align-items: center; gap: 2px; font-size: 0.75rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; min-height: 1em; }
+        .nst-yearlabel { font-size: 0.75rem; color: var(--text-muted); }
         .nst-yearlabel::before { content: "'"; }
         .nst-yearcol.is-empty .nst-yearlabel { opacity: 0.45; }
 
@@ -613,7 +651,7 @@ const NovelStatsStyles = () => (
         .nst-stars { display: inline-flex; align-items: center; gap: 0.25rem; color: var(--text-primary); font-weight: 600; }
         .nst-stars i { color: #fbbf24; font-size: 0.8rem; }
 
-        .nst-legend { display: flex; gap: 0.9rem; font-size: 0.72rem; color: var(--text-muted); }
+        .nst-legend { display: flex; gap: 0.9rem; font-size: 0.75rem; color: var(--text-muted); }
         .nst-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
         .nst-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
         .nst-legend i.is-read { background: #f472b6; }
@@ -673,9 +711,50 @@ const NovelStatsStyles = () => (
         }
 
         .nst-facts li div { display: flex; flex-direction: column; min-width: 0; }
-        .nst-facts span { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .nst-facts span { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
         .nst-facts strong { font-size: 0.95rem; color: var(--text-primary); font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
         .nst-facts em { font-style: normal; font-size: 0.78rem; color: var(--text-secondary); }
+
+
+        .nst-yearval i { color: #f472b6; font-size: 0.75rem; }
+
+        /* Keyboard: every interactive part shows where focus is, and a
+           focused year reveals its value the way hover does. */
+        .nst button:focus-visible,
+        .nst input:focus-visible,
+        .nst summary:focus-visible,
+        .nst-yearcol:focus-visible {
+            outline: 2px solid #a5b4fc;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        .nst-yearcol:focus-visible .nst-yearbar { filter: brightness(1.25); }
+
+        /* Data fallback */
+        .nst-table { margin-top: 1rem; }
+        .nst-table summary {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            width: max-content;
+            padding: 0.3rem 0.1rem;
+        }
+        .nst-table table { width: 100%; max-width: 420px; margin-top: 0.6rem; border-collapse: collapse; font-size: 0.85rem; }
+        .nst-table th, .nst-table td { padding: 0.4rem 0.6rem; text-align: right; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+        .nst-table th[scope="row"], .nst-table thead th:first-child { text-align: left; }
+        .nst-table thead th { color: var(--text-muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .nst-table td, .nst-table th[scope="row"] { color: var(--text-secondary); }
+
+        /* Touch: 44px targets where the pointer is a finger. */
+        @media (pointer: coarse) {
+            .nst-rank-row, .nst-more, .nst-table summary { min-height: 44px; }
+            .nst-seg button { min-height: 40px; padding: 0 1rem; }
+            .nst-search input { min-height: 40px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .nst *, .nst *::before { transition: none !important; animation: none !important; }
+        }
 
         @media (max-width: 860px) {
             .nst { padding: 1rem 1rem 3rem; }
