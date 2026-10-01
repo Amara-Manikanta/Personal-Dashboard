@@ -22,3 +22,6 @@ uploads/*
 raw_stamps/
 raw_stamps_jpg/
 
+
+# Build output (electron-builder) — far over GitHub size limits
+dist/
