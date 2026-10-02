@@ -1,6 +1,6 @@
 // Views that are addressable by URL. Detail views (a single state, a single
 // author) carry their subject in the hash too, e.g. #/travel/Kerala.
-const ROUTABLE_VIEWS = ['home', 'novels', 'travel', 'writing', 'clothes', 'collection', 'sync', 'author-page', 'state-details'];
+const ROUTABLE_VIEWS = ['home', 'novels', 'travel', 'writing', 'clothes', 'collection', 'movies', 'music', 'sync', 'author-page', 'state-details'];
 
 const viewToHash = (view, subject) => {
     if (view === 'home') return '#/';
@@ -34,14 +34,16 @@ const App = () => {
         const loadData = async () => {
             try {
                 // Fetch all data in parallel
-                const [novels, statesData, writing, stories, authors, clothes, collectibles] = await Promise.all([
+                const [novels, statesData, writing, stories, authors, clothes, collectibles, movies, music] = await Promise.all([
                     window.api.getNovels(),
                     window.api.getStates(),
                     window.api.getWriting(),
                     window.api.getStories(),
                     window.api.getAuthors(),
                     window.api.getClothes(),
-                    window.api.getCollectibles()
+                    window.api.getCollectibles(),
+                    window.api.getMovies(),
+                    window.api.getMusic()
                 ]);
 
                 window.novelsData = novels || [];
@@ -50,6 +52,8 @@ const App = () => {
                 window.authorsData = authors || [];
                 window.clothesData = clothes || [];
                 window.collectiblesData = collectibles || [];
+                window.moviesData = movies || [];
+                window.musicData = music || [];
                 window.rawStatesData = statesData || { states: {}, bucketList: [] };
 
                 console.log("Data loaded successfully. States loaded:", Object.keys((window.rawStatesData && window.rawStatesData.states) || {}).length);
@@ -117,6 +121,8 @@ const App = () => {
         const authors = window.authorsData || [];
         const clothes = window.clothesData || [];
         const collectibles = window.collectiblesData || [];
+        const movies = window.moviesData || [];
+        const music = window.musicData || [];
 
         const isReading = (n) => n.status === 'Currently Reading';
         const isRead = (n) => n.status === 'Read';
@@ -176,6 +182,15 @@ const App = () => {
             },
             writing: { entries: writing.length, stories: stories.length },
             clothes: { items: clothes.length },
+            movies: {
+                total: movies.length,
+                watched: movies.filter(m => m.status === 'watched').length,
+                watchlist: movies.filter(m => (m.status || 'watchlist') === 'watchlist').length
+            },
+            music: {
+                total: music.length,
+                favourites: music.filter(m => m.status === 'favourite').length
+            },
             collection: {
                 // Records predating coins carry no type and are stamps.
                 stamps: collectibles.filter(c => (c.type || 'stamp') === 'stamp').length,
@@ -268,6 +283,14 @@ const App = () => {
 
             {currentView === 'clothes' && !loading && (
                 <window.ClothesDashboard onBackToHome={handleBackToHome} />
+            )}
+
+            {currentView === 'movies' && !loading && (
+                <window.MoviesDashboard onBackToHome={handleBackToHome} />
+            )}
+
+            {currentView === 'music' && !loading && (
+                <window.MusicDashboard onBackToHome={handleBackToHome} />
             )}
 
             {currentView === 'collection' && !loading && (

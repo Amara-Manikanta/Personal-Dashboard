@@ -164,6 +164,38 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                         </div>
                     </div>
 
+                    <div className="dashboard-card movies-card" onClick={() => onNavigate('movies')}>
+                        <div className="card-glow"></div>
+                        <div className="card-icon">
+                            <i className="ph-fill ph-film-slate"></i>
+                        </div>
+                        <h2>Movies</h2>
+                        <p className="card-description">Everything you have watched, and what is still on the watchlist</p>
+                        {cardStat(stats && (stats.movies.total === 0
+                            ? 'Nothing logged yet'
+                            : `${stats.movies.watched} watched · ${stats.movies.watchlist} to watch`))}
+                        <div className="card-action">
+                            <span>Open Dashboard</span>
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div className="dashboard-card music-card" onClick={() => onNavigate('music')}>
+                        <div className="card-glow"></div>
+                        <div className="card-icon">
+                            <i className="ph-fill ph-music-notes"></i>
+                        </div>
+                        <h2>Music & Lists</h2>
+                        <p className="card-description">Songs, albums and playlists from Apple Music, plus any other list you keep</p>
+                        {cardStat(stats && (stats.music.total === 0
+                            ? 'Nothing listed yet'
+                            : `${stats.music.total} entries · ${stats.music.favourites} favourites`))}
+                        <div className="card-action">
+                            <span>Open Dashboard</span>
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
+
                     <div className="dashboard-card collection-card" onClick={() => onNavigate('collection')}>
                         <div className="card-glow"></div>
                         <div className="card-icon">
@@ -519,6 +551,8 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                 .writing-card .card-icon i { color: #f472b6; }
                 .clothes-card .card-icon i { color: #34d399; }
                 .collection-card .card-icon i { color: #f59e0b; }
+                .movies-card .card-icon i { color: #fb7185; }
+                .music-card .card-icon i { color: #c084fc; }
                 .sync-card .card-icon i { color: #fbbf24; }
 
                 .dashboard-card:hover .card-icon {
@@ -530,6 +564,8 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                 .travel-card:hover { border-color: rgba(34, 211, 238, 0.3); box-shadow: 0 8px 30px rgba(34, 211, 238, 0.1); }
                 .writing-card:hover { border-color: rgba(244, 114, 182, 0.3); box-shadow: 0 8px 30px rgba(244, 114, 182, 0.1); }
                 .clothes-card:hover { border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 8px 30px rgba(52, 211, 153, 0.1); }
+                .movies-card:hover { border-color: rgba(251, 113, 133, 0.3); box-shadow: 0 8px 30px rgba(251, 113, 133, 0.1); }
+                .music-card:hover { border-color: rgba(192, 132, 252, 0.3); box-shadow: 0 8px 30px rgba(192, 132, 252, 0.1); }
                 .collection-card:hover { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 8px 30px rgba(245, 158, 11, 0.1); }
                 .sync-card:hover { border-color: rgba(251, 191, 36, 0.3); box-shadow: 0 8px 30px rgba(251, 191, 36, 0.1); }
 

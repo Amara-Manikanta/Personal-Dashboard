@@ -16,6 +16,8 @@ previews/
 # descend into an ignored directory, so the negation below would never be read.)
 uploads/*
 !uploads/collection/
+# Movie posters and album covers are likewise the record, not scratch.
+!uploads/media/
 
 
 # Raw phone camera input
