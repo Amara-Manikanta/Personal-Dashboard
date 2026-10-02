@@ -171,6 +171,92 @@ app.get('/api/backups/:name', (req, res) => {
 
 // Restore a snapshot. The current contents are snapshotted first, so this is
 // itself undoable via the returned undoSnapshot.
+// --- External drive backup ---
+// Mounted drives, so the page can offer them when no native folder picker
+// is available (running in a plain browser rather than the desktop app).
+// Not under /api/backups/: the existing /api/backups/:name route would claim it.
+app.get('/api/backup-volumes', (req, res) => {
+    const root = '/Volumes';
+    let volumes = [];
+    try {
+        volumes = fs.readdirSync(root)
+            .filter(name => !name.startsWith('.') && name !== 'Macintosh HD' && name !== 'Recovery')
+            .map(name => path.join(root, name))
+            .filter(p => { try { return fs.statSync(p).isDirectory(); } catch (e) { return false; } });
+    } catch (e) { /* not macOS, or no access */ }
+    res.json({ volumes });
+});
+
+/**
+ * Copy every data file and every uploaded image into a new dated folder
+ * under the chosen destination, then verify the copy file by file.
+ *
+ * Always a fresh folder, never an overwrite: an older backup on the drive is
+ * left exactly as it was, so a bad day's data cannot replace a good copy.
+ * Rolling snapshots in data/backups are skipped — they are history of the
+ * same files and would multiply the size for little gain.
+ */
+app.post('/api/backups/external', (req, res) => {
+    const destination = String((req.body && req.body.destination) || '');
+    if (!destination || !path.isAbsolute(destination)) {
+        return res.status(400).json({ success: false, message: 'Choose a folder first.' });
+    }
+    try {
+        if (!fs.statSync(destination).isDirectory()) throw new Error();
+    } catch (e) {
+        return res.status(400).json({ success: false, message: 'That folder is not available — is the drive plugged in?' });
+    }
+
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const target = path.join(destination, `LifeStudio-Backup-${stamp}`);
+
+    try {
+        fs.mkdirSync(path.join(target, 'data'), { recursive: true });
+
+        const dataFiles = fs.readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
+        dataFiles.forEach(f => fs.copyFileSync(path.join(DATA_DIR, f), path.join(target, 'data', f)));
+
+        if (fs.existsSync(UPLOADS_DIR)) {
+            fs.cpSync(UPLOADS_DIR, path.join(target, 'uploads'), { recursive: true });
+        }
+
+        // Verify: every source file must exist in the copy at the same size.
+        const walk = (dir) => fs.existsSync(dir)
+            ? fs.readdirSync(dir, { withFileTypes: true }).flatMap(e =>
+                e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)])
+            : [];
+        const sources = [
+            ...dataFiles.map(f => [path.join(DATA_DIR, f), path.join(target, 'data', f)]),
+            ...walk(UPLOADS_DIR).map(f => [f, path.join(target, 'uploads', path.relative(UPLOADS_DIR, f))])
+        ];
+        const bad = sources.filter(([src, dst]) => {
+            try { return fs.statSync(src).size !== fs.statSync(dst).size; } catch (e) { return true; }
+        });
+        if (bad.length) {
+            return res.status(500).json({
+                success: false,
+                message: `${bad.length} file(s) did not copy correctly. The drive may be full or was unplugged.`,
+                folder: target
+            });
+        }
+
+        const bytes = sources.reduce((sum, [, dst]) => sum + fs.statSync(dst).size, 0);
+        const images = sources.length - dataFiles.length;
+        fs.writeFileSync(path.join(target, 'backup-info.json'), JSON.stringify({
+            createdAt: new Date().toISOString(),
+            dataFiles: dataFiles.length,
+            images,
+            bytes,
+            restoreHint: 'Copy data/*.json and uploads/ back into the LifeStudio project folder.'
+        }, null, 2));
+
+        res.json({ success: true, folder: target, dataFiles: dataFiles.length, images, bytes });
+    } catch (err) {
+        console.error('External backup failed:', err);
+        res.status(500).json({ success: false, message: `Backup failed: ${err.message}`, folder: target });
+    }
+});
+
 app.post('/api/backups/restore', (req, res) => {
     if (!ENABLE_WRITES) return res.status(403).json({ success: false, message: 'Server is in read-only mode' });
 

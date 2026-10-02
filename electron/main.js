@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, shell, ipcMain, dialog } = require('electron');
 const path = require('path');
 const http = require('http');
 
@@ -241,6 +241,17 @@ ipcMain.handle('show-in-folder', async (event, filePath) => {
 });
 
 ipcMain.handle('get-app-version', () => app.getVersion());
+
+// Native folder picker for external-drive backups.
+ipcMain.handle('choose-backup-folder', async () => {
+    const result = await dialog.showOpenDialog(mainWindow, {
+        title: 'Choose where to save the backup',
+        buttonLabel: 'Back up here',
+        defaultPath: '/Volumes',
+        properties: ['openDirectory', 'createDirectory']
+    });
+    return result.canceled ? null : result.filePaths[0];
+});
 
 // Ensure single instance
 const gotTheLock = app.requestSingleInstanceLock();

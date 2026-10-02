@@ -5,5 +5,6 @@ contextBridge.exposeInMainWorld('desktopAPI', {
     isMac: process.platform === 'darwin',
     openExternal: (url) => ipcRenderer.invoke('open-external', url),
     showInFolder: (filePath) => ipcRenderer.invoke('show-in-folder', filePath),
-    getAppVersion: () => ipcRenderer.invoke('get-app-version')
+    getAppVersion: () => ipcRenderer.invoke('get-app-version'),
+    chooseBackupFolder: () => ipcRenderer.invoke('choose-backup-folder')
 });

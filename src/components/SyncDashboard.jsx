@@ -18,6 +18,51 @@ window.SyncDashboard = ({ onBackToHome }) => {
         }
     }, []);
 
+    // ---- External drive backup ----
+    const hasPicker = !!(window.desktopAPI && window.desktopAPI.chooseBackupFolder);
+    const readSaved = () => { try { return localStorage.getItem('externalBackupFolder') || ''; } catch (e) { return ''; } };
+    const [backupFolder, setBackupFolder] = useState(readSaved());
+    const [volumes, setVolumes] = useState([]);
+    const [backingUp, setBackingUp] = useState(false);
+    const [lastBackup, setLastBackup] = useState(null);
+
+    useEffect(() => {
+        if (hasPicker) return;
+        fetch(`${window.API_BASE}/backup-volumes`).then(r => r.json())
+            .then(d => setVolumes(d.volumes || [])).catch(() => {});
+    }, []);
+
+    const rememberFolder = (folder) => {
+        setBackupFolder(folder);
+        try { localStorage.setItem('externalBackupFolder', folder); } catch (e) { /* per-device only */ }
+    };
+
+    const chooseFolder = async () => {
+        const folder = await window.desktopAPI.chooseBackupFolder();
+        if (folder) rememberFolder(folder);
+    };
+
+    const runExternalBackup = async () => {
+        if (!backupFolder) return;
+        setBackingUp(true);
+        setLastBackup(null);
+        try {
+            const res = await fetch(`${window.API_BASE}/backups/external`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ destination: backupFolder })
+            });
+            const body = await res.json();
+            setLastBackup(body);
+        } catch (e) {
+            setLastBackup({ success: false, message: 'Could not reach the app server.' });
+        } finally {
+            setBackingUp(false);
+        }
+    };
+
+    const formatSize = (bytes) => bytes > 1e6 ? `${(bytes / 1e6).toFixed(1)} MB` : `${Math.round(bytes / 1e3)} KB`;
+
     const showStatus = (msg, type) => {
         setStatus({ message: msg, type: type });
         setTimeout(() => setStatus({ message: '', type: '' }), 5000);
@@ -160,6 +205,60 @@ window.SyncDashboard = ({ onBackToHome }) => {
                     </div>
                 </div>
 
+                <div className="sync-card ext-backup">
+                    <div className="card-header">
+                        <h2><i className="ph-fill ph-hard-drives" aria-hidden="true"></i> Back up to external drive</h2>
+                    </div>
+                    <div className="card-body">
+                        <p>
+                            Copies all your data and every uploaded image into a new dated folder.
+                            Earlier backups on the drive are never overwritten.
+                        </p>
+
+                        <div className="ext-row">
+                            <div className="ext-folder" title={backupFolder}>
+                                <i className="ph-bold ph-folder" aria-hidden="true"></i>
+                                {backupFolder || 'No folder chosen'}
+                            </div>
+                            {hasPicker ? (
+                                <button className="btn-small" onClick={chooseFolder} disabled={backingUp}>
+                                    {backupFolder ? 'Change…' : 'Choose folder…'}
+                                </button>
+                            ) : (
+                                <select
+                                    className="ext-select"
+                                    value={volumes.includes(backupFolder) ? backupFolder : ''}
+                                    onChange={(e) => e.target.value && rememberFolder(e.target.value)}
+                                    aria-label="Drive"
+                                >
+                                    <option value="">{volumes.length ? 'Pick a drive' : 'No external drive found'}</option>
+                                    {volumes.map(v => <option key={v} value={v}>{v.replace('/Volumes/', '')}</option>)}
+                                </select>
+                            )}
+                        </div>
+
+                        <button className="btn-primary" onClick={runExternalBackup} disabled={!backupFolder || backingUp}>
+                            {backingUp ? 'Backing up… (images can take a minute)' : 'Back up now'}
+                        </button>
+
+                        {lastBackup && (
+                            <div className={`status-banner ${lastBackup.success ? 'success' : 'error'}`}>
+                                <i className={`ph-fill ${lastBackup.success ? 'ph-check-circle' : 'ph-warning-circle'}`}></i>
+                                <span>
+                                    {lastBackup.success
+                                        ? `Backed up and verified: ${lastBackup.dataFiles} data files and ${lastBackup.images} images (${formatSize(lastBackup.bytes)}).`
+                                        : lastBackup.message}
+                                </span>
+                                {lastBackup.folder && window.desktopAPI && (
+                                    <button className="btn-small" onClick={() => window.desktopAPI.showInFolder(lastBackup.folder)}>
+                                        Show in Finder
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
                 {status.message && (
                     <div className={`status-banner ${status.type}`}>
                         {status.type === 'success' && <i className="ph-fill ph-check-circle"></i>}
@@ -172,6 +271,20 @@ window.SyncDashboard = ({ onBackToHome }) => {
             </div>
 
             <style>{`
+                .ext-backup .card-header h2 { display: flex; align-items: center; gap: 0.5rem; }
+                .ext-backup p { color: var(--text-secondary); margin: 0 0 1rem; line-height: 1.5; }
+                .ext-row { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+                .ext-folder {
+                    flex: 1; min-width: 220px; display: flex; align-items: center; gap: 0.5rem;
+                    padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 8px;
+                    background: rgba(255,255,255,0.03); color: var(--text-secondary); font-size: 0.85rem;
+                    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+                }
+                .ext-select {
+                    padding: 0.55rem 0.8rem; border-radius: 8px; border: 1px solid var(--border);
+                    background: var(--bg-surface); color: var(--text-primary); font-family: inherit;
+                }
+                .ext-backup .status-banner { margin-top: 1rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
                 .sync-page {
                     min-height: 100vh;
                     background: var(--bg-app);
