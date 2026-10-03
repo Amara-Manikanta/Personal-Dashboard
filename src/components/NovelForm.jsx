@@ -1,7 +1,7 @@
 
 
 
-window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
+window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [], isDuplicate = false }) => {
     const defaultData = {
         title: '',
         author: '',
@@ -25,18 +25,32 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
         quotes: []
     };
 
-    const [formData, setFormData] = React.useState(initialData || defaultData);
+    // Merged over the defaults so a copy missing a field still has every input defined.
+    const [formData, setFormData] = React.useState(initialData ? { ...defaultData, ...initialData } : defaultData);
 
     // Adding several issues of one run at once — comics are read issue by
     // issue, and typing the same author, genre and dates 25 times is the
     // alternative. Only offered when adding: editing is always one entry.
-    const isNew = !initialData;
+    // A duplicate has data but no id: it is saved as a new entry, not an edit.
+    const isNew = !(initialData && initialData.id);
     const MAX_ISSUES = 200;
     const [multi, setMulti] = React.useState({ on: false, from: '1', to: '' });
     const issueFrom = parseInt(multi.from, 10);
     const issueTo = parseInt(multi.to, 10);
     const issueCount = (issueFrom > 0 && issueTo >= issueFrom) ? issueTo - issueFrom + 1 : 0;
     const issueTitle = (n) => `${(formData.title || 'Title').trim()} #${n}`;
+
+    // Opening a duplicate, the title's trailing number or range is selected so
+    // typing replaces it: "Demon Slayer Chapter 158–206" → type "207–250".
+    const titleRef = React.useRef(null);
+    React.useEffect(() => {
+        const el = titleRef.current;
+        if (!isDuplicate || !el) return;
+        el.focus();
+        const m = el.value.match(/(\d+(?:\s*[–-]\s*\d+)?)\s*$/);
+        if (m) el.setSelectionRange(m.index, m.index + m[1].length);
+        else el.select();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -89,6 +103,7 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
                 <input
                     type="text"
                     name="title"
+                    ref={titleRef}
                     value={formData.title}
                     onChange={handleChange}
                     placeholder={multi.on ? 'Series title, e.g. Uncanny Avengers (2012)' : 'Enter novel title'}
@@ -493,7 +508,7 @@ window.NovelForm = ({ initialData, onSubmit, onCancel, allGenres = [] }) => {
             <div className="form-actions">
                 <button type="button" className="btn-secondary" onClick={onCancel}>Cancel</button>
                 <button type="submit" className="btn-primary">
-                    {isNew && multi.on && issueCount > 1 ? `Add ${issueCount} Issues` : 'Save Novel'}
+                    {isNew && multi.on && issueCount > 1 ? `Add ${issueCount} Issues` : isDuplicate ? 'Save Copy' : 'Save Novel'}
                 </button>
             </div>
 

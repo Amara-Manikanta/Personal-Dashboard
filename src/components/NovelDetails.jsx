@@ -1,4 +1,4 @@
-window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdate }) => {
+window.NovelDetails = ({ novel, onBack, onEdit, onDuplicate, onDelete, onAuthorClick, onUpdate }) => {
     const { useState, useEffect } = React;
     const { title, author, cover, genre, subGenre, format, rating, status, review, progress, progressType, quotes, phrases, description } = novel;
     const [activeTab, setActiveTab] = useState('description');
@@ -196,6 +196,11 @@ window.NovelDetails = ({ novel, onBack, onEdit, onDelete, onAuthorClick, onUpdat
                         <button className="action-btn edit-btn" onClick={() => onEdit(novel)}>
                             <i className="ph-fill ph-pencil-simple"></i> Edit Novel
                         </button>
+                        {onDuplicate && (
+                            <button className="action-btn edit-btn" onClick={() => onDuplicate(novel)}>
+                                <i className="ph-fill ph-copy"></i> Duplicate
+                            </button>
+                        )}
                         <button className="action-btn delete-btn" onClick={() => onDelete(novel.id)}>
                             <i className="ph-fill ph-trash"></i> Delete
                         </button>

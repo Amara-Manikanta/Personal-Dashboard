@@ -1,6 +1,6 @@
 // NovelCard Component
 
-window.NovelCard = ({ novel, onEdit, onDelete, onSelect }) => {
+window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect }) => {
     // Destructure for easier access
     const { title, author, cover, genre, subGenre, rating, status, review, progress, progressType } = novel;
 
@@ -48,6 +48,11 @@ window.NovelCard = ({ novel, onEdit, onDelete, onSelect }) => {
                         <button className="action-btn edit-btn" onClick={(e) => { e.stopPropagation(); onEdit(novel); }} title="Edit">
                             <i className="ph-fill ph-pencil-simple"></i>
                         </button>
+                        {onDuplicate && (
+                            <button className="action-btn edit-btn" onClick={(e) => { e.stopPropagation(); onDuplicate(novel); }} title="Duplicate" aria-label={`Duplicate ${title}`}>
+                                <i className="ph-fill ph-copy"></i>
+                            </button>
+                        )}
                         <button className="action-btn delete-btn" onClick={(e) => { e.stopPropagation(); onDelete(novel.id); }} title="Delete">
                             <i className="ph-fill ph-trash"></i>
                         </button>

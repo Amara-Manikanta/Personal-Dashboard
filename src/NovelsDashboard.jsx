@@ -31,6 +31,8 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     // Modal State
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingNovel, setEditingNovel] = useState(null);
+    const [duplicateDraft, setDuplicateDraft] = useState(null);
+    const [duplicateCount, setDuplicateCount] = useState(0);
     const [deletingNovelId, setDeletingNovelId] = useState(null); // New state for delete confirmation
 
     // ---- View State ----
@@ -121,12 +123,28 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
 
 
     const openAddModal = () => {
+        setDuplicateDraft(null);
         setEditingNovel(null);
         setIsModalOpen(true);
     };
 
     const openEditModal = (novel) => {
+        setDuplicateDraft(null);
         setEditingNovel(novel);
+        setIsModalOpen(true);
+    };
+
+    // A copy of an entry, opened as a new one. A comic or manga is read in
+    // runs of chapters, and every run shares the author, genre, cover and
+    // format — only the title's number changes — so the form opens already
+    // filled in. What belongs to one particular read is left behind: the
+    // review, quotes and phrases describe the chapters read last time, not
+    // these, and copying them would put a wrong review on the new entry.
+    const openDuplicateModal = (novel) => {
+        const { id, quotes, phrases, review, ...shared } = novel;
+        setEditingNovel(null);
+        setDuplicateDraft({ ...shared, quotes: [], phrases: [], review: '' });
+        setDuplicateCount(n => n + 1);
         setIsModalOpen(true);
     };
 
@@ -288,6 +306,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                         novel={selectedNovel}
                         onBack={() => setSelectedNovel(null)}
                         onEdit={openEditModal}
+                        onDuplicate={openDuplicateModal}
                         onDelete={initiateDelete}
                         onAuthorClick={onAuthorClick}
                         onUpdate={handleDirectUpdate}
@@ -327,6 +346,7 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                                 key={novel.id}
                                                 novel={novel}
                                                 onEdit={openEditModal}
+                                                onDuplicate={openDuplicateModal}
                                                 onDelete={initiateDelete}
                                                 onSelect={setSelectedNovel}
                                             />
@@ -357,11 +377,12 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
             <window.Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title={editingNovel ? "Edit Novel" : "Add New Novel"}
+                title={editingNovel ? "Edit Novel" : duplicateDraft ? "Duplicate Novel" : "Add New Novel"}
             >
                 <window.NovelForm
-                    key={editingNovel ? editingNovel.id : 'new'} // Reset form state when switching
-                    initialData={editingNovel}
+                    key={editingNovel ? editingNovel.id : duplicateDraft ? `copy-${duplicateCount}` : 'new'} // Reset form state when switching
+                    initialData={editingNovel || duplicateDraft}
+                    isDuplicate={!editingNovel && !!duplicateDraft}
                     onSubmit={editingNovel ? handleUpdateNovel : handleAddNovel}
                     onCancel={() => setIsModalOpen(false)}
                     allGenres={allGenres}
