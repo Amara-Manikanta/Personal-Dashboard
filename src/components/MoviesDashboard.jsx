@@ -13,11 +13,44 @@ const MOVIE_STATUS = { watchlist: 'To watch', watched: 'Watched' };
 
 const statusOf = (m) => (m && m.status === 'watched' ? 'watched' : 'watchlist');
 
-/** "Inception (2010)" → { title: 'Inception', year: '2010' }. The year is optional. */
+/** Only web addresses are kept as an image: anything else is not a picture to show. */
+const cleanImageUrl = (value) => {
+    const url = String(value || '').trim();
+    return /^https?:\/\/\S+$/i.test(url) ? url : '';
+};
+
+/**
+ * "Inception (2010)" → { title: 'Inception', year: '2010' }. The year is
+ * optional, and so is a web address on the end of the line, which becomes the
+ * poster: "Inception (2010) https://example.com/inception.jpg".
+ */
 const parseMovieLine = (line) => {
-    const text = String(line || '').trim().replace(/\s+/g, ' ');
+    let text = String(line || '').trim().replace(/\s+/g, ' ');
+    let imageUrl = '';
+    const withUrl = text.match(/^(.*?)\s+(https?:\/\/\S+)$/i);
+    if (withUrl && withUrl[1]) { text = withUrl[1]; imageUrl = cleanImageUrl(withUrl[2]); }
     const m = text.match(/^(.*?)\s*\((\d{4})\)$/);
-    return m && m[1] ? { title: m[1].trim(), year: m[2] } : { title: text, year: '' };
+    return m && m[1]
+        ? { title: m[1].trim(), year: m[2], imageUrl }
+        : { title: text, year: '', imageUrl };
+};
+
+/**
+ * A poster, or a film-slate placeholder when there is none or it will not
+ * load. Hot-linked images break often, so a dead address must degrade to the
+ * placeholder rather than a broken-image icon. No referrer is sent because
+ * several image hosts refuse requests that arrive from another site.
+ */
+const Poster = ({ url, title, size = 'sm' }) => {
+    const [failed, setFailed] = React.useState(false);
+    React.useEffect(() => setFailed(false), [url]);
+    return (
+        <span className={`mv-poster is-${size}`}>
+            {url && !failed
+                ? <img src={url} alt={`${title} poster`} loading="lazy" referrerPolicy="no-referrer" onError={() => setFailed(true)} />
+                : <i className="ph-duotone ph-film-slate" aria-hidden="true"></i>}
+        </span>
+    );
 };
 
 const sameMovie = (a, b) =>
@@ -113,13 +146,13 @@ window.MoviesDashboard = ({ onBackToHome }) => {
         const fresh = [];
         let skipped = 0;
         lines.forEach((line, i) => {
-            const { title, year } = parseMovieLine(line);
+            const { title, year, imageUrl } = parseMovieLine(line);
             if (!title) return;
             const candidate = { title, year };
             if ([...movies, ...fresh].some(m => sameMovie(m, candidate))) { skipped++; return; }
             fresh.push({
                 id: `${Date.now()}-${i}`,
-                title, year, language: '', status: 'watchlist', rating: 0, notes: '',
+                title, year, imageUrl, language: '', status: 'watchlist', rating: 0, notes: '',
                 addedAt: new Date().toISOString()
             });
         });
@@ -265,6 +298,8 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                                     <i className={`ph-${watched ? 'fill ph-check-circle' : 'bold ph-circle'}`} aria-hidden="true"></i>
                                 </button>
 
+                                <Poster url={m.imageUrl} title={m.title} />
+
                                 <div className="mv-main">
                                     <span className="mv-title">{m.title}</span>
                                     <span className="mv-meta">
@@ -320,14 +355,24 @@ const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
         language: movie.language || '',
         status: statusOf(movie),
         rating: Number(movie.rating) || 0,
-        notes: movie.notes || ''
+        notes: movie.notes || '',
+        imageUrl: movie.imageUrl || ''
     });
+    const [urlError, setUrlError] = useState('');
     const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
     const submit = (e) => {
         e.preventDefault();
         const title = form.title.trim();
         if (!title) return;
+
+        const typed = form.imageUrl.trim();
+        const imageUrl = cleanImageUrl(typed);
+        // A mistyped address should be said so, not silently thrown away.
+        if (typed && !imageUrl) {
+            setUrlError('That is not a web address — it should start with http:// or https://');
+            return;
+        }
         onSave({
             id: movie.id || `${Date.now()}`,
             title,
@@ -337,6 +382,7 @@ const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
             // A rating only means something once the movie is watched.
             rating: form.status === 'watched' ? form.rating : 0,
             notes: form.notes.trim(),
+            imageUrl,
             addedAt: movie.addedAt || new Date().toISOString()
         });
     };
@@ -380,6 +426,23 @@ const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
                         <Stars value={form.rating} onChange={(n) => set('rating', n)} label="Your rating" />
                     </>
                 )}
+
+                <label htmlFor="mv-image">Image URL</label>
+                <div className="mv-image-field">
+                    <div>
+                        <input
+                            id="mv-image"
+                            type="url"
+                            value={form.imageUrl}
+                            onChange={(e) => { set('imageUrl', e.target.value); setUrlError(''); }}
+                            placeholder="https://… link to the poster"
+                            aria-describedby={urlError ? 'mv-image-error' : undefined}
+                            aria-invalid={!!urlError}
+                        />
+                        {urlError && <p id="mv-image-error" className="mv-error">{urlError}</p>}
+                    </div>
+                    <Poster url={cleanImageUrl(form.imageUrl)} title={form.title || 'Movie'} size="md" />
+                </div>
 
                 <label htmlFor="mv-notes">Notes</label>
                 <textarea id="mv-notes" value={form.notes} onChange={(e) => set('notes', e.target.value)} placeholder="Why you want to see it, or what you thought" />
@@ -484,6 +547,17 @@ const MoviesStyles = () => (
         }
         .mv-check:hover { color: var(--mv-accent); }
         .mv-row.is-watched .mv-check { color: #34d399; }
+
+        .mv-poster {
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--mv-muted);
+        }
+        .mv-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .mv-poster.is-sm { width: 44px; height: 64px; border-radius: 6px; font-size: 1.4rem; }
+        .mv-poster.is-md { width: 60px; height: 88px; border-radius: 8px; font-size: 1.8rem; }
+        .mv-image-field { display: flex; gap: 0.8rem; align-items: flex-start; }
+        .mv-image-field > div { flex: 1; min-width: 0; }
+        .mv-error { margin: 0.4rem 0 0; font-size: 0.8rem; color: #fca5a5; }
 
         .mv-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
         .mv-title { font-weight: 600; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
