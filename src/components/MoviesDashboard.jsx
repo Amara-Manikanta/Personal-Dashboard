@@ -11,6 +11,12 @@
 
 const MOVIE_STATUS = { watchlist: 'To watch', watched: 'Watched' };
 
+const COMMON_GENRES = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+    'Fantasy', 'History', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western'];
+
+/** A movie's genres as a clean list; older entries simply have none. */
+const genresOf = (m) => (Array.isArray(m && m.genres) ? m.genres.filter(Boolean) : []);
+
 const statusOf = (m) => (m && m.status === 'watched' ? 'watched' : 'watchlist');
 
 /** Only web addresses are kept as an image: anything else is not a picture to show. */
@@ -81,6 +87,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
     const [tab, setTab] = useState('watchlist');      // 'watchlist' | 'watched' | 'all'
     const [query, setQuery] = useState('');
     const [language, setLanguage] = useState('');
+    const [genre, setGenre] = useState('');
     const [sortBy, setSortBy] = useState('added');
     const [quick, setQuick] = useState('');
     const [editing, setEditing] = useState(null);     // a movie, or {} for a new one
@@ -121,6 +128,12 @@ window.MoviesDashboard = ({ onBackToHome }) => {
         [movies]
     );
 
+    // Every genre in use across the list, so the filter only offers real ones.
+    const usedGenres = useMemo(
+        () => Array.from(new Set(movies.flatMap(genresOf))).sort((a, b) => a.localeCompare(b)),
+        [movies]
+    );
+
     const directors = useMemo(
         () => Array.from(new Set(movies.map(m => m.director).filter(Boolean))).sort((a, b) => a.localeCompare(b)),
         [movies]
@@ -131,8 +144,9 @@ window.MoviesDashboard = ({ onBackToHome }) => {
         const rows = movies.filter(m => {
             if (tab !== 'all' && statusOf(m) !== tab) return false;
             if (language && m.language !== language) return false;
+            if (genre && !genresOf(m).includes(genre)) return false;
             if (!q) return true;
-            return [m.title, m.year, m.language, m.director, m.notes].filter(Boolean).some(v => String(v).toLowerCase().includes(q));
+            return [m.title, m.year, m.language, m.director, m.notes, ...genresOf(m)].filter(Boolean).some(v => String(v).toLowerCase().includes(q));
         });
         const sorters = {
             added: (a, b) => String(b.addedAt || '').localeCompare(String(a.addedAt || '')),
@@ -141,7 +155,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
             rating: (a, b) => (Number(b.rating) || 0) - (Number(a.rating) || 0)
         };
         return rows.slice().sort(sorters[sortBy]);
-    }, [movies, tab, query, language, sortBy]);
+    }, [movies, tab, query, language, genre, sortBy]);
 
     /** Quick add: one title, or many pasted at once, one per line. */
     const addFromText = async (text) => {
@@ -262,14 +276,28 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                         {languages.map(l => <option key={l} value={l}>{l}</option>)}
                     </select>
                 )}
+                {/* Always shown, so the filter is discoverable; it simply has
+                    nothing to offer until a movie has been given a genre. */}
+                {movies.length > 0 && (
+                    <select
+                        value={genre}
+                        onChange={(e) => setGenre(e.target.value)}
+                        aria-label="Filter by genre"
+                        disabled={usedGenres.length === 0}
+                        title={usedGenres.length === 0 ? 'Give a movie a genre (Edit) to filter by it' : 'Filter by genre'}
+                    >
+                        <option value="">{usedGenres.length === 0 ? 'No genres yet' : 'All genres'}</option>
+                        {usedGenres.map(g => <option key={g} value={g}>{g}</option>)}
+                    </select>
+                )}
                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} aria-label="Sort by">
                     <option value="added">Recently added</option>
                     <option value="title">Title A–Z</option>
                     <option value="year">Newest year first</option>
                     <option value="rating">Highest rated</option>
                 </select>
-                {(query || language) && (
-                    <button className="mv-clear" onClick={() => { setQuery(''); setLanguage(''); }}>
+                {(query || language || genre) && (
+                    <button className="mv-clear" onClick={() => { setQuery(''); setLanguage(''); setGenre(''); }}>
                         Clear · {visible.length} shown
                     </button>
                 )}
@@ -285,7 +313,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                 <div className="mv-empty">
                     <i className="ph-duotone ph-magnifying-glass" aria-hidden="true"></i>
                     <h2>Nothing here</h2>
-                    <p>{tab === 'watchlist' && !query && !language ? 'Everything on your list is watched.' : 'No movie matches those filters.'}</p>
+                    <p>{tab === 'watchlist' && !query && !language && !genre ? 'Everything on your list is watched.' : 'No movie matches those filters.'}</p>
                 </div>
             ) : (
                 <ul className="mv-list">
@@ -310,6 +338,12 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                                     <span className="mv-meta">
                                         {[m.year, m.language, m.director && `Directed by ${m.director}`].filter(Boolean).join(' · ') || 'No year or language'}
                                     </span>
+                                    {genresOf(m).length > 0 && (
+                                        <span className="mv-genres" aria-label="Genres">
+                                            {genresOf(m).slice(0, 4).map(g => <span key={g} className="mv-chip">{g}</span>)}
+                                            {genresOf(m).length > 4 && <span className="mv-chip is-more">+{genresOf(m).length - 4}</span>}
+                                        </span>
+                                    )}
                                     {m.notes && <span className="mv-notes">{m.notes}</span>}
                                 </div>
 
@@ -340,6 +374,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                     movie={editing}
                     languages={languages}
                     directors={directors}
+                    knownGenres={usedGenres}
                     onCancel={() => setEditing(null)}
                     onSave={saveEditor}
                 />
@@ -352,7 +387,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
     );
 };
 
-const MovieEditor = ({ movie, languages, directors, onCancel, onSave }) => {
+const MovieEditor = ({ movie, languages, directors, knownGenres, onCancel, onSave }) => {
     const { useState } = React;
     const isNew = !movie.id;
     const [form, setForm] = useState({
@@ -363,10 +398,39 @@ const MovieEditor = ({ movie, languages, directors, onCancel, onSave }) => {
         rating: Number(movie.rating) || 0,
         notes: movie.notes || '',
         imageUrl: movie.imageUrl || '',
-        director: movie.director || ''
+        director: movie.director || '',
+        genres: genresOf(movie)
     });
+    const [customGenre, setCustomGenre] = useState('');
+    const [addingNew, setAddingNew] = useState(false);
     const [urlError, setUrlError] = useState('');
     const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+
+    // Everything offered as a tag: the common set, then any of your own, then
+    // whatever this movie already carries.
+    const genreOptions = [...COMMON_GENRES, ...knownGenres, ...form.genres]
+        .filter((g, i, all) => all.findIndex(x => x.toLowerCase() === g.toLowerCase()) === i);
+
+    const addGenre = (g) => setForm(f => (f.genres.includes(g) ? f : { ...f, genres: [...f.genres, g] }));
+    const removeGenre = (g) => setForm(f => ({ ...f, genres: f.genres.filter(x => x !== g) }));
+
+    // The dropdown is only a way to choose: it snaps back to its prompt after
+    // every pick, and a genre already chosen is no longer offered.
+    const pickFromDropdown = (value) => {
+        if (value === '__new__') { setAddingNew(true); return; }
+        if (value) addGenre(value);
+    };
+
+    // A typed genre matches an existing one regardless of case, so "sci-fi"
+    // selects "Sci-Fi" instead of creating a lookalike beside it.
+    const addCustomGenre = () => {
+        const typed = customGenre.trim().replace(/\s+/g, ' ').slice(0, 30);
+        if (!typed) return;
+        const existing = genreOptions.find(g => g.toLowerCase() === typed.toLowerCase()) || typed;
+        addGenre(existing);
+        setCustomGenre('');
+        setAddingNew(false);
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -391,6 +455,7 @@ const MovieEditor = ({ movie, languages, directors, onCancel, onSave }) => {
             notes: form.notes.trim(),
             imageUrl,
             director: form.director.trim().replace(/\s+/g, ' '),
+            genres: form.genres,
             addedAt: movie.addedAt || new Date().toISOString()
         });
     };
@@ -418,6 +483,51 @@ const MovieEditor = ({ movie, languages, directors, onCancel, onSave }) => {
                         </datalist>
                     </div>
                 </div>
+
+                <label htmlFor="mv-genre-select">Genres</label>
+                <select
+                    id="mv-genre-select"
+                    className="mv-select"
+                    value=""
+                    onChange={(e) => pickFromDropdown(e.target.value)}
+                >
+                    <option value="">{form.genres.length ? 'Add another genre…' : 'Choose a genre…'}</option>
+                    {genreOptions.filter(g => !form.genres.includes(g)).map(g => <option key={g} value={g}>{g}</option>)}
+                    <option value="__new__">＋ New genre…</option>
+                </select>
+
+                {form.genres.length > 0 && (
+                    <div className="mv-genre-picker" role="list" aria-label="Chosen genres">
+                        {form.genres.map(g => (
+                            <button
+                                type="button"
+                                role="listitem"
+                                key={g}
+                                className="mv-chip is-pick is-on"
+                                onClick={() => removeGenre(g)}
+                                aria-label={`Remove ${g}`}
+                                title="Click to remove"
+                            >
+                                {g}
+                                <i className="ph-bold ph-x" aria-hidden="true"></i>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {addingNew && (
+                    <div className="mv-genre-add">
+                        <input
+                            value={customGenre}
+                            onChange={(e) => setCustomGenre(e.target.value)}
+                            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addCustomGenre(); } }}
+                            placeholder="Name the new genre"
+                            aria-label="New genre name"
+                            autoFocus
+                        />
+                        <button type="button" className="mv-ghost" onClick={addCustomGenre}>Add</button>
+                    </div>
+                )}
 
                 <label htmlFor="mv-director">Director</label>
                 <input id="mv-director" list="mv-director-options" value={form.director} onChange={(e) => set('director', e.target.value)} placeholder="e.g. Christopher Nolan" autoComplete="off" />
@@ -572,6 +682,29 @@ const MoviesStyles = () => (
         .mv-image-field { display: flex; gap: 0.8rem; align-items: flex-start; }
         .mv-image-field > div { flex: 1; min-width: 0; }
         .mv-error { margin: 0.4rem 0 0; font-size: 0.8rem; color: #fca5a5; }
+
+        .mv-genres { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.25rem 0 0.1rem; }
+        .mv-chip {
+            font-family: inherit; font-size: 0.75rem; line-height: 1.2; color: var(--text-secondary);
+            background: rgba(251,113,133,0.1); border: 1px solid rgba(251,113,133,0.25);
+            border-radius: 99px; padding: 0.12rem 0.55rem; white-space: nowrap;
+        }
+        .mv-chip.is-more { background: rgba(255,255,255,0.05); border-color: var(--border); color: var(--mv-muted); }
+        .mv-chip.is-pick {
+            display: inline-flex; align-items: center; gap: 0.25rem; cursor: pointer;
+            background: transparent; border-color: var(--border); color: var(--mv-muted); padding: 0.3rem 0.7rem; font-size: 0.8rem;
+        }
+        .mv-chip.is-pick:hover { color: var(--text-primary); border-color: var(--border-hover); }
+        .mv-chip.is-pick.is-on { background: rgba(251,113,133,0.16); border-color: var(--mv-accent); color: #ffe4e8; }
+        .mv-genre-picker { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .mv-genre-add { display: flex; gap: 0.5rem; margin-top: 0.3rem; }
+        .mv-genre-add input { flex: 1; }
+        .mv-select {
+            width: 100%; background: var(--bg-app); border: 1px solid var(--border); border-radius: var(--radius-md);
+            color: var(--text-primary); padding: 0.6rem 0.75rem; font-family: inherit; font-size: 0.95rem; outline: none; cursor: pointer;
+        }
+        .mv-select:focus { border-color: var(--mv-accent); }
+        .mv-toolbar select:disabled { opacity: 0.55; cursor: not-allowed; }
 
         .mv-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
         .mv-title { font-weight: 600; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
