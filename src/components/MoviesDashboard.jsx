@@ -121,13 +121,18 @@ window.MoviesDashboard = ({ onBackToHome }) => {
         [movies]
     );
 
+    const directors = useMemo(
+        () => Array.from(new Set(movies.map(m => m.director).filter(Boolean))).sort((a, b) => a.localeCompare(b)),
+        [movies]
+    );
+
     const visible = useMemo(() => {
         const q = query.trim().toLowerCase();
         const rows = movies.filter(m => {
             if (tab !== 'all' && statusOf(m) !== tab) return false;
             if (language && m.language !== language) return false;
             if (!q) return true;
-            return [m.title, m.year, m.language, m.notes].filter(Boolean).some(v => String(v).toLowerCase().includes(q));
+            return [m.title, m.year, m.language, m.director, m.notes].filter(Boolean).some(v => String(v).toLowerCase().includes(q));
         });
         const sorters = {
             added: (a, b) => String(b.addedAt || '').localeCompare(String(a.addedAt || '')),
@@ -303,7 +308,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                                 <div className="mv-main">
                                     <span className="mv-title">{m.title}</span>
                                     <span className="mv-meta">
-                                        {[m.year, m.language].filter(Boolean).join(' · ') || 'No year or language'}
+                                        {[m.year, m.language, m.director && `Directed by ${m.director}`].filter(Boolean).join(' · ') || 'No year or language'}
                                     </span>
                                     {m.notes && <span className="mv-notes">{m.notes}</span>}
                                 </div>
@@ -334,6 +339,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                 <MovieEditor
                     movie={editing}
                     languages={languages}
+                    directors={directors}
                     onCancel={() => setEditing(null)}
                     onSave={saveEditor}
                 />
@@ -346,7 +352,7 @@ window.MoviesDashboard = ({ onBackToHome }) => {
     );
 };
 
-const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
+const MovieEditor = ({ movie, languages, directors, onCancel, onSave }) => {
     const { useState } = React;
     const isNew = !movie.id;
     const [form, setForm] = useState({
@@ -356,7 +362,8 @@ const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
         status: statusOf(movie),
         rating: Number(movie.rating) || 0,
         notes: movie.notes || '',
-        imageUrl: movie.imageUrl || ''
+        imageUrl: movie.imageUrl || '',
+        director: movie.director || ''
     });
     const [urlError, setUrlError] = useState('');
     const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -383,6 +390,7 @@ const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
             rating: form.status === 'watched' ? form.rating : 0,
             notes: form.notes.trim(),
             imageUrl,
+            director: form.director.trim().replace(/\s+/g, ' '),
             addedAt: movie.addedAt || new Date().toISOString()
         });
     };
@@ -410,6 +418,12 @@ const MovieEditor = ({ movie, languages, onCancel, onSave }) => {
                         </datalist>
                     </div>
                 </div>
+
+                <label htmlFor="mv-director">Director</label>
+                <input id="mv-director" list="mv-director-options" value={form.director} onChange={(e) => set('director', e.target.value)} placeholder="e.g. Christopher Nolan" autoComplete="off" />
+                <datalist id="mv-director-options">
+                    {directors.map(d => <option key={d} value={d} />)}
+                </datalist>
 
                 <label>Status</label>
                 <div className="mv-seg" role="group" aria-label="Status">
