@@ -52,7 +52,6 @@ window.CommandPalette = ({ onNavigate, onOpenAuthor, onOpenState }) => {
             ['Clothes Tracker', 'ph-t-shirt', 'clothes'],
             ['Collection', 'ph-stamp', 'collection'],
             ['Movies', 'ph-film-slate', 'movies'],
-            ['Music & Lists', 'ph-music-notes', 'music'],
             ['Sync & Backup', 'ph-arrows-clockwise', 'sync']
         ].forEach(([label, icon, view]) => push('Page', label, 'Dashboard', icon, () => onNavigate(view)));
 
@@ -88,11 +87,6 @@ window.CommandPalette = ({ onNavigate, onOpenAuthor, onOpenState }) => {
         (window.moviesData || []).forEach(m => {
             if (!m.title) return;
             push('Movie', m.title, [m.year, m.language].filter(Boolean).join(' · ') || 'Movie', 'ph-film-slate', () => onNavigate('movies'));
-        });
-
-        (window.musicData || []).forEach(m => {
-            if (!m.title) return;
-            push('Music', m.title, [m.artist, m.kind].filter(Boolean).join(' · ') || 'Music', 'ph-music-notes', () => onNavigate('music'));
         });
 
         (window.collectiblesData || []).forEach(c => {
