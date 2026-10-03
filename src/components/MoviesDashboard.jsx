@@ -80,6 +80,77 @@ const Stars = ({ value, onChange, label }) => (
     </span>
 );
 
+/**
+ * One movie as a poster card, laid out like the novel cards: a tall poster
+ * with the status badge on it, edit/delete on hover, then title, details and
+ * the rating underneath.
+ *
+ * The poster area opens the editor and the hover buttons sit beside it rather
+ * than inside it — a button nested in a button is invalid and the inner one
+ * would not reliably get the click.
+ */
+const MovieCard = ({ movie: m, onOpen, onToggleWatched, onRate, onRemove }) => {
+    const [failed, setFailed] = React.useState(false);
+    React.useEffect(() => setFailed(false), [m.imageUrl]);
+
+    const watched = statusOf(m) === 'watched';
+    const genres = genresOf(m);
+    const details = [m.year, m.language].filter(Boolean).join(' · ');
+
+    return (
+        <li className={`mv-card ${watched ? 'is-watched' : ''}`}>
+            <div className="mv-card-art">
+                <button className="mv-card-open" onClick={() => onOpen(m)} aria-label={`Edit ${m.title}`}>
+                    {m.imageUrl && !failed
+                        ? <img src={m.imageUrl} alt={`${m.title} poster`} loading="lazy" referrerPolicy="no-referrer" onError={() => setFailed(true)} />
+                        : <span className="mv-card-blank" aria-hidden="true">
+                            <i className="ph-duotone ph-film-slate"></i>
+                        </span>}
+                </button>
+
+                <span className={`mv-badge ${watched ? 'is-watched' : 'is-todo'}`}>{watched ? 'Watched' : 'To watch'}</span>
+
+                <div className="mv-card-actions">
+                    <button
+                        onClick={() => onToggleWatched(m)}
+                        aria-label={watched ? `Mark ${m.title} as not watched` : `Mark ${m.title} as watched`}
+                        aria-pressed={watched}
+                        title={watched ? 'Watched — click to undo' : 'Mark as watched'}
+                        className={watched ? 'is-done' : ''}
+                    >
+                        <i className="ph-fill ph-check" aria-hidden="true"></i>
+                    </button>
+                    <button onClick={() => onOpen(m)} aria-label={`Edit ${m.title}`} title="Edit">
+                        <i className="ph-fill ph-pencil-simple" aria-hidden="true"></i>
+                    </button>
+                    <button className="is-danger" onClick={() => onRemove(m)} aria-label={`Remove ${m.title}`} title="Remove">
+                        <i className="ph-fill ph-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div className="mv-card-body">
+                <h3 className="mv-card-title" title={m.title}>{m.title}</h3>
+                <p className="mv-card-meta">{details || 'No year or language'}</p>
+                {m.director && <p className="mv-card-meta">Directed by {m.director}</p>}
+
+                {genres.length > 0 && (
+                    <div className="mv-genres" aria-label="Genres">
+                        {genres.slice(0, 3).map(g => <span key={g} className="mv-chip">{g}</span>)}
+                        {genres.length > 3 && <span className="mv-chip is-more">+{genres.length - 3}</span>}
+                    </div>
+                )}
+
+                <div className="mv-card-foot">
+                    {watched
+                        ? <Stars value={Number(m.rating) || 0} onChange={onRate} label={`Rating for ${m.title}`} />
+                        : <span className="mv-card-hint">Not watched yet</span>}
+                </div>
+            </div>
+        </li>
+    );
+};
+
 window.MoviesDashboard = ({ onBackToHome }) => {
     const { useState, useMemo, useCallback, useRef } = React;
 
@@ -316,56 +387,17 @@ window.MoviesDashboard = ({ onBackToHome }) => {
                     <p>{tab === 'watchlist' && !query && !language && !genre ? 'Everything on your list is watched.' : 'No movie matches those filters.'}</p>
                 </div>
             ) : (
-                <ul className="mv-list">
-                    {visible.map(m => {
-                        const watched = statusOf(m) === 'watched';
-                        return (
-                            <li key={m.id} className={`mv-row ${watched ? 'is-watched' : ''}`}>
-                                <button
-                                    className="mv-check"
-                                    onClick={() => toggleWatched(m)}
-                                    aria-label={watched ? `Mark ${m.title} as not watched` : `Mark ${m.title} as watched`}
-                                    aria-pressed={watched}
-                                    title={watched ? 'Watched — click to undo' : 'Mark as watched'}
-                                >
-                                    <i className={`ph-${watched ? 'fill ph-check-circle' : 'bold ph-circle'}`} aria-hidden="true"></i>
-                                </button>
-
-                                <Poster url={m.imageUrl} title={m.title} />
-
-                                <div className="mv-main">
-                                    <span className="mv-title">{m.title}</span>
-                                    <span className="mv-meta">
-                                        {[m.year, m.language, m.director && `Directed by ${m.director}`].filter(Boolean).join(' · ') || 'No year or language'}
-                                    </span>
-                                    {genresOf(m).length > 0 && (
-                                        <span className="mv-genres" aria-label="Genres">
-                                            {genresOf(m).slice(0, 4).map(g => <span key={g} className="mv-chip">{g}</span>)}
-                                            {genresOf(m).length > 4 && <span className="mv-chip is-more">+{genresOf(m).length - 4}</span>}
-                                        </span>
-                                    )}
-                                    {m.notes && <span className="mv-notes">{m.notes}</span>}
-                                </div>
-
-                                {watched && (
-                                    <Stars
-                                        value={Number(m.rating) || 0}
-                                        onChange={(n) => update(m.id, { rating: n })}
-                                        label={`Rating for ${m.title}`}
-                                    />
-                                )}
-
-                                <div className="mv-actions">
-                                    <button onClick={() => setEditing(m)} aria-label={`Edit ${m.title}`} title="Edit">
-                                        <i className="ph-bold ph-pencil-simple" aria-hidden="true"></i>
-                                    </button>
-                                    <button className="is-danger" onClick={() => remove(m)} aria-label={`Remove ${m.title}`} title="Remove">
-                                        <i className="ph-bold ph-trash" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>
-                        );
-                    })}
+                <ul className="mv-grid">
+                    {visible.map(m => (
+                        <MovieCard
+                            key={m.id}
+                            movie={m}
+                            onOpen={setEditing}
+                            onToggleWatched={toggleWatched}
+                            onRate={(n) => update(m.id, { rating: n })}
+                            onRemove={remove}
+                        />
+                    ))}
                 </ul>
             )}
 
@@ -591,7 +623,7 @@ const MoviesStyles = () => (
             background: var(--bg-app);
             color: var(--text-primary);
             padding: 2rem;
-            max-width: 1000px;
+            max-width: 1240px;
             margin: 0 auto;
         }
 
@@ -654,23 +686,62 @@ const MoviesStyles = () => (
         .mv-toolbar select { padding: 0.6rem 0.8rem; cursor: pointer; }
         .mv-clear { background: none; border: none; color: var(--mv-muted); font-family: inherit; font-size: 0.85rem; text-decoration: underline; cursor: pointer; }
 
-        .mv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+        /* Poster cards, the same proportions and treatment as the novel cards */
+        .mv-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
-        .mv-row {
-            display: flex; align-items: center; gap: 0.9rem;
-            padding: 0.75rem 1rem; background: var(--bg-surface);
-            border: 1px solid var(--border); border-radius: var(--radius-lg);
-            transition: border-color 0.2s ease;
+        .mv-card {
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
-        .mv-row:hover, .mv-row:focus-within { border-color: var(--border-hover); }
+        .mv-card:hover, .mv-card:focus-within { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--mv-accent); }
 
-        .mv-check {
-            flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-            background: none; border: none; cursor: pointer; font-size: 1.6rem;
-            color: var(--mv-muted); display: flex; align-items: center; justify-content: center;
+        .mv-card-art { position: relative; padding-top: 150%; overflow: hidden; background: #0d0f15; }
+        .mv-card-open {
+            position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: none;
+            background: none; cursor: pointer; display: block;
         }
-        .mv-check:hover { color: var(--mv-accent); }
-        .mv-row.is-watched .mv-check { color: #34d399; }
+        .mv-card-open img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .mv-card:hover .mv-card-open img { transform: scale(1.05); }
+
+        .mv-card-blank {
+            width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 0.9rem; padding: 1.5rem; text-align: center; color: var(--mv-muted);
+            background: linear-gradient(160deg, rgba(251,113,133,0.14), rgba(99,102,241,0.12));
+        }
+        .mv-card-blank i { font-size: 3.2rem; color: var(--mv-accent); opacity: 0.85; }
+        .mv-card-blank span { font-weight: 600; font-size: 1rem; color: var(--text-secondary); line-height: 1.3; }
+
+        .mv-badge {
+            position: absolute; top: 1rem; right: 1rem; z-index: 2; pointer-events: none;
+            padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(4px);
+        }
+        .mv-badge.is-watched { background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+        .mv-badge.is-todo { background: rgba(236,72,153,0.2); color: #f472b6; border: 1px solid rgba(236,72,153,0.25); }
+
+        .mv-card-actions {
+            position: absolute; right: 1rem; bottom: 1rem; z-index: 3; display: flex; gap: 0.5rem;
+            opacity: 0; transform: translateY(10px); transition: all 0.2s ease;
+        }
+        .mv-card:hover .mv-card-actions, .mv-card:focus-within .mv-card-actions { opacity: 1; transform: translateY(0); }
+        .mv-card-actions button {
+            width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center; color: #fff;
+            background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); transition: transform 0.2s, background 0.2s;
+        }
+        .mv-card-actions button:hover { transform: scale(1.1); background: var(--mv-accent); color: #2a0a10; }
+        .mv-card-actions button.is-done { background: #10b981; }
+        .mv-card-actions button.is-danger:hover { background: #ef4444; color: #fff; }
+
+        .mv-card-body { padding: 1.1rem 1.25rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+        .mv-card-title {
+            margin: 0 0 0.25rem; font-size: 1.125rem; line-height: 1.4; font-weight: 600;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .mv-card-meta { margin: 0 0 0.3rem; font-size: 0.875rem; color: var(--mv-muted); }
+        .mv-card-foot { margin-top: auto; padding-top: 0.9rem; min-height: 2.6rem; display: flex; align-items: center; }
+        .mv-card-hint { font-size: 0.8rem; color: var(--mv-muted); }
 
         .mv-poster {
             flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden;
@@ -706,24 +777,10 @@ const MoviesStyles = () => (
         .mv-select:focus { border-color: var(--mv-accent); }
         .mv-toolbar select:disabled { opacity: 0.55; cursor: not-allowed; }
 
-        .mv-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
-        .mv-title { font-weight: 600; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .mv-meta { color: var(--mv-muted); font-size: 0.82rem; }
-        .mv-notes { color: var(--text-secondary); font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
         .mv-stars { display: inline-flex; gap: 0.1rem; flex-shrink: 0; }
         .mv-stars button { background: none; border: none; padding: 0.15rem; cursor: pointer; color: rgba(255,255,255,0.18); font-size: 1.05rem; }
         .mv-stars button.is-on { color: #fbbf24; }
         .mv-stars button:hover { color: #fcd34d; }
-
-        .mv-actions { display: flex; gap: 0.25rem; opacity: 0; transition: opacity 0.2s ease; }
-        .mv-row:hover .mv-actions, .mv-row:focus-within .mv-actions { opacity: 1; }
-        .mv-actions button {
-            width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer;
-            background: rgba(255,255,255,0.05); color: var(--text-secondary);
-        }
-        .mv-actions button:hover { color: var(--text-primary); background: rgba(255,255,255,0.1); }
-        .mv-actions button.is-danger:hover { color: #fca5a5; }
 
         .mv-empty { text-align: center; padding: 4rem 1rem; color: var(--mv-muted); }
         .mv-empty i { font-size: 3.5rem; color: var(--mv-accent); opacity: 0.7; }
@@ -770,15 +827,17 @@ const MoviesStyles = () => (
         }
 
         @media (pointer: coarse) {
-            .mv-actions { opacity: 1; }
-            .mv-actions button, .mv-check { width: 44px; height: 44px; }
+            .mv-card-actions { opacity: 1; transform: none; }
+            .mv-card-actions button { width: 44px; height: 44px; }
             .mv-stars button { padding: 0.35rem; }
         }
+        @media (max-width: 1100px) { .mv-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 760px) { .mv-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) {
             .mv { padding: 1.1rem; }
-            .mv-row { flex-wrap: wrap; }
             .mv-two { grid-template-columns: 1fr; }
         }
+        @media (max-width: 440px) { .mv-grid { grid-template-columns: 1fr; } }
         @media (prefers-reduced-motion: reduce) { .mv * { transition: none !important; } }
     `}</style>
 );
