@@ -1,6 +1,6 @@
 // NovelCard Component
 
-window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect }) => {
+window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect, selectable = false, selected = false, onToggleSelect }) => {
     // Destructure for easier access
     const { title, author, cover, genre, subGenre, rating, status, review, progress, progressType } = novel;
 
@@ -28,7 +28,19 @@ window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect }) => {
     };
 
     return (
-        <div className="novel-card group" onClick={() => onSelect(novel)}>
+        <div
+            className={`novel-card group ${selectable ? 'is-selectable' : ''} ${selected ? 'is-selected' : ''}`}
+            onClick={() => (selectable ? onToggleSelect(novel) : onSelect(novel))}
+            role={selectable ? 'checkbox' : undefined}
+            aria-checked={selectable ? selected : undefined}
+            tabIndex={selectable ? 0 : undefined}
+            onKeyDown={selectable ? (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); onToggleSelect(novel); } } : undefined}
+        >
+            {selectable && (
+                <span className="select-tick" aria-hidden="true">
+                    {selected && <i className="ph-bold ph-check"></i>}
+                </span>
+            )}
             <div className="card-image-wrapper">
                 <img
                     src={cover}
@@ -44,7 +56,7 @@ window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect }) => {
                         {getStatusLabel(status)}
                     </span>
 
-                    <div className="card-actions">
+                    <div className="card-actions" style={selectable ? { display: 'none' } : undefined}>
                         <button className="action-btn edit-btn" onClick={(e) => { e.stopPropagation(); onEdit(novel); }} title="Edit">
                             <i className="ph-fill ph-pencil-simple"></i>
                         </button>
@@ -103,6 +115,16 @@ window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect }) => {
                     position: relative;
                     cursor: pointer; /* Add pointer cursor */
                 }
+                .select-tick {
+                    position: absolute; top: 0.9rem; left: 0.9rem; z-index: 15;
+                    width: 28px; height: 28px; border-radius: 8px;
+                    border: 2px solid rgba(255,255,255,0.85); background: rgba(0,0,0,0.45);
+                    display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem;
+                    backdrop-filter: blur(4px);
+                }
+                .novel-card.is-selected .select-tick { background: var(--primary); border-color: var(--primary); }
+                .novel-card.is-selected { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+                .novel-card.is-selectable:focus-visible { outline: 2px solid #a5b4fc; outline-offset: 3px; }
                 .novel-card:hover {
                     transform: translateY(-4px);
                     box-shadow: var(--shadow-lg);

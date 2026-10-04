@@ -178,11 +178,13 @@ const localGet = async (type) => {
     return await res.json();
 };
 
-const localSave = async (type, data) => {
+// `force` skips the server's large-deletion guard. Only for a removal the
+// user has explicitly confirmed — the guard exists to catch accidental wipes.
+const localSave = async (type, data, { force = false } = {}) => {
     const headers = { 'Content-Type': 'application/json' };
     if (dataVersions[type]) headers['X-Data-Version'] = dataVersions[type];
 
-    const res = await fetch(`${API_BASE}/${type}`, {
+    const res = await fetch(`${API_BASE}/${type}${force ? '?force=1' : ''}`, {
         method: 'POST',
         headers,
         body: JSON.stringify(data)
@@ -237,12 +239,15 @@ const api = {
             return (await ghStorage.getFile('novels.json')) || [];
         }
     },
-    saveNovels: async (data) => {
+    // { strict: true } rethrows a failed save so the caller can undo its
+    // on-screen change; existing callers keep the old fire-and-forget form.
+    saveNovels: async (data, { strict = false, force = false } = {}) => {
         if (IS_LOCALHOST) {
             try {
-                await localSave('novels', data);
+                await localSave('novels', data, { force });
             } catch (e) {
                 console.error("Error saving novels:", e);
+                if (strict) throw e;
             }
         } else {
             await ghStorage.saveFile('novels.json', data);

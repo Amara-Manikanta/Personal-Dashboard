@@ -35,6 +35,12 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
     const [duplicateCount, setDuplicateCount] = useState(0);
     const [deletingNovelId, setDeletingNovelId] = useState(null); // New state for delete confirmation
 
+    // Multi-select. Ids rather than objects, so a selection survives edits.
+    const [selectMode, setSelectMode] = useState(false);
+    const [selectedIds, setSelectedIds] = useState(() => new Set());
+    const [confirmingBulk, setConfirmingBulk] = useState(false);
+    const [bulkBusy, setBulkBusy] = useState(false);
+
     // ---- View State ----
     const [selectedNovel, setSelectedNovel] = useState(null);
     const [activeTab, setActiveTab] = useState('novels'); // 'novels' or 'stats'
@@ -119,6 +125,45 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
 
     const cancelDelete = () => {
         setDeletingNovelId(null);
+    };
+
+    const toggleSelected = (novel) => setSelectedIds(prev => {
+        const next = new Set(prev);
+        next.has(novel.id) ? next.delete(novel.id) : next.add(novel.id);
+        return next;
+    });
+
+    const exitSelectMode = () => {
+        setSelectMode(false);
+        setSelectedIds(new Set());
+        setConfirmingBulk(false);
+    };
+
+    /**
+     * Delete every selected entry in one save.
+     *
+     * The save is awaited and undone on failure, so the screen never shows
+     * books as gone when they are still on disk. It passes force because the
+     * server otherwise refuses any save losing over 30% of entries — a guard
+     * against accidental wipes, which a counted, confirmed delete is not.
+     */
+    const confirmBulkDelete = async () => {
+        const previous = novels;
+        const updatedList = novels.filter(n => !selectedIds.has(n.id));
+        setBulkBusy(true);
+        setNovels(updatedList);
+        try {
+            await window.api.saveNovels(updatedList, { strict: true, force: true });
+            exitSelectMode();
+        } catch (e) {
+            setNovels(previous);
+            setConfirmingBulk(false);
+            if (String(e && e.message) !== 'VERSION_CONFLICT') {
+                alert('Could not delete — nothing was removed. Please try again.');
+            }
+        } finally {
+            setBulkBusy(false);
+        }
     };
 
 
@@ -290,6 +335,16 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                     <span className="btn-text">{isFilterVisible ? 'Hide Filters' : 'Filter'}</span>
                                 </button>
 
+                                <button
+                                    className={`export-btn ${selectMode ? 'active' : ''}`}
+                                    onClick={() => (selectMode ? exitSelectMode() : setSelectMode(true))}
+                                    title="Select several to delete"
+                                    style={selectMode ? { borderColor: 'var(--primary)', color: 'var(--primary)' } : {}}
+                                >
+                                    <i className={`ph-bold ${selectMode ? 'ph-x' : 'ph-check-square'}`}></i>
+                                    <span className="btn-text">{selectMode ? 'Done' : 'Select'}</span>
+                                </button>
+
                                 <button className="add-btn" onClick={openAddModal}>
                                     <i className="ph-bold ph-plus"></i>
                                     <span>Add Novel</span>
@@ -329,8 +384,42 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                 <h2>All Novels <span className="count">({filteredNovels.length})</span></h2>
                             </div>
 
+                            {selectMode && (() => {
+                                const shownIds = filteredNovels.map(n => n.id);
+                                const allShownSelected = shownIds.length > 0 && shownIds.every(id => selectedIds.has(id));
+                                return (
+                                    <div className="bulk-bar" role="region" aria-label="Selection">
+                                        <span className="bulk-count">
+                                            {selectedIds.size === 0 ? 'Click books to select them' : `${selectedIds.size} selected`}
+                                        </span>
+                                        <button
+                                            className="bulk-link"
+                                            onClick={() => setSelectedIds(prev => {
+                                                const next = new Set(prev);
+                                                shownIds.forEach(id => (allShownSelected ? next.delete(id) : next.add(id)));
+                                                return next;
+                                            })}
+                                        >
+                                            {allShownSelected ? 'Unselect all shown' : `Select all ${shownIds.length} shown`}
+                                        </button>
+                                        {selectedIds.size > 0 && (
+                                            <button className="bulk-link" onClick={() => setSelectedIds(new Set())}>Clear</button>
+                                        )}
+                                        <button
+                                            className="bulk-delete"
+                                            disabled={selectedIds.size === 0}
+                                            onClick={() => setConfirmingBulk(true)}
+                                        >
+                                            <i className="ph-bold ph-trash"></i> Delete {selectedIds.size || ''}
+                                        </button>
+                                    </div>
+                                );
+                            })()}
+
                             {filteredNovels.length > 0 ? (
-                                viewMode === 'shelf' ? (
+                                // The shelf has no room for tick boxes, so selecting
+                                // always shows the grid.
+                                viewMode === 'shelf' && !selectMode ? (
                                     <window.BookshelfView
                                         novels={filteredNovels}
                                         onSelect={setSelectedNovel}
@@ -349,6 +438,9 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                                                 onDuplicate={openDuplicateModal}
                                                 onDelete={initiateDelete}
                                                 onSelect={setSelectedNovel}
+                                                selectable={selectMode}
+                                                selected={selectedIds.has(novel.id)}
+                                                onToggleSelect={toggleSelected}
                                             />
                                         ))}
                                     </div>
@@ -387,6 +479,27 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                     onCancel={() => setIsModalOpen(false)}
                     allGenres={allGenres}
                 />
+            </window.Modal>
+
+            {/* Modal - Bulk delete confirmation */}
+            <window.Modal
+                isOpen={confirmingBulk}
+                onClose={() => !bulkBusy && setConfirmingBulk(false)}
+                title={`Delete ${selectedIds.size} ${selectedIds.size === 1 ? 'book' : 'books'}?`}
+            >
+                <div className="delete-modal-content">
+                    <p>These will be removed. This can't be undone from here, though the automatic snapshots keep earlier copies.</p>
+                    <ul className="bulk-list">
+                        {novels.filter(n => selectedIds.has(n.id)).slice(0, 8).map(n => <li key={n.id}>{n.title}</li>)}
+                        {selectedIds.size > 8 && <li className="bulk-more">and {selectedIds.size - 8} more</li>}
+                    </ul>
+                    <div className="form-actions" style={{ marginTop: '1.5rem' }}>
+                        <button className="btn-secondary" onClick={() => setConfirmingBulk(false)} disabled={bulkBusy}>Cancel</button>
+                        <button className="btn-primary" onClick={confirmBulkDelete} disabled={bulkBusy} style={{ backgroundColor: '#ef4444' }}>
+                            {bulkBusy ? 'Deleting…' : `Delete ${selectedIds.size}`}
+                        </button>
+                    </div>
+                </div>
             </window.Modal>
 
             {/* Modal - Delete Confirmation */}
@@ -568,6 +681,27 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                     display: flex;
                     gap: 0.5rem;
                 }
+
+                .bulk-bar {
+                    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+                    padding: 0.7rem 1rem; margin-bottom: 1.25rem;
+                    background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3);
+                    border-radius: var(--radius-md);
+                    position: sticky; top: 0.75rem; z-index: 20; backdrop-filter: blur(8px);
+                }
+                .bulk-count { font-weight: 600; color: var(--text-primary); }
+                .bulk-link {
+                    background: none; border: none; padding: 0.3rem 0; cursor: pointer; font-family: inherit;
+                    color: #a5b4fc; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 3px;
+                }
+                .bulk-delete {
+                    margin-left: auto; display: inline-flex; align-items: center; gap: 0.4rem;
+                    padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1px solid #ef4444;
+                    background: #ef4444; color: #fff; font-family: inherit; font-weight: 600; cursor: pointer;
+                }
+                .bulk-delete:disabled { opacity: 0.45; cursor: not-allowed; }
+                .bulk-list { margin: 1rem 0 0; padding-left: 1.2rem; color: var(--text-secondary); line-height: 1.7; max-height: 220px; overflow-y: auto; }
+                .bulk-more { color: var(--text-muted); list-style: none; margin-left: -1.2rem; }
 
                 .add-btn {
                     background: linear-gradient(135deg, var(--primary), #4f46e5);
