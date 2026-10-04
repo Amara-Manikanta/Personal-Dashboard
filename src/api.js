@@ -519,6 +519,12 @@ window.IS_LOCALHOST = IS_LOCALHOST;
 window.GENRES = [
     "All",
     "Adventure",
+    "Autobiography",
+    "Biography",
+    "Memoir",
+    "Self-Help",
+    "History",
+    "Non-Fiction",
     "Children’s Adventure",
     "Comics",
     "Contemporary",
