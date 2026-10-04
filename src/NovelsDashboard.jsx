@@ -280,6 +280,12 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                             >
                                 Stats
                             </button>
+                            <button
+                                className={`nav-tab ${activeTab === 'motivation' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('motivation')}
+                            >
+                                Motivation
+                            </button>
                         </div>
 
                         <div className="header-actions-group">
@@ -368,6 +374,8 @@ window.NovelsDashboard = ({ onBackToHome, onAuthorClick }) => {
                     />
                 ) : activeTab === 'stats' ? (
                     <window.NovelStats novels={novels} onAuthorClick={onAuthorClick} />
+                ) : activeTab === 'motivation' ? (
+                    <window.NovelMotivation novels={novels} onOpenNovel={setSelectedNovel} />
                 ) : (
                     <div className="content-grid" style={{ gridTemplateColumns: isFilterVisible ? '280px 1fr' : '1fr' }}>
                         {/* Pass current novels to sidebar to update author lists dynamically */}
