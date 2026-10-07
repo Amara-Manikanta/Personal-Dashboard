@@ -1,5 +1,2145 @@
 [
   {
+    "id": "1791310547754114",
+    "title": "Terminator: Dark Fate",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Terminator%3A%20Dark%20Fate",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:47.754Z"
+  },
+  {
+    "id": "1791310547037717",
+    "title": "Terminator Genisys",
+    "year": "2015",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Terminator%20Genisys",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:47.037Z"
+  },
+  {
+    "id": "1791310546222760",
+    "title": "Terminator Salvation",
+    "year": "2009",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Terminator%20Salvation",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:46.222Z"
+  },
+  {
+    "id": "1791310545553612",
+    "title": "Terminator 3: Rise of the Machines",
+    "year": "2003",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Terminator%203%3A%20Rise%20of%20the%20Machines",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:45.553Z"
+  },
+  {
+    "id": "1791310544887338",
+    "title": "Terminator 2: Judgment Day",
+    "year": "1991",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Terminator%202%3A%20Judgment%20Day",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:44.887Z"
+  },
+  {
+    "id": "1791310544170845",
+    "title": "The Terminator",
+    "year": "1984",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Terminator",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:44.170Z"
+  },
+  {
+    "id": "1791310543242541",
+    "title": "The Great Wall",
+    "year": "2016",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Great%20Wall",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:43.242Z"
+  },
+  {
+    "id": "1791310542476578",
+    "title": "The Lord of the Rings: The Return of the King",
+    "year": "2003",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Lord%20of%20the%20Rings%3A%20The%20Return%20of%20the%20King",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:42.476Z"
+  },
+  {
+    "id": "1791310541371408",
+    "title": "The Lord of the Rings: The Two Towers",
+    "year": "2002",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Lord%20of%20the%20Rings%3A%20The%20Two%20Towers",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:41.371Z"
+  },
+  {
+    "id": "1791310540179289",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": "2001",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Lord%20of%20the%20Rings%3A%20The%20Fellowship%20of%20the%20Ring",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:40.179Z"
+  },
+  {
+    "id": "1791310538971655",
+    "title": "Aquaman and the Lost Kingdom",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Aquaman%20and%20the%20Lost%20Kingdom",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:38.971Z"
+  },
+  {
+    "id": "179131053771999",
+    "title": "Aquaman",
+    "year": "2018",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Aquaman",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:37.719Z"
+  },
+  {
+    "id": "1791310536288181",
+    "title": "A Good Girl's Guide to Murder",
+    "year": "2024",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png/500px-A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:15:36.288Z"
+  },
+  {
+    "id": "179131041965185",
+    "title": "A Love So Beautiful",
+    "year": "2017",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=A%20Love%20So%20Beautiful",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:39.651Z"
+  },
+  {
+    "id": "1791310418747846",
+    "title": "The Legend of the Blue Sea",
+    "year": "2016",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Legend%20of%20the%20Blue%20Sea",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:38.747Z"
+  },
+  {
+    "id": "1791310418008875",
+    "title": "Radio Romance",
+    "year": "2018",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Radio%20Romance",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:38.008Z"
+  },
+  {
+    "id": "1791310416886945",
+    "title": "Life Is Beautiful",
+    "year": "1997",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Life%20Is%20Beautiful",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:36.886Z"
+  },
+  {
+    "id": "1791310415760656",
+    "title": "Love O2O",
+    "year": "2016",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Love%20O2O",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:35.760Z"
+  },
+  {
+    "id": "1791310414638286",
+    "title": "Descendants of the Sun",
+    "year": "2016",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Descendants%20of%20the%20Sun",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:34.638Z"
+  },
+  {
+    "id": "1791310413456327",
+    "title": "Meteor Garden",
+    "year": "2018",
+    "language": "Various",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Meteor%20Garden",
+    "director": "Unknown",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "addedAt": "2026-10-06T18:13:33.456Z"
+  },
+  {
+    "id": "1791310313052994",
+    "title": "Squid Game",
+    "year": "2021",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Squid%20Game",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:53.052Z"
+  },
+  {
+    "id": "1791310312182374",
+    "title": "Death Note",
+    "year": "2006",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Death%20Note",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:52.182Z"
+  },
+  {
+    "id": "1791310311475507",
+    "title": "Formula 1: Drive to Survive",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Formula%201%3A%20Drive%20to%20Survive",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:51.475Z"
+  },
+  {
+    "id": "1791310310791561",
+    "title": "The Family Man",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Family%20Man",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:50.791Z"
+  },
+  {
+    "id": "1791310310097758",
+    "title": "Game of Thrones",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Game%20of%20Thrones",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:50.097Z"
+  },
+  {
+    "id": "1791310309290873",
+    "title": "Wednesday",
+    "year": "2022",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Wednesday",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:49.290Z"
+  },
+  {
+    "id": "1791310308588857",
+    "title": "One Piece",
+    "year": "1999",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=One%20Piece",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:48.588Z"
+  },
+  {
+    "id": "1791310307865820",
+    "title": "Naruto Shippuden",
+    "year": "2007",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Naruto%20Shippuden",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:47.865Z"
+  },
+  {
+    "id": "1791310307129224",
+    "title": "Naruto",
+    "year": "2002",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Naruto",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:47.129Z"
+  },
+  {
+    "id": "1791310306036499",
+    "title": "Demon Slayer: Kimetsu no Yaiba",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Demon%20Slayer%3A%20Kimetsu%20no%20Yaiba",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:46.036Z"
+  },
+  {
+    "id": "1791310304985301",
+    "title": "Sonic the Hedgehog 3",
+    "year": "2024",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Sonic%20the%20Hedgehog%203",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:44.985Z"
+  },
+  {
+    "id": "1791310303921523",
+    "title": "Sonic the Hedgehog 2",
+    "year": "2022",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Sonic%20the%20Hedgehog%202",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:43.921Z"
+  },
+  {
+    "id": "1791310302869858",
+    "title": "Sonic the Hedgehog",
+    "year": "2020",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Sonic_The_Hedgehog.svg/500px-Sonic_The_Hedgehog.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "director": "Unknown",
+    "genres": [
+      "Entertainment"
+    ],
+    "addedAt": "2026-10-06T18:11:42.869Z"
+  },
+  {
+    "id": "1791310298387-0",
+    "title": "minions",
+    "year": "",
+    "imageUrl": "",
+    "language": "",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "addedAt": "2026-10-06T18:11:38.387Z"
+  },
+  {
+    "id": "1791310065666768",
+    "title": "Indiana Jones and the Dial of Destiny",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Indiana%20Jones%20and%20the%20Dial%20of%20Destiny",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:45.666Z"
+  },
+  {
+    "id": "1791310064866261",
+    "title": "Indiana Jones and the Kingdom of the Crystal Skull",
+    "year": "2008",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Indiana%20Jones%20and%20the%20Kingdom%20of%20the%20Crystal%20Skull",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:44.866Z"
+  },
+  {
+    "id": "17913100636394",
+    "title": "Indiana Jones and the Last Crusade",
+    "year": "1989",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Indiana%20Jones%20and%20the%20Last%20Crusade",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:43.639Z"
+  },
+  {
+    "id": "1791310062888577",
+    "title": "Indiana Jones and the Temple of Doom",
+    "year": "1984",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Indiana%20Jones%20and%20the%20Temple%20of%20Doom",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:42.888Z"
+  },
+  {
+    "id": "1791310061986628",
+    "title": "Indiana Jones and the Raiders of the Lost Ark",
+    "year": "1981",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Indiana%20Jones%20and%20the%20Raiders%20of%20the%20Lost%20Ark",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:41.986Z"
+  },
+  {
+    "id": "179131006124967",
+    "title": "Journey 2: The Mysterious Island",
+    "year": "2012",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Journey%202%3A%20The%20Mysterious%20Island",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:41.249Z"
+  },
+  {
+    "id": "1791310060446150",
+    "title": "Journey to the Center of the Earth",
+    "year": "2008",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Journey%20to%20the%20Center%20of%20the%20Earth",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:40.446Z"
+  },
+  {
+    "id": "1791310059733841",
+    "title": "Cars 3",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Cars%203",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:39.733Z"
+  },
+  {
+    "id": "1791310058996265",
+    "title": "Cars 2",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Cars%202",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:38.996Z"
+  },
+  {
+    "id": "1791310058177906",
+    "title": "Cars",
+    "year": "2006",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Cars",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:38.177Z"
+  },
+  {
+    "id": "1791310057358458",
+    "title": "Transformers: Rise of the Beasts",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Transformers%3A%20Rise%20of%20the%20Beasts",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:37.358Z"
+  },
+  {
+    "id": "1791310056546985",
+    "title": "Bumblebee",
+    "year": "2018",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Bumblebee",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:36.546Z"
+  },
+  {
+    "id": "1791310055759549",
+    "title": "Transformers: The Last Knight",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Transformers%3A%20The%20Last%20Knight",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:35.759Z"
+  },
+  {
+    "id": "1791310055077447",
+    "title": "Transformers: Age of Extinction",
+    "year": "2014",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Transformers%3A%20Age%20of%20Extinction",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:35.077Z"
+  },
+  {
+    "id": "1791310054388639",
+    "title": "Transformers: Dark of the Moon",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Transformers%3A%20Dark%20of%20the%20Moon",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:34.388Z"
+  },
+  {
+    "id": "1791310053489328",
+    "title": "Transformers: Revenge of the Fallen",
+    "year": "2009",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Transformers%3A%20Revenge%20of%20the%20Fallen",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:33.489Z"
+  },
+  {
+    "id": "1791310052755675",
+    "title": "Transformers",
+    "year": "2007",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Transformers",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:32.755Z"
+  },
+  {
+    "id": "1791310028890802",
+    "title": "Men in Black: International",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Men%20in%20Black%3A%20International",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:08.890Z"
+  },
+  {
+    "id": "1791310028103271",
+    "title": "Men in Black 3",
+    "year": "2012",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Men%20in%20Black%203",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:08.103Z"
+  },
+  {
+    "id": "1791310027236326",
+    "title": "Men in Black II",
+    "year": "2002",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Men%20in%20Black%20II",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:07.236Z"
+  },
+  {
+    "id": "179131002653598",
+    "title": "Men in Black",
+    "year": "1997",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Men%20in%20Black",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:06.535Z"
+  },
+  {
+    "id": "1791310025204182",
+    "title": "Mission: Impossible - Dead Reckoning Part One",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible%20-%20Dead%20Reckoning%20Part%20One",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:05.204Z"
+  },
+  {
+    "id": "1791310023991543",
+    "title": "Mission: Impossible - Fallout",
+    "year": "2018",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible%20-%20Fallout",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:03.991Z"
+  },
+  {
+    "id": "1791310022951686",
+    "title": "Mission: Impossible - Rogue Nation",
+    "year": "2015",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible%20-%20Rogue%20Nation",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:02.951Z"
+  },
+  {
+    "id": "1791310021723464",
+    "title": "Mission: Impossible - Ghost Protocol",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible%20-%20Ghost%20Protocol",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:07:01.723Z"
+  },
+  {
+    "id": "1791310019984971",
+    "title": "Mission: Impossible III",
+    "year": "2006",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible%20III",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:59.984Z"
+  },
+  {
+    "id": "1791310019060628",
+    "title": "Mission: Impossible 2",
+    "year": "2000",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible%202",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:59.060Z"
+  },
+  {
+    "id": "179131001824184",
+    "title": "Mission: Impossible",
+    "year": "1996",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Mission%3A%20Impossible",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:58.241Z"
+  },
+  {
+    "id": "1791310017217502",
+    "title": "Despicable Me 4",
+    "year": "2024",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Despicable%20Me%204",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:57.217Z"
+  },
+  {
+    "id": "1791310016046945",
+    "title": "Minions: The Rise of Gru",
+    "year": "2022",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Minions%3A%20The%20Rise%20of%20Gru",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:56.046Z"
+  },
+  {
+    "id": "1791310015363222",
+    "title": "Despicable Me 3",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Despicable%20Me%203",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:55.363Z"
+  },
+  {
+    "id": "1791310014657308",
+    "title": "Minions",
+    "year": "2015",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Minions",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:54.657Z"
+  },
+  {
+    "id": "1791310013872239",
+    "title": "Despicable Me 2",
+    "year": "2013",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Despicable%20Me%202",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:53.872Z"
+  },
+  {
+    "id": "1791310013138235",
+    "title": "Despicable Me",
+    "year": "2010",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Despicable%20Me",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:53.138Z"
+  },
+  {
+    "id": "1791310012357280",
+    "title": "How to Train Your Dragon: The Hidden World",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=How%20to%20Train%20Your%20Dragon%3A%20The%20Hidden%20World",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:52.357Z"
+  },
+  {
+    "id": "1791310011687250",
+    "title": "How to Train Your Dragon 2",
+    "year": "2014",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=How%20to%20Train%20Your%20Dragon%202",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:51.687Z"
+  },
+  {
+    "id": "1791310010793491",
+    "title": "How to Train Your Dragon",
+    "year": "2010",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=How%20to%20Train%20Your%20Dragon",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:50.793Z"
+  },
+  {
+    "id": "1791310010049680",
+    "title": "Ice Age: Collision Course",
+    "year": "2016",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Ice%20Age%3A%20Collision%20Course",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:50.049Z"
+  },
+  {
+    "id": "1791310008615546",
+    "title": "Ice Age: Continental Drift",
+    "year": "2012",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Ice%20Age%3A%20Continental%20Drift",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:48.615Z"
+  },
+  {
+    "id": "1791310007796186",
+    "title": "Ice Age: Dawn of the Dinosaurs",
+    "year": "2009",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Ice%20Age%3A%20Dawn%20of%20the%20Dinosaurs",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:47.796Z"
+  },
+  {
+    "id": "1791310006947717",
+    "title": "Ice Age: The Meltdown",
+    "year": "2006",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Ice%20Age%3A%20The%20Meltdown",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:46.947Z"
+  },
+  {
+    "id": "1791310006161571",
+    "title": "Ice Age",
+    "year": "2002",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marathon",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Ice%20Age",
+    "director": "Unknown",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:06:46.161Z"
+  },
+  {
+    "id": "179130997502826",
+    "title": "Deadpool & Wolverine",
+    "year": "2024",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Deadpool%20%26%20Wolverine",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:15.028Z"
+  },
+  {
+    "id": "1791309974198895",
+    "title": "The Marvels",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=The%20Marvels",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:14.198Z"
+  },
+  {
+    "id": "1791309973389141",
+    "title": "Guardians of the Galaxy Vol. 3",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Guardians%20of%20the%20Galaxy%20Vol.%203",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:13.389Z"
+  },
+  {
+    "id": "1791309972469961",
+    "title": "Ant-Man and the Wasp: Quantumania",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Ant-Man%20and%20the%20Wasp%3A%20Quantumania",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:12.469Z"
+  },
+  {
+    "id": "1791309971478568",
+    "title": "Black Panther: Wakanda Forever",
+    "year": "2022",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Black%20Panther%3A%20Wakanda%20Forever",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:11.478Z"
+  },
+  {
+    "id": "1791309970676845",
+    "title": "Thor: Love and Thunder",
+    "year": "2022",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Thor%3A%20Love%20and%20Thunder",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:10.676Z"
+  },
+  {
+    "id": "1791309969887334",
+    "title": "Doctor Strange in the Multiverse of Madness",
+    "year": "2022",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Doctor%20Strange%20in%20the%20Multiverse%20of%20Madness",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:09.887Z"
+  },
+  {
+    "id": "1791309969018306",
+    "title": "Spider-Man: No Way Home",
+    "year": "2021",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Spider-Man%3A%20No%20Way%20Home",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:09.018Z"
+  },
+  {
+    "id": "1791309968176208",
+    "title": "Eternals",
+    "year": "2021",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Eternals",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:08.176Z"
+  },
+  {
+    "id": "1791309967348542",
+    "title": "Shang-Chi and the Legend of the Ten Rings",
+    "year": "2021",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Shang-Chi%20and%20the%20Legend%20of%20the%20Ten%20Rings",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:07.348Z"
+  },
+  {
+    "id": "1791309966109642",
+    "title": "Black Widow",
+    "year": "2021",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Black%20Widow",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:06.109Z"
+  },
+  {
+    "id": "1791309964708267",
+    "title": "Spider-Man: Far From Home",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://via.placeholder.com/500x750?text=Spider-Man%3A%20Far%20From%20Home",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:04.708Z"
+  },
+  {
+    "id": "1791309962946694",
+    "title": "Avengers: Endgame",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnXEwQlva93WuBdWDK6LlOSf4f96CB5OxToqcdkHiWBnn2p5WOjaOGKo_t6i9F-gQ2tYUp&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:02.946Z"
+  },
+  {
+    "id": "1791309961591175",
+    "title": "Captain Marvel",
+    "year": "2019",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLWpkf3sxeXJKRkZIyKtfLskt5WrQPlWLBwgEKWokJYjB5opUh9yAn9wg1kV-94wJluMlj&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:01.591Z"
+  },
+  {
+    "id": "1791309960111174",
+    "title": "Ant-Man and the Wasp",
+    "year": "2018",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZEICE5Fp_1MCZq0qK501n8ErP10rJHZB0teV2XdX8THwITz_e5yMxxUzXP1SDKlmdAXjt&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:06:00.111Z"
+  },
+  {
+    "id": "179130995931868",
+    "title": "Avengers: Infinity War",
+    "year": "2018",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz2_cEexTdYFaQJFUwRZrG4IrM1510eWIkeQhwqq2GbNhxDJZUml6g1Ft9iKyuHJhG15wGUQ&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:59.318Z"
+  },
+  {
+    "id": "1791309958511880",
+    "title": "Black Panther",
+    "year": "2018",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1MSjVz4AlBMvl3RD0eXqenCdZbowXC-2uGUcgYGSrtuOdsVAGWVYmJ24_wB54zLkMxaVU&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:58.511Z"
+  },
+  {
+    "id": "179130995772280",
+    "title": "Thor: Ragnarok",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCMlKbpqsAfxj-E797wdboaNM6ihmp86wfnL_bjVnI8NE-Xvr8h_zUtykA9hi6HtjyS1Z&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:57.722Z"
+  },
+  {
+    "id": "179130995680091",
+    "title": "Spider-Man: Homecoming",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ88EbyUq9cbs1zVQE1yT5AbytcAh4G0KOJW03q-wBSsImDo-s3_8dg8GWKc-5RTkAwoLsJSg&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:56.800Z"
+  },
+  {
+    "id": "1791309955809662",
+    "title": "Guardians of the Galaxy Vol. 2",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpjR6So8F8m3c0fKyvFKJotXHeLbVezkVNUcele21CwnTa8oDW8klaHVrugEkz9OqEIzUoNQ&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:55.809Z"
+  },
+  {
+    "id": "1791309955002482",
+    "title": "Doctor Strange",
+    "year": "2016",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWCvm2jN-QykoEwZJivikl3aQeUw2gxcI5WvWU5Kmx2tmIwMBdu9Bjpkw_9ztcNyumv03T1A&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:55.002Z"
+  },
+  {
+    "id": "1791309954048852",
+    "title": "Captain America: Civil War",
+    "year": "2016",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4deWCcW67wZf2oL9_myl-cFgUBzVTcAYfDFONt635m_SHofnGV8veGVQ6U1-Izuf_h4PB_w&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:54.048Z"
+  },
+  {
+    "id": "1791309953237797",
+    "title": "Ant-Man",
+    "year": "2015",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEls_QQf58BD3uSBfk4jZScnPkKGzrUKX8F8u9rc0g2Zz6O9-1pDu_QFtSR7RADKSr2ipsHg&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:53.237Z"
+  },
+  {
+    "id": "1791309952424402",
+    "title": "Avengers: Age of Ultron",
+    "year": "2015",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5HI3nlN9yhLTTOn8qXJzXK6sLnW5PrLKXohQO6UY27lz7IYLQsR70-yrN8XZe1LfyVo1X&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:52.424Z"
+  },
+  {
+    "id": "1791309951653736",
+    "title": "Guardians of the Galaxy",
+    "year": "2014",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5LmvEQ3u221y-8Qv0Qj-e7ORLVYZoq1Y-CyRSIi0WvFIvtNTcvICk-cG0YErJxw7PqeJ3&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:51.653Z"
+  },
+  {
+    "id": "1791309950810208",
+    "title": "Captain America: The Winter Soldier",
+    "year": "2014",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEvOA6DfhfGIW30C7rLvo5lNi5Vpvuk2OG7KLmn-StahCx9UrwVNnARFxaECj2GlRNXlZ8&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:50.810Z"
+  },
+  {
+    "id": "179130995004287",
+    "title": "Thor: The Dark World",
+    "year": "2013",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8NpyS_W8KAByuwaTo3qBE0DCI8fSamjnc2atwdz4tyujzaLfdcOTff-Bm98qfGPPB78Jw&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:50.042Z"
+  },
+  {
+    "id": "1791309949234784",
+    "title": "Iron Man 3",
+    "year": "2013",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_FrS2hYbP-VeStteLDNA7YfEl0fuF3tdrDNSDo6V5g6_bUFHAdzfnN5qMDEk3AxREdTmQ&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:49.234Z"
+  },
+  {
+    "id": "1791309948366482",
+    "title": "The Avengers",
+    "year": "2012",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQluFl3GfQDXohBaH-xG3GuRi8T4MDIQPRpCqUGLiE5tXdXbUO0hRFwnshvzg07igEgGg7i&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:48.366Z"
+  },
+  {
+    "id": "1791309947587540",
+    "title": "Captain America: The First Avenger",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Zvkfg2WDajJvlev56lJrq92UWj_qMOEdjDDqhIUSc-jh94KvDlFmjabhmg3-gTpjs8xRXg&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:47.587Z"
+  },
+  {
+    "id": "1791309946256569",
+    "title": "Thor",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkmfgN3Pr1Jv3vSAy6iZmBO2YGGio4I55rEvB2MV0Hc7tT2P16UWYiYC5_MJvadL48qfJemw&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:46.256Z"
+  },
+  {
+    "id": "1791309944820323",
+    "title": "Iron Man 2",
+    "year": "2010",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSgb153S-3anJ2qS48rn9mZJV84J6ARiy35P7TvU-wPyhsRoADI0ri_5dfW0h8b87NX7HHg&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:44.820Z"
+  },
+  {
+    "id": "1791309943284424",
+    "title": "The Incredible Hulk",
+    "year": "2008",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYQAQsxMDsLnahO1HkzKOPGslq2Bz_tNXjjOLA7IxuFQicAhNzIuofEyOWbeE4piKYWuHqtA&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:43.284Z"
+  },
+  {
+    "id": "1791309942055843",
+    "title": "Iron Man",
+    "year": "2008",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Marvel Cinematic Universe",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCythtaM-iOKWi0JUUiQtcC3CH8o9bhUDiaFY53ZRWXFa4mGuVRFevtTZlWDusVoP6dl3e&s=10",
+    "director": "Marvel Studios",
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Superhero"
+    ],
+    "addedAt": "2026-10-06T18:05:42.055Z"
+  },
+  {
+    "id": "1791309683958944",
+    "title": "The Chronicles of Narnia: The Voyage of the Dawn Treader",
+    "year": "2010",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAfcvqo2pnWVFP5tnVDZMoo20InHXXP_hqTdX18P6fg&s=10",
+    "director": "Michael Apted",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:23.958Z"
+  },
+  {
+    "id": "1791309682674486",
+    "title": "The Chronicles of Narnia: Prince Caspian",
+    "year": "2008",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_3hIDjrVwJWCttlbDZuBL7oyf38SiHwzSFzMHHnPVsg&s=10",
+    "director": "Andrew Adamson",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:22.674Z"
+  },
+  {
+    "id": "1791309681163934",
+    "title": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+    "year": "2005",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUWBl3abpMXsUIWZ7UJDTm8nhCaBXcZEwwQ6ScdCVG1A&s=10",
+    "director": "Andrew Adamson",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:21.163Z"
+  },
+  {
+    "id": "1791309679809281",
+    "title": "Harry Potter and the Deathly Hallows – Part 2",
+    "year": "2011",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfqRAddAY77CaM1XC3GadqFcfN8pEX2F7BWvAZROEUHQ&s",
+    "director": "David Yates",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:19.809Z"
+  },
+  {
+    "id": "1791309678374643",
+    "title": "Harry Potter and the Deathly Hallows – Part 1",
+    "year": "2010",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThaR3mTBNAF6lpIRVVE8rn0QhBirj4E4Ak6LO1sP4sLg&s=10",
+    "director": "David Yates",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:18.374Z"
+  },
+  {
+    "id": "1791309676941589",
+    "title": "Harry Potter and the Half-Blood Prince",
+    "year": "2009",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq9-eaxJ_e6ujQOsORdcuoR_RVivaIQbDH0d_Z8IydBA&s=10",
+    "director": "David Yates",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:16.941Z"
+  },
+  {
+    "id": "1791309675587839",
+    "title": "Harry Potter and the Order of the Phoenix",
+    "year": "2007",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_hIiop0RpugKy38fdOKWYh4ouaHuGBKCd24fbTKSMkg&s=10",
+    "director": "David Yates",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:15.587Z"
+  },
+  {
+    "id": "1791309674173493",
+    "title": "Harry Potter and the Goblet of Fire",
+    "year": "2005",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQugRIgnlxgWBb3HkFwhUtIfBb8YOUXyVkNfM0tCTuxJg&s=10",
+    "director": "Mike Newell",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:14.173Z"
+  },
+  {
+    "id": "1791309672709539",
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "year": "2004",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXGAFui-ZcxBn3y8u0aFIviXSrqAJHuCJcBmcqxXc-Yw&s=10",
+    "director": "Alfonso Cuarón",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:12.709Z"
+  },
+  {
+    "id": "1791309671388500",
+    "title": "Harry Potter and the Chamber of Secrets",
+    "year": "2002",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_Ra686jhBxLxftovl2qQMgYFz9GizMOXB3wv3bJEjCw&s=10",
+    "director": "Chris Columbus",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:11.388Z"
+  },
+  {
+    "id": "1791309670065701",
+    "title": "Harry Potter and the Philosopher's Stone",
+    "year": "2001",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "Series marathon",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlatr5wxRju7BDKEfiDx8nOrpQcVKGSB3FJRVe0RQ1-w&s=10",
+    "director": "Chris Columbus",
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "addedAt": "2026-10-06T18:01:10.065Z"
+  },
+  {
+    "id": "1791309405653",
+    "title": "Oppenheimer",
+    "year": "2023",
+    "language": "English",
+    "status": "watched",
+    "rating": 4,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8FFJNBaIXvhEwqXXw40rYYDci8jPlYxWfy9082flliYoZ-SqqZjy0az-G5rIWuSJp2pn7xQ&s=10",
+    "director": "Christopher Nolan",
+    "genres": [
+      "Thriller"
+    ],
+    "addedAt": "2026-10-06T17:56:45.653Z"
+  },
+  {
+    "id": "1791309358668",
+    "title": "Tenet",
+    "year": "2020",
+    "language": "English",
+    "status": "watched",
+    "rating": 4,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYoAGfY4ffCXIoBdPYfxypbrvpGxQ5FA6w0r3ihzqzMZ5kxMaPXWGE50muitVS2CULBCdGvg&s=10",
+    "director": "Christopher Nolan",
+    "genres": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "addedAt": "2026-10-06T17:55:58.668Z"
+  },
+  {
+    "id": "1791309297430",
+    "title": "Dunkirk",
+    "year": "2017",
+    "language": "English",
+    "status": "watched",
+    "rating": 2,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe99rkQPNs3ZkNLDnAwcq6r0UzesiT64NqSztuvHKUJUnsrcONbFX7qJg_crnLW7BBb3mkZg&s=10",
+    "director": "Christopher Nolan",
+    "genres": [
+      "War",
+      "Action"
+    ],
+    "addedAt": "2026-10-06T17:54:57.430Z"
+  },
+  {
+    "id": "1791309251954",
+    "title": "Inception",
+    "year": "2010",
+    "language": "English",
+    "status": "watched",
+    "rating": 5,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR42MpsAgrw1dBlvBlxBml22hYBfQ541eeI6GL4f3IJUmXEA4TKs1ZNw0sGD2cQs6PgGjdDKA&s=10",
+    "director": "Christopher Nolan",
+    "genres": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "addedAt": "2026-10-06T17:54:11.954Z"
+  },
+  {
+    "id": "1791309073078",
+    "title": "Fight club",
+    "year": "1999",
+    "language": "English",
+    "status": "watched",
+    "rating": 3,
+    "notes": "",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_.jpg",
+    "director": "David Fincher",
+    "genres": [
+      "Action",
+      "Crime"
+    ],
+    "addedAt": "2026-10-06T17:51:13.079Z"
+  },
+  {
+    "id": "1791308986867",
+    "title": "Oldboy",
+    "year": "2003",
+    "language": "English",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyGpSw47yXMjqyeXuDNF3zV6YP8LAJRaM1l5BGPR_dE24kyPVRK4sLPFutCtsQ5zKcmCwO&s=10",
+    "director": "Park Chan-wook",
+    "genres": [
+      "Thriller",
+      "Action"
+    ],
+    "addedAt": "2026-10-06T17:49:46.867Z"
+  },
+  {
+    "id": "1791308915796",
+    "title": "Arrival",
+    "year": "2016",
+    "language": "English",
+    "status": "watched",
+    "rating": 4,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO9qwnc0K3efH-V4JDY9UXsOjrQfyyzjc9Q0jXCAqQU0LJPSsM1KVvRFq-tTZ0Ra81iojR&s=10",
+    "director": "Denis Villeneuve",
+    "genres": [
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "addedAt": "2026-10-06T17:48:35.796Z"
+  },
+  {
+    "id": "1791308832551",
+    "title": "Seven",
+    "year": "1995",
+    "language": "English",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4lrfTw5ckpAN5FVSBTIXZ3aTCco0X96DYwc_ZXHqZpA&s",
+    "director": "David Fincher",
+    "genres": [
+      "Crime",
+      "Mystery"
+    ],
+    "addedAt": "2026-10-06T17:47:12.551Z"
+  },
+  {
+    "id": "1791308712431",
+    "title": "Predestination",
+    "year": "2014",
+    "language": "English",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgofEAbQb1d6Q9ghvOqEUQZWLaWXMmEbnTURJJdhFIBA&s=10",
+    "director": "Michael Spierig",
+    "genres": [
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "addedAt": "2026-10-06T17:45:12.431Z"
+  },
+  {
+    "id": "1791308598844",
+    "title": "12 Monkeys",
+    "year": "2025",
+    "language": "English",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTkwOTcxNzMzOV5BMl5BanBnXkFtZTgwODYxNjg0ODE@._V1_.jpg",
+    "director": "David Grossman",
+    "genres": [
+      "Sci-Fi"
+    ],
+    "addedAt": "2026-10-06T17:43:18.844Z"
+  },
+  {
+    "id": "1791308514149",
+    "title": "Parallels",
+    "year": "2022",
+    "language": "English",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgJ9Hc2GwLXPLfSBk6zHHIU8VPxc0jpCacbUF4NXbz8yF6pTS_-1hI2S4x&s=10",
+    "director": "Benjamin Rocher",
+    "genres": [
+      "Sci-Fi"
+    ],
+    "addedAt": "2026-10-06T17:41:54.149Z"
+  },
+  {
+    "id": "1791308428081",
+    "title": "Pantheon",
+    "year": "2022",
+    "language": "English",
+    "status": "watchlist",
+    "rating": 0,
+    "notes": "",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2f/Pantheon_%28TV_series%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+    "director": "Juno John Lee",
+    "genres": [
+      "Sci-Fi"
+    ],
+    "addedAt": "2026-10-06T17:40:28.082Z"
+  },
+  {
     "id": "1791016745767",
     "title": "Intersteallr",
     "year": "2014",
