@@ -4344,10 +4344,11 @@
           "name": "Buddha tooth relic temple",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Religious & Spiritual",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Orchard road",
@@ -4506,6 +4507,7 @@
       "restaurants": [],
       "food": [],
       "treks": [],
+      "adventures": [],
       "stays": [
         {
           "name": "ibis Styles Singapore On Macpherson",
@@ -4553,8 +4555,7 @@
             "2025-04"
           ]
         }
-      ],
-      "adventures": []
+      ]
     },
     "Srinagar": {
       "visited": false,
