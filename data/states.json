@@ -4335,10 +4335,11 @@
           "name": "Silosa point",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Viewpoint",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Buddha tooth relic temple",
@@ -4354,10 +4355,11 @@
           "name": "Orchard road",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Street Food Spot",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Skyline Luge Singapore",
@@ -4372,28 +4374,31 @@
           "name": "Little india",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Shopping",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Merlion park",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Nature & Park",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Marina bay sands",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Viewpoint",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Super tree gove",
@@ -4409,19 +4414,21 @@
           "name": "Cloud forest",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Waterfall",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         },
         {
           "name": "Gradens of the bay",
           "city": "-",
           "remarks": "-",
-          "image": "",
+          "category": "Nature & Park",
           "visitDates": [
             "2025-04"
-          ]
+          ],
+          "image": ""
         }
       ],
       "placesToVisit": [
