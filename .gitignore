@@ -27,3 +27,9 @@ raw_stamps_jpg/
 
 # Build output (electron-builder) — far over GitHub size limits
 dist/
+
+# iOS & Capacitor generated bundles
+ios/App/Pods/
+ios/App/.build/
+ios/App/App/public/
+web/data/

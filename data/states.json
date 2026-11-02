@@ -280,6 +280,30 @@
           "visitedDate": "2026-08-26",
           "rating": 0,
           "review": ""
+        },
+        {
+          "name": "Ramakrishna Beach",
+          "city": "Visakhapatnam",
+          "remarks": "-",
+          "category": "Beach",
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Ksheeraramam",
+          "city": "Palakollu",
+          "remarks": "-",
+          "category": "Temple",
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Somaramam",
+          "city": "Bhimavaram",
+          "remarks": "-",
+          "category": "Temple",
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [
@@ -333,12 +357,6 @@
         },
         {
           "name": "Bhemili beach",
-          "city": "-",
-          "remarks": "-",
-          "image": ""
-        },
-        {
-          "name": "ramakrishna beach",
           "city": "-",
           "remarks": "-",
           "image": ""
@@ -523,6 +541,7 @@
           "mapLink": "https://maps.app.goo.gl/mhFqq8WvH8wFV1RMA"
         }
       ],
+      "adventures": [],
       "stays": [],
       "highlights": [
         {
@@ -532,8 +551,7 @@
           "category": "Adventure",
           "image": ""
         }
-      ],
-      "adventures": []
+      ]
     },
     "Assam": {
       "visited": true,
@@ -1294,7 +1312,7 @@
           "name": "St. Philomena's Church",
           "city": "Mysore",
           "remarks": "-",
-          "category": "Religious & Spiritual",
+          "category": "Church",
           "image": ""
         },
         {
@@ -2400,6 +2418,16 @@
           "image": "",
           "season": "All Year",
           "priority": "Medium"
+        },
+        {
+          "name": "Alleppey",
+          "city": "-",
+          "remarks": "-",
+          "category": "Lake & Dam",
+          "tripTypes": [],
+          "season": "All Year",
+          "travelDuration": "",
+          "priority": "Medium"
         }
       ],
       "restaurants": [],
@@ -2626,9 +2654,13 @@
         },
         {
           "name": "Veermata Jijabai Bhosale Udyan And Zoo",
-          "city": "-",
+          "city": "Byculla",
           "remarks": "-",
           "category": "Nature & Park",
+          "visitDates": [
+            "2026-10",
+            "2023-01"
+          ],
           "image": ""
         },
         {
@@ -2681,6 +2713,37 @@
           ],
           "rating": 0,
           "review": ""
+        },
+        {
+          "name": "Mahalakshmi Temple",
+          "city": "Mahalakshmi",
+          "remarks": "-",
+          "category": "Temple",
+          "visitDates": [
+            "2026-10"
+          ],
+          "image": ""
+        },
+        {
+          "name": "Nataraj Market",
+          "city": "Malad",
+          "remarks": "-",
+          "category": "Shopping",
+          "visitDates": [
+            "2026-10"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Shree Siddhivinayak Temple",
+          "city": "Dadar",
+          "remarks": "-",
+          "category": "Temple",
+          "visitDates": [
+            "2026-10"
+          ],
+          "image": ""
         }
       ],
       "placesToVisit": [
@@ -2786,36 +2849,49 @@
           "name": "Pani Puri",
           "city": "-",
           "remarks": "-",
+          "category": "Snack",
           "image": ""
         },
         {
           "name": "Vada Pav",
           "city": "-",
           "remarks": "-",
+          "category": "Snack",
           "image": ""
         },
         {
           "name": "Pav Bhaji",
           "city": "-",
           "remarks": "-",
+          "category": "Snack",
           "image": ""
         },
         {
           "name": "Lonavala Chikki",
           "city": "-",
           "remarks": "-",
+          "category": "Sweet",
           "image": ""
         },
         {
           "name": "Modaks",
           "city": "-",
           "remarks": "-",
+          "category": "Sweet",
           "image": ""
         },
         {
           "name": "Paradise chicken biryani - Airoli",
           "city": "-",
           "remarks": "-",
+          "category": "Main",
+          "image": ""
+        },
+        {
+          "name": "Patra",
+          "city": "-",
+          "remarks": "-",
+          "category": "Snack",
           "image": ""
         }
       ],
@@ -2871,6 +2947,19 @@
           "terrain": "Forest & Mud Paths",
           "safetyAlerts": false,
           "isVisited": true
+        }
+      ],
+      "adventures": [
+        {
+          "name": "Parasailing",
+          "city": "Alibug",
+          "remarks": "-",
+          "category": "Parasailing",
+          "visitDates": [
+            "2018-02"
+          ],
+          "rating": 0,
+          "review": ""
         }
       ],
       "stays": [
@@ -2935,19 +3024,6 @@
             "2018-05"
           ],
           "image": ""
-        }
-      ],
-      "adventures": [
-        {
-          "name": "Parasailing",
-          "city": "Alibug",
-          "remarks": "-",
-          "category": "Parasailing",
-          "visitDates": [
-            "2018-02"
-          ],
-          "rating": 0,
-          "review": ""
         }
       ]
     },
@@ -5246,6 +5322,21 @@
       "highlights": []
     },
     "Gujarat": {
+      "visited": false,
+      "placesVisited": [],
+      "placesToVisit": [
+        {
+          "name": "Rann of Kutch",
+          "city": "Kutch",
+          "remarks": "-",
+          "category": "Other",
+          "tripTypes": [],
+          "season": "All Year",
+          "travelDuration": "",
+          "priority": "Medium"
+        }
+      ],
+      "restaurants": [],
       "food": [
         {
           "name": "Dhokla",
@@ -5260,10 +5351,9 @@
           "image": ""
         }
       ],
-      "visited": false,
-      "restaurants": [],
+      "treks": [],
       "adventures": [],
-      "placesVisited": [],
+      "stays": [],
       "highlights": []
     },
     "Telangana": {
@@ -5304,7 +5394,7 @@
           "name": "Shilparamam",
           "city": "Hyderabad",
           "remarks": "-",
-          "category": "Fort & Heritage",
+          "category": "Shopping",
           "visitDates": [
             "2020-02"
           ],
@@ -5461,6 +5551,36 @@
           "remarks": "-",
           "category": "Museum",
           "image": ""
+        },
+        {
+          "name": "Peddamma Temple",
+          "city": "Hyderabad",
+          "remarks": "-",
+          "category": "Temple",
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Mahalaxmi temple",
+          "city": "Manthani",
+          "remarks": "-",
+          "category": "Temple",
+          "visitDates": [
+            "2026-10"
+          ],
+          "rating": 0,
+          "review": ""
+        },
+        {
+          "name": "Kamakhya Yoni Peetam Aalayam",
+          "city": "Mandamarri",
+          "remarks": "-",
+          "category": "Temple",
+          "visitDates": [
+            "2026-10"
+          ],
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [],
@@ -5755,6 +5875,36 @@
             "Romantic"
           ],
           "category": "Restaurant"
+        },
+        {
+          "name": "Hotel Shadab",
+          "city": "Near Charminar",
+          "remarks": "-",
+          "category": "Restaurant",
+          "visitDates": [
+            "2026-10"
+          ],
+          "mapLink": "",
+          "dishes": [
+            {
+              "name": "Chiken Dum Biryani",
+              "rating": "avg"
+            },
+            {
+              "name": "Mutton Dum Biryani",
+              "rating": "avg"
+            },
+            {
+              "name": "Chicken 555",
+              "rating": "avg"
+            }
+          ],
+          "cuisines": [
+            "Mixed"
+          ],
+          "ambiences": [],
+          "rating": 0,
+          "review": ""
         }
       ],
       "food": [
@@ -5766,6 +5916,7 @@
         }
       ],
       "treks": [],
+      "adventures": [],
       "stays": [],
       "highlights": [
         {
@@ -5810,8 +5961,7 @@
           "category": "Temple",
           "image": ""
         }
-      ],
-      "adventures": []
+      ]
     }
   },
   "bucketList": [

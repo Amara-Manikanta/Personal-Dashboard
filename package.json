@@ -2,14 +2,18 @@
   "name": "novels-dashboard-server",
   "version": "1.0.0",
   "description": "File based server for Novels Dashboard",
-  "main": "electron/main.js",
+  "main": "macos/main.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node web/server.js",
+    "dev": "nodemon web/server.js",
+    "web": "node web/server.js",
     "mac": "electron .",
     "electron:dev": "electron .",
     "pack:mac": "electron-builder --mac dir",
-    "dist:mac": "electron-builder --mac dmg"
+    "dist:mac": "electron-builder --mac dmg",
+    "ios:sync": "node scripts/sync-ios.js && npx cap sync ios",
+    "ios:open": "npx cap open ios",
+    "ios": "npm run ios:sync && npm run ios:open"
   },
   "dependencies": {
     "@babel/cli": "^7.28.6",
@@ -21,6 +25,9 @@
     "open-graph-scraper": "^6.11.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
     "electron": "^44.3.0",
     "electron-builder": "^26.15.3",
     "nodemon": "^3.1.0"
@@ -33,7 +40,7 @@
     },
     "mac": {
       "category": "public.app-category.lifestyle",
-      "icon": "electron/assets/icon.icns",
+      "icon": "macos/assets/icon.icns",
       "target": [
         "dir"
       ],

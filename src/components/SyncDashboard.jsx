@@ -118,28 +118,7 @@ window.SyncDashboard = ({ onBackToHome }) => {
         }
     };
 
-    if (!isLocalhost) {
-        return (
-            <div className="sync-page">
-                 <div className="sync-header">
-                    <button className="back-btn" onClick={onBackToHome}>
-                        <i className="ph-bold ph-arrow-left"></i>
-                        Back
-                    </button>
-                    <h1>Sync Data</h1>
-                </div>
-                <div className="sync-container">
-                    <div className="sync-card shadow">
-                        <div className="status-banner error">
-                            <i className="ph-fill ph-warning-circle"></i>
-                            Sync is only available when running on localhost. When hosted online, changes are written directly to GitHub.
-                        </div>
-                    </div>
-                </div>
-                {/* Reusing existing styles below */}
-            </div>
-        );
-    }
+    const isNativeMobile = !!(window.Capacitor || window.location.protocol === 'capacitor:');
 
     return (
         <div className="sync-page">
@@ -148,10 +127,31 @@ window.SyncDashboard = ({ onBackToHome }) => {
                     <i className="ph-bold ph-arrow-left"></i>
                     Back
                 </button>
-                <h1>Sync Data <span className="badge">Localhost</span></h1>
+                <h1>Sync Data <span className="badge">{isLocalhost ? 'Localhost (Mac)' : (isNativeMobile ? 'iOS App' : 'Cloud')}</span></h1>
             </div>
 
             <div className="sync-container">
+                {status.message && (
+                    <div className={`status-banner ${status.type}`} style={{ marginBottom: '1.5rem' }}>
+                        <i className={`ph-fill ${status.type === 'success' ? 'ph-check-circle' : 'ph-info'}`}></i>
+                        {status.message}
+                    </div>
+                )}
+
+                {!isLocalhost && (
+                    <div className="sync-card shadow" style={{ marginBottom: '1.5rem', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#93c5fd' }}>
+                            <i className="ph-fill ph-cloud-check" style={{ fontSize: '1.4rem' }}></i>
+                            <div>
+                                <strong>Direct Git Sync Enabled</strong>
+                                <div style={{ fontSize: '0.85rem', color: '#cbd5e1', marginTop: '2px' }}>
+                                    When running on iOS/mobile, all changes you make are committed and pushed directly to <code>Amara-Manikanta/Personal-Dashboard</code> on GitHub.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 <div className="sync-card">
                     <div className="card-header">
                         <h2>GitHub Connection</h2>
@@ -165,7 +165,7 @@ window.SyncDashboard = ({ onBackToHome }) => {
                             </div>
                         ) : (
                             <div className="token-setup">
-                                <p>To push data, you need a Personal Access Token with repo scope.</p>
+                                <p>To sync data with GitHub, enter a Personal Access Token with <strong>repo</strong> permissions.</p>
                                 <div className="input-group">
                                     <input 
                                         type="password" 
@@ -181,29 +181,31 @@ window.SyncDashboard = ({ onBackToHome }) => {
                     </div>
                 </div>
 
-                <div className="sync-actions-grid">
-                    <div className="sync-action-card">
-                        <div className="action-icon">
-                            <i className="ph-fill ph-download-simple"></i>
+                {isLocalhost && (
+                    <div className="sync-actions-grid">
+                        <div className="sync-action-card">
+                            <div className="action-icon">
+                                <i className="ph-fill ph-download-simple"></i>
+                            </div>
+                            <h3>Pull from Online</h3>
+                            <p>Download the latest data from GitHub to your local machine. This will overwrite local changes.</p>
+                            <button className="btn-primary" onClick={handlePull} disabled={isLoading}>
+                                {isLoading ? 'Processing...' : 'Pull Data'}
+                            </button>
                         </div>
-                        <h3>Pull from Online</h3>
-                        <p>Download the latest data from GitHub to your local machine. This will overwrite local changes.</p>
-                        <button className="btn-primary" onClick={handlePull} disabled={isLoading}>
-                            {isLoading ? 'Processing...' : 'Pull Data'}
-                        </button>
-                    </div>
 
-                    <div className="sync-action-card">
-                        <div className="action-icon">
-                            <i className="ph-fill ph-upload-simple"></i>
+                        <div className="sync-action-card">
+                            <div className="action-icon">
+                                <i className="ph-fill ph-upload-simple"></i>
+                            </div>
+                            <h3>Push to Online</h3>
+                            <p>Upload your local data to GitHub. This will overwrite the online data with your local copy.</p>
+                            <button className="btn-primary" onClick={handlePush} disabled={isLoading || !hasToken}>
+                                {isLoading ? 'Processing...' : 'Push Data'}
+                            </button>
                         </div>
-                        <h3>Push to Online</h3>
-                        <p>Upload your local data to GitHub. This will overwrite the online data with your local copy.</p>
-                        <button className="btn-primary" onClick={handlePush} disabled={isLoading || !hasToken}>
-                            {isLoading ? 'Processing...' : 'Push Data'}
-                        </button>
                     </div>
-                </div>
+                )}
 
                 <div className="sync-card ext-backup">
                     <div className="card-header">

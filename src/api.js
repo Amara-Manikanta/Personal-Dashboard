@@ -1,9 +1,18 @@
 const API_BASE = 'http://localhost:3010/api';
-// Assuming the user runs this on localhost or 127.0.0.1. Any other domain is treated as hosted (GitHub Pages)
-// We also treat 'file:' protocol (empty hostname) as localhost so it tries to hit the local backend server.
-const IS_LOCALHOST = window.location.hostname === 'localhost' ||
+
+// Detect whether running in Capacitor iOS / mobile app container
+const IS_CAPACITOR = typeof window !== 'undefined' && (
+    !!window.Capacitor ||
+    window.location.protocol === 'capacitor:' ||
+    window.location.protocol === 'ionic:'
+);
+
+// Assuming the user runs this on localhost or 127.0.0.1. Any other domain (or Capacitor iOS) is treated as remote/GitHub
+const IS_LOCALHOST = !IS_CAPACITOR && (
+    window.location.hostname === 'localhost' ||
     window.location.hostname === '127.0.0.1' ||
-    window.location.hostname === '';
+    (window.location.hostname === '' && window.location.protocol === 'file:')
+);
 
 // GitHub Configuration
 const GITHUB_OWNER = 'Amara-Manikanta';

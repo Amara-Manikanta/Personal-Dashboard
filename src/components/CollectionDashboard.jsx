@@ -583,6 +583,15 @@ window.CollectionDashboard = ({ onBackToHome }) => {
         const onKey = (e) => {
             if (e.key === 'Escape') { setLightboxId(null); return; }
 
+            if (e.key === 'e' || e.key === 'E') {
+                const cur = items.find(s => s.id === lightboxId);
+                if (cur) {
+                    setLightboxId(null);
+                    setEditing(cur);
+                }
+                return;
+            }
+
             if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                 const pics = imagesOf(items.find(s => s.id === lightboxId));
                 if (pics.length < 2) return;
@@ -1184,8 +1193,34 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                                 ].filter(Boolean).join(' · ') || 'No details recorded yet'}
                             </p>
                             {lightboxItem.notes && <p className="coll-lightbox-notes">{lightboxItem.notes}</p>}
+                            <div className="coll-lightbox-actions">
+                                <button
+                                    type="button"
+                                    className="coll-lightbox-edit-btn"
+                                    onClick={() => {
+                                        const cur = lightboxItem;
+                                        setLightboxId(null);
+                                        setEditing(cur);
+                                    }}
+                                    title="Edit details (Press E)"
+                                >
+                                    <i className="ph-bold ph-pencil-simple"></i> Edit {configFor(typeOf(lightboxItem)).label} Details
+                                </button>
+                                <button
+                                    type="button"
+                                    className="coll-lightbox-del-btn"
+                                    onClick={() => {
+                                        const cur = lightboxItem;
+                                        setLightboxId(null);
+                                        handleDelete(cur);
+                                    }}
+                                    title="Delete item"
+                                >
+                                    <i className="ph-bold ph-trash"></i> Delete
+                                </button>
+                            </div>
                             <span className="coll-lightbox-hint">
-                                ← → between items{pics.length > 1 ? ' · ↑ ↓ between images' : ''} · Esc to close
+                                ← → between items{pics.length > 1 ? ' · ↑ ↓ between images' : ''} · E to edit · Esc to close
                             </span>
                         </figcaption>
                     </figure>
@@ -1834,7 +1869,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     right: 1.35rem;
                     display: flex;
                     gap: 0.35rem;
-                    opacity: 0;
+                    opacity: 0.45;
                     transition: opacity 0.2s ease;
                 }
 
@@ -1975,6 +2010,54 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                 .coll-lightbox figcaption h3 { margin: 0 0 0.6rem; font-size: 1.5rem; color: var(--text-primary); }
                 .coll-lightbox figcaption p { margin: 0 0 0.9rem; line-height: 1.6; }
                 .coll-lightbox-notes { color: var(--text-muted); font-size: 0.92rem; white-space: pre-wrap; }
+
+                .coll-lightbox-actions {
+                    margin: 1.25rem 0 0.75rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    flex-wrap: wrap;
+                }
+
+                .coll-lightbox-edit-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.55rem 1.15rem;
+                    background: #f59e0b;
+                    color: #0b0e14;
+                    font-weight: 600;
+                    font-size: 0.88rem;
+                    border-radius: 8px;
+                    border: none;
+                    cursor: pointer;
+                    transition: transform 0.15s ease, filter 0.15s ease;
+                }
+
+                .coll-lightbox-edit-btn:hover {
+                    filter: brightness(1.12);
+                    transform: translateY(-1px);
+                }
+
+                .coll-lightbox-del-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    padding: 0.55rem 0.9rem;
+                    background: rgba(239, 68, 68, 0.15);
+                    color: #fca5a5;
+                    border: 1px solid rgba(239, 68, 68, 0.25);
+                    font-weight: 500;
+                    font-size: 0.88rem;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: background 0.15s ease, color 0.15s ease;
+                }
+
+                .coll-lightbox-del-btn:hover {
+                    background: rgba(239, 68, 68, 0.3);
+                    color: #fff;
+                }
 
                 .coll-lightbox-hint {
                     display: block;

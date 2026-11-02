@@ -1,0 +1,1080 @@
+console.log("WritingDashboard.jsx: Script starting...");
+window.WritingDashboard = ({ onBackToHome }) => {
+    console.log("WritingDashboard: Component rendering");
+    const { useMemo, useState, useEffect } = React;
+    const [activeTab, setActiveTab] = useState('quotes');
+    const [selectedGenre, setSelectedGenre] = useState(null);
+    const [quoteSearchQuery, setQuoteSearchQuery] = useState("");
+    const [storySearchQuery, setStorySearchQuery] = useState("");
+    const [selectedStory, setSelectedStory] = useState(null);
+    const [stories, setStories] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingStory, setEditingStory] = useState(null);
+    const [isAddGenreModalOpen, setIsAddGenreModalOpen] = useState(false);
+    const [isAddQuoteModalOpen, setIsAddQuoteModalOpen] = useState(false);
+    const [deletingGenreId, setDeletingGenreId] = useState(null);
+
+    // Calculate stats from window.writingData
+    // We don't use useMemo with [] because window.writingData is populated asynchronously
+    // and we want to ensure we pick up the data when the parent re-renders after loading.
+    // Verify data structure matches expected format (Array of genres or Object with genres key)
+    const rawData = window.writingData || [];
+    const genres = Array.isArray(rawData) ? rawData : (rawData.genres || []);
+    let totalQuotes = 0;
+    let totalEdited = 0;
+    let totalUnedited = 0;
+
+    const genreStats = genres.map(genre => {
+        const gQuotes = genre.quotes || [];
+        const gTotal = gQuotes.length;
+        const gEdited = gQuotes.filter(q => q.modified).length;
+        const gUnedited = gTotal - gEdited;
+
+        totalQuotes += gTotal;
+        totalEdited += gEdited;
+        totalUnedited += gUnedited;
+
+        return {
+            ...genre,
+            total: gTotal,
+            edited: gEdited,
+            unedited: gUnedited
+        };
+    });
+
+    const stats = {
+        totalQuotes,
+        totalEdited,
+        totalUnedited,
+        genres: genreStats
+    };
+
+    // Initialize stories from window object
+    React.useEffect(() => {
+        setStories(window.storiesList || []);
+    }, []);
+
+    const handleSaveStories = (updatedStories) => {
+        setStories(updatedStories);
+        window.storiesList = updatedStories; // Update global
+        if (window.api && window.api.saveStories) {
+            window.api.saveStories(updatedStories);
+        }
+    };
+
+    const handleAddStory = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newStory = {
+            id: Date.now(),
+            title: formData.get('title'),
+            genre: formData.get('genre'),
+            status: formData.get('status') || 'Draft',
+            description: formData.get('description'),
+            lastEdited: new Date().toISOString().split('T')[0],
+            totalParts: 0,
+            parts: []
+        };
+
+        handleSaveStories([...stories, newStory]);
+        setIsModalOpen(false);
+    };
+
+    const handleUpdateStoryMetadata = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        const updatedStories = stories.map(s => {
+            if (s.id === editingStory.id) {
+                return {
+                    ...s,
+                    title: formData.get('title'),
+                    genre: formData.get('genre'),
+                    status: formData.get('status'),
+                    description: formData.get('description'),
+                    lastEdited: new Date().toISOString().split('T')[0]
+                };
+            }
+            return s;
+        });
+
+        handleSaveStories(updatedStories);
+        setIsModalOpen(false);
+        setEditingStory(null);
+    };
+
+    const handleUpdateStoryParts = (updatedStory) => {
+        const updatedStories = stories.map(s => s.id === updatedStory.id ? updatedStory : s);
+
+        // Also update the selected story view
+        setSelectedStory(updatedStory);
+
+        handleSaveStories(updatedStories);
+    };
+
+    const openEditModal = (story, e) => {
+        e.stopPropagation();
+        setEditingStory(story);
+        setIsModalOpen(true);
+    };
+
+    const handleAddGenre = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newGenreName = formData.get('genreName');
+
+        if (!newGenreName || newGenreName.trim() === '') return;
+
+        const newGenre = {
+            id: Date.now(),
+            genre: newGenreName.trim(),
+            quotes: []
+        };
+
+        const rawData = window.writingData || [];
+        let updatedData;
+        if (Array.isArray(rawData)) {
+            updatedData = [...rawData, newGenre];
+        } else {
+            updatedData = { ...rawData, genres: [...(rawData.genres || []), newGenre] };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        setIsAddGenreModalOpen(false);
+    };
+
+    const confirmDeleteGenre = () => {
+        if (!deletingGenreId) return;
+
+        const rawData = window.writingData || [];
+        let updatedData;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.filter(g => g.id !== deletingGenreId);
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = { ...rawData, genres: genresArr.filter(g => g.id !== deletingGenreId) };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        // Return to dashboard overview
+        setSelectedGenre(null);
+        setDeletingGenreId(null);
+    };
+
+    const handleAddQuote = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const originalQuote = formData.get('quoteText');
+
+        if (!originalQuote || originalQuote.trim() === '' || !selectedGenre) return;
+
+        const rawData = window.writingData || [];
+        const newQuoteObj = {
+            original: originalQuote.trim(),
+            modified: null
+        };
+
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    updatedSelectedGenre = { ...g, quotes: [newQuoteObj, ...(g.quotes || [])] };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        updatedSelectedGenre = { ...g, quotes: [newQuoteObj, ...(g.quotes || [])] };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        // Update view locally
+        if (updatedSelectedGenre) {
+            setSelectedGenre(updatedSelectedGenre);
+        }
+
+        setIsAddQuoteModalOpen(false);
+    };
+
+    const handleDeleteQuote = (quoteIndex) => {
+        if (!selectedGenre) return;
+        if (!window.confirm("Are you sure you want to delete this quote?")) return;
+
+        const rawData = window.writingData || [];
+
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes.splice(quoteIndex, 1);
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes.splice(quoteIndex, 1);
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) {
+            window.api.saveWriting(updatedData);
+        }
+
+        // Update view locally
+        if (updatedSelectedGenre) {
+            setSelectedGenre(updatedSelectedGenre);
+        }
+    };
+
+    const handleToggleQuoteFinished = (quoteIndex) => {
+        if (!selectedGenre) return;
+        const rawData = window.writingData || [];
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], finished: !newQuotes[quoteIndex].finished };
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], finished: !newQuotes[quoteIndex].finished };
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) window.api.saveWriting(updatedData);
+        if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
+    };
+
+    const handleToggleQuotePublished = (quoteIndex) => {
+        if (!selectedGenre) return;
+        const rawData = window.writingData || [];
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], isPublished: !newQuotes[quoteIndex].isPublished };
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], isPublished: !newQuotes[quoteIndex].isPublished };
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) window.api.saveWriting(updatedData);
+        if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
+    };
+
+    const handleUpdateModifiedQuote = (quoteIndex, newText) => {
+        if (!selectedGenre) return;
+        const rawData = window.writingData || [];
+        let updatedData;
+        let updatedSelectedGenre;
+
+        if (Array.isArray(rawData)) {
+            updatedData = rawData.map(g => {
+                if (g.id === selectedGenre.id) {
+                    const newQuotes = [...(g.quotes || [])];
+                    newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], modified: newText };
+                    updatedSelectedGenre = { ...g, quotes: newQuotes };
+                    return updatedSelectedGenre;
+                }
+                return g;
+            });
+        } else {
+            const genresArr = rawData.genres || [];
+            updatedData = {
+                ...rawData,
+                genres: genresArr.map(g => {
+                    if (g.id === selectedGenre.id) {
+                        const newQuotes = [...(g.quotes || [])];
+                        newQuotes[quoteIndex] = { ...newQuotes[quoteIndex], modified: newText };
+                        updatedSelectedGenre = { ...g, quotes: newQuotes };
+                        return updatedSelectedGenre;
+                    }
+                    return g;
+                })
+            };
+        }
+
+        window.writingData = updatedData;
+        if (window.api && window.api.saveWriting) window.api.saveWriting(updatedData);
+        if (updatedSelectedGenre) setSelectedGenre(updatedSelectedGenre);
+    };
+
+    const renderContent = () => {
+        console.log("Rendering content. State:", { selectedStory, activeTab, selectedGenre }); console.log("selectedGenre logic START");
+
+        // 1. Story Detail View
+        if (selectedStory) {
+            const StoryDetailsComponent = window.StoryDetails;
+            if (!StoryDetailsComponent) {
+                console.error("window.StoryDetails is undefined!");
+                return <div className="p-4 text-red-500">Error: StoryDetails component not loaded. Please refresh.</div>;
+            }
+            return (
+                <StoryDetailsComponent
+                    story={selectedStory}
+                    onBack={() => setSelectedStory(null)}
+                    onUpdate={handleUpdateStoryParts}
+                />
+            );
+        }
+
+        // 2. Stories List View
+        if (activeTab === 'stories') {
+            return (
+                <div className="stories-view-container">
+                    <div className="view-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                        <h2>All Stories</h2>
+                        <div className="search-bar">
+                            <i className="ph ph-magnifying-glass"></i>
+                            <input
+                                type="text"
+                                placeholder="Search stories..."
+                                value={storySearchQuery}
+                                onChange={(e) => setStorySearchQuery(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="stories-list">
+                        {stories.filter(s => s.title.toLowerCase().includes(storySearchQuery.toLowerCase()) || (s.genre && s.genre.toLowerCase().includes(storySearchQuery.toLowerCase()))).map(story => (
+                            <div key={story.id} className="story-card" onClick={() => setSelectedStory(story)}>
+                                <div className="story-header">
+                                    <h3>{story.title}</h3>
+                                    <span className={`story-status ${story.status ? story.status.toLowerCase().replace(' ', '-') : ''}`}>
+                                        {story.status}
+                                    </span>
+                                </div>
+                                <div className="story-meta">
+                                    <span><i className="ph-fill ph-tag"></i> {story.genre}</span>
+                                    <span><i className="ph-fill ph-files"></i> {story.parts ? story.parts.length : 0} Parts</span>
+                                    <span><i className="ph-fill ph-calendar"></i> {story.lastEdited}</span>
+                                </div>
+                                <p className="story-snippet">{story.description}</p>
+                                <div className="story-actions">
+                                    <button className="story-btn" onClick={(e) => openEditModal(story, e)}>
+                                        <i className="ph-bold ph-pencil-simple"></i> Edit
+                                    </button>
+                                    <button 
+                                        className="story-btn"
+                                        style={story.status === 'Published' ? { background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success)', borderColor: 'rgba(16, 185, 129, 0.3)' } : {}}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            const newStatus = story.status === 'Published' ? 'Draft' : 'Published';
+                                            const updatedStory = { ...story, status: newStatus };
+                                            handleUpdateStoryParts(updatedStory);
+                                        }}
+                                    >
+                                        <i className={`ph-bold ${story.status === 'Published' ? 'ph-check-circle' : 'ph-paper-plane-tilt'}`}></i> 
+                                        {story.status === 'Published' ? 'Published' : 'Draft'}
+                                    </button>
+                                    <button className="story-btn primary">
+                                        <i className="ph-bold ph-book-open"></i> Open
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                        {stories.length === 0 && (
+                            <div className="empty-stories">
+                                <i className="ph-duotone ph-book-open-text"></i>
+                                <p>No stories yet. Start writing!</p>
+                                <button className="add-btn-small" onClick={() => setIsModalOpen(true)}>Create First Story</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // 3. Genre Detail View (Quotes)
+        if (selectedGenre) {
+            return (
+                <div className="quotes-list">
+                    <div className="view-header" style={{ marginBottom: "1rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                            <button className="back-button-inline" onClick={() => { setSelectedGenre(null); setQuoteSearchQuery(""); }}>
+                                <i className="ph-bold ph-arrow-left"></i>
+                                Back to Genres
+                            </button>
+                            <h2 style={{ fontSize: "2rem", margin: 0 }}>{selectedGenre.genre} Quotes</h2>
+                        </div>
+                        <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                            <div className="search-bar">
+                                <i className="ph ph-magnifying-glass"></i>
+                                <input
+                                    type="text"
+                                    placeholder="Search quotes..."
+                                    value={quoteSearchQuery}
+                                    onChange={(e) => setQuoteSearchQuery(e.target.value)}
+                                />
+                            </div>
+                            <button className="add-btn" onClick={() => setIsAddQuoteModalOpen(true)}>
+                                <i className="ph-bold ph-plus"></i> Add Quote
+                            </button>
+                            <button className="export-btn" onClick={() => setDeletingGenreId(selectedGenre.id)} style={{ color: "var(--danger)", borderColor: "rgba(239, 68, 68, 0.3)", background: "rgba(239, 68, 68, 0.1)" }}>
+                                <i className="ph-bold ph-trash"></i> Delete Genre
+                            </button>
+                        </div>
+                    </div>
+
+                    {(!selectedGenre.quotes || selectedGenre.quotes.length === 0) ? (
+                        <div className="empty-state" style={{ padding: "4rem", gridColumn: "1 / -1" }}>
+                            <i className="ph ph-quotes"></i>
+                            <p>No quotes yet for this genre.</p>
+                        </div>
+                    ) : (
+                        selectedGenre.quotes.map((q, i) => ({ ...q, originalIndex: i }))
+                        .filter(q => q.original.toLowerCase().includes(quoteSearchQuery.toLowerCase()) || (q.modified && q.modified.toLowerCase().includes(quoteSearchQuery.toLowerCase())))
+                        .map((quote) => {
+                            const index = quote.originalIndex;
+                            const isUnedited = !quote.finished;
+                            return (
+                                <div key={index} className={`quote-card-item ${quote.finished ? 'locked' : ''}`} style={{ 
+                                    opacity: quote.finished ? 1 : 0.65,
+                                    background: isUnedited ? 'var(--bg-app)' : 'var(--bg-surface)',
+                                    borderColor: isUnedited ? 'rgba(150, 150, 150, 0.2)' : 'var(--primary)',
+                                    position: 'relative',
+                                    boxShadow: isUnedited ? 'none' : 'var(--shadow-sm)'
+                                }}>
+                                    <div className="quote-content original" style={{ position: 'relative' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                                            <div className="quote-label" style={{ marginBottom: 0 }}>Original</div>
+                                            <div style={{ position: 'absolute', top: '-4px', right: '-4px', display: 'flex', gap: '4px' }}>
+                                                <button
+                                                    onClick={() => navigator.clipboard.writeText(quote.original)}
+                                                    className="icon-btn"
+                                                    title="Copy Original"
+                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: '4px' }}
+                                                >
+                                                    <i className="ph-bold ph-copy"></i>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteQuote(index)}
+                                                    className="delete-icon-btn"
+                                                    title="Delete Quote"
+                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: '4px' }}
+                                                >
+                                                    <i className="ph-bold ph-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p style={{ marginTop: '0.5rem' }}>"{quote.original}"</p>
+                                    </div>
+                                    <div className={`quote-content modified ${quote.modified ? 'has-content' : 'empty'}`} style={{ position: 'relative' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                            <div className="quote-label" style={{ marginBottom: 0, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                                Modified 
+                                                {isUnedited && <i className="ph-fill ph-pencil-simple" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }} title="Not Yet Edited"></i>}
+                                            </div>
+                                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                                            {quote.modified && (
+                                                <button
+                                                    onClick={() => navigator.clipboard.writeText(quote.modified)}
+                                                    className="icon-btn"
+                                                    title="Copy Modified"
+                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
+                                                >
+                                                    <i className="ph-bold ph-copy"></i>
+                                                </button>
+                                            )}
+                                            <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: 'var(--text-muted)', cursor: 'pointer' }}>
+                                                <input 
+                                                    type="checkbox" 
+                                                    checked={quote.finished || false} 
+                                                    onChange={() => handleToggleQuoteFinished(index)} 
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                                Finished
+                                            </label>
+                                            <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: quote.isPublished ? 'var(--success)' : 'var(--text-muted)', cursor: 'pointer' }}>
+                                                <input 
+                                                    type="checkbox" 
+                                                    checked={quote.isPublished || false} 
+                                                    onChange={() => handleToggleQuotePublished(index)} 
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                                Published
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {quote.finished ? (
+                                        <p style={{ marginTop: '0.5rem' }}>{quote.modified ? `"${quote.modified}"` : <span style={{color: 'var(--text-muted)', fontStyle: 'italic'}}>No modification made.</span>}</p>
+                                        ) : (
+                                            <textarea
+                                                value={quote.modified || ''}
+                                                onChange={(e) => handleUpdateModifiedQuote(index, e.target.value)}
+                                                placeholder="Write your modified or polished quote here..."
+                                                style={{ width: '100%', minHeight: '80px', padding: '0.75rem', marginTop: '0.5rem', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '6px', color: 'var(--text-main)', resize: 'vertical' }}
+                                            ></textarea>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })
+                    )}
+                </div>
+            );
+        }
+
+        // 4. Dashboard Overview (Default)
+        return (
+            <div className="dashboard-overview">
+                <div className="stats-overview">
+                    <div className="stat-card total">
+                        <div className="stat-label">Total Quotes</div>
+                        <div className="stat-value">{stats.totalQuotes}</div>
+                    </div>
+                    <div className="stat-card edited">
+                        <div className="stat-label">Edited</div>
+                        <div className="stat-value">{stats.totalEdited}</div>
+                        <div className="stat-sub">Refined & Ready</div>
+                    </div>
+                    <div className="stat-card unedited">
+                        <div className="stat-label">To Edit</div>
+                        <div className="stat-value">{stats.totalUnedited}</div>
+                        <div className="stat-sub">Needs Formatting</div>
+                    </div>
+                </div>
+
+                <div className="view-header" style={{ marginBottom: "1.5rem" }}>
+                    <h2 className="section-title" style={{ marginBottom: 0 }}>Quotes by Genre</h2>
+                    <button className="add-btn" onClick={() => setIsAddGenreModalOpen(true)}>
+                        <i className="ph-bold ph-plus"></i> Add Genre
+                    </button>
+                </div>
+
+                <div className="genre-grid">
+                    {stats.genres.map((genre) => (
+                        <div key={genre.genre} className="genre-card" onClick={() => { setSelectedGenre(genre); setQuoteSearchQuery(""); }}>
+                            <div className="genre-header">
+                                <h3>{genre.genre}</h3>
+                                <span className="genre-total">{genre.total || 0} Quotes</span>
+                            </div>
+
+                            <div className="progress-container">
+                                <div className="progress-bar">
+                                    <div
+                                        className="progress-fill"
+                                        style={{ width: `${genre.total ? (genre.edited / genre.total) * 100 : 0}%` }}
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div className="genre-stats">
+                                <div className="genre-stat-item success">
+                                    <i className="ph-fill ph-check-circle"></i>
+                                    <span>{genre.edited || 0} Edited</span>
+                                </div>
+                                <div className="genre-stat-item warning">
+                                    <i className="ph-fill ph-pencil-simple"></i>
+                                    <span>{genre.unedited || 0} To Edit</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="app-layout">
+            {/* Header */}
+            <header className="app-header">
+                <div className="container header-container">
+                    <div className="header-row-top">
+                        <div className="logo">
+                            <button className="home-btn" onClick={onBackToHome} title="Back to Home">
+                                <i className="ph-bold ph-house"></i>
+                            </button>
+                            <i className="ph-fill ph-pencil-circle logo-icon"></i>
+                            <h1>Writing<span className="text-primary">Dash</span></h1>
+                        </div>
+                    </div>
+
+                    <div className="header-row-bottom">
+                        {/* Tab Navigation */}
+                        <div className="nav-tabs">
+                            <button
+                                className={`nav-tab ${activeTab === 'quotes' ? 'active' : ''}`}
+                                onClick={() => { setActiveTab('quotes'); setSelectedGenre(null); setSelectedStory(null); setStorySearchQuery(""); setQuoteSearchQuery(""); }}
+                            >
+                                <i className="ph-bold ph-quotes"></i>
+                                Quotes
+                            </button>
+                            <button
+                                className={`nav-tab ${activeTab === 'stories' ? 'active' : ''}`}
+                                onClick={() => { setActiveTab('stories'); setSelectedGenre(null); setSelectedStory(null); setStorySearchQuery(""); setQuoteSearchQuery(""); }}
+                            >
+                                <i className="ph-bold ph-book-open"></i>
+                                Stories
+                            </button>
+                        </div>
+
+                        {/* Actions (context sensitive) */}
+                        <div className="header-actions-group">
+                            {activeTab === 'stories' && !selectedStory && (
+                                <button className="add-btn" onClick={() => { setEditingStory(null); setIsModalOpen(true); }}>
+                                    <i className="ph-bold ph-plus"></i>
+                                    <span>New Story</span>
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main className="main-content container">
+                {renderContent()}
+            </main>
+
+            {/* Modal for Add/Edit Story */}
+            {isModalOpen && (
+                <div className="modal-overlay fade-in" onClick={() => setIsModalOpen(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>{editingStory ? 'Edit Story' : 'New Story'}</h2>
+                            <button className="close-btn" onClick={() => setIsModalOpen(false)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <form onSubmit={editingStory ? handleUpdateStoryMetadata : handleAddStory}>
+                            <div className="form-group">
+                                <label>Title</label>
+                                <input name="title" type="text" defaultValue={editingStory ? editingStory.title : ''} required autoFocus />
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Genre</label>
+                                    <select name="genre" defaultValue={(editingStory && editingStory.genre) || 'Love'}>
+                                        <option value="Love">Love</option>
+                                        <option value="Sci-Fi">Sci-Fi</option>
+                                        <option value="Thriller">Thriller</option>
+                                        <option value="Fantasy">Fantasy</option>
+                                        <option value="Drama">Drama</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label>Status</label>
+                                    <select name="status" defaultValue={(editingStory && editingStory.status) || 'Draft'}>
+                                        <option value="Draft">Draft</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Published">Published</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label>Description</label>
+                                <textarea name="description" rows="3" defaultValue={editingStory ? editingStory.description : ''}></textarea>
+                            </div>
+                            <div className="modal-actions">
+                                <button type="button" className="btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                                <button type="submit" className="btn-primary">Save Story</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal for Add Genre */}
+            {isAddGenreModalOpen && (
+                <div className="modal-overlay fade-in" onClick={() => setIsAddGenreModalOpen(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Add New Genre</h2>
+                            <button className="close-btn" onClick={() => setIsAddGenreModalOpen(false)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <form onSubmit={handleAddGenre}>
+                            <div className="form-group">
+                                <label>Genre Name</label>
+                                <input name="genreName" type="text" placeholder="e.g., Comedy" required autoFocus />
+                            </div>
+                            <div className="modal-actions">
+                                <button type="button" className="btn-secondary" onClick={() => setIsAddGenreModalOpen(false)}>Cancel</button>
+                                <button type="submit" className="btn-primary">Add Genre</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal for Add Quote */}
+            {isAddQuoteModalOpen && (
+                <div className="modal-overlay fade-in" onClick={() => setIsAddQuoteModalOpen(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Add New Quote ({selectedGenre ? selectedGenre.genre : ''})</h2>
+                            <button className="close-btn" onClick={() => setIsAddQuoteModalOpen(false)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <form onSubmit={handleAddQuote}>
+                            <div className="form-group">
+                                <label>Quote Text</label>
+                                <textarea name="quoteText" rows="4" placeholder="Enter the original quote here..." required autoFocus></textarea>
+                            </div>
+                            <div className="modal-actions">
+                                <button type="button" className="btn-secondary" onClick={() => setIsAddQuoteModalOpen(false)}>Cancel</button>
+                                <button type="submit" className="btn-primary">Add Quote</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal for Delete Genre Confirmation */}
+            {!!deletingGenreId && (
+                <div className="modal-overlay fade-in" onClick={() => setDeletingGenreId(null)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: "400px" }}>
+                        <div className="modal-header">
+                            <h2>Delete Genre</h2>
+                            <button className="close-btn" onClick={() => setDeletingGenreId(null)}>
+                                <i className="ph-bold ph-x"></i>
+                            </button>
+                        </div>
+                        <p style={{ marginBottom: "1.5rem", color: "var(--text-secondary)" }}>
+                            Are you sure you want to delete this genre? All quotes inside it will be permanently lost.
+                        </p>
+                        <div className="modal-actions">
+                            <button className="btn-secondary" onClick={() => setDeletingGenreId(null)}>Cancel</button>
+                            <button className="btn-primary" onClick={confirmDeleteGenre} style={{ backgroundColor: "var(--danger)" }}>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <style>{`
+                /* Shared Layout Styles (Copied/Adapted from NovelsDashboard) */
+                .app-header {
+                    background-color: rgba(15, 17, 21, 0.8);
+                    backdrop-filter: blur(12px);
+                    border-bottom: 1px solid var(--border);
+                    position: sticky;
+                    top: 0;
+                    z-index: 50;
+                    height: auto;
+                    padding: 0.25rem 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                .header-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.25rem;
+                    width: 100%;
+                }
+                .header-row-top {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }
+                .header-row-bottom {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                }
+                
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 1.25rem;
+                }
+                .text-primary { color: var(--primary); }
+                .logo-icon { color: var(--primary); font-size: 1.5rem; }
+
+                .nav-tabs {
+                    display: flex;
+                    gap: 0.5rem;
+                    background: var(--bg-surface);
+                    padding: 0.25rem;
+                    border-radius: 9999px;
+                    border: 1px solid var(--border);
+                    margin-right: auto;
+                    margin-left: 1rem;
+                }
+                .nav-tab {
+                    background: transparent;
+                    border: none;
+                    padding: 0.4rem 1rem;
+                    border-radius: 9999px;
+                    color: var(--text-muted);
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    transition: all 0.2s;
+                }
+                .nav-tab.active {
+                    background: var(--primary);
+                    color: #fff;
+                }
+                .nav-tab:hover:not(.active) {
+                    color: var(--text-primary);
+                }
+
+                .home-btn {
+                    background: none;
+                    border: none;
+                    color: var(--text-secondary);
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                    padding: 0.25rem;
+                    transition: color 0.2s;
+                }
+                .home-btn:hover { color: var(--primary); }
+
+                .add-btn {
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 9999px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    transition: all 0.2s;
+                    white-space: nowrap;
+                }
+                .add-btn:hover { background: var(--primary-hover); }
+
+                .export-btn {
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    border: 1px solid var(--border);
+                    padding: 0.5rem 1rem;
+                    border-radius: 9999px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    transition: all 0.2s;
+                    white-space: nowrap;
+                }
+                .export-btn:hover { background: var(--bg-surface-hover); border-color: var(--text-muted); }
+
+                .delete-icon-btn {
+                    background: transparent;
+                    border: none;
+                    color: var(--text-muted);
+                    cursor: pointer;
+                    padding: 0.25rem;
+                    border-radius: 4px;
+                    transition: all 0.2s;
+                }
+                .delete-icon-btn:hover {
+                    color: var(--danger);
+                    background: rgba(239, 68, 68, 0.1);
+                }
+
+                .main-content {
+                    padding-top: 2rem;
+                    padding-bottom: 4rem;
+                }
+
+                /* Dashboard Stats Specifics */
+                .stats-overview {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 1.5rem;
+                    margin-bottom: 3rem;
+                }
+                .stat-card {
+                    background: var(--bg-surface);
+                    padding: 1.5rem;
+                    border-radius: var(--radius-lg);
+                    border: 1px solid var(--border);
+                }
+                .stat-card.total { border-left: 4px solid var(--primary); }
+                .stat-card.edited { border-left: 4px solid var(--success); }
+                .stat-card.unedited { border-left: 4px solid var(--warning); }
+                .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+                .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+                .stat-sub { font-size: 0.85rem; color: var(--text-secondary); }
+
+                .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-primary); }
+                
+                .genre-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 1.5rem;
+                }
+                .genre-card {
+                    background: var(--bg-surface);
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-lg);
+                    padding: 1.5rem;
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    cursor: pointer;
+                }
+                .genre-card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: var(--shadow-lg);
+                    border-color: var(--border-hover);
+                }
+                .genre-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+                .genre-header h3 { margin: 0; font-size: 1.25rem; }
+                .genre-total { font-size: 0.9rem; color: var(--text-muted); background: var(--bg-app); padding: 0.25rem 0.75rem; border-radius: 1rem; }
+                
+                .progress-container { margin-bottom: 1.25rem; }
+                .progress-bar { height: 8px; background: var(--bg-app); border-radius: 4px; overflow: hidden; }
+                .progress-fill { height: 100%; background: linear-gradient(90deg, var(--success), #34d399); border-radius: 4px; transition: width 0.5s ease-out; }
+                .genre-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+                .genre-stat-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+                .genre-stat-item.success { color: var(--success); }
+                .genre-stat-item.warning { color: var(--warning); }
+
+                /* Quotes List */
+                .quotes-list { display: grid; gap: 1.5rem; }
+                .genre-detail-header { margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+                .genre-detail-header h2 { font-size: 2rem; margin: 0; }
+                .back-button-inline { display: flex; align-items: center; gap: 0.5rem; background: none; border: none; color: var(--primary); font-size: 1rem; cursor: pointer; padding: 0.5rem; font-weight: 600; }
+                .quote-card-item { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+                .quote-content { position: relative; }
+                .quote-content.modified { border-left: 1px solid var(--border); padding-left: 2rem; }
+                .quote-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem; }
+                .quote-content p { font-size: 1.1rem; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; }
+                .quote-content.modified p { color: var(--success); }
+                .empty-state { display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
+
+                /* Stories View */
+                .stories-view-container { }
+                .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; } /* Reuse or override */
+                .stories-list { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); }
+                .story-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; transition: transform 0.2s; cursor: pointer; display: flex; flex-direction: column; }
+                .story-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+                .story-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+                .story-header h3 { margin: 0; font-size: 1.25rem; line-height: 1.4; }
+                .story-status { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; }
+                .story-status.draft { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); }
+                .story-status.published { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.3); }
+                .story-status.in-progress { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border-color: rgba(59, 130, 246, 0.3); }
+                .story-meta { display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+                .story-meta span { display: flex; align-items: center; gap: 0.35rem; }
+                .story-snippet { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
+                .story-actions { display: flex; gap: 0.75rem; margin-top: auto; }
+                .story-btn { flex: 1; padding: 0.5rem; border: 1px solid var(--border); background: transparent; color: var(--text-primary); border-radius: var(--radius-md); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; transition: all 0.2s; }
+                .story-btn:hover { background: var(--bg-app); border-color: var(--text-secondary); }
+                .story-btn.primary { background: rgba(124, 58, 237, 0.1); color: var(--primary); border-color: rgba(124, 58, 237, 0.3); }
+                .story-btn.primary:hover { background: rgba(124, 58, 237, 0.2); border-color: var(--primary); }
+                .empty-stories { text-align: center; padding: 4rem; color: var(--text-muted); grid-column: 1 / -1; }
+                .empty-stories i { font-size: 3rem; margin-bottom: 1rem; }
+                .add-btn-small { background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; margin-top: 1rem; }
+                
+                /* Modal Styles */
+                .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 200; }
+                .modal-content { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); width: 100%; max-width: 500px; padding: 1.5rem; box-shadow: var(--shadow-xl); }
+                .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+                .modal-header h2 { margin: 0; font-size: 1.5rem; }
+                .close-btn { background: none; border: none; font-size: 1.25rem; color: var(--text-muted); cursor: pointer; }
+                .form-group { margin-bottom: 1.25rem; }
+                .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); }
+                .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--bg-app); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: var(--radius-md); font-size: 1rem; }
+                .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+                .form-row { display: flex; gap: 1rem; }
+                .form-row .form-group { flex: 1; }
+                .modal-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
+                .btn-primary { background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; }
+                .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: var(--radius-md); cursor: pointer; }
+
+                @media (max-width: 768px) {
+                    .quote-card-item { grid-template-columns: 1fr; gap: 1.5rem; }
+                    .quote-content.modified { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 1.5rem; }
+                    .genre-stats { display: flex; flex-direction: column; gap: 0.5rem; }
+                }
+            `}</style>
+        </div>
+    );
+};

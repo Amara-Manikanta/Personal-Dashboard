@@ -1,0 +1,14 @@
+{
+  "appId": "com.amara.lifestudio",
+  "appName": "LifeStudio",
+  "webDir": "web",
+  "bundledWebRuntime": false,
+  "ios": {
+    "contentInset": "always",
+    "allowsLinkPreview": false,
+    "scrollEnabled": true
+  },
+  "server": {
+    "iosScheme": "capacitor"
+  }
+}

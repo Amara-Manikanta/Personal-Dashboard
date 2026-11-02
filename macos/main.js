@@ -60,7 +60,7 @@ async function initializeServer() {
     }
 
     try {
-        const { startServer } = require('../server.js');
+        const { startServer } = require('../web/server.js');
         const started = await startServer(activePort);
         serverInstance = started.server;
         console.log(`[Electron] Started backend server on port ${activePort}`);
@@ -71,7 +71,7 @@ async function initializeServer() {
             if (!ready) {
                 // Try fallback port 3011
                 activePort = 3011;
-                const { startServer } = require('../server.js');
+                const { startServer } = require('../web/server.js');
                 const started = await startServer(activePort);
                 serverInstance = started.server;
                 console.log(`[Electron] Started backend server on fallback port ${activePort}`);

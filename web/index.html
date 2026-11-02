@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>LifeStudio</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <!-- Babel 7: v6 predates optional chaining (?.) and nullish coalescing (??),
+         so any component using them failed to parse and silently vanished. -->
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+
+    <!-- Icons (Phosphor) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="premium-overrides.css">
+
+    <!-- Third Party Libraries -->
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+</head>
+
+<body class="bg-surface text-text-primary">
+    <script>
+        if (window.desktopAPI && window.desktopAPI.isMac) {
+            document.body.classList.add('is-electron', 'is-mac');
+        }
+        if (window.Capacitor || window.location.protocol === 'capacitor:' || /iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            document.body.classList.add('is-capacitor', 'is-ios');
+        }
+    </script>
+    <div id="root"></div>
+
+    <!-- App Scripts -->
+    <!-- We use type="text/babel" for JSX support -->
+    <!-- API Utility -->
+    <script type="text/babel" data-presets="react" src="src/api.js?v=8.2"></script>
+
+    <!-- Components -->
+    <script type="text/babel" data-presets="react" src="src/components/PhysicsTitle.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/CommandPalette.jsx?v=8.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelCard.jsx?v=7.1"></script>
+    <script type="text/babel" data-presets="react" src="src/components/FilterSidebar.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Modal.jsx"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelForm.jsx?v=7.1"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelDetails.jsx?v=7.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/BookshelfView.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/AuthorPage.jsx?v=6.0"></script>
+
+    <!-- Travel Components -->
+    <script type="text/babel" data-presets="react" src="src/data/statesData.js?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/data/indiaGeo.js?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/data/cityCoords.js?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/IndiaPosterMap.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/CategoryIcons.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/IndiaTileMap.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/StateCard.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/TravelBadges.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/TripPlanner.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/TravelDashboard.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/Travel/StateDetails.jsx?v=6.0"></script>
+
+    <script type="text/babel" data-presets="react" src="src/HomePage.jsx?v=8.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/StoryDetails.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelStats.jsx?v=7.2"></script>
+    <script type="text/babel" data-presets="react" src="src/components/NovelMotivation.jsx?v=1.1"></script>
+    <script type="text/babel" data-presets="react" src="src/NovelsDashboard.jsx?v=7.3"></script>
+    <script type="text/babel" data-presets="react" src="src/components/WritingDashboard.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/SyncDashboard.jsx?v=7.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/ClothesDashboard.jsx?v=6.0"></script>
+    <script type="text/babel" data-presets="react" src="src/components/CollectionDashboard.jsx?v=7.4"></script>
+    <script type="text/babel" data-presets="react" src="src/components/MoviesDashboard.jsx?v=1.6"></script>
+    <script type="text/babel" data-presets="react" src="src/App.jsx?v=8.1"></script>
+</body>
+
+</html>

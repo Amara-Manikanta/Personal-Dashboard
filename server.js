@@ -7,11 +7,27 @@ const { Storage } = require('./storage');
 
 const app = express();
 const PORT = 3010;
-const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+const DATA_DIR = process.env.DATA_DIR || (
+    fs.existsSync(path.join(__dirname, 'data'))
+        ? path.join(__dirname, 'data')
+        : path.join(__dirname, '..', 'data')
+);
 
 app.use(cors({ exposedHeaders: ['X-Data-Version'] }));
 app.use(bodyParser.json({ limit: '50mb' })); // Increased limit just in case
-// Serve static files from root. HTML/JSX/CSS are revalidated on every request:
+
+// Uploads Configuration
+const UPLOADS_DIR = process.env.UPLOADS_DIR || (
+    fs.existsSync(path.join(__dirname, 'uploads'))
+        ? path.join(__dirname, 'uploads')
+        : path.join(__dirname, '..', 'uploads')
+);
+
+// Explicitly serve /data and /uploads static folders
+app.use('/data', express.static(DATA_DIR));
+app.use('/uploads', express.static(UPLOADS_DIR));
+
+// Serve static files from web root. HTML/JSX/CSS are revalidated on every request:
 // they are compiled in the browser, so a cached copy means edits appear not to
 // take effect until a manual hard refresh.
 app.use(express.static(path.join(__dirname, '.'), {
@@ -33,8 +49,6 @@ if (!fs.existsSync(BACKUP_DIR)) {
     fs.mkdirSync(BACKUP_DIR);
 }
 
-// Uploads Configuration
-const UPLOADS_DIR = process.env.UPLOADS_DIR || path.join(__dirname, 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) {
     fs.mkdirSync(UPLOADS_DIR);
 }

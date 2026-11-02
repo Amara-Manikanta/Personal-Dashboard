@@ -215,3 +215,21 @@ body.is-electron.is-mac .site-header {
 .is-electron .no-drag {
     -webkit-app-region: no-drag;
 }
+
+/* iOS Safe Area & Mobile Optimization */
+body.is-ios, body.is-capacitor {
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+@media (max-width: 768px) {
+    .dashboard-header, .site-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+}
