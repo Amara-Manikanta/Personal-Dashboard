@@ -304,6 +304,17 @@
           "category": "Temple",
           "rating": 0,
           "review": ""
+        },
+        {
+          "name": "Sri Ayyappa Swamy Temple",
+          "city": "Dwarapudi",
+          "remarks": "-",
+          "category": "Temple",
+          "visitDates": [
+            "2026-11"
+          ],
+          "rating": 0,
+          "review": ""
         }
       ],
       "placesToVisit": [
