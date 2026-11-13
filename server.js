@@ -65,7 +65,7 @@ const PRUNE_OLD_SNAPSHOTS = true;
 
 const storage = new Storage({ dataDir: DATA_DIR, backupDir: BACKUP_DIR, prune: PRUNE_OLD_SNAPSHOTS });
 
-const DATA_FILES = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json', 'movies.json'];
+const DATA_FILES = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json', 'movies.json', 'scrapbook.json'];
 
 // Read a data file, self-healing from the newest snapshot if it is corrupt.
 const readData = (filename) => storage.read(filename).data;
@@ -158,6 +158,11 @@ app.post('/api/clothes', handleWrite('clothes.json', 'clothes'));
 app.get('/api/collectibles', handleRead('collectibles.json', []));
 
 app.post('/api/collectibles', handleWrite('collectibles.json', 'collection items'));
+
+// --- Scrapbook (digital stamp scrapbook & memories) ---
+app.get('/api/scrapbook', handleRead('scrapbook.json', []));
+
+app.post('/api/scrapbook', handleWrite('scrapbook.json', 'scrapbook items'));
 
 // --- Movies ---
 app.get('/api/movies', handleRead('movies.json', []));

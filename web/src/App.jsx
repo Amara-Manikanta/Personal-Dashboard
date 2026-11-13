@@ -1,6 +1,6 @@
 // Views that are addressable by URL. Detail views (a single state, a single
 // author) carry their subject in the hash too, e.g. #/travel/Kerala.
-const ROUTABLE_VIEWS = ['home', 'novels', 'travel', 'writing', 'clothes', 'collection', 'movies', 'sync', 'author-page', 'state-details'];
+const ROUTABLE_VIEWS = ['home', 'novels', 'travel', 'writing', 'clothes', 'collection', 'movies', 'scrapbook', 'sync', 'author-page', 'state-details'];
 
 const viewToHash = (view, subject) => {
     if (view === 'home') return '#/';
@@ -34,7 +34,7 @@ const App = () => {
         const loadData = async () => {
             try {
                 // Fetch all data in parallel
-                const [novels, statesData, writing, stories, authors, clothes, collectibles, movies] = await Promise.all([
+                const [novels, statesData, writing, stories, authors, clothes, collectibles, movies, scrapbook] = await Promise.all([
                     window.api.getNovels(),
                     window.api.getStates(),
                     window.api.getWriting(),
@@ -42,7 +42,8 @@ const App = () => {
                     window.api.getAuthors(),
                     window.api.getClothes(),
                     window.api.getCollectibles(),
-                    window.api.getMovies()
+                    window.api.getMovies(),
+                    window.api.getScrapbook ? window.api.getScrapbook() : Promise.resolve([])
                 ]);
 
                 window.novelsData = novels || [];
@@ -52,6 +53,7 @@ const App = () => {
                 window.clothesData = clothes || [];
                 window.collectiblesData = collectibles || [];
                 window.moviesData = movies || [];
+                window.scrapbookData = scrapbook || [];
                 window.rawStatesData = statesData || { states: {}, bucketList: [] };
 
                 console.log("Data loaded successfully. States loaded:", Object.keys((window.rawStatesData && window.rawStatesData.states) || {}).length);
@@ -189,6 +191,10 @@ const App = () => {
                 stamps: collectibles.filter(c => (c.type || 'stamp') === 'stamp').length,
                 coins: collectibles.filter(c => c.type === 'coin').length,
                 countries: new Set(collectibles.map(c => c.country).filter(Boolean)).size
+            },
+            scrapbook: {
+                total: (window.scrapbookData || []).length,
+                pages: new Set((window.scrapbookData || []).map(s => s.page || 'Default')).size
             }
         };
     // currentView is a dependency so the figures are rebuilt each time you come
@@ -288,6 +294,10 @@ const App = () => {
 
             {currentView === 'collection' && !loading && (
                 <window.CollectionDashboard onBackToHome={handleBackToHome} />
+            )}
+
+            {currentView === 'scrapbook' && !loading && (
+                <window.ScrapbookDashboard onBackToHome={handleBackToHome} />
             )}
         </div>
     );

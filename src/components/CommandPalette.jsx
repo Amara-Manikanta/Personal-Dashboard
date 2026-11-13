@@ -51,6 +51,7 @@ window.CommandPalette = ({ onNavigate, onOpenAuthor, onOpenState }) => {
             ['Writing Dashboard', 'ph-pen-nib', 'writing'],
             ['Clothes Tracker', 'ph-t-shirt', 'clothes'],
             ['Collection', 'ph-stamp', 'collection'],
+            ['Stamp Scrapbook', 'ph-book-bookmark', 'scrapbook'],
             ['Movies', 'ph-film-slate', 'movies'],
             ['Sync & Backup', 'ph-arrows-clockwise', 'sync']
         ].forEach(([label, icon, view]) => push('Page', label, 'Dashboard', icon, () => onNavigate(view)));

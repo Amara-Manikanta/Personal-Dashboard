@@ -202,6 +202,27 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                         </div>
                     </div>
 
+                    <div className="dashboard-card scrapbook-card" onClick={() => onNavigate('scrapbook')}>
+                        <div className="card-glow"></div>
+                        <div className="card-badge-trending">
+                            <i className="ph-fill ph-sparkle"></i> Trending
+                        </div>
+                        <div className="card-icon">
+                            <i className="ph-fill ph-book-bookmark"></i>
+                        </div>
+                        <h2>Stamp Scrapbook</h2>
+                        <p className="card-description">Crop photos into perforated stamps & craft digital scrapbook journals</p>
+                        {cardStat(stats && stats.scrapbook ? (
+                            stats.scrapbook.total === 0
+                                ? 'No memories punched yet'
+                                : `${stats.scrapbook.total} ${stats.scrapbook.total === 1 ? 'stamp' : 'stamps'} punched · ${stats.scrapbook.pages} ${stats.scrapbook.pages === 1 ? 'page' : 'pages'}`
+                        ) : 'Craft your digital stamp album')}
+                        <div className="card-action">
+                            <span>Open Scrapbook</span>
+                            <i className="ph-bold ph-arrow-right"></i>
+                        </div>
+                    </div>
+
                     <div className="dashboard-card sync-card" onClick={() => onNavigate('sync')}>
                         <div className="card-glow"></div>
                         <div className="card-icon">
@@ -536,7 +557,26 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                 .clothes-card .card-icon i { color: #34d399; }
                 .collection-card .card-icon i { color: #f59e0b; }
                 .movies-card .card-icon i { color: #fb7185; }
+                .scrapbook-card .card-icon i { color: #f43f5e; }
                 .sync-card .card-icon i { color: #fbbf24; }
+
+                .card-badge-trending {
+                    position: absolute;
+                    top: 1.25rem;
+                    right: 1.25rem;
+                    background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(236, 72, 153, 0.3));
+                    color: #fda4af;
+                    border: 1px solid rgba(244, 63, 94, 0.4);
+                    font-size: 0.72rem;
+                    font-weight: 700;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    padding: 0.25rem 0.65rem;
+                    border-radius: 999px;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.35rem;
+                }
 
                 .dashboard-card:hover .card-icon {
                     background: rgba(255, 255, 255, 0.08);
@@ -549,6 +589,7 @@ window.HomePage = ({ onNavigate, stats, loading }) => {
                 .clothes-card:hover { border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 8px 30px rgba(52, 211, 153, 0.1); }
                 .movies-card:hover { border-color: rgba(251, 113, 133, 0.3); box-shadow: 0 8px 30px rgba(251, 113, 133, 0.1); }
                 .collection-card:hover { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 8px 30px rgba(245, 158, 11, 0.1); }
+                .scrapbook-card:hover { border-color: rgba(244, 63, 94, 0.4); box-shadow: 0 8px 30px rgba(244, 63, 94, 0.15); }
                 .sync-card:hover { border-color: rgba(251, 191, 36, 0.3); box-shadow: 0 8px 30px rgba(251, 191, 36, 0.1); }
 
                 .dashboard-card h2 {

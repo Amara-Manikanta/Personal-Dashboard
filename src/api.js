@@ -440,6 +440,42 @@ const api = {
         }
     },
 
+    getScrapbook: async () => {
+        if (IS_LOCALHOST) {
+            try {
+                return await localGet('scrapbook');
+            } catch (e) {
+                console.error(e);
+                return [];
+            }
+        } else {
+            return (await ghStorage.getFile('scrapbook.json')) || [];
+        }
+    },
+    saveScrapbook: async (data) => {
+        if (IS_LOCALHOST) {
+            try {
+                await localSave('scrapbook', data);
+            } catch (e) {
+                console.error("Error saving scrapbook:", e);
+                throw e;
+            }
+        } else {
+            await ghStorage.saveFile('scrapbook.json', data);
+        }
+    },
+        if (IS_LOCALHOST) {
+            try {
+                await localSave('movies', data);
+            } catch (e) {
+                console.error("Error saving movies:", e);
+                throw e;
+            }
+        } else {
+            await ghStorage.saveFile('movies.json', data);
+        }
+    },
+
     uploadImage: async (fileData) => {
         if (!IS_LOCALHOST) return null;
         try {
@@ -459,7 +495,7 @@ const api = {
     sync: {
         pullFromOnline: async () => {
             if (!IS_LOCALHOST) throw new Error('Can only sync when running locally.');
-            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json', 'movies.json'];
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json', 'movies.json', 'scrapbook.json'];
             const results = { success: [], failed: [] };
             
             for (const file of files) {
@@ -488,7 +524,7 @@ const api = {
             if (!ghStorage.token) {
                 throw new Error("GitHub token is required to push data. Please set it first.");
             }
-            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json', 'movies.json'];
+            const files = ['novels.json', 'states.json', 'writing.json', 'stories.json', 'authors.json', 'clothes.json', 'collectibles.json', 'movies.json', 'scrapbook.json'];
             const results = { success: [], failed: [] };
             
             for (const file of files) {
