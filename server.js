@@ -26,6 +26,9 @@ const UPLOADS_DIR = process.env.UPLOADS_DIR || (
 // Explicitly serve /data and /uploads static folders
 app.use('/data', express.static(DATA_DIR));
 app.use('/uploads', express.static(UPLOADS_DIR));
+if (fs.existsSync(path.join(__dirname, '..', 'uploads'))) {
+    app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+}
 
 // Serve static files from web root. HTML/JSX/CSS are revalidated on every request:
 // they are compiled in the browser, so a cached copy means edits appear not to
@@ -317,6 +320,20 @@ app.post('/api/upload-image', (req, res) => {
         const filePath = path.join(targetDir, filename);
 
         fs.writeFileSync(filePath, buffer);
+
+        // Server-side safety net: convert HEIC uploads to JPEG on macOS
+        if (/\.(heic|heif)$/i.test(safeName) && process.platform === 'darwin') {
+            const jpgName = filename.replace(/\.(heic|heif)$/i, '.jpg');
+            const jpgPath = path.join(targetDir, jpgName);
+            const { execFileSync } = require('child_process');
+            try {
+                execFileSync('/usr/bin/sips', ['-s', 'format', 'jpeg', filePath, '--out', jpgPath]);
+                try { fs.unlinkSync(filePath); } catch (_) {}
+                return res.json({ success: true, path: subfolder ? `uploads/${subfolder}/${jpgName}` : `uploads/${jpgName}` });
+            } catch (convErr) {
+                console.warn('[Server] sips conversion fallback:', convErr);
+            }
+        }
 
         res.json({ success: true, path: subfolder ? `uploads/${subfolder}/${filename}` : `uploads/${filename}` });
     } catch (err) {

@@ -86,10 +86,19 @@ window.ScrapbookDashboard = ({ onBackToHome }) => {
         });
     }, [isPuncherOpen, sourceImage, aspectRatio, zoom, panX, panY, countryText, denomText, yearText, cancellation, filterTone]);
 
-    // Handles photo upload
-    const handlePhotoUpload = (e) => {
-        const file = e.target.files && e.target.files[0];
+    // Handles photo upload (with automatic HEIC to JPEG conversion)
+    const handlePhotoUpload = async (e) => {
+        let file = e.target.files && e.target.files[0];
         if (!file) return;
+
+        try {
+            if (window.normalizeImageFile) {
+                file = await window.normalizeImageFile(file);
+            }
+        } catch (err) {
+            alert(err.message || 'Error processing image');
+            return;
+        }
 
         const reader = new FileReader();
         reader.onload = (event) => {
@@ -706,7 +715,7 @@ window.ScrapbookDashboard = ({ onBackToHome }) => {
                                         <label className="upload-dropzone">
                                             <input
                                                 type="file"
-                                                accept="image/*"
+                                                accept="image/*,.heic,.heif,.HEIC,.HEIF"
                                                 onChange={handlePhotoUpload}
                                                 style={{ display: 'none' }}
                                             />
@@ -756,7 +765,7 @@ window.ScrapbookDashboard = ({ onBackToHome }) => {
                                             />
                                         </div>
                                         <label className="change-photo-btn">
-                                            <input type="file" accept="image/*" onChange={handlePhotoUpload} style={{ display: 'none' }} />
+                                            <input type="file" accept="image/*,.heic,.heif,.HEIC,.HEIF" onChange={handlePhotoUpload} style={{ display: 'none' }} />
                                             <i className="ph-bold ph-camera-rotate"></i> Change Photo
                                         </label>
                                     </div>

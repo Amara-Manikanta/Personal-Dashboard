@@ -560,6 +560,67 @@ window.API_BASE = API_BASE;
 window.refreshVersions = refreshVersions;
 window.IS_LOCALHOST = IS_LOCALHOST;
 
+/**
+ * Normalizes any uploaded image file: converts iPhone HEIC/HEIF files to standard JPEG
+ * using macOS native sips (in Electron) or heic2any (in browser).
+ */
+window.normalizeImageFile = async function (file) {
+    if (!file) return file;
+    const isHeic = (
+        /\.(heic|heif)$/i.test(file.name || '') ||
+        file.type === 'image/heic' ||
+        file.type === 'image/heif'
+    );
+
+    if (!isHeic) {
+        return file;
+    }
+
+    // Attempt 1: Native macOS desktop converter if available (lightning fast via sips)
+    if (window.desktopAPI && typeof window.desktopAPI.convertHeic === 'function') {
+        try {
+            const base64 = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const result = String(reader.result || '');
+                    const clean = result.replace(/^data:[^;]+;base64,/, '');
+                    resolve(clean);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+            const res = await window.desktopAPI.convertHeic({ bufferBase64: base64 });
+            if (res && res.success && res.dataUrl) {
+                const resFetch = await fetch(res.dataUrl);
+                const blob = await resFetch.blob();
+                const newName = (file.name || 'image').replace(/\.(heic|heif)$/i, '.jpg');
+                return new File([blob], newName, { type: 'image/jpeg' });
+            }
+        } catch (e) {
+            console.warn('[LifeStudio] Native HEIC conversion failed, trying heic2any:', e);
+        }
+    }
+
+    // Attempt 2: heic2any WebAssembly decoder
+    if (window.heic2any) {
+        try {
+            const convertedBlob = await window.heic2any({
+                blob: file,
+                toType: 'image/jpeg',
+                quality: 0.92
+            });
+            const singleBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+            const newName = (file.name || 'image').replace(/\.(heic|heif)$/i, '.jpg');
+            return new File([singleBlob], newName, { type: 'image/jpeg' });
+        } catch (e) {
+            console.error('[LifeStudio] heic2any conversion failed:', e);
+            throw new Error(`Failed to decode HEIC image (${file.name}): ${e.message}`);
+        }
+    }
+
+    throw new Error(`HEIC format is not supported by your browser. Please upload JPG or PNG.`);
+};
+
 // Global Constants
 window.GENRES = [
     "All",

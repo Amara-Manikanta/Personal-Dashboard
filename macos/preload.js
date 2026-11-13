@@ -6,5 +6,6 @@ contextBridge.exposeInMainWorld('desktopAPI', {
     openExternal: (url) => ipcRenderer.invoke('open-external', url),
     showInFolder: (filePath) => ipcRenderer.invoke('show-in-folder', filePath),
     getAppVersion: () => ipcRenderer.invoke('get-app-version'),
-    chooseBackupFolder: () => ipcRenderer.invoke('choose-backup-folder')
+    chooseBackupFolder: () => ipcRenderer.invoke('choose-backup-folder'),
+    convertHeic: (options) => ipcRenderer.invoke('convert-heic', options)
 });

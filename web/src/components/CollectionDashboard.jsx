@@ -163,31 +163,41 @@ const formatCollected = (value) => {
  * The canvas is painted white first: a transparent PNG re-encoded as JPEG
  * would otherwise come out on black, which looks like a ruined scan.
  */
-const compressCollectionImage = (file, maxDim = 1600, quality = 0.85) => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = () => reject(new Error(`Could not read ${file.name}`));
-    reader.onload = () => {
-        const img = new Image();
-        img.onerror = () => reject(new Error(`${file.name} is not a readable image`));
-        img.onload = () => {
-            const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
-            const w = Math.max(1, Math.round(img.width * scale));
-            const h = Math.max(1, Math.round(img.height * scale));
+const compressCollectionImage = async (file, maxDim = 1600, quality = 0.85) => {
+    let normalized = file;
+    if (window.normalizeImageFile) {
+        try {
+            normalized = await window.normalizeImageFile(file);
+        } catch (e) {
+            console.warn('[Collection] HEIC normalize skipped or failed:', e);
+        }
+    }
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error(`Could not read ${normalized.name}`));
+        reader.onload = () => {
+            const img = new Image();
+            img.onerror = () => reject(new Error(`${normalized.name} is not a readable image`));
+            img.onload = () => {
+                const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+                const w = Math.max(1, Math.round(img.width * scale));
+                const h = Math.max(1, Math.round(img.height * scale));
 
-            const canvas = document.createElement('canvas');
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, w, h);
-            ctx.drawImage(img, 0, 0, w, h);
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, w, h);
+                ctx.drawImage(img, 0, 0, w, h);
 
-            resolve(canvas.toDataURL('image/jpeg', quality));
+                resolve(canvas.toDataURL('image/jpeg', quality));
+            };
+            img.src = reader.result;
         };
-        img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-});
+        reader.readAsDataURL(normalized);
+    });
+};
 
 /**
  * Store one image and return the path to reference it by.
@@ -196,10 +206,18 @@ const compressCollectionImage = (file, maxDim = 1600, quality = 0.85) => new Pro
  * inline — the item still shows rather than turning into a broken image.
  */
 const storeCollectionImage = async (file) => {
-    const dataUrl = await compressCollectionImage(file);
+    let normalized = file;
+    if (window.normalizeImageFile) {
+        try {
+            normalized = await window.normalizeImageFile(file);
+        } catch (e) {
+            console.warn('[Collection] HEIC normalize error:', e);
+        }
+    }
+    const dataUrl = await compressCollectionImage(normalized);
     if (!window.IS_LOCALHOST) return dataUrl;
 
-    const base = (file.name || 'item').replace(/\.[^.]+$/, '');
+    const base = (normalized.name || 'item').replace(/\.[^.]+$/, '');
     const res = await window.api.uploadImage({ image: dataUrl, name: `${base}.jpg`, folder: 'collection' });
     return (res && res.path) ? res.path : dataUrl;
 };
@@ -758,7 +776,7 @@ window.CollectionDashboard = ({ onBackToHome }) => {
                     <input
                         ref={bulkInputRef}
                         type="file"
-                        accept="image/*"
+                        accept="image/*,.heic,.heif,.HEIC,.HEIF"
                         multiple
                         hidden
                         onChange={(e) => {
@@ -2654,7 +2672,7 @@ const CollectionEditor = ({ item, knownCountries, onCancel, onSave }) => {
                             <input
                                 ref={fileRef}
                                 type="file"
-                                accept="image/*"
+                                accept="image/*,.heic,.heif,.HEIC,.HEIF"
                                 multiple
                                 hidden
                                 onChange={(e) => { takeFiles(e.target.files, pendingKind.current); e.target.value = ''; }}

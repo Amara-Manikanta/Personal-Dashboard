@@ -1,6 +1,8 @@
 const { app, BrowserWindow, Menu, shell, ipcMain, dialog } = require('electron');
 const path = require('path');
 const http = require('http');
+const { execFile } = require('child_process');
+const os = require('os');
 
 let mainWindow = null;
 let serverInstance = null;
@@ -60,7 +62,10 @@ async function initializeServer() {
     }
 
     try {
-        const { startServer } = require('../web/server.js');
+        const serverModulePath = fs.existsSync(path.join(__dirname, '..', 'server.js'))
+            ? '../server.js'
+            : '../web/server.js';
+        const { startServer } = require(serverModulePath);
         const started = await startServer(activePort);
         serverInstance = started.server;
         console.log(`[Electron] Started backend server on port ${activePort}`);
@@ -71,7 +76,10 @@ async function initializeServer() {
             if (!ready) {
                 // Try fallback port 3011
                 activePort = 3011;
-                const { startServer } = require('../web/server.js');
+                const serverModulePath = fs.existsSync(path.join(__dirname, '..', 'server.js'))
+                    ? '../server.js'
+                    : '../web/server.js';
+                const { startServer } = require(serverModulePath);
                 const started = await startServer(activePort);
                 serverInstance = started.server;
                 console.log(`[Electron] Started backend server on fallback port ${activePort}`);
@@ -251,6 +259,34 @@ ipcMain.handle('choose-backup-folder', async () => {
         properties: ['openDirectory', 'createDirectory']
     });
     return result.canceled ? null : result.filePaths[0];
+});
+
+// Lightning-fast native macOS HEIC to JPEG converter via sips
+ipcMain.handle('convert-heic', async (event, { filePath, bufferBase64 }) => {
+    try {
+        let inputPath = filePath;
+        let tempInput = null;
+        if (!inputPath && bufferBase64) {
+            tempInput = path.join(os.tmpdir(), `heic_${Date.now()}_input.heic`);
+            fs.writeFileSync(tempInput, Buffer.from(bufferBase64, 'base64'));
+            inputPath = tempInput;
+        }
+        const tempOutput = path.join(os.tmpdir(), `heic_${Date.now()}_output.jpg`);
+        await new Promise((resolve, reject) => {
+            execFile('/usr/bin/sips', ['-s', 'format', 'jpeg', inputPath, '--out', tempOutput], (err) => {
+                if (err) return reject(err);
+                resolve();
+            });
+        });
+        const jpgBuffer = fs.readFileSync(tempOutput);
+        const dataUrl = `data:image/jpeg;base64,${jpgBuffer.toString('base64')}`;
+        try { fs.unlinkSync(tempOutput); } catch (_) {}
+        if (tempInput) { try { fs.unlinkSync(tempInput); } catch (_) {} }
+        return { success: true, dataUrl };
+    } catch (err) {
+        console.error('[Electron] HEIC conversion error:', err);
+        return { success: false, error: err.message };
+    }
 });
 
 // Ensure single instance
