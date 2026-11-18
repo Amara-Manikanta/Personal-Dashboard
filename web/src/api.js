@@ -464,6 +464,7 @@ const api = {
             await ghStorage.saveFile('scrapbook.json', data);
         }
     },
+    saveMovies: async (data) => {
         if (IS_LOCALHOST) {
             try {
                 await localSave('movies', data);
