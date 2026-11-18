@@ -52,9 +52,16 @@ window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect, selectable
                     }}
                 />
                 <div className="card-overlay">
-                    <span className={`status-badge ${getStatusClass(status)}`}>
-                        {getStatusLabel(status)}
-                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-start' }}>
+                        <span className={`status-badge ${getStatusClass(status)}`}>
+                            {getStatusLabel(status)}
+                        </span>
+                        {subGenre && subGenre.includes('Priority #') && (
+                            <span className="priority-rank-badge">
+                                🎯 {subGenre.split('·')[0].trim().replace('TBR ', '')}
+                            </span>
+                        )}
+                    </div>
 
                     <div className="card-actions" style={selectable ? { display: 'none' } : undefined}>
                         <button className="action-btn edit-btn" onClick={(e) => { e.stopPropagation(); onEdit(novel); }} title="Edit">
@@ -236,6 +243,20 @@ window.NovelCard = ({ novel, onEdit, onDuplicate, onDelete, onSelect, selectable
                 }
                 .delete-btn:hover {
                     background-color: #ef4444; /* Red */
+                }
+                .priority-rank-badge {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 3px;
+                    padding: 0.15rem 0.5rem;
+                    border-radius: 9999px;
+                    font-size: 0.65rem;
+                    font-weight: 700;
+                    letter-spacing: 0.02em;
+                    background: linear-gradient(135deg, #f59e0b, #d97706);
+                    color: #ffffff;
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+                    text-transform: uppercase;
                 }
 
                 .card-content {
